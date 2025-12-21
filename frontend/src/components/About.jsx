@@ -3,7 +3,45 @@ import React, { useState, useEffect, useRef } from "react";
 const AboutUs = () => {
   const [isVisible, setIsVisible] = useState({});
   const [scrollY, setScrollY] = useState(0);
+  const [sectionOffsets, setSectionOffsets] = useState({});
   const sectionRefs = useRef({});
+
+  // Calculate section offsets when components mount and on resize
+  useEffect(() => {
+    const calculateOffsets = () => {
+      const offsets = {};
+      Object.keys(sectionRefs.current).forEach((key) => {
+        if (sectionRefs.current[key]) {
+          offsets[key] = sectionRefs.current[key].offsetTop;
+        }
+      });
+      setSectionOffsets(offsets);
+    };
+
+    // Calculate initial offsets
+    calculateOffsets();
+
+    // Recalculate on window resize
+    window.addEventListener("resize", calculateOffsets);
+
+    // Small delay to ensure all elements are mounted
+    const timer = setTimeout(calculateOffsets, 100);
+
+    return () => {
+      window.removeEventListener("resize", calculateOffsets);
+      clearTimeout(timer);
+    };
+  }, []);
+
+  // Parallax scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Intersection Observer for scroll animations
   useEffect(() => {
@@ -26,15 +64,6 @@ const AboutUs = () => {
     });
 
     return () => observers.forEach((observer) => observer.disconnect());
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Images (replace with your actual images)
@@ -94,7 +123,6 @@ const AboutUs = () => {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-      {/* Background decorative elements */}
       <div className="relative max-w-10xl mx-auto px-2 sm:px-3 lg:px-4">
         {/* Section Header */}
         <div
@@ -109,14 +137,15 @@ const AboutUs = () => {
             Who We Are
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            Our <span className="text-blue-600 ">Story</span> &{" "}
-            <span className="text-blue-600 ">Journey</span>
+            Our <span className="text-blue-600">Story</span> &{" "}
+            <span className="text-blue-600">Journey</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             From grassroots beginnings to becoming a trusted voice in marine
             conservation
           </p>
         </div>
+
         {/* MAIN CONTAINER with animations */}
         <div
           ref={(el) => (sectionRefs.current["mainContainer"] = el)}
@@ -218,22 +247,6 @@ const AboutUs = () => {
 
               {/* Gradient overlay */}
               <div className="absolute max-w-80 inset-0 bg-gradient-to-r from-white via-white/80 via-white/30"></div>
-
-              {/* Image caption with animation */}
-              {/* <div
-                className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6 z-10 transform transition-all duration-1000 delay-900 ${
-                  isVisible.mainContainer
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
-                }`}
-              >
-                <p className="text-white text-lg font-semibold">
-                  Field Research in Tagbak Marine Park
-                </p>
-                <p className="text-white/80 text-sm">
-                  Our team conducting coral health assessment, Southern Leyte
-                </p>
-              </div> */}
             </div>
           </div>
         </div>
@@ -397,7 +410,7 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Full Width Image Section with parallax-like effect */}
+        {/* Full Width Image Section with parallax effect */}
         <div
           ref={(el) => (sectionRefs.current["fullImage"] = el)}
           className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[60vh] overflow-hidden transform transition-all duration-1000 ${
@@ -409,8 +422,7 @@ const AboutUs = () => {
             className="absolute inset-0 w-full h-[120%] -top-[10%]"
             style={{
               transform: `translateY(${
-                (scrollY - (sectionRefs.current["fullImage"]?.offsetTop || 0)) *
-                0.05
+                (scrollY - (sectionOffsets.fullImage || 0)) * 0.05
               }px)`,
               transition: "transform 0.1s ease-out",
             }}
@@ -427,19 +439,14 @@ const AboutUs = () => {
             className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
             style={{
               transform: `translateY(${
-                (scrollY - (sectionRefs.current["fullImage"]?.offsetTop || 0)) *
-                0.1
+                (scrollY - (sectionOffsets.fullImage || 0)) * 0.1
               }px)`,
             }}
           />
 
           {/* Content with counter-parallax */}
           <div
-            className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 delay-300 ${
-              isVisible.fullImage
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
+            className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 delay-300`}
           >
             <div className="text-center text-white px-4">
               <h3 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-lg">
@@ -512,6 +519,7 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
+
         {/* Achievements with counter animation */}
         <div
           ref={(el) => (sectionRefs.current["achievements"] = el)}
@@ -575,7 +583,8 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-        {/* Full Width Image Section with parallax-like effect */}
+
+        {/* Second Full Width Image Section with parallax */}
         <div
           ref={(el) => (sectionRefs.current["fullImageQuote"] = el)}
           className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[60vh] overflow-hidden transform transition-all duration-1000 ${
@@ -589,10 +598,9 @@ const AboutUs = () => {
             className="absolute inset-0 w-full h-[120%] -top-[10%]"
             style={{
               transform: `translateY(${
-                (scrollY -
-                  (sectionRefs.current["fullImageQuote"]?.offsetTop || 0)) *
-                0.07
+                (scrollY - (sectionOffsets.fullImageQuote || 0)) * 0.05
               }px)`,
+              transition: "transform 0.1s ease-out",
             }}
           >
             <img
@@ -607,11 +615,7 @@ const AboutUs = () => {
 
           {/* Content with counter-parallax */}
           <div
-            className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 delay-300 ${
-              isVisible.fullImageQuote
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
+            className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 delay-300`}
           >
             <div className="text-center text-white px-6 max-w-4xl mx-auto">
               <blockquote className="text-2xl md:text-4xl font-bold mb-6 leading-tight drop-shadow-lg">

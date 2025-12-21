@@ -1,31 +1,31 @@
 const teamMembers = [
   {
-    name: "Dr. Sarah Chen",
-    role: "Director of Research",
+    name: "Dr. Sarah ",
+    role: "Team 1",
     image:
       "https://images.unsplash.com/photo-1733413931571-1b1f7a4785f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY3ViYSUyMGRpdmVyJTIwY29yYWx8ZW58MXx8fHwxNzY2MTE1Nzg5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    bio: "PhD in Marine Biology from Stanford. 15+ years studying coral resilience to climate change.",
+    bio: "Description 1",
   },
   {
-    name: "Dr. James Martinez",
-    role: "Chief Conservation Officer",
+    name: "Dr. James ",
+    role: "Team 2",
     image:
       "https://images.unsplash.com/photo-1651065223932-284c48b49cc8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvY2VhbiUyMHdhdmVzJTIwYWVyaWFsfGVufDF8fHx8MTc2NjExNTc4OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    bio: "Former NOAA scientist with expertise in reef restoration and marine protected areas.",
+    bio: "Description 2",
   },
   {
-    name: "Dr. Aisha Okonkwo",
-    role: "Lead Geneticist",
+    name: "Dr. Aisha",
+    role: "Team 3",
     image:
       "https://images.unsplash.com/photo-1719042575585-e9d866f43210?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3JhbCUyMHJlZWYlMjB1bmRlcndhdGVyfGVufDF8fHx8MTc2NjAzOTk1NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    bio: "Pioneering research in coral genetics and adaptive evolution in warming oceans.",
+    bio: "Description 3",
   },
   {
-    name: "Dr. Kenji Tanaka",
-    role: "Field Operations Director",
+    name: "Dr. Kenji",
+    role: "Team 4",
     image:
       "https://images.unsplash.com/photo-1763052413968-6d49d3e7f170?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpbmUlMjBjb25zZXJ2YXRpb24lMjByZXNlYXJjaHxlbnwxfHx8fDE3NjYxMTU3ODh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-    bio: "Oversees restoration projects across Asia-Pacific with focus on community engagement.",
+    bio: "Description 4",
   },
 ];
 
