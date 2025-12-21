@@ -69,16 +69,16 @@ const Team = () => {
           <h3 className="text-center mb-8 text-gray-900">Advisory Board</h3>
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-gray-900 mb-1">Prof. Elizabeth Hayes</div>
-              <div className="text-gray-600">MIT Ocean Engineering</div>
+              <div className="text-gray-900 mb-1">Prof. Elizabeth</div>
+              <div className="text-gray-600">Role 1</div>
             </div>
             <div>
-              <div className="text-gray-900 mb-1">Dr. Mohamed Al-Rashid</div>
-              <div className="text-gray-600">UN Environment Programme</div>
+              <div className="text-gray-900 mb-1">Dr. Mohamed</div>
+              <div className="text-gray-600">Role 2</div>
             </div>
             <div>
-              <div className="text-gray-900 mb-1">Dr. Linda Yamamoto</div>
-              <div className="text-gray-600">World Wildlife Fund</div>
+              <div className="text-gray-900 mb-1">Dr. Linda</div>
+              <div className="text-gray-600">Role 3</div>
             </div>
           </div>
         </div>

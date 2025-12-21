@@ -6,7 +6,6 @@ const AboutUs = () => {
   const [sectionOffsets, setSectionOffsets] = useState({});
   const sectionRefs = useRef({});
 
-  // Calculate section offsets when components mount and on resize
   useEffect(() => {
     const calculateOffsets = () => {
       const offsets = {};
@@ -18,13 +17,10 @@ const AboutUs = () => {
       setSectionOffsets(offsets);
     };
 
-    // Calculate initial offsets
     calculateOffsets();
 
-    // Recalculate on window resize
     window.addEventListener("resize", calculateOffsets);
 
-    // Small delay to ensure all elements are mounted
     const timer = setTimeout(calculateOffsets, 100);
 
     return () => {
