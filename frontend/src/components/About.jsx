@@ -435,14 +435,7 @@ const AboutUs = () => {
           </div>
 
           {/* Gradient Overlay with subtle parallax */}
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
-            style={{
-              transform: `translateY(${
-                (scrollY - (sectionOffsets.fullImage || 0)) * 0.1
-              }px)`,
-            }}
-          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
           {/* Content with counter-parallax */}
           <div
@@ -598,7 +591,7 @@ const AboutUs = () => {
             className="absolute inset-0 w-full h-[120%] -top-[10%]"
             style={{
               transform: `translateY(${
-                (scrollY - (sectionOffsets.fullImageQuote || 0)) * 0.05
+                (scrollY - (sectionOffsets.fullImageQuote || 0)) * 0.06
               }px)`,
               transition: "transform 0.1s ease-out",
             }}
