@@ -59,7 +59,7 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <NavItem href="#about" isScrolled={isScrolled}>
-                About
+                About Us
               </NavItem>
               <NavItem href="#research" isScrolled={isScrolled}>
                 Research
@@ -70,16 +70,19 @@ const Navbar = () => {
               <NavItem href="#team" isScrolled={isScrolled}>
                 Team
               </NavItem>
+              <NavItem href="#contact" isScrolled={isScrolled}>
+                Contact
+              </NavItem>
 
               <button className="px-6 py-3 rounded-xl font-medium bg-black text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95">
-                Donate
+                Get Involved
               </button>
             </div>
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-lg text-gray-800 transition-all duration-300"
+                className="p-2 rounded-lg text-gray-800 transition-all hover:scale-110 duration-300"
               >
                 <svg
                   className="w-6 h-6"
@@ -125,7 +128,7 @@ const Navbar = () => {
               href="#about"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              About
+              About Us
             </MobileNavItem>
             <MobileNavItem
               href="#research"
@@ -145,8 +148,14 @@ const Navbar = () => {
             >
               Team
             </MobileNavItem>
+            <MobileNavItem
+              href="#contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Contact
+            </MobileNavItem>
             <button className="w-full bg-black text-white px-6 py-4 md:px-4 md:py-2 rounded-xl font-medium hover:shadow-lg transition-all duration-300">
-              Donate Now
+              Get Involved
             </button>
           </div>
         </div>
