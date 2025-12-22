@@ -40,8 +40,8 @@ const Hero = () => {
         >
           <img
             className="w-full h-full object-cover animate-fade-in-slow"
-            src="/images/12.jpg"
-            alt=""
+            src="/images/32.jpg"
+            alt="Coral Reef Background"
           />
         </div>
 
@@ -112,12 +112,12 @@ const Hero = () => {
             }`}
             style={{ transitionDelay: "0.8s" }}
           >
-            <button className="w-full sm:w-auto group relative bg-black text-white px-8 md:px-10 py-4 md:py-5 rounded-xl text-base md:text-lg font-semibold hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 active:scale-95 animate-float">
+            <button className="w-full sm:w-auto group relative bg-[#2E5E2E] text-white px-8 md:px-10 py-4 md:py-5 rounded-xl text-base md:text-lg font-semibold hover:shadow-2xl transition-all duration-500 transform hover:scale-100 hover:-translate-y-2 active:scale-95 animate-float">
               <span className="relative flex items-center justify-center space-x-3">
                 <span>Support Our Mission</span>
               </span>
             </button>
-            <button className="w-full sm:w-auto group border-2 border-white/30 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl text-base md:text-lg font-semibold hover:bg-white/10 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 active:scale-95">
+            <button className="w-full sm:w-auto group border-2 border-white/30 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl text-base md:text-lg font-semibold hover:bg-white/10 backdrop-blur-sm transition-all duration-500 transform hover:scale-100 hover:-translate-y-2 active:scale-95">
               <span className="relative flex items-center justify-center space-x-3">
                 <span>View Our Research</span>
               </span>
