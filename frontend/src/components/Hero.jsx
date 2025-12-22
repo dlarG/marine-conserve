@@ -61,13 +61,13 @@ const Hero = () => {
       <div
         className={`relative md:mt-20 z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center`}
         style={{
-          transform: `translateY(${scrollY * -0.1}px)`,
+          transform: `translateY(${scrollY * -0.15}px)`,
         }}
       >
         <div className="transform transition-transform duration-100">
           {/* Main Heading */}
           <h1
-            className={`text-5xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight tracking-tight transform transition-all duration-1000 drop-shadow-lg ${
+            className={`text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight tracking-tight transform transition-all duration-1000 drop-shadow-lg ${
               isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
             style={{ transitionDelay: "0.2s" }}
