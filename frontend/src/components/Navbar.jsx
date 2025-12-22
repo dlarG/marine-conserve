@@ -3,7 +3,9 @@ import React, { useState, useEffect } from "react";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
+  // Handle scroll for navbar background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -13,6 +15,29 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle active section detection
+  useEffect(() => {
+    const sections = ["hero", "about", "research", "impact", "team", "contact"];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && scrollPosition >= section.offsetTop) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call once to set initial state
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -20,6 +45,29 @@ const Navbar = () => {
       document.body.style.overflow = "auto";
     }
   }, [isMobileMenuOpen]);
+
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const navbarHeight = 80; // Approximate navbar height
+      const targetPosition = section.offsetTop - navbarHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  const navigationItems = [
+    { id: "about", label: "About Us" },
+    { id: "research", label: "Research" },
+    { id: "impact", label: "Impact" },
+    { id: "team", label: "Team" },
+    { id: "contact", label: "Contact" },
+  ];
 
   return (
     <>
@@ -33,22 +81,22 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             {/* Logo Section */}
-            <div className="flex items-center space-x-2 md:space-x-3 group cursor-pointer">
-              <div className="relative w-10 h-10 rounded-full flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-500 to-teal-400 shadow-lg transition-all duration-500">
-                <img
-                  src="/logo/fav.png"
-                  alt="Coral Institute Logo"
-                  className="w-10 h-10 object-contain rounded-full"
-                  onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "block";
-                  }}
-                />
-              </div>
+            <div
+              className="flex items-center space-x-2 md:space-x-3 group cursor-pointer"
+              onClick={() => scrollToSection("hero")}
+            >
+              <img
+                src="/logo/GREEN.jpg"
+                alt="GREEN Inc. Logo"
+                className="w-11 h-10.1 object-contain rounded-full"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                }}
+              />
               <div>
                 <h1
                   className={`text-lg md:text-xl font-bold transition-all duration-500 ${
-                    isScrolled ? "text-gray-800" : "text-white"
+                    isScrolled ? "text-[#2E5E2E]" : "text-white"
                   }`}
                 >
                   GREEN Inc.
@@ -58,31 +106,37 @@ const Navbar = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <NavItem href="#about" isScrolled={isScrolled}>
-                About Us
-              </NavItem>
-              <NavItem href="#research" isScrolled={isScrolled}>
-                Research
-              </NavItem>
-              <NavItem href="#impact" isScrolled={isScrolled}>
-                Impact
-              </NavItem>
-              <NavItem href="#team" isScrolled={isScrolled}>
-                Team
-              </NavItem>
-              <NavItem href="#contact" isScrolled={isScrolled}>
-                Contact
-              </NavItem>
+              {navigationItems.map((item) => (
+                <NavItem
+                  key={item.id}
+                  sectionId={item.id}
+                  isScrolled={isScrolled}
+                  isActive={activeSection === item.id}
+                  onClick={() => scrollToSection(item.id)}
+                >
+                  {item.label}
+                </NavItem>
+              ))}
 
-              <button className="px-6 py-3 rounded-xl font-medium bg-black text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95">
+              <button
+                className={`px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                  isScrolled
+                    ? "bg-[#2E5E2E] text-white"
+                    : "bg-white text-gray-800 hover:bg-gray-100"
+                }`}
+                onClick={() => scrollToSection("contact")}
+              >
                 Get Involved
               </button>
             </div>
+
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-lg text-gray-800 transition-all hover:scale-110 duration-300"
+                className={`p-2 rounded-lg transition-all hover:scale-110 duration-300 ${
+                  isScrolled ? "text-gray-800" : "text-white"
+                }`}
               >
                 <svg
                   className="w-6 h-6"
@@ -119,42 +173,31 @@ const Navbar = () => {
               : "opacity-0 -translate-y-4 pointer-events-none"
           } ${
             isScrolled
-              ? "bg-white/95 backdrop-blur-xl top-20"
-              : "bg-transparent backdrop-blur-sm"
+              ? "bg-white/95 backdrop-blur-xl top-20 shadow-lg"
+              : "bg-gray-900/95 backdrop-blur-xl top-24"
           }`}
         >
           <div className="px-4 py-8 space-y-6">
-            <MobileNavItem
-              href="#about"
-              onClick={() => setIsMobileMenuOpen(false)}
+            {navigationItems.map((item) => (
+              <MobileNavItem
+                key={item.id}
+                sectionId={item.id}
+                isActive={activeSection === item.id}
+                isScrolled={isScrolled}
+                onClick={() => scrollToSection(item.id)}
+              >
+                {item.label}
+              </MobileNavItem>
+            ))}
+
+            <button
+              className={`w-full px-6 py-4 rounded-xl font-medium hover:shadow-lg transition-all duration-300 ${
+                isScrolled
+                  ? "bg-blue-600 text-white hover:bg-blue-700"
+                  : "bg-white text-gray-800 hover:bg-gray-100"
+              }`}
+              onClick={() => scrollToSection("contact")}
             >
-              About Us
-            </MobileNavItem>
-            <MobileNavItem
-              href="#research"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Research
-            </MobileNavItem>
-            <MobileNavItem
-              href="#impact"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Impact
-            </MobileNavItem>
-            <MobileNavItem
-              href="#team"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Team
-            </MobileNavItem>
-            <MobileNavItem
-              href="#contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Contact
-            </MobileNavItem>
-            <button className="w-full bg-black text-white px-6 py-4 md:px-4 md:py-2 rounded-xl font-medium hover:shadow-lg transition-all duration-300">
               Get Involved
             </button>
           </div>
@@ -172,32 +215,38 @@ const Navbar = () => {
   );
 };
 
-const NavItem = ({ href, children, isScrolled }) => (
-  <a
-    href={href}
-    className={`font-medium transition-all duration-300 relative group ${
-      isScrolled ? "text-gray-700" : "text-white"
+const NavItem = ({ children, isScrolled, isActive, onClick }) => (
+  <button
+    onClick={onClick}
+    className={`cursor-pointer font-medium transition-all duration-300 relative group ${
+      isActive
+        ? isScrolled
+          ? "text-[#2E5E2E]"
+          : "text-[#2E5E2E]"
+        : isScrolled
+        ? "text-gray-700 hover:text-[#2E5E2E]"
+        : "text-white hover:text-[#8B7355]"
     }`}
   >
     {children}
-    <span
-      className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${
-        isScrolled
-          ? "bg-gradient-to-r from-blue-500 to-teal-400"
-          : "bg-gradient-to-r from-white to-blue-200"
-      }`}
-    ></span>
-  </a>
+  </button>
 );
 
-const MobileNavItem = ({ href, children, onClick }) => (
-  <a
-    href={href}
+const MobileNavItem = ({ children, onClick, isActive, isScrolled }) => (
+  <button
     onClick={onClick}
-    className="block text-gray-800 text-lg font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition-all duration-300"
+    className={`block w-full text-left text-lg font-medium py-3 px-4 rounded-lg transition-all duration-300 ${
+      isActive
+        ? isScrolled
+          ? "bg-[#2E5E2E] text-white border-l-4 border-[#2E5E2E]"
+          : "bg-[#2E5E2E] text-white border-l-4 border-[#2E5E2E]"
+        : isScrolled
+        ? "text-gray-800 hover:bg-gray-50 hover:text-blue-600"
+        : "text-white hover:bg-white/10 hover:text-blue-200"
+    }`}
   >
     {children}
-  </a>
+  </button>
 );
 
 export default Navbar;

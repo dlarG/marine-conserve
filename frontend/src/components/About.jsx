@@ -66,7 +66,7 @@ const AboutUs = () => {
   const images = {
     teamPhoto:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    underwaterResearch: "images/2.jpg",
+    underwaterResearch: "images/1222.jpg",
     communityWork:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     coralCloseup:
@@ -424,7 +424,7 @@ const AboutUs = () => {
             }}
           >
             <img
-              src="/images/PB120722.JPG"
+              src="/images/small.jpg"
               alt="GREEN Inc. team conducting underwater research"
               className="w-full h-full object-cover"
             />
@@ -593,7 +593,7 @@ const AboutUs = () => {
             }}
           >
             <img
-              src="/images/PB110217.JPG"
+              src="/images/small2.jpg"
               alt="GREEN Inc. team conducting underwater research"
               className="w-full h-full object-cover"
             />
