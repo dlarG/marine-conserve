@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Footer from "./components/Footer";
+import Footer from "./components/footer";
 // import Mission from "./components/Mission";
 import About from "./components/About";
 import Team from "./components/Team";

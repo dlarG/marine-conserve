@@ -4,8 +4,10 @@ const AboutUs = () => {
   const [isVisible, setIsVisible] = useState({});
   const [scrollY, setScrollY] = useState(0);
   const [sectionOffsets, setSectionOffsets] = useState({});
+  const [activeCard, setActiveCard] = useState(null); // For mobile card states
   const sectionRefs = useRef({});
 
+  // Calculate section offsets when components mount and on resize
   useEffect(() => {
     const calculateOffsets = () => {
       const offsets = {};
@@ -18,9 +20,7 @@ const AboutUs = () => {
     };
 
     calculateOffsets();
-
     window.addEventListener("resize", calculateOffsets);
-
     const timer = setTimeout(calculateOffsets, 100);
 
     return () => {
@@ -62,7 +62,46 @@ const AboutUs = () => {
     return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
-  // Images (replace with your actual images)
+  // Handle card click for mobile
+  const handleCardClick = (cardId) => {
+    setActiveCard(activeCard === cardId ? null : cardId);
+  };
+
+  // Approach cards data
+  const approachCards = [
+    {
+      id: "data-driven",
+      title: "Data-Driven Decisions",
+      description:
+        "All conservation actions are guided by rigorous scientific data collected through our monitoring programs and AI-assisted analysis.",
+      image: "/images/7.jpg",
+      alt: "Data analysis and research",
+      color: "blue",
+      delay: "400ms",
+    },
+    {
+      id: "community-led",
+      title: "Community-Led Solutions",
+      description:
+        "We believe lasting change comes from empowering those who depend on marine resources through training and collaborative management.",
+      image: "images/6.jpg",
+      alt: "Community engagement and training",
+      color: "teal",
+      delay: "600ms",
+    },
+    {
+      id: "innovation",
+      title: "Innovation in Conservation",
+      description:
+        "Pioneering AI-assisted monitoring and sustainable restoration techniques that push the boundaries of traditional conservation methods.",
+      image: "images/PB110170.JPG",
+      alt: "Innovative conservation technology",
+      color: "green",
+      delay: "800ms",
+    },
+  ];
+
+  // Images
   const images = {
     teamPhoto:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -232,7 +271,6 @@ const AboutUs = () => {
                   : "translate-x-12 opacity-0"
               }`}
             >
-              {/* Base Image */}
               <div className="absolute inset-0 overflow-hidden">
                 <img
                   src={images.underwaterResearch}
@@ -240,14 +278,12 @@ const AboutUs = () => {
                   className="w-full h-full object-cover transition-transform duration-700"
                 />
               </div>
-
-              {/* Gradient overlay */}
               <div className="absolute max-w-80 inset-0 bg-gradient-to-r from-white via-white/80 via-white/30"></div>
             </div>
           </div>
         </div>
 
-        {/* Approach Section with staggered cards */}
+        {/* Approach Section with Enhanced Mobile Support */}
         <div
           ref={(el) => (sectionRefs.current["approach"] = el)}
           className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-gray-900 py-16 transform transition-all duration-1000 ${
@@ -271,141 +307,27 @@ const AboutUs = () => {
                 Our methodology combines scientific rigor with
                 community-centered solutions
               </p>
+              {/* Mobile instruction */}
+              <p className="text-sm text-gray-400 mt-4 md:hidden">
+                Tap cards below to learn more
+              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {/* Data-Driven Decisions Card */}
-              <div
-                className={`group relative h-80 rounded-2xl overflow-hidden cursor-pointer transform transition-all duration-700 hover:scale-105 ${
-                  isVisible.approach
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: "400ms" }}
-              >
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img
-                    src="/images/7.jpg"
-                    alt="Data analysis and research"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-blue-600/90 group-hover:via-blue-600/70 group-hover:to-blue-600/40 transition-all duration-500"></div>
-                </div>
-
-                {/* Default Content - Title */}
-                <div className="absolute inset-0 flex items-end p-6 group-hover:opacity-0 transition-opacity duration-300">
-                  <div>
-                    <h4 className="text-2xl font-bold text-white">
-                      Data-Driven Decisions
-                    </h4>
-                  </div>
-                </div>
-
-                {/* Hover Content - Description */}
-                <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                  <div className="text-center">
-                    <h4 className="text-2xl font-bold text-white mb-4">
-                      Data-Driven Decisions
-                    </h4>
-                    <p className="text-white/90 leading-relaxed">
-                      All conservation actions are guided by rigorous scientific
-                      data collected through our monitoring programs and
-                      AI-assisted analysis.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Community-Led Solutions Card */}
-              <div
-                className={`group relative h-80 rounded-2xl overflow-hidden cursor-pointer transform transition-all duration-700 hover:scale-105 ${
-                  isVisible.approach
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: "600ms" }}
-              >
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img
-                    src="images/6.jpg"
-                    alt="Community engagement and training"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-teal-600/90 group-hover:via-teal-600/70 group-hover:to-teal-600/40 transition-all duration-500"></div>
-                </div>
-
-                {/* Default Content - Title */}
-                <div className="absolute inset-0 flex items-end p-6 group-hover:opacity-0 transition-opacity duration-300">
-                  <div>
-                    <h4 className="text-2xl font-bold text-white">
-                      Community-Led Solutions
-                    </h4>
-                  </div>
-                </div>
-
-                {/* Hover Content - Description */}
-                <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                  <div className="text-center">
-                    <h4 className="text-2xl font-bold text-white mb-4">
-                      Community-Led Solutions
-                    </h4>
-                    <p className="text-white/90 leading-relaxed">
-                      We believe lasting change comes from empowering those who
-                      depend on marine resources through training and
-                      collaborative management.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Innovation in Conservation Card */}
-              <div
-                className={`group relative h-80 rounded-2xl overflow-hidden cursor-pointer transform transition-all duration-700 hover:scale-105 ${
-                  isVisible.approach
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: "800ms" }}
-              >
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img
-                    src="images/PB110170.JPG"
-                    alt="Innovative conservation technology"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-green-600/90 group-hover:via-green-600/70 group-hover:to-green-600/40 transition-all duration-500"></div>
-                </div>
-
-                {/* Default Content - Title */}
-                <div className="absolute inset-0 flex items-end p-6 group-hover:opacity-0 transition-opacity duration-300">
-                  <div>
-                    <h4 className="text-2xl font-bold text-white">
-                      Innovation in Conservation
-                    </h4>
-                  </div>
-                </div>
-
-                {/* Hover Content - Description */}
-                <div className="absolute inset-0 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                  <div className="text-center">
-                    <h4 className="text-2xl font-bold text-white mb-4">
-                      Innovation in Conservation
-                    </h4>
-                    <p className="text-white/90 leading-relaxed">
-                      Pioneering AI-assisted monitoring and sustainable
-                      restoration techniques that push the boundaries of
-                      traditional conservation methods.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              {approachCards.map((card) => (
+                <ApproachCard
+                  key={card.id}
+                  card={card}
+                  isVisible={isVisible.approach}
+                  isActive={activeCard === card.id}
+                  onClick={() => handleCardClick(card.id)}
+                />
+              ))}
             </div>
           </div>
         </div>
 
+        {/* Rest of your sections remain the same... */}
         {/* Full Width Image Section with parallax effect */}
         <div
           ref={(el) => (sectionRefs.current["fullImage"] = el)}
@@ -413,7 +335,6 @@ const AboutUs = () => {
             isVisible.fullImage ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
         >
-          {/* Parallax Background Image */}
           <div
             className="absolute inset-0 w-full h-[120%] -top-[10%]"
             style={{
@@ -429,11 +350,7 @@ const AboutUs = () => {
               className="w-full h-full object-cover"
             />
           </div>
-
-          {/* Gradient Overlay with subtle parallax */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-          {/* Content with counter-parallax */}
           <div
             className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 delay-300`}
           >
@@ -509,7 +426,7 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Achievements with counter animation */}
+        {/* Achievements Section */}
         <div
           ref={(el) => (sectionRefs.current["achievements"] = el)}
           className={`bg-gradient-to-r from-blue-50 to-teal-50 rounded-3xl p-8 md:p-12 transform transition-all duration-1000 ${
@@ -573,7 +490,7 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Second Full Width Image Section with parallax */}
+        {/* Second Full Width Image Section */}
         <div
           ref={(el) => (sectionRefs.current["fullImageQuote"] = el)}
           className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[60vh] overflow-hidden transform transition-all duration-1000 ${
@@ -582,7 +499,6 @@ const AboutUs = () => {
               : "scale-95 opacity-0"
           }`}
         >
-          {/* Parallax Background Image */}
           <div
             className="absolute inset-0 w-full h-[120%] -top-[10%]"
             style={{
@@ -598,11 +514,7 @@ const AboutUs = () => {
               className="w-full h-full object-cover"
             />
           </div>
-
-          {/* Gradient Overlay with subtle parallax */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
-
-          {/* Content with counter-parallax */}
           <div
             className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 delay-300`}
           >
@@ -624,6 +536,87 @@ const AboutUs = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+// Enhanced Approach Card Component
+const ApproachCard = ({ card, isVisible, isActive, onClick }) => {
+  const colorClasses = {
+    blue: "group-hover:from-blue-600/90 group-hover:via-blue-600/70 group-hover:to-blue-600/40",
+    teal: "group-hover:from-teal-600/90 group-hover:via-teal-600/70 group-hover:to-teal-600/40",
+    green:
+      "group-hover:from-green-600/90 group-hover:via-green-600/70 group-hover:to-green-600/40",
+  };
+
+  const activeColorClasses = {
+    blue: "from-blue-600/90 via-blue-600/70 to-blue-600/40",
+    teal: "from-teal-600/90 via-teal-600/70 to-teal-600/40",
+    green: "from-green-600/90 via-green-600/70 to-green-600/40",
+  };
+
+  return (
+    <div
+      className={`group relative h-80 rounded-2xl overflow-hidden cursor-pointer transform transition-all duration-700 hover:scale-105 ${
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+      }`}
+      style={{ transitionDelay: card.delay }}
+      onClick={onClick}
+    >
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={card.image}
+          alt={card.alt}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 transition-all duration-500 ${
+            isActive
+              ? `md:${colorClasses[card.color]} ${
+                  activeColorClasses[card.color]
+                }`
+              : `${colorClasses[card.color]}`
+          }`}
+        ></div>
+      </div>
+
+      {/* Default Content - Title */}
+      <div
+        className={`absolute inset-0 flex items-end p-6 transition-opacity duration-300 ${
+          isActive
+            ? "md:group-hover:opacity-0 opacity-0"
+            : "group-hover:opacity-0"
+        }`}
+      >
+        <div>
+          <h4 className="text-2xl font-bold text-white">{card.title}</h4>
+          {/* Mobile tap indicator */}
+          <div className="md:hidden mt-2">
+            <span className="text-white/70 text-sm">Tap to learn more</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Hover/Active Content - Description */}
+      <div
+        className={`absolute inset-0 flex items-center justify-center p-6 transition-all duration-500 transform ${
+          isActive
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"
+        }`}
+      >
+        <div className="text-center">
+          <h4 className="text-2xl font-bold text-white mb-4">{card.title}</h4>
+          <p className="text-white/90 leading-relaxed">{card.description}</p>
+          {/* Mobile close indicator */}
+          {isActive && (
+            <div className="md:hidden mt-4">
+              <span className="text-white/70 text-sm">Tap again to close</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 
