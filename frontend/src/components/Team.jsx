@@ -3,7 +3,7 @@ const teamMembers = [
     name: "Jerome Jack Napala",
     role: "Green Inc. CEO, Marine Biologist, and PADI Divemaster",
     image: "images/JeromaNapala.jpg",
-    bio: "Jerome started the nursery almost ten years ago after witnessing how his childhood reefs had begun to show signs of stress. He started with a couple of plastic bottles, ropes, and the will to succeed.",
+    bio: "Jerome started the nursery almost twnety years ago after witnessing how his childhood reefs had begun to show signs of stress. He started with a couple of plastic bottles, ropes, and the will to succeed.",
   },
   {
     name: "Christian Polo",
@@ -15,13 +15,13 @@ const teamMembers = [
     name: "Jollibee Looc",
     role: "Marine Biologist, Coral Jardinera and PADI AOW Diver",
     image: "images/JollibeeLooc.jpg",
-    bio: "Born in Agusan del Sur, surrounded by rivers and fresh water, Jobs did not have much experience with the open ocean growing up. She still became a marine biologist with a PADI Advanced Open Water certificate, and her time working with GREEN, Inc. has helped her build her career. She now works in the aquarium industry, and despite the criticisms of that industry, she hopes it can teach people about the importance of ocean conservation.",
+    bio: "Jobs became a marine biologist with a PADI Advanced Open Water certificate, and her time working with GREEN, Inc. has helped her build her career. She now works in the aquarium industry, and despite the criticisms of that industry, she hopes it can teach people about the importance of ocean conservation.",
   },
   {
     name: "Nova Almine",
-    role: "Marine Biologist, Coral Jardinera, PADI AOW, and a social science convert",
+    role: "Marine Biologist, Coral Jardinera, and a PADI AOW",
     image: "images/NovaAlmine.jpg",
-    bio: "Nova joined GREEN, Inc. while doing her undergrad in marine biology. Growing up in Southern Leyte, she became deeply passionate about the ocean and realised the many issues surrounding this complex ecosystem, in water as well. as above. She continues to study marine life and the coastal communities that depend on these crucial marine ecosystems. ",
+    bio: "Nova joined GREEN, Inc. while doing her undergrad in marine biology. Growing up in Southern Leyte, she became deeply passionate about the ocean and realised the many issues surrounding this complex ecosystem. She continues to study marine life and the coastal communities that depend on these crucial marine ecosystems. ",
   },
   {
     name: "Charlotte Henriksen",
