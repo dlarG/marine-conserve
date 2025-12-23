@@ -2,43 +2,37 @@ const teamMembers = [
   {
     name: "Jerome Jack Napala",
     role: "Green Inc. CEO, Marine Biologist, and PADI Divemaster",
-    image:
-      "https://images.unsplash.com/photo-1733413931571-1b1f7a4785f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY3ViYSUyMGRpdmVyJTIwY29yYWx8ZW58MXx8fHwxNzY2MTE1Nzg5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "images/JeromaNapala.jpg",
     bio: "Jerome started the nursery almost ten years ago after witnessing how his childhood reefs had begun to show signs of stress. He started with a couple of plastic bottles, ropes, and the will to succeed.",
   },
   {
     name: "Christian Polo",
     role: "Coral Jardinero and PADI Divemaster",
-    image:
-      "https://images.unsplash.com/photo-1651065223932-284c48b49cc8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvY2VhbiUyMHdhdmVzJTIwYWVyaWFsfGVufDF8fHx8MTc2NjExNTc4OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "images/ChristianPolo.jpg",
     bio: "Christian has been a trusted helper and coral nurse for several years. He is a scuba divemaster and spends his days diving on the beautiful reefs in Sogod Bay. He is also the first to jump in the waters, whether for a debris dive or to manage COTs.",
   },
   {
     name: "Jollibee Looc",
     role: "Marine Biologist, Coral Jardinera and PADI AOW Diver",
-    image:
-      "https://images.unsplash.com/photo-1719042575585-e9d866f43210?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3JhbCUyMHJlZWYlMjB1bmRlcndhdGVyfGVufDF8fHx8MTc2NjAzOTk1NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "images/JollibeeLooc.jpg",
     bio: "Born in Agusan del Sur, surrounded by rivers and fresh water, Jobs did not have much experience with the open ocean growing up. She still became a marine biologist with a PADI Advanced Open Water certificate, and her time working with GREEN, Inc. has helped her build her career. She now works in the aquarium industry, and despite the criticisms of that industry, she hopes it can teach people about the importance of ocean conservation.",
   },
   {
     name: "Nova Almine",
     role: "Marine Biologist, Coral Jardinera, PADI AOW, and a social science convert",
-    image:
-      "https://images.unsplash.com/photo-1763052413968-6d49d3e7f170?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpbmUlMjBjb25zZXJ2YXRpb24lMjByZXNlYXJjaHxlbnwxfHx8fDE3NjYxMTU3ODh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "images/NovaAlmine.jpg",
     bio: "Nova joined GREEN, Inc. while doing her undergrad in marine biology. Growing up in Southern Leyte, she became deeply passionate about the ocean and realised the many issues surrounding this complex ecosystem, in water as well. as above. She continues to study marine life and the coastal communities that depend on these crucial marine ecosystems. ",
   },
   {
     name: "Charlotte Henriksen",
     role: "Marine Biologist, Office Runner, and PADI Rescuer",
-    image:
-      "https://images.unsplash.com/photo-1763052413968-6d49d3e7f170?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpbmUlMjBjb25zZXJ2YXRpb24lMjByZXNlYXJjaHxlbnwxfHx8fDE3NjYxMTU3ODh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "images/CharlotteHenriksen.jpg",
     bio: "Growing up surrounded by seas and spending most of her childhood in or on water, she always knew the ocean as her home. Charlotte has a degree in Tropical Marine Biology and has, over the years, been volunteering and working on the reefs in Sogod Bay. She has fallen madly in love with the reefs and continues to return whenever an opportunity arises. On land, she is the practical assistant, focusing on the administrative tasks at GREEN Inc.",
   },
   {
     name: "Jesse Lou Tinapay",
     role: "Liaison Officer",
-    image:
-      "https://images.unsplash.com/photo-1601588400000-5b5c5c5c5c5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpbmUlMjBjb25zZXJ2YXRpb24lMjByZXNlYXJjaHxlbnwxfHx8fDE3NjYxMTU3ODh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image: "images/JesseLouTinapay.png",
     bio: "Jesse is the former Liaison Officer of Coral Cay Conservation and an experienced PADI Open Water Scuba Instructor with more than 3000 completed dives and counting. He is a certified NUDI geek and has been diving the reefs of Sogod Bay enough to know all the cracks and crevices like his own pocket. He will know where to find whichever marine organism you want to encounter. ",
   },
 ];
