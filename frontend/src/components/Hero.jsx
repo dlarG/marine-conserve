@@ -29,7 +29,6 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-30 pb-30 md:pt-0">
-      {/* Animated Background with Parallax */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Base Background with Parallax Transform */}
         <div
@@ -40,24 +39,21 @@ const Hero = () => {
         >
           <img
             className="w-full h-full object-cover animate-fade-in-slow"
-            src="/images/32.jpg"
+            src="/images/123321.jpg"
             alt="Coral Reef Background"
           />
         </div>
 
-        {/* Gradient Overlay with subtle parallax */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-300 bg-gradient-to-t from-blue-900/60 via-blue-900/30 to-transparent animate-fade-in-up"
+          className="absolute bottom-0 left-0 right-0 h-300 bg-gradient-to-t from-teal-900/50 via-teal-900/50 to-transparent animate-fade-in-up"
           style={{
             transform: `translateY(${scrollY * 0.2}px)`,
           }}
         />
 
-        {/* Additional overlay for better text contrast */}
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
-      {/* Main Content with Counter-Parallax */}
       <div
         className={`relative md:mt-20 z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center`}
         style={{
@@ -76,7 +72,7 @@ const Hero = () => {
               Marine Conservation Through Science,
             </span>
             <span
-              className={`block bg-gradient-to-r from-blue-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent transform transition-all duration-1000 ${
+              className={`block bg-gradient-to-r from-blue-300 via-teal-300 to-green-300 bg-clip-text text-transparent transform transition-all duration-1000 ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
@@ -94,15 +90,15 @@ const Hero = () => {
             }`}
             style={{ transitionDelay: "0.6s" }}
           >
-            <p className="text-sm sm:text-xl md:text-2xl font-medium text-white mb-6 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
+            <p className="text-sm sm:text-xl md:text-2xl sm:mb-15 font-medium text-white mb-6 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
               Protecting and restoring coral reefs through research, responsible
               diving, and community partnerships in Southern Leyte and beyond.
             </p>
-            <p className="text-xs md:text-lg text-blue-100 font-semibold max-w-3xl mx-auto mb-10 drop-shadow-sm">
+            {/* <p className="text-xs md:text-lg text-blue-100 font-semibold max-w-3xl mx-auto mb-10 drop-shadow-sm">
               It is never too late to take action—every effort, no matter how
               small, helps conserve and protect our marine environment for
               generations to come.
-            </p>
+            </p> */}
           </div>
 
           {/* Action Buttons */}
@@ -112,7 +108,7 @@ const Hero = () => {
             }`}
             style={{ transitionDelay: "0.8s" }}
           >
-            <button className="w-full sm:w-auto group relative bg-[#2E5E2E] text-white px-8 md:px-10 py-4 md:py-5 rounded-xl text-base md:text-lg font-semibold hover:shadow-2xl transition-all duration-500 transform hover:scale-100 hover:-translate-y-2 active:scale-95 animate-float">
+            <button className="w-full sm:w-auto group relative bg-teal-800 text-white px-8 md:px-10 py-4 md:py-5 rounded-xl text-base md:text-lg font-semibold hover:shadow-2xl transition-all duration-500 transform hover:scale-100 hover:-translate-y-2 hover:bg-teal-600 active:scale-95 animate-float">
               <span className="relative flex items-center justify-center space-x-3">
                 <span>Support Our Mission</span>
               </span>

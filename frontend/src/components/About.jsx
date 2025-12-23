@@ -71,30 +71,30 @@ const AboutUs = () => {
   const approachCards = [
     {
       id: "data-driven",
-      title: "Data-Driven Decisions",
+      title: "Collecting Coral Data",
       description:
-        "All conservation actions are guided by rigorous scientific data collected through our monitoring programs and AI-assisted analysis.",
-      image: "/images/7.jpg",
-      alt: "Data analysis and research",
-      color: "blue",
+        "When coral reefs are damaged, fragments may break off the colony and resettle on the reef. We collect those damaged fragments and care for them in our nurseries.",
+      image: "/images/collect3.jpg",
+      alt: "coral data collection in the field",
+      color: "green",
       delay: "400ms",
     },
     {
       id: "community-led",
-      title: "Community-Led Solutions",
+      title: "Nursing & Outplanting",
       description:
-        "We believe lasting change comes from empowering those who depend on marine resources through training and collaborative management.",
-      image: "images/6.jpg",
+        "We nurture coral fragments in underwater nurseries until they are large enough to be outplanted back onto the reef, helping to restore damaged ecosystems.",
+      image: "images/nurse.jpg",
       alt: "Community engagement and training",
-      color: "teal",
+      color: "green",
       delay: "600ms",
     },
     {
       id: "innovation",
-      title: "Innovation in Conservation",
+      title: "Replanting & Restoration",
       description:
-        "Pioneering AI-assisted monitoring and sustainable restoration techniques that push the boundaries of traditional conservation methods.",
-      image: "images/PB110170.JPG",
+        "Using innovative techniques and community involvement, we outplant healthy corals back onto degraded reefs to promote recovery and biodiversity.",
+      image: "images/backg.jpg",
       alt: "Innovative conservation technology",
       color: "green",
       delay: "800ms",
@@ -105,7 +105,7 @@ const AboutUs = () => {
   const images = {
     teamPhoto:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    underwaterResearch: "images/1222.jpg",
+    underwaterResearch: "images/1222 (1).jpg",
     communityWork:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     coralCloseup:
@@ -172,8 +172,8 @@ const AboutUs = () => {
             Who We Are
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            Our <span className="text-blue-600">Story</span> &{" "}
-            <span className="text-blue-600">Journey</span>
+            Our <span className="text-teal-700">Story</span> &{" "}
+            <span className="text-teal-700">Journey</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             From grassroots beginnings to becoming a trusted voice in marine
@@ -201,7 +201,7 @@ const AboutUs = () => {
                 }`}
               >
                 Bridging Science with{" "}
-                <span className="text-blue-600">Community Action</span>
+                <span className="text-teal-600">Community Action</span>
               </h3>
 
               <div
@@ -283,10 +283,47 @@ const AboutUs = () => {
           </div>
         </div>
 
+        {/* Full Width Image Section with parallax effect */}
+        <div
+          ref={(el) => (sectionRefs.current["fullImage"] = el)}
+          className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[60vh] overflow-hidden transform transition-all duration-1000 ${
+            isVisible.fullImage ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          }`}
+        >
+          <div
+            className="absolute inset-0 w-full h-[120%] -top-[10%]"
+            style={{
+              transform: `translateY(${
+                (scrollY - (sectionOffsets.fullImage || 0)) * 0.05
+              }px)`,
+              transition: "transform 0.1s ease-out",
+            }}
+          >
+            <img
+              src="/images/small.jpg"
+              alt="Close up image of fish"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div
+            className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 delay-300`}
+          >
+            <div className="text-center text-white px-4">
+              <h3 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-lg">
+                Protecting Marine Ecosystems
+              </h3>
+              <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                Through scientific research and community partnerships
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Approach Section with Enhanced Mobile Support */}
         <div
           ref={(el) => (sectionRefs.current["approach"] = el)}
-          className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-gray-900 py-16 transform transition-all duration-1000 ${
+          className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16 transform transition-all duration-1000 ${
             isVisible.approach
               ? "translate-y-0 opacity-100"
               : "translate-y-12 opacity-0"
@@ -300,10 +337,10 @@ const AboutUs = () => {
                   : "translate-y-8 opacity-0"
               }`}
             >
-              <h3 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Our <span className="text-blue-400">Unique Approach</span>
-              </h3>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <h4 className="text-3xl md:text-4xl font-bold text-black mb-6">
+                Our <span className="text-teal-700">Unique Approach</span>
+              </h4>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Our methodology combines scientific rigor with
                 community-centered solutions
               </p>
@@ -327,40 +364,52 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Rest of your sections remain the same... */}
-        {/* Full Width Image Section with parallax effect */}
+        {/* Second Full Width Image Section */}
         <div
-          ref={(el) => (sectionRefs.current["fullImage"] = el)}
+          ref={(el) => (sectionRefs.current["fullImageQuote"] = el)}
           className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[60vh] overflow-hidden transform transition-all duration-1000 ${
-            isVisible.fullImage ? "scale-100 opacity-100" : "scale-95 opacity-0"
+            isVisible.fullImageQuote
+              ? "scale-100 opacity-100"
+              : "scale-95 opacity-0"
           }`}
         >
           <div
             className="absolute inset-0 w-full h-[120%] -top-[10%]"
             style={{
               transform: `translateY(${
-                (scrollY - (sectionOffsets.fullImage || 0)) * 0.05
+                (scrollY - (sectionOffsets.fullImageQuote || 0)) * 0.06
               }px)`,
               transition: "transform 0.1s ease-out",
             }}
           >
             <img
-              src="/images/small.jpg"
+              src="/images/small2.jpg"
               alt="GREEN Inc. team conducting underwater research"
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
           <div
             className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 delay-300`}
           >
-            <div className="text-center text-white px-4">
-              <h3 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-lg">
-                Protecting Marine Ecosystems
-              </h3>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-                Through scientific research and community partnerships
+            <div className="text-center text-white px-6 max-w-4xl mx-auto">
+              <blockquote className="text-2xl md:text-4xl font-bold mb-6 leading-tight drop-shadow-lg">
+                "Every effort, no matter how small, contributes to the greater
+                goal of{" "}
+                <span className="bg-gradient-to-r from-blue-300 to-teal-300 bg-clip-text text-transparent">
+                  marine preservation
+                </span>
+                "
+              </blockquote>
+              <p className="text-lg md:text-xl text-blue-100 drop-shadow-md">
+                Help us in our mission to protect and restore our oceans for
+                future generations
               </p>
+              <div className="text-center">
+                <button className="px-7 py-4 mt-15 bg-green-700 text-white rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium">
+                  Contact Us
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -377,7 +426,7 @@ const AboutUs = () => {
                 : "translate-y-8 opacity-0"
             }`}
           >
-            Our <span className="text-blue-600">Journey</span> Through the Years
+            Our <span className="text-teal-600">Journey</span> Through the Years
           </h3>
 
           <div className="relative">
@@ -399,8 +448,8 @@ const AboutUs = () => {
                   style={{ transitionDelay: `${index * 200}ms` }}
                 >
                   <div className="w-32 flex-shrink-0">
-                    <div className="bg-white border-2 border-blue-500 rounded-full px-6 py-2 text-center hover:scale-110 transition-transform duration-300">
-                      <span className="text-xl font-bold text-blue-600">
+                    <div className="bg-white border-2 border-teal-500 rounded-full px-6 py-2 text-center hover:scale-110 transition-transform duration-300">
+                      <span className="text-xl font-bold text-teal-600">
                         {item.year}
                       </span>
                     </div>
@@ -464,74 +513,6 @@ const AboutUs = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div
-            className={`mt-12 text-center transform transition-all duration-1000 delay-1000 ${
-              isVisible.achievements
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-          >
-            <div className="inline-flex items-center gap-4 bg-white rounded-2xl px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-              <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center animate-bounce">
-                <span className="text-xl">📘</span>
-              </div>
-              <div className="text-left">
-                <p className="text-gray-900 font-semibold">
-                  Published "Flora & Fauna of Tagbak Marine Park"
-                </p>
-                <p className="text-gray-600 text-sm">
-                  The first comprehensive guide to the area's marine
-                  biodiversity
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Second Full Width Image Section */}
-        <div
-          ref={(el) => (sectionRefs.current["fullImageQuote"] = el)}
-          className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[60vh] overflow-hidden transform transition-all duration-1000 ${
-            isVisible.fullImageQuote
-              ? "scale-100 opacity-100"
-              : "scale-95 opacity-0"
-          }`}
-        >
-          <div
-            className="absolute inset-0 w-full h-[120%] -top-[10%]"
-            style={{
-              transform: `translateY(${
-                (scrollY - (sectionOffsets.fullImageQuote || 0)) * 0.06
-              }px)`,
-              transition: "transform 0.1s ease-out",
-            }}
-          >
-            <img
-              src="/images/small2.jpg"
-              alt="GREEN Inc. team conducting underwater research"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
-          <div
-            className={`absolute inset-0 flex items-center justify-center transform transition-all duration-1000 delay-300`}
-          >
-            <div className="text-center text-white px-6 max-w-4xl mx-auto">
-              <blockquote className="text-2xl md:text-4xl font-bold mb-6 leading-tight drop-shadow-lg">
-                "Every effort, no matter how small, contributes to the greater
-                goal of{" "}
-                <span className="bg-gradient-to-r from-blue-300 to-teal-300 bg-clip-text text-transparent">
-                  marine preservation
-                </span>
-                "
-              </blockquote>
-              <p className="text-lg md:text-xl text-blue-100 drop-shadow-md">
-                Join us in our mission to protect and restore our oceans for
-                future generations
-              </p>
-            </div>
           </div>
         </div>
       </div>
