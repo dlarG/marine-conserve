@@ -212,10 +212,10 @@ const AboutUs = () => {
                 }`}
               >
                 <p className="text-lg leading-relaxed">
-                  Founded in 2010, <strong>GREEN Inc.</strong> emerged from a
-                  simple observation: the vibrant coral reefs of Southern Leyte
-                  were showing signs of stress, and local communities needed
-                  sustainable solutions.
+                  Founded by Jerome Jack Napala in 2013,{" "}
+                  <strong>GREEN Inc.</strong> emerged from a simple observation:
+                  the vibrant coral reefs of Southern Leyte were showing signs
+                  of stress, and local communities needed sustainable solutions.
                 </p>
                 <p className="text-lg leading-relaxed">
                   What started as a small group of passionate divers and marine
@@ -244,7 +244,7 @@ const AboutUs = () => {
               >
                 <div className="text-center group hover:scale-110 transition-transform duration-300">
                   <div className="text-3xl font-bold text-blue-600 group-hover:animate-bounce">
-                    2010
+                    2013
                   </div>
                   <div className="text-gray-600 text-sm mt-1">Year Founded</div>
                 </div>
