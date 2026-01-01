@@ -119,14 +119,14 @@ const Navbar = () => {
               ))}
 
               <button
-                className={`px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                className={`px-5 py-2 rounded-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
                   isScrolled
                     ? "bg-[#2E5E2E] text-white"
                     : "bg-white text-gray-800 hover:bg-gray-100"
                 }`}
                 onClick={() => scrollToSection("contact")}
               >
-                Get Involved
+                Donate
               </button>
             </div>
 
@@ -198,7 +198,7 @@ const Navbar = () => {
               }`}
               onClick={() => scrollToSection("contact")}
             >
-              Get Involved
+              Donate Now
             </button>
           </div>
         </div>

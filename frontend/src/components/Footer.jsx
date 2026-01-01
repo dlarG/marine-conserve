@@ -18,16 +18,16 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center">
                 <img
-                  src="logo/fav.png"
-                  alt="Marine Conservation Logo"
+                  src="logo/GREEN.jpg"
+                  alt="GREEN Inc. Logo"
                   className="rounded-full"
                 />
               </div>
-              <span className="text-white font-semibold">Coral Institute</span>
+              <span className="text-white font-semibold">GREEN Inc.</span>
             </div>
             <p className="text-gray-400">
-              Global research and conservation efforts to protect coral reefs
-              and marine ecosystems.
+              Research and conservation efforts to protect coral reefs and
+              marine ecosystems in Southern Leyte and beyond.
             </p>
           </div>
 
