@@ -47,7 +47,7 @@ function App() {
         </div>
       </section>
 
-      <section id="team">
+      <section id="team" className="relative overflow-hidden mt-15 mb-15">
         <Team />
       </section>
       <Footer />

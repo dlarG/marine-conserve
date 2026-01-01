@@ -96,7 +96,7 @@ const Navbar = () => {
               <div>
                 <h1
                   className={`text-lg md:text-xl font-bold transition-all duration-500 ${
-                    isScrolled ? "text-[#2E5E2E]" : "text-white"
+                    isScrolled ? "text-[#2E5E2E]" : "text-green-800"
                   }`}
                 >
                   GREEN Inc.
@@ -121,8 +121,8 @@ const Navbar = () => {
               <button
                 className={`px-5 py-2 rounded-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
                   isScrolled
-                    ? "bg-[#2E5E2E] text-white"
-                    : "bg-white text-gray-800 hover:bg-gray-100"
+                    ? "bg-gradient-to-r from-teal-600 to-green-600 text-gray-800"
+                    : "bg-gradient-to-r from-teal-600 to-green-600 text-white hover:bg-gray-100"
                 }`}
                 onClick={() => scrollToSection("contact")}
               >
