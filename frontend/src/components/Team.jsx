@@ -43,18 +43,20 @@ const Team = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-1 bg-blue-50 text-blue-600 rounded-full mb-4">
+          <div className="inline-block px-4 py-1 bg-blue-100 text-blue-800 font-semibold rounded-full mb-4">
             Our Team
           </div>
-          <h2 className="mb-4 text-gray-900">World-Class Experts</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="mb-4 text-gray-900 md:text-4xl text-2xl font-bold">
+            Top-Class <span className="text-teal-600">Experts</span>
+          </h2>
+          <p className="text-gray-600 max-w-3xl mx-auto text-xl">
             Our interdisciplinary team brings together leading scientists and
             conservation professionals from around the globe.
           </p>
         </div>
 
         {/* Team Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-10">
           {teamMembers.map((member, index) => (
             <div key={index} className="text-center">
               <div className="relative w-full aspect-square mb-4 rounded-2xl overflow-hidden">
@@ -65,7 +67,9 @@ const Team = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent" />
               </div>
-              <h3 className="mb-1 text-gray-900">{member.name}</h3>
+              <h3 className="mb-1 text-gray-900 font-bold text-xl">
+                {member.name}
+              </h3>
               <div className="text-blue-600 mb-3">{member.role}</div>
               <p className="text-gray-600">{member.bio}</p>
             </div>
