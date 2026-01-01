@@ -157,7 +157,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    <section className="relative mt-15 overflow-hidden bg-gradient-to-b from-white to-gray-50">
       <div className="relative max-w-10xl mx-auto px-2 sm:px-3 lg:px-4">
         {/* Section Header */}
         <div
@@ -168,9 +168,11 @@ const AboutUs = () => {
               : "translate-y-8 opacity-0"
           }`}
         >
-          <span className="inline-block px-4 py-2 mt-10 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
-            Who We Are
-          </span>
+          <div className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-teal-100 to-blue-100 rounded-full mb-6">
+            <span className="text-teal-700 font-semibold text-sm">
+              WHO WE ARE
+            </span>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             Our <span className="text-teal-700">Story</span> &{" "}
             <span className="text-teal-700">Journey</span>
@@ -361,6 +363,11 @@ const AboutUs = () => {
                 />
               ))}
             </div>
+            <div className="text-center">
+              <button className="px-8 py-5 mt-10 bg-green-700 text-white rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium">
+                Learn More About Our Methods
+              </button>
+            </div>
           </div>
         </div>
 
@@ -405,11 +412,6 @@ const AboutUs = () => {
                 Help us in our mission to protect and restore our oceans for
                 future generations
               </p>
-              <div className="text-center">
-                <button className="px-7 py-4 mt-15 bg-green-700 text-white rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium">
-                  Contact Us
-                </button>
-              </div>
             </div>
           </div>
         </div>
