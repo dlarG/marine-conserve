@@ -15,6 +15,12 @@ export default {
       animation: {
         "bounce-slow": "bounce 2s infinite",
         "pulse-slow": "pulse 3s infinite",
+        "ray-float": "ray-float 3s infinite",
+        "ray-sway": "ray-sway 3s infinite",
+        "ray-pulse": "ray-pulse 3s infinite",
+        shimmer: "shimmer 2s infinite",
+        ripple: "ripple 1s infinite",
+        sparkle: "sparkle 1s infinite",
       },
       backdropBlur: {
         xs: "2px",

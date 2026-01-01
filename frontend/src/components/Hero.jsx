@@ -29,7 +29,6 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Modern Background with Gradient Overlay */}
       <div className="absolute inset-0 overflow-hidden">
         {/* <div
           className="absolute inset-0 w-full h-[120%] -top-[10%]"
@@ -47,7 +46,6 @@ const Hero = () => {
         {/* Enhanced Gradient Overlays with marine theme */}
         <div className="absolute inset-0 bg-gradient-to-br from-teal-900/40 via-teal-800/30 to-emerald-900/20" />
 
-        {/* Soft gradient matching your CSS style */}
         <div
           className="absolute inset-0"
           style={{
@@ -57,24 +55,21 @@ const Hero = () => {
         />
 
         {/* Top gradient for depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-teal-900/70 via-teal-900/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
 
         {/* Side accent gradients */}
         <div className="absolute left-0 inset-y-0 w-1/3 bg-gradient-to-r from-teal-900/30 to-transparent" />
         <div className="absolute right-0 inset-y-0 w-1/3 bg-gradient-to-l from-emerald-900/20 to-transparent" />
       </div>
 
-      {/* Main Content with Modern Layout */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between min-h-[90vh] py-20">
-        {/* Left Text Content */}
         <div className="w-full lg:w-1/2 mb-12 lg:mb-0">
           <div
             className={`transform transition-all duration-1000 ${
               isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
-            {/* Main Heading with Modern Typography */}
-            <h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-5xl mt-10 lg:mt-0 font-bold text-white mb-6 leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-5xl text-center lg:text-left mt-10 lg:mt-0 font-bold text-white mb-6 leading-tight tracking-tight">
               <span
                 className={`block bg-gradient-to-r from-white via-teal-100 to-emerald-100 bg-clip-text text-transparent transform transition-all duration-1000 ${
                   isLoaded
@@ -106,17 +101,15 @@ const Hero = () => {
                 Community & Action
               </span>
             </h1>
-
-            {/* Description */}
             <div
-              className={`transform transition-all duration-1000 ${
+              className={`transform transition-all duration-1000 text-center lg:text-left ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
               }`}
               style={{ transitionDelay: "0.8s" }}
             >
-              <p className="text-l sm:text-xl md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed">
+              <p className="text-l sm:text-xl md:text-xl text-white/90 mb-8 md:max-w-full lg:max-w-2xl leading-relaxed">
                 Protecting and restoring{" "}
                 <span className="text-green-300 font-semibold">
                   coral reefs
@@ -125,10 +118,8 @@ const Hero = () => {
                 in Southern Leyte and beyond.
               </p>
             </div>
-
-            {/* Enhanced Action Buttons */}
             <div
-              className={`flex flex-wrap gap-4 transform transition-all duration-1000 ${
+              className={`flex flex-wrap gap-4 lg:justify-start justify-center transform transition-all duration-1000 ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
@@ -170,12 +161,10 @@ const Hero = () => {
                       d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                     />
                   </svg>
-                  <span>View Our Research</span>
+                  <span>Explore Our Impact</span>
                 </span>
               </button>
             </div>
-
-            {/* Stats */}
             <div
               className={`grid grid-cols-3 gap-6 mt-12 transform transition-all duration-1000 ${
                 isLoaded
@@ -207,22 +196,38 @@ const Hero = () => {
             </div>
           </div>
         </div>
-
-        {/* Right Image/Visual Content */}
         <div
           className={`w-full lg:w-1/2 transform transition-all duration-1000 ${
             isLoaded ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
           }`}
           style={{ transitionDelay: "1.4s" }}
         >
-          <div className="relative max-w-lg mx-auto lg:ml-auto">
+          <div className="relative max-w-full mx-auto lg:ml-auto">
             {/* Main Image */}
-            <div className="w-full relative rounded-2xl overflow-hidden transform perspective-1000 rotate-y-[-10deg] hover:rotate-y-0 transition-transform duration-700">
+            <div className="w-full relative rounded-2xl overflow-hidden transform transition-transform duration-700">
               <img
                 src="/images/hero-img.png"
                 alt="Coral Reef Conservation"
                 className="w-full h-64 sm:h-80 md:h-96 object-cover"
               />
+            </div>
+            <div className="absolute -top-8 right-8">
+              <div className="relative">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <div
+                    key={`bubble-${i}`}
+                    className="absolute rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
+                    style={{
+                      width: `${8 + i * 4}px`,
+                      height: `${8 + i * 4}px`,
+                      left: `${i * 15}px`,
+                      top: `${i * -15}px`,
+                      animation: `float ${3 + i * 0.5}s ease-in-out infinite`,
+                      animationDelay: `${i * 0.3}s`,
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -243,8 +248,6 @@ const Hero = () => {
           </div>
         </div> */}
       </div>
-
-      {/* Modern Scroll Indicator */}
       <div
         className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
