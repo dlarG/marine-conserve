@@ -9,7 +9,6 @@ const AboutUs = () => {
   const [activeCard, setActiveCard] = useState(null); // For mobile card states
   const sectionRefs = useRef({});
 
-  // Calculate section offsets when components mount and on resize
   useEffect(() => {
     const calculateOffsets = () => {
       const offsets = {};
@@ -30,8 +29,6 @@ const AboutUs = () => {
       clearTimeout(timer);
     };
   }, []);
-
-  // Parallax scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -41,7 +38,6 @@ const AboutUs = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Intersection Observer for scroll animations
   useEffect(() => {
     const observers = [];
 
@@ -151,7 +147,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <section className="relative py-15 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    <div className="relative py-15 overflow-hidden bg-gradient-to-b from-white to-gray-50">
       <div className="relative max-w-10xl mx-auto px-2 sm:px-3 lg:px-4">
         {/* Section Header */}
         <div
@@ -325,12 +321,35 @@ const AboutUs = () => {
               : "translate-y-12 opacity-0"
           }`}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-teal-900/40 via-teal-800/30 to-emerald-900/20" />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-transparent to-blue-900/60" />
+
+          {/* Top gradient for depth */}
           <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
 
           {/* Side accent gradients */}
           <div className="absolute left-0 inset-y-0 w-1/3 bg-gradient-to-r from-teal-900/30 to-transparent" />
           <div className="absolute right-0 inset-y-0 w-1/3 bg-gradient-to-l from-emerald-900/20 to-transparent" />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {/* Light rays */}
+            {[...Array(5)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
+                style={{
+                  width: `${20 + i * 8}px`,
+                  height: `${20 + i * 8}px`,
+                  left: `${10 + i * 12}%`,
+                  top: `${20 + i * 10}%`,
+                  animation: `float ${4 + i * 0.5}s ease-in-out infinite`,
+                  animationDelay: `${i * 0.3}s`,
+                }}
+              />
+            ))}
+            <div className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-teal-300/30 to-transparent transform rotate-12 blur-sm" />
+            <div className="absolute top-0 right-1/3 w-1 h-full bg-gradient-to-b from-blue-300/20 to-transparent transform -rotate-6 blur-sm" />
+            <div className="absolute top-0 left-2/3 w-1 h-full bg-gradient-to-b from-emerald-300/25 to-transparent transform rotate-3 blur-sm" />
+          </div>
           <div className="max-w-full justify-center px-4 sm:px-6 lg:px-8 relative z-10">
             <div
               className={`text-center mb-10 transform transition-all duration-1000 delay-200 ${
@@ -339,13 +358,13 @@ const AboutUs = () => {
                   : "translate-y-8 opacity-0"
               }`}
             >
-              <h4 className="text-3xl md:text-4xl font-bold text-black mb-5">
+              <h4 className="text-3xl md:text-4xl font-bold text-white mb-5">
                 Our{" "}
                 <span className="bg-gradient-to-r from-teal-300 via-green-400 to-emerald-400 bg-clip-text text-transparent">
                   Unique Approach
                 </span>
               </h4>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Our methodology combines scientific rigor with
                 community-centered solutions
               </p>
@@ -501,7 +520,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
