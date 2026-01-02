@@ -76,7 +76,7 @@ const AboutUs = () => {
         "When coral reefs are damaged, fragments may break off the colony and resettle on the reef. We collect those damaged fragments and care for them in our nurseries.",
       image: "/images/collect3.jpg",
       alt: "coral data collection in the field",
-      color: "green",
+      color: "teal",
       delay: "400ms",
     },
     {
@@ -86,7 +86,7 @@ const AboutUs = () => {
         "We nurture coral fragments in underwater nurseries until they are large enough to be outplanted back onto the reef, helping to restore damaged ecosystems.",
       image: "images/nurse.jpg",
       alt: "Community engagement and training",
-      color: "green",
+      color: "teal",
       delay: "600ms",
     },
     {
@@ -96,7 +96,7 @@ const AboutUs = () => {
         "Using innovative techniques and community involvement, we outplant healthy corals back onto degraded reefs to promote recovery and biodiversity.",
       image: "images/backg.jpg",
       alt: "Innovative conservation technology",
-      color: "green",
+      color: "teal",
       delay: "800ms",
     },
   ];
@@ -148,16 +148,8 @@ const AboutUs = () => {
     },
   ];
 
-  // Key achievements
-  const achievements = [
-    { number: "10+", label: "Years of continuous data collection" },
-    { number: "50+", label: "Scientific surveys conducted" },
-    { number: "1,000+", label: "Hectares of reef monitored" },
-    { number: "200+", label: "Community members trained" },
-  ];
-
   return (
-    <section className="relative mt-15 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    <section className="relative py-15 overflow-hidden bg-gradient-to-b from-white to-gray-50">
       <div className="relative max-w-10xl mx-auto px-2 sm:px-3 lg:px-4">
         {/* Section Header */}
         <div
@@ -331,16 +323,25 @@ const AboutUs = () => {
               : "translate-y-12 opacity-0"
           }`}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-900/40 via-teal-800/30 to-emerald-900/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
+
+          {/* Side accent gradients */}
+          <div className="absolute left-0 inset-y-0 w-1/3 bg-gradient-to-r from-teal-900/30 to-transparent" />
+          <div className="absolute right-0 inset-y-0 w-1/3 bg-gradient-to-l from-emerald-900/20 to-transparent" />
+          <div className="max-w-full justify-center px-4 sm:px-6 lg:px-8 relative z-10">
             <div
-              className={`text-center mb-16 transform transition-all duration-1000 delay-200 ${
+              className={`text-center mb-10 transform transition-all duration-1000 delay-200 ${
                 isVisible.approach
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
               }`}
             >
-              <h4 className="text-3xl md:text-4xl font-bold text-black mb-6">
-                Our <span className="text-teal-700">Unique Approach</span>
+              <h4 className="text-3xl md:text-4xl font-bold text-black mb-5">
+                Our{" "}
+                <span className="bg-gradient-to-r from-teal-300 via-green-400 to-emerald-400 bg-clip-text text-transparent">
+                  Unique Approach
+                </span>
               </h4>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Our methodology combines scientific rigor with
@@ -352,7 +353,7 @@ const AboutUs = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-10">
               {approachCards.map((card) => (
                 <ApproachCard
                   key={card.id}
@@ -363,9 +364,12 @@ const AboutUs = () => {
                 />
               ))}
             </div>
-            <div className="text-center">
-              <button className="px-8 py-5 mt-10 bg-green-700 text-white rounded-xl cursor-pointer transition-all duration-300 transform hover:scale-105 active:scale-95 font-medium">
-                Learn More About Our Methods
+            <div className="text-center mt-12">
+              <button class="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95">
+                <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 transition-transform duration-500 group-hover:translate-x-full"></div>
+                <span class="relative flex items-center justify-center gap-3">
+                  <span>Learn More About our Methods</span>
+                </span>
               </button>
             </div>
           </div>
@@ -419,7 +423,7 @@ const AboutUs = () => {
         {/* Timeline Section */}
         <div
           ref={(el) => (sectionRefs.current["timeline"] = el)}
-          className="mb-20"
+          className="mb-20 mt-16 px-4 sm:px-6 lg:px-8 "
         >
           <h3
             className={`text-3xl font-bold mt-15 text-center text-gray-900 mb-12 transform transition-all duration-1000 ${
@@ -474,47 +478,6 @@ const AboutUs = () => {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* Achievements Section */}
-        <div
-          ref={(el) => (sectionRefs.current["achievements"] = el)}
-          className={`bg-gradient-to-r from-blue-50 to-teal-50 rounded-3xl p-8 md:p-12 transform transition-all duration-1000 ${
-            isVisible.achievements
-              ? "translate-y-0 opacity-100 scale-100"
-              : "translate-y-12 opacity-0 scale-95"
-          }`}
-        >
-          <h3
-            className={`text-3xl font-bold text-center text-gray-900 mb-12 transform transition-all duration-1000 delay-200 ${
-              isVisible.achievements
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-          >
-            Our <span className="text-blue-600">Impact</span> in Numbers
-          </h3>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((achievement, index) => (
-              <div
-                key={index}
-                className={`text-center transform transition-all duration-1000 hover:scale-110 ${
-                  isVisible.achievements
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: `${(index + 1) * 200}ms` }}
-              >
-                <div className="text-5xl font-bold text-blue-600 mb-2 animate-pulse">
-                  {achievement.number}
-                </div>
-                <div className="text-gray-700 font-medium">
-                  {achievement.label}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>

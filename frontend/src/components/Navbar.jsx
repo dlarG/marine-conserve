@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import DonateModal from "./DonateModal";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
 
-  // Handle scroll for navbar background
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -15,12 +16,11 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle active section detection
   useEffect(() => {
-    const sections = ["hero", "about", "research", "impact", "team", "contact"];
+    const sections = ["hero", "about", "research", "impact", "team"];
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Offset for navbar height
+      const scrollPosition = window.scrollY + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
@@ -32,12 +32,11 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Call once to set initial state
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -46,7 +45,6 @@ const Navbar = () => {
     }
   }, [isMobileMenuOpen]);
 
-  // Smooth scroll to section
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -61,12 +59,16 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleDonateClick = () => {
+    setIsDonateModalOpen(true);
+    setIsMobileMenuOpen(false);
+  };
+
   const navigationItems = [
     { id: "about", label: "About Us" },
     { id: "research", label: "Research" },
     { id: "impact", label: "Impact" },
     { id: "team", label: "Team" },
-    { id: "contact", label: "Contact" },
   ];
 
   return (
@@ -80,7 +82,6 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
-            {/* Logo Section */}
             <div
               className="flex items-center space-x-2 md:space-x-3 group cursor-pointer"
               onClick={() => scrollToSection("hero")}
@@ -96,15 +97,13 @@ const Navbar = () => {
               <div>
                 <h1
                   className={`text-lg md:text-xl font-bold transition-all duration-500 ${
-                    isScrolled ? "text-[#2E5E2E]" : "text-green-800"
+                    isScrolled ? "text-[#2E5E2E]" : "text-white"
                   }`}
                 >
                   GREEN Inc.
                 </h1>
               </div>
             </div>
-
-            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navigationItems.map((item) => (
                 <NavItem
@@ -119,18 +118,16 @@ const Navbar = () => {
               ))}
 
               <button
+                onClick={handleDonateClick}
                 className={`px-5 py-2 rounded-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 ${
                   isScrolled
-                    ? "bg-gradient-to-r from-teal-600 to-green-600 text-gray-800"
+                    ? "bg-gradient-to-r from-teal-600 to-green-600 text-white"
                     : "bg-gradient-to-r from-teal-600 to-green-600 text-white hover:bg-gray-100"
                 }`}
-                onClick={() => scrollToSection("contact")}
               >
                 Donate
               </button>
             </div>
-
-            {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -164,8 +161,6 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu */}
         <div
           className={`md:hidden fixed inset-x-0 transition-all duration-500 ease-in-out ${
             isMobileMenuOpen
@@ -191,26 +186,28 @@ const Navbar = () => {
             ))}
 
             <button
+              onClick={handleDonateClick}
               className={`w-full px-6 py-4 rounded-xl font-medium hover:shadow-lg transition-all duration-300 ${
                 isScrolled
-                  ? "bg-blue-600 text-white hover:bg-blue-700"
-                  : "bg-white text-gray-800 hover:bg-gray-100"
+                  ? "bg-gradient-to-r from-teal-600 to-green-600 text-white hover:from-teal-700 hover:to-green-700"
+                  : "bg-gradient-to-r from-teal-600 to-green-600 text-white hover:from-teal-700 hover:to-green-700"
               }`}
-              onClick={() => scrollToSection("contact")}
             >
               Donate Now
             </button>
           </div>
         </div>
       </nav>
-
-      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
+      <DonateModal
+        isOpen={isDonateModalOpen}
+        onClose={() => setIsDonateModalOpen(false)}
+      />
     </>
   );
 };
