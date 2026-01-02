@@ -82,7 +82,7 @@ const ContactModal = ({ isOpen, onClose }) => {
         onClick={onClose}
       />
 
-      <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full ">
         <div className="sticky top-0 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-6 rounded-t-2xl">
           <div className="flex items-center justify-between">
             <div>
@@ -112,7 +112,10 @@ const ContactModal = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form
+          onSubmit={handleSubmit}
+          className="p-6 space-y-6 overflow-y-auto max-h-[75vh]"
+        >
           <div>
             <h3 className="text-lg font-semibold text-gray-800 mb-4">
               Personal Information
