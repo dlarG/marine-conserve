@@ -1,21 +1,19 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
-// import Mission from "./components/Mission";
 import About from "./components/About";
 import Team from "./components/Team";
+import Methods from "./components/Methods";
+import MethodNavbar from "./components/MethodNavbar";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-function App() {
+const HomePage = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
       <section id="hero">
         <Hero />
       </section>
-      {/* 
-      <section id="mission">
-        <Mission />
-      </section> */}
 
       <section id="about">
         <About />
@@ -50,8 +48,30 @@ function App() {
       <section id="team" className="relative overflow-hidden mt-15 mb-15">
         <Team />
       </section>
-      <Footer />
     </div>
+  );
+};
+
+const MethodsPage = () => {
+  return (
+    <div className="min-h-screen">
+      <Navbar />
+      <Methods />
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <div className="min-h-screen">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/methods" element={<MethodsPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

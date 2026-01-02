@@ -54,15 +54,38 @@ const Hero = () => {
           }}
         />
 
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-transparent to-blue-900/60" />
+
         {/* Top gradient for depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
 
         {/* Side accent gradients */}
         <div className="absolute left-0 inset-y-0 w-1/3 bg-gradient-to-r from-teal-900/30 to-transparent" />
         <div className="absolute right-0 inset-y-0 w-1/3 bg-gradient-to-l from-emerald-900/20 to-transparent" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Light rays */}
+          {[...Array(4)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
+              style={{
+                width: `${20 + i * 8}px`,
+                height: `${20 + i * 8}px`,
+                left: `${10 + i * 12}%`,
+                top: `${20 + i * 10}%`,
+                animation: `float ${4 + i * 0.5}s ease-in-out infinite`,
+                animationDelay: `${i * 0.3}s`,
+              }}
+            />
+          ))}
+          <div className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-teal-300/30 to-transparent transform rotate-12 blur-sm" />
+          <div className="absolute top-0 right-1/3 w-1 h-full bg-gradient-to-b from-blue-300/20 to-transparent transform -rotate-6 blur-sm" />
+          <div className="absolute top-0 left-2/3 w-1 h-full bg-gradient-to-b from-emerald-300/25 to-transparent transform rotate-3 blur-sm" />
+        </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between min-h-[90vh] py-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-4 lg:px-4 flex flex-col lg:flex-row items-center justify-between min-h-[90vh] py-20">
         <div className="w-full lg:w-1/2 mb-12 lg:mb-0">
           <div
             className={`transform transition-all duration-1000 ${
@@ -206,9 +229,9 @@ const Hero = () => {
             {/* Main Image */}
             <div className="w-full relative rounded-2xl overflow-hidden transform transition-transform duration-700">
               <img
-                src="/images/hero-img.png"
+                src="/images/hero-img2.png"
                 alt="Coral Reef Conservation"
-                className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                className="w-full h-64 sm:h-80 md:h-90 object-cover"
               />
             </div>
             <div className="absolute -top-8 right-8">

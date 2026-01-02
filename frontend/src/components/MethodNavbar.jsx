@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DonateModal from "./DonateModal";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const MethodNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
@@ -250,4 +250,4 @@ const MobileNavItem = ({ children, onClick, isActive, isScrolled }) => (
   </button>
 );
 
-export default Navbar;
+export default MethodNavbar;
