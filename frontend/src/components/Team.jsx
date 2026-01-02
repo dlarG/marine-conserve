@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ContactModal from "./ContactModal";
 
 const teamMembers = [
   {
@@ -50,8 +51,13 @@ const Team = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [direction, setDirection] = useState("right");
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  const itemsPerView = 3; // Show 3 at a time
+  const HandleContactClick = () => {
+    setIsContactModalOpen(true);
+  };
+
+  const itemsPerView = 3;
 
   const handleNext = () => {
     if (isAnimating) return;
@@ -90,13 +96,11 @@ const Team = () => {
     currentIndex + itemsPerView
   );
 
-  // If we're at the end and need to wrap around
   const getWrappedMembers = () => {
     if (currentIndex + itemsPerView <= teamMembers.length) {
       return visibleMembers;
     }
 
-    // Wrap around case
     const firstPart = teamMembers.slice(currentIndex);
     const secondPart = teamMembers.slice(0, itemsPerView - firstPart.length);
     return [...firstPart, ...secondPart];
@@ -108,7 +112,6 @@ const Team = () => {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100/20 rounded-full translate-y-48 -translate-x-48 blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-teal-100 to-blue-100 rounded-full mb-6">
             <span className="text-teal-700 font-semibold text-sm">
@@ -162,8 +165,6 @@ const Team = () => {
               </div>
             </div>
           </button>
-
-          {/* Next Button - Right Side */}
           <button
             onClick={handleNext}
             disabled={isAnimating}
@@ -201,8 +202,6 @@ const Team = () => {
               </div>
             </div>
           </button>
-
-          {/* Mobile Navigation */}
           <div className="md:hidden flex justify-center gap-4 mb-8">
             <button
               onClick={handlePrev}
@@ -249,8 +248,6 @@ const Team = () => {
               </svg>
             </button>
           </div>
-
-          {/* Team Grid - Desktop with Animation */}
           <div
             className={`hidden md:grid md:grid-cols-3 gap-8 transition-all duration-300 ${
               isAnimating
@@ -268,7 +265,6 @@ const Team = () => {
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 <div className="relative rounded-2xl overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 h-full">
-                  {/* Image Container with Overlay Effect */}
                   <div className="relative h-96 overflow-hidden">
                     <img
                       src={member.image}
@@ -276,20 +272,14 @@ const Team = () => {
                       className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                     />
 
-                    {/* Base Overlay - Always visible for better text readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-                    {/* Content Container */}
                     <div className="absolute inset-0 p-6 flex flex-col justify-end transition-all duration-500">
-                      {/* Name & Role - Always visible */}
                       <div>
                         <h3 className="text-2xl font-bold text-white mb-2">
                           {member.name}
                         </h3>
                         <p className="text-blue-100 mb-3">{member.role}</p>
                       </div>
-
-                      {/* Overlay Content - Slides up on hover */}
                       <div
                         className={`transform transition-all duration-500 ${
                           hoveredIndex === currentIndex + index
@@ -309,8 +299,6 @@ const Team = () => {
                           <p className="text-white/90 text-sm leading-relaxed mb-4">
                             {member.bio}
                           </p>
-
-                          {/* Quick Stats */}
                           <div className="flex gap-4 mb-4">
                             <div className="text-center">
                               <div className="text-white font-bold">5+</div>
@@ -333,8 +321,6 @@ const Team = () => {
                           </div>
                         </div>
                       </div>
-
-                      {/* Hover Indicator */}
                       <div
                         className={`absolute bottom-6 right-6 transition-all duration-300 ${
                           hoveredIndex === currentIndex + index
@@ -364,8 +350,6 @@ const Team = () => {
               </div>
             ))}
           </div>
-
-          {/* Team Grid - Mobile */}
           <div className="md:hidden space-y-8">
             {visibleMembers.map((member, index) => (
               <div
@@ -376,7 +360,6 @@ const Team = () => {
                 }
               >
                 <div className="flex items-start gap-4 p-6">
-                  {/* Image */}
                   <div className="relative flex-shrink-0">
                     <div className="w-24 h-24 rounded-xl overflow-hidden">
                       <img
@@ -401,8 +384,6 @@ const Team = () => {
                       </svg>
                     </div>
                   </div>
-
-                  {/* Text Content */}
                   <div className="flex-1">
                     <h3 className="text-lg font-bold text-gray-900 mb-1">
                       {member.name}
@@ -410,8 +391,6 @@ const Team = () => {
                     <div className="text-teal-600 text-sm font-medium mb-2">
                       {member.role}
                     </div>
-
-                    {/* Expandable Bio */}
                     <div
                       className={`overflow-hidden transition-all duration-300 ${
                         hoveredIndex === index ? "max-h-96" : "max-h-0"
@@ -419,8 +398,6 @@ const Team = () => {
                     >
                       <p className="text-gray-600 text-sm mt-2">{member.bio}</p>
                     </div>
-
-                    {/* Expand/Collapse Indicator */}
                     <button className="mt-2 text-teal-600 text-sm font-medium flex items-center gap-1">
                       {hoveredIndex === index ? "Show Less" : "Read Bio"}
                       <svg
@@ -444,8 +421,6 @@ const Team = () => {
               </div>
             ))}
           </div>
-
-          {/* Pagination Dots */}
           <div className="flex justify-center gap-2 mt-10">
             {Array.from({
               length: Math.ceil(teamMembers.length / itemsPerView),
@@ -472,8 +447,6 @@ const Team = () => {
             ))}
           </div>
         </div>
-
-        {/* CTA Section */}
         <div className="mt-20 text-center">
           <div className="inline-block p-8 rounded-2xl bg-gradient-to-r from-teal-50 to-blue-50 border border-teal-100 max-w-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-teal-200/30 rounded-full -translate-y-16 translate-x-16 blur-2xl" />
@@ -486,7 +459,10 @@ const Team = () => {
               Passionate about marine conservation? We're always looking for
               dedicated individuals to join our mission.
             </p>
-            <button className="relative px-8 py-3 bg-gradient-to-r from-teal-600 to-green-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group overflow-hidden">
+            <button
+              onClick={HandleContactClick}
+              className="relative px-8 py-3 bg-gradient-to-r from-teal-600 to-green-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group overflow-hidden"
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-teal-600 transition-transform duration-500 group-hover:translate-x-full" />
               <span className="relative flex items-center justify-center gap-2">
                 Apply Now
@@ -508,6 +484,10 @@ const Team = () => {
           </div>
         </div>
       </div>
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </>
   );
 };
