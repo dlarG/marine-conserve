@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -59,10 +65,6 @@ const Hero = () => {
 
         {/* Top gradient for depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
-
-        {/* Side accent gradients */}
-        <div className="absolute left-0 inset-y-0 w-1/3 bg-gradient-to-r from-teal-900/30 to-transparent" />
-        <div className="absolute right-0 inset-y-0 w-1/3 bg-gradient-to-l from-emerald-900/20 to-transparent" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Light rays */}
           {[...Array(4)].map((_, i) => (
@@ -86,13 +88,17 @@ const Hero = () => {
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-4 lg:px-4 flex flex-col lg:flex-row items-center justify-between min-h-[90vh] py-20">
-        <div className="w-full lg:w-1/2 mb-12 lg:mb-0">
+        <div className="w-full lg:w-1/2 lg:mb-0">
           <div
             className={`transform transition-all duration-1000 ${
               isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
-            <h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-5xl text-center lg:text-left mt-10 lg:mt-0 font-bold text-white mb-6 leading-tight tracking-tight">
+            <p className="text-xs text-center lg:text-left lg:mt-10 lg:text-sm uppercase tracking-widest text-teal-300 mb-4 mt-10 lg:mt-0 font-semibold">
+              Protecting Our Oceans
+            </p>
+
+            <h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-5xl text-center lg:text-left mt-5 lg:mt-0 font-bold text-white mb-6 leading-tight tracking-tight">
               <span
                 className={`block bg-gradient-to-r from-white via-teal-100 to-emerald-100 bg-clip-text text-transparent transform transition-all duration-1000 ${
                   isLoaded
@@ -124,6 +130,7 @@ const Hero = () => {
                 Community & Action
               </span>
             </h1>
+
             <div
               className={`transform transition-all duration-1000 text-center lg:text-left ${
                 isLoaded
@@ -149,7 +156,10 @@ const Hero = () => {
               }`}
               style={{ transitionDelay: "1s" }}
             >
-              <button className="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95">
+              <button
+                onClick={() => navigate("/mission")}
+                className="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 transition-transform duration-500 group-hover:translate-x-full" />
                 <span className="relative flex items-center justify-center gap-3">
                   <span>Support Our Mission</span>
@@ -227,11 +237,11 @@ const Hero = () => {
         >
           <div className="relative max-w-full mx-auto lg:ml-auto">
             {/* Main Image */}
-            <div className="w-full relative rounded-2xl overflow-hidden transform transition-transform duration-700">
+            <div className="relative max-w-3xl mx-auto lg:ml-auto">
               <img
                 src="/images/hero-img2.png"
-                alt="Coral Reef Conservation"
-                className="w-full h-64 sm:h-80 md:h-90 object-cover"
+                alt="Marine Conservation"
+                className="w-full h-full"
               />
             </div>
             <div className="absolute -top-8 right-8">

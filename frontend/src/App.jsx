@@ -5,7 +5,9 @@ import About from "./components/About";
 import Team from "./components/Team";
 import Methods from "./components/Methods";
 import MethodNavbar from "./components/MethodNavbar";
+import Mission from "./components/Mission";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MissionNavbar from "./components/MissionNavbar";
 
 const HomePage = () => {
   return (
@@ -61,6 +63,15 @@ const MethodsPage = () => {
   );
 };
 
+const MissionPage = () => {
+  return (
+    <div className="min-h-screen">
+      <MissionNavbar />
+      <Mission />
+    </div>
+  );
+};
+
 function App() {
   return (
     <Router>
@@ -68,6 +79,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/methods" element={<MethodsPage />} />
+          <Route path="/mission" element={<MissionPage />} />
         </Routes>
         <Footer />
       </div>
