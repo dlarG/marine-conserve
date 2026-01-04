@@ -10,7 +10,10 @@ export default {
         "marine-light": "#EAE0CF",
       },
       fontFamily: {
-        sans: ["Poppins", "system-ui", "-apple-system", "sans-serif"], // Replace Inter with Poppins
+        sans: ["Nato Sans"], // Change to your preferred font
+        // You can also add multiple font options:
+        // 'primary': ["Montserrat", "sans-serif"],
+        // 'secondary': ["Open Sans", "sans-serif"],
       },
       animation: {
         "bounce-slow": "bounce 2s infinite",
