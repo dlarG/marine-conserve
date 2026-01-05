@@ -441,11 +441,6 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                       </div>
                     ))}
                   </div>
-
-                  {/* Project icon */}
-                  <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full bg-gradient-to-r from-white to-gray-50 shadow-xl flex items-center justify-center text-3xl">
-                    {project.icon}
-                  </div>
                 </div>
 
                 {/* Project details */}
