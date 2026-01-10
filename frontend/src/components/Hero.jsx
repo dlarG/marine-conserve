@@ -1,10 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const [marqueePosition, setMarqueePosition] = useState(0);
   const navigate = useNavigate();
+  const marqueeRef = useRef(null);
+  const containerRef = useRef(null);
+
+  const pillars = [
+    { title: "Coral Restoration", color: "text-green-300" },
+    { title: "Marine Debris Removal", color: "text-green-300" },
+    { title: "COTS Monitoring", color: "text-green-300" },
+    {
+      title: "Scientific Data Collection",
+      color: "text-green-300",
+    },
+  ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -17,41 +29,60 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrollY(window.scrollY);
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
+    let animationId;
+    let startTime;
+    const speed = 40;
+    const gap = 64;
+
+    const animateMarquee = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+
+      const newPosition = (elapsed / 1000) * speed;
+      setMarqueePosition(newPosition);
+
+      if (marqueeRef.current && containerRef.current) {
+        const marqueeWidth = marqueeRef.current.offsetWidth;
+        const containerWidth = containerRef.current.offsetWidth;
+
+        if (newPosition > marqueeWidth + containerWidth + gap * 2) {
+          startTime = timestamp;
+          setMarqueePosition(0);
+        }
+      }
+
+      animationId = requestAnimationFrame(animateMarquee);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    animationId = requestAnimationFrame(animateMarquee);
 
-  const handleScrollToContent = () => {
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: "smooth",
-    });
-  };
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, []);
+  // const handleScrollToContent = () => {
+  //   window.scrollTo({
+  //     top: window.innerHeight,
+  //     behavior: "smooth",
+  //   });
+  // };
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
-        {/* <div
-          className="absolute inset-0 w-full h-[120%] -top-[10%]"
-          style={{
-            transform: `translateY(${scrollY * 0.1}px)`,
-          }}
-        >
-          <img
-            className="w-full h-full object-cover animate-fade-in-slow"
-            src="/images/123321.jpg"
-            alt="Coral Reef Background"
-          />
-        </div> */}
-
-        {/* Enhanced Gradient Overlays with marine theme */}
         <div className="absolute inset-0 bg-gradient-to-br from-teal-900/40 via-teal-800/30 to-emerald-900/20" />
-
         <div
           className="absolute inset-0"
           style={{
@@ -59,12 +90,10 @@ const Hero = () => {
               "linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(167, 243, 208, 0.15) 50%, rgba(20, 184, 166, 0.05) 100%)",
           }}
         />
-
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-transparent to-blue-900/60" />
-
-        {/* Top gradient for depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
+
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Light rays */}
           {[...Array(4)].map((_, i) => (
@@ -87,6 +116,42 @@ const Hero = () => {
         </div>
       </div>
 
+      <div
+        ref={containerRef}
+        className={`absolute bottom-10 left-0 w-full overflow-hidden z-20 transform transition-all duration-1000 ${
+          isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+        }`}
+      >
+        <div className="absolute left-0 top-0 bottom-0 w-64 bg-gradient-to-r from-teal-900/80 via-teal-900/40 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-64 bg-gradient-to-l from-teal-900/80 via-teal-900/40 to-transparent z-10 pointer-events-none" />
+
+        <div className="px-6">
+          <div
+            ref={marqueeRef}
+            className="flex whitespace-nowrap"
+            style={{
+              transform: `translateX(-${marqueePosition}px)`,
+              willChange: "transform",
+            }}
+          >
+            {[...pillars, ...pillars, ...pillars, ...pillars].map(
+              (pillar, index) => (
+                <div
+                  key={`pillar-${index}`}
+                  className="inline-flex items-center mx-8 px-6 py-3 bg-white/5 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
+                >
+                  <span className="text-2xl mr-3">{pillar.icon}</span>
+                  <span
+                    className={`font-semibold ${pillar.color} text-sm md:text-base`}
+                  >
+                    {pillar.title}
+                  </span>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      </div>
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-4 lg:px-4 flex flex-col lg:flex-row items-center justify-between min-h-[90vh] py-20">
         <div className="w-full lg:w-1/2 lg:mb-0">
           <div
@@ -140,12 +205,22 @@ const Hero = () => {
               style={{ transitionDelay: "0.8s" }}
             >
               <p className="text-l sm:text-xl md:text-xl text-white/90 mb-8 md:max-w-full lg:max-w-2xl leading-relaxed">
-                Protecting and restoring{" "}
+                GREEN, Inc. launches a full-time marine conservation operation
+                in Malitbog, Southern Leyte, focusing on{" "}
                 <span className="text-green-300 font-semibold">
-                  coral reefs
+                  coral restoration
+                </span>
+                ,
+                <span className="text-green-300 font-semibold">
+                  {" "}
+                  marine debris removal
+                </span>
+                , and
+                <span className="text-green-300 font-semibold">
+                  {" "}
+                  science-based conservation
                 </span>{" "}
-                through research, responsible diving, and community partnerships
-                in Southern Leyte and beyond.
+                to protect Sogod Bay's rich marine ecosystems.
               </p>
             </div>
             <div
@@ -198,7 +273,7 @@ const Hero = () => {
                 </span>
               </button>
             </div>
-            <div
+            {/* <div
               className={`grid grid-cols-3 gap-6 mt-12 transform transition-all duration-1000 ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
@@ -226,7 +301,7 @@ const Hero = () => {
                 </div>
                 <div className="text-sm text-white/70">Community Partners</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div
@@ -236,7 +311,6 @@ const Hero = () => {
           style={{ transitionDelay: "1.4s" }}
         >
           <div className="relative max-w-full mx-auto lg:ml-auto">
-            {/* Main Image */}
             <div className="relative max-w-3xl mx-auto lg:ml-auto">
               <img
                 src="/images/hero-img2.png"
@@ -264,24 +338,9 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        {/* <div
-          className={`w-full lg:w-1/2 transform transition-all duration-1000 ${
-            isLoaded ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
-          }`}
-          style={{ transitionDelay: "1.4s" }}
-        >
-          <div className="relative mx-auto lg:ml-auto max-w-full">
-            <div className="relative rounded-2xl overflow-hidden transform perspective-1000 rotate-y-[-10deg] hover:rotate-y-0 transition-transform duration-700">
-              <img
-                src="/images/img-1.svg"
-                alt="Coral Reef Conservation"
-                className="w-full h-64 sm:h-80 md:h-120 object-cover"
-              />
-            </div>
-          </div>
-        </div> */}
       </div>
-      <div
+
+      {/* <div
         className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
@@ -296,13 +355,12 @@ const Hero = () => {
           aria-label="Scroll to content"
         >
           <div className="flex flex-col items-center gap-2">
-            <span className="text-white/60 text-sm group-hover:text-white transition-colors"></span>
             <div className="w-8 h-12 border-2 border-white/40 rounded-full flex justify-center group-hover:border-white transition-all duration-300 group-hover:shadow-lg group-hover:shadow-green-500/25">
               <div className="w-1 h-4 bg-gradient-to-b from-green-300 to-teal-400 rounded-full mt-2 animate-pulse group-hover:animate-none"></div>
             </div>
           </div>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

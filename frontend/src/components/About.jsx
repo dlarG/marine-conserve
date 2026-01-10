@@ -6,7 +6,7 @@ const AboutUs = () => {
   const [isVisible, setIsVisible] = useState({});
   const [scrollY, setScrollY] = useState(0);
   const [sectionOffsets, setSectionOffsets] = useState({});
-  const [activeCard, setActiveCard] = useState(null); // For mobile card states
+  const [activeCard, setActiveCard] = useState(null);
   const sectionRefs = useRef({});
 
   useEffect(() => {
@@ -60,12 +60,10 @@ const AboutUs = () => {
     return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
-  // Handle card click for mobile
   const handleCardClick = (cardId) => {
     setActiveCard(activeCard === cardId ? null : cardId);
   };
 
-  // Approach cards data
   const approachCards = [
     {
       id: "data-driven",
@@ -99,11 +97,10 @@ const AboutUs = () => {
     },
   ];
 
-  // Images
   const images = {
     teamPhoto:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    underwaterResearch: "images/1222 (1).jpg",
+    underwaterResearch: "images/aboutus1.jpg",
     communityWork:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
     coralCloseup:
@@ -147,10 +144,9 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="relative py-15 overflow-hidden bg-gradient-to-b from-white to-gray-50">
+    <div className="relative  overflow-hidden bg-gradient-to-b from-white to-gray-50">
       <div className="relative max-w-10xl mx-auto px-2 sm:px-3 lg:px-4">
-        {/* Section Header */}
-        <div
+        {/* <div
           ref={(el) => (sectionRefs.current["header"] = el)}
           className={`text-center mb-10 transform transition-all duration-1000 ${
             isVisible.header
@@ -171,9 +167,7 @@ const AboutUs = () => {
             From grassroots beginnings to becoming a trusted voice in marine
             conservation
           </p>
-        </div>
-
-        {/* MAIN CONTAINER with animations */}
+        </div> */}
         <div
           ref={(el) => (sectionRefs.current["mainContainer"] = el)}
           className={`bg-white w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] rounded-l-3xl overflow-hidden -mr-4 sm:-mr-6 lg:-mr-8 transform transition-all duration-1000 ${
@@ -183,8 +177,7 @@ const AboutUs = () => {
           }`}
         >
           <div className="grid lg:grid-cols-2">
-            {/* LEFT SIDE - Text Content */}
-            <div className="p-10 lg:p-12 xl:p-16 relative z-10">
+            <div className="p-10 lg:p-10 xl:p-12 relative z-10">
               <h3
                 className={`text-2xl md:text-3xl font-bold text-gray-900 mb-6 transform transition-all duration-1000 delay-300 ${
                   isVisible.mainContainer
@@ -192,8 +185,7 @@ const AboutUs = () => {
                     : "translate-y-8 opacity-0"
                 }`}
               >
-                Bridging Science with{" "}
-                <span className="text-teal-600">Community Action</span>
+                About <span className="text-teal-600 ">GREEN Inc.</span>
               </h3>
 
               <div
@@ -204,29 +196,40 @@ const AboutUs = () => {
                 }`}
               >
                 <p className="text-lg leading-relaxed">
-                  Founded by Jerome Jack Napala in 2013,{" "}
-                  <strong>GREEN Inc.</strong> emerged from a simple observation:
-                  the vibrant coral reefs of Southern Leyte were showing signs
-                  of stress, and local communities needed sustainable solutions.
+                  Grassroots Responsiveness thru Education on Environmental
+                  Needs, Incorporated <strong>(GREEN, Inc.)</strong> was
+                  formally established in <strong>2013</strong> by{" "}
+                  <strong>Jerome Jack Napala</strong>, alongside like-minded
+                  individuals passionate about marine conservation.
                 </p>
                 <p className="text-lg leading-relaxed">
-                  What started as a small group of passionate divers and marine
-                  biologists has grown into a respected non-government
-                  organization working at the critical intersection of
-                  scientific research, environmental education, and community
-                  empowerment.
+                  Before founding GREEN, Inc., Mr. Napala was a simple
+                  government employee with a deep appreciation for the marine
+                  environment. His life and professional path took a major turn
+                  when he was awarded a{" "}
+                  <strong>
+                    marine conservation scholarship with Coral Cay Conservation
+                  </strong>
+                  , where he earned his early dive certification and gained a
+                  firsthand understanding of the critical importance of healthy
+                  marine ecosystems.
                 </p>
                 <p className="text-lg leading-relaxed">
-                  Our name—<strong>GREEN</strong>—stands for{" "}
-                  <b>
-                    <i>Guardians of Reef Ecosystems & Environmental Networks</i>
-                  </b>
-                  , reflecting our commitment to both protection and
-                  partnership.
+                  This experience profoundly influenced his decision to pursue a
+                  career in <strong>marine biology</strong> and eventually
+                  become a <strong>PADI Open Water Scuba Instructor, </strong>
+                  combining his scientific knowledge with hands-on diving
+                  expertise. Through GREEN, Inc., Jerome and his team channel
+                  their passion into{" "}
+                  <strong>
+                    marine conservation, community engagement, and science-based
+                    initiatives{" "}
+                  </strong>
+                  to protect and restore the reefs and coastal resources of
+                  Southern Leyte.
                 </p>
               </div>
 
-              {/* Stats with staggered animation */}
               <div
                 className={`grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-gray-100 transform transition-all duration-1000 delay-700 ${
                   isVisible.mainContainer
@@ -254,8 +257,6 @@ const AboutUs = () => {
                 </div>
               </div>
             </div>
-
-            {/* RIGHT SIDE - Image with animation */}
             <div
               className={`relative h-[500px] lg:h-auto transform transition-all duration-1000 delay-400 ${
                 isVisible.mainContainer
@@ -275,7 +276,6 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Full Width Image Section with parallax effect */}
         <div
           ref={(el) => (sectionRefs.current["fullImage"] = el)}
           className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[60vh] overflow-hidden transform transition-all duration-1000 ${
@@ -292,7 +292,7 @@ const AboutUs = () => {
             }}
           >
             <img
-              src="/images/small.jpg"
+              src="/images/close.JPG"
               alt="Close up image of fish"
               className="w-full h-full object-cover"
             />
@@ -312,7 +312,6 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Approach Section with Enhanced Mobile Support */}
         <div
           ref={(el) => (sectionRefs.current["approach"] = el)}
           className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16 transform transition-all duration-1000 ${
@@ -323,15 +322,10 @@ const AboutUs = () => {
         >
           <div className="absolute inset-0 bg-black/50" />
           <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-transparent to-blue-900/60" />
-
-          {/* Top gradient for depth */}
           <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
-
-          {/* Side accent gradients */}
           <div className="absolute left-0 inset-y-0 w-1/3 bg-gradient-to-r from-teal-900/30 to-transparent" />
           <div className="absolute right-0 inset-y-0 w-1/3 bg-gradient-to-l from-emerald-900/20 to-transparent" />
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {/* Light rays */}
             {[...Array(5)].map((_, i) => (
               <div
                 key={i}
@@ -368,7 +362,6 @@ const AboutUs = () => {
                 Our methodology combines scientific rigor with
                 community-centered solutions
               </p>
-              {/* Mobile instruction */}
               <p className="text-sm text-gray-400 mt-4 md:hidden">
                 Tap cards below to learn more
               </p>
@@ -413,8 +406,6 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-
-        {/* Second Full Width Image Section */}
         <div
           ref={(el) => (sectionRefs.current["fullImageQuote"] = el)}
           className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[60vh] overflow-hidden transform transition-all duration-1000 ${
@@ -459,7 +450,6 @@ const AboutUs = () => {
           </div>
         </div>
 
-        {/* Timeline Section */}
         <div
           ref={(el) => (sectionRefs.current["timeline"] = el)}
           className="mb-20 mt-16 px-4 sm:px-6 lg:px-8 "
@@ -524,7 +514,6 @@ const AboutUs = () => {
   );
 };
 
-// Enhanced Approach Card Component
 const ApproachCard = ({ card, isVisible, isActive, onClick }) => {
   const colorClasses = {
     blue: "group-hover:from-blue-600/90 group-hover:via-blue-600/70 group-hover:to-blue-600/40",
@@ -547,7 +536,6 @@ const ApproachCard = ({ card, isVisible, isActive, onClick }) => {
       style={{ transitionDelay: card.delay }}
       onClick={onClick}
     >
-      {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src={card.image}
@@ -565,7 +553,6 @@ const ApproachCard = ({ card, isVisible, isActive, onClick }) => {
         ></div>
       </div>
 
-      {/* Default Content - Title */}
       <div
         className={`absolute inset-0 flex items-end p-6 transition-opacity duration-300 ${
           isActive
@@ -575,14 +562,12 @@ const ApproachCard = ({ card, isVisible, isActive, onClick }) => {
       >
         <div>
           <h4 className="text-2xl font-bold text-white">{card.title}</h4>
-          {/* Mobile tap indicator */}
           <div className="md:hidden mt-2">
             <span className="text-white/70 text-sm">Tap to learn more</span>
           </div>
         </div>
       </div>
 
-      {/* Hover/Active Content - Description */}
       <div
         className={`absolute inset-0 flex items-center justify-center p-6 transition-all duration-500 transform ${
           isActive
@@ -593,7 +578,6 @@ const ApproachCard = ({ card, isVisible, isActive, onClick }) => {
         <div className="text-center">
           <h4 className="text-2xl font-bold text-white mb-4">{card.title}</h4>
           <p className="text-white/90 leading-relaxed">{card.description}</p>
-          {/* Mobile close indicator */}
           {isActive && (
             <div className="md:hidden mt-4">
               <span className="text-white/70 text-sm">Tap again to close</span>
