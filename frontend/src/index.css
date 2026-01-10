@@ -12,7 +12,61 @@ body {
 }
 
 /* ===== LIGHT RAYS & MARINE ANIMATIONS ===== */
+@keyframes fadeMarquee {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 
+.marquee-item {
+  animation: fadeMarquee 8s linear infinite;
+}
+
+.marquee-item:nth-child(1) {
+  animation-delay: 0s;
+}
+.marquee-item:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.marquee-item:nth-child(3) {
+  animation-delay: 1s;
+}
+.marquee-item:nth-child(4) {
+  animation-delay: 1.5s;
+}
+.marquee-item:nth-child(5) {
+  animation-delay: 2s;
+}
+.marquee-item:nth-child(6) {
+  animation-delay: 2.5s;
+}
+.marquee-item:nth-child(7) {
+  animation-delay: 3s;
+}
+.marquee-item:nth-child(8) {
+  animation-delay: 3.5s;
+}
+.marquee-item:nth-child(9) {
+  animation-delay: 4s;
+}
+.marquee-item:nth-child(10) {
+  animation-delay: 4.5s;
+}
+.marquee-item:nth-child(11) {
+  animation-delay: 5s;
+}
+.marquee-item:nth-child(12) {
+  animation-delay: 5.5s;
+}
 /* Gradient animation */
 @keyframes gradient-shift {
   0%,
