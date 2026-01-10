@@ -129,6 +129,7 @@ const Team = () => {
 
         <div className="relative">
           <button
+            style={{ cursor: "pointer" }}
             onClick={handlePrev}
             disabled={isAnimating}
             className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-14 h-14 rounded-full bg-white shadow-xl border border-gray-200 hover:border-teal-500 hover:bg-teal-50 items-center justify-center transition-all duration-300 group z-20"
@@ -166,6 +167,7 @@ const Team = () => {
             </div>
           </button>
           <button
+            style={{ cursor: "pointer" }}
             onClick={handleNext}
             disabled={isAnimating}
             className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-14 h-14 rounded-full bg-white shadow-xl border border-gray-200 hover:border-teal-500 hover:bg-teal-50 items-center justify-center transition-all duration-300 group z-20"
@@ -460,6 +462,7 @@ const Team = () => {
               dedicated individuals to join our mission.
             </p>
             <button
+              style={{ cursor: "pointer" }}
               onClick={HandleContactClick}
               className="relative px-8 py-3 bg-gradient-to-r from-teal-600 to-green-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group overflow-hidden"
             >

@@ -233,6 +233,7 @@ const Hero = () => {
             >
               <button
                 onClick={() => navigate("/mission")}
+                style={{ cursor: "pointer" }}
                 className="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 transition-transform duration-500 group-hover:translate-x-full" />
@@ -254,7 +255,10 @@ const Hero = () => {
                 </span>
               </button>
 
-              <button className="group border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:border-white/60 hover:bg-white/5 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 active:scale-95">
+              <button
+                className="group border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:border-white/60 hover:bg-white/5 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 active:scale-95"
+                style={{ cursor: "pointer" }}
+              >
                 <span className="relative flex items-center justify-center gap-3">
                   <svg
                     className="w-5 h-5 group-hover:rotate-12 transition-transform"
