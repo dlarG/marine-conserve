@@ -159,33 +159,32 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Donate Button & Mobile Menu - Right side */}
             <div className="inline-flex items-center space-x-3">
-              {/* Donate Button */}
               <button
                 onClick={() => navigate("/courses")}
-                className={`hidden md:block px-4.5 py-2 rounded-full font-medium border-2 transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
+                className={`cursor:pointer hidden md:block px-4.5 py-2 rounded-full font-medium border-2 transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
                   isScrolled
                     ? "border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
                     : "border-white/60 text-white hover:bg-white/10"
                 }`}
+                style={{ cursor: "pointer" }}
               >
                 <span className="relative z-10">Courses</span>
                 <div
-                  className={`absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
+                  className={`cursor:pointer absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
                     isScrolled ? "bg-teal-600" : "bg-white/20"
                   }`}
                 />
               </button>
 
-              {/* Donate Button */}
               <button
                 onClick={handleDonateClick}
-                className={`hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
+                className={` hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
                   isScrolled
                     ? "bg-gradient-to-r from-teal-600 to-green-600 text-white"
                     : "bg-gradient-to-r from-teal-600/90 to-green-600/90 text-white"
                 }`}
+                style={{ cursor: "pointer" }}
               >
                 <span className="relative z-10">Donate</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-green-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />

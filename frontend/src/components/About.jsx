@@ -110,36 +110,46 @@ const AboutUs = () => {
   // Timeline data
   const timeline = [
     {
-      year: "2010",
-      event: "GREEN Inc. founded in Southern Leyte",
+      year: "2013",
+      event: "GREEN Inc. founded in Sogod Bay, Southern Leyte",
       description:
-        "Started with small-scale beach cleanups and reef monitoring",
+        "Establishment of coral nursery in Malitbog and reef monitoring",
     },
     {
-      year: "2013",
-      event: "First Tagbak Marine Park assessment",
-      description: "Comprehensive survey of marine biodiversity in the area",
+      year: "2014",
+      event: "Coral Nursery & Transplant Trials",
+      description:
+        "Tested different types of coral nursery and transplant methods, assisted scientific surveys in Silago, Southern Leyte",
     },
     {
       year: "2015",
-      event: "Crown-of-Thorns Starfish research initiative",
-      description: "Began 10-year population tracking program",
+      event: "Community Engagement Programs Launched",
+      description:
+        "Crown of thorns seastar research initiative begun its population monitoring program",
     },
     {
-      year: "2018",
+      year: "2017",
       event: "Published Flora & Fauna of Tagbak Marine Park",
-      description: "First comprehensive guidebook of the area's marine life",
+      description:
+        "Published the first comprehensive guidebook of the area's marine life",
     },
     {
       year: "2020",
-      event: "AI Coral Assessment Pilot Program",
+      event: "Crown of Thorns Outbreak Reported",
       description:
-        "Started integrating artificial intelligence with traditional survey methods",
+        "Made a comprehensive report about the crown of thorns outbreak in Sogod Bay and presented it to the governor for a scientifically based intervention.",
+    },
+    {
+      year: "2022",
+      event: "Hinundayan Marine Survey",
+      description:
+        "Conducted surveys on coral reef and reef fishes on selected Marine Protected Areas in Southern Leyte funded by SPIADFI and USAID assisted Provincial Tourism office in exploring Hinundayan for possible dive sites",
     },
     {
       year: "2023",
-      event: "Regional Conservation Network Established",
-      description: "Expanded partnerships across Visayas region",
+      event: "Coral Restoration Initiatives Launched",
+      description:
+        "Started Dive Against Debris, Crown of Thorns Monitoring, Coral Restoration",
     },
   ];
 
@@ -502,8 +512,6 @@ const AboutUs = () => {
                       <p className="text-gray-600">{item.description}</p>
                     </div>
                   </div>
-
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white shadow-lg hidden md:block animate-pulse"></div>
                 </div>
               ))}
             </div>
