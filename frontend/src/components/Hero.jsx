@@ -90,6 +90,7 @@ const Hero = () => {
               "linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(167, 243, 208, 0.15) 50%, rgba(20, 184, 166, 0.05) 100%)",
           }}
         />
+        {/* <img src="/hero/hero1.JPG" alt="a photo of someone diving" /> */}
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-transparent to-blue-900/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
@@ -315,13 +316,11 @@ const Hero = () => {
           style={{ transitionDelay: "1.4s" }}
         >
           <div className="relative max-w-full mx-auto lg:ml-auto">
-            <div className="relative max-w-3xl mx-auto lg:ml-auto">
-              <img
-                src="/images/hero-img2.png"
-                alt="Marine Conservation"
-                className="w-full h-full"
-              />
-            </div>
+            <img
+              src="/images/hero-img212.png"
+              alt="Marine Conservation"
+              className="w-full h-full"
+            />
             <div className="absolute -top-8 right-8">
               <div className="relative">
                 {[0, 1, 2, 3, 4].map((i) => (

@@ -271,13 +271,32 @@ const Navbar = () => {
 
             <div className="pt-4 mt-2 border-t border-gray-300/50">
               <button
+                onClick={() => {
+                  navigate("/courses");
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`relative w-full px-6 py-4 rounded-xl font-medium overflow-hidden group mb-3 border-2 ${
+                  isScrolled
+                    ? "border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
+                    : "border-white/60 text-white hover:bg-white/10"
+                }`}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  Courses
+                </span>
+                <div
+                  className={`absolute inset-0 rounded-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
+                    isScrolled ? "bg-teal-600" : "bg-white/20"
+                  }`}
+                />
+              </button>
+
+              <button
                 onClick={handleDonateClick}
                 className="relative w-full px-6 py-4 rounded-xl font-medium overflow-hidden group"
               >
                 <span className="relative z-10 text-white flex items-center justify-center">
-                  <span className="mr-2">✨</span>
                   Donate Now
-                  <span className="ml-2">💚</span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-green-600 rounded-xl" />
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-green-700 rounded-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
