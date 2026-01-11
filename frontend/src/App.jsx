@@ -8,10 +8,11 @@ import MethodNavbar from "./components/MethodNavbar";
 import Mission from "./components/Mission";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MissionNavbar from "./components/MissionNavbar";
+import Course from "./components/Course";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen">
+    <div>
       <Navbar />
       <section id="hero">
         <Hero />
@@ -56,10 +57,10 @@ const HomePage = () => {
 
 const MethodsPage = () => {
   return (
-    <div className="min-h-screen">
+    <>
       <Navbar />
       <Methods />
-    </div>
+    </>
   );
 };
 
@@ -72,6 +73,10 @@ const MissionPage = () => {
   );
 };
 
+const CoursePage = () => {
+  return <Course />;
+};
+
 function App() {
   return (
     <Router>
@@ -80,6 +85,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/methods" element={<MethodsPage />} />
           <Route path="/mission" element={<MissionPage />} />
+          <Route path="/courses" element={<CoursePage />} />
         </Routes>
         <Footer />
       </div>
