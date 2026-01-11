@@ -762,24 +762,11 @@ const AboutUs = () => {
             <div className="text-center mt-8">
               <button
                 onClick={() => navigate("/projects")}
-                className="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95"
+                className="group cursor-pointer relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 transition-transform duration-500 group-hover:translate-x-full"></div>
                 <span className="relative flex items-center justify-center gap-3">
                   <span>Explore All Our Projects</span>
-                  <svg
-                    className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
                 </span>
               </button>
             </div>
