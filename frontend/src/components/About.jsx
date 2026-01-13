@@ -6,7 +6,7 @@ const AboutUs = () => {
   const [isVisible, setIsVisible] = useState({});
   const [scrollY, setScrollY] = useState(0);
   const [sectionOffsets, setSectionOffsets] = useState({});
-  const [activeCard, setActiveCard] = useState(null);
+  // const [activeCard, setActiveCard] = useState(null);
   const sectionRefs = useRef({});
 
   useEffect(() => {
@@ -60,9 +60,9 @@ const AboutUs = () => {
     return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
-  const handleCardClick = (cardId) => {
-    setActiveCard(activeCard === cardId ? null : cardId);
-  };
+  // const handleCardClick = (cardId) => {
+  //   setActiveCard(activeCard === cardId ? null : cardId);
+  // };
 
   // const approachCards = [
   //   {
@@ -354,9 +354,10 @@ const AboutUs = () => {
             <div className="absolute top-0 right-1/3 w-1 h-full bg-gradient-to-b from-blue-300/20 to-transparent transform -rotate-6 blur-sm" />
             <div className="absolute top-0 left-2/3 w-1 h-full bg-gradient-to-b from-emerald-300/25 to-transparent transform rotate-3 blur-sm" />
           </div>
-          <div className="max-w-full justify-center px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <div className="max-w-7xl mx-auto px-4 lg:px-0 relative z-10">
             <div
-              className={`text-center mb-12 transform transition-all duration-1000 delay-200 ${
+              className={`text-center mb-16 transform transition-all duration-1000 delay-200 ${
                 isVisible.approach
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
@@ -372,14 +373,9 @@ const AboutUs = () => {
                 GREEN, Inc.'s integrated approach focuses on four key components
                 to protect Sogod Bay's marine ecosystems
               </p>
-              <p className="text-sm text-gray-400 mt-4 md:hidden">
-                Tap cards to learn more about each pillar
-              </p>
             </div>
 
-            {/* Conservation Pillars Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              {/* Pillar 1: Coral Restoration */}
+            <div className="space-y-16">
               <div
                 className={`transform transition-all duration-700 delay-100 ${
                   isVisible.approach
@@ -387,92 +383,82 @@ const AboutUs = () => {
                     : "translate-y-12 opacity-0"
                 }`}
               >
-                <div
-                  onClick={() => handleCardClick("coral-restoration")}
-                  className={`group relative h-80 rounded-2xl overflow-hidden border border-white/20 bg-gradient-to-b from-teal-900/20 to-green-900/10 backdrop-blur-sm hover:border-green-400/50 hover:scale-105 transition-all duration-500 ${
-                    activeCard === "coral-restoration"
-                      ? "scale-105 border-green-400/50"
-                      : ""
-                  }`}
-                >
-                  {/* Background Image */}
-                  <div className="absolute inset-0">
+                <div className="grid lg:grid-cols-2 gap-6 lg:gap-6 items-center">
+                  <div className="relative h-80 lg:h-full rounded-2xl overflow-hidden border border-white/20 backdrop-blur-sm">
                     <img
                       src="/projects/coral-conservation.jpg"
                       alt="Coral restoration work underwater"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.src = "/images/default-coral.jpg";
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-teal-900/80 group-hover:via-teal-900/40 group-hover:to-teal-900/20 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
                   </div>
-
-                  <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                  <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-green-200 transition-colors duration-300">
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 text-green-200">
                         Coral Restoration
                       </h3>
-                    </div>
-                    <div
-                      className={`transform transition-all duration-500 mb-4 ${
-                        activeCard === "coral-restoration"
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0"
-                      }`}
-                    >
-                      <p className="text-white/90 text-sm mb-4 leading-relaxed">
+                      <p className="text-white/90 text-lg leading-relaxed mb-6">
                         Rehabilitation of degraded reefs through scientifically
                         guided techniques including nursery installation, coral
                         fragment propagation, and long-term monitoring to assess
-                        recovery.
+                        recovery. Our coral restoration program focuses on
+                        collecting naturally detached coral fragments from
+                        healthy donor colonies and nurturing them in carefully
+                        maintained underwater nurseries until they reach optimal
+                        size for transplantation. We employ innovative
+                        attachment methods and select resilient coral species
+                        that demonstrate strong adaptation to local
+                        environmental conditions. Through systematic outplanting
+                        and comprehensive monitoring protocols, we track growth
+                        rates, survival percentages, and ecological integration
+                        to ensure successful reef rehabilitation. This
+                        science-based approach enhances reef stability, promotes
+                        biodiversity recovery, and builds ecosystem resilience
+                        against future environmental stressors while supporting
+                        the natural regeneration processes of Sogod Bay's marine
+                        ecosystems.
                       </p>
 
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="px-3 py-1 bg-green-500/30 rounded-full text-xs text-green-200 border border-green-400/40 backdrop-blur-sm">
+                      <div className="flex flex-wrap gap-3 mb-8">
+                        <span className="px-4 py-2 bg-green-500/30 rounded-full text-sm text-green-200 border border-green-400/40 backdrop-blur-sm">
                           Nursery Installation
                         </span>
-                        <span className="px-3 py-1 bg-green-500/30 rounded-full text-xs text-green-200 border border-green-400/40 backdrop-blur-sm">
+                        <span className="px-4 py-2 bg-green-500/30 rounded-full text-sm text-green-200 border border-green-400/40 backdrop-blur-sm">
                           Fragment Propagation
                         </span>
-                        <span className="px-3 py-1 bg-green-500/30 rounded-full text-xs text-green-200 border border-green-400/40 backdrop-blur-sm">
+                        <span className="px-4 py-2 bg-green-500/30 rounded-full text-sm text-green-200 border border-green-400/40 backdrop-blur-sm">
                           Reef Monitoring
                         </span>
                       </div>
                     </div>
+
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate("/projects/coral-restoration");
-                      }}
-                      className={`w-full cursor-pointer transform transition-all duration-500 delay-100 bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-green-600 hover:to-teal-700 hover:scale-105 ${
-                        activeCard === "coral-restoration"
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0"
-                      }`}
+                      onClick={() => navigate("/projects/coral-restoration")}
+                      className="bg-gradient-to-r from-green-500 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-teal-700 hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
                     >
-                      <span className="flex items-center justify-center gap-2">
-                        <span>Learn More</span>
-                        <svg
-                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </span>
+                      <span>Learn More</span>
+                      <svg
+                        className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
                     </button>
                   </div>
                 </div>
               </div>
 
-              {/* Pillar 2: Marine Debris Removal */}
+              {/* Pillar 2: Marine Debris Removal - Content Left, Image Right */}
               <div
                 className={`transform transition-all duration-700 delay-200 ${
                   isVisible.approach
@@ -480,88 +466,83 @@ const AboutUs = () => {
                     : "translate-y-12 opacity-0"
                 }`}
               >
-                <div
-                  onClick={() => handleCardClick("debris-removal")}
-                  className={`group relative h-80 rounded-2xl overflow-hidden border border-white/20 bg-gradient-to-b from-blue-900/20 to-teal-900/10 backdrop-blur-sm hover:border-blue-400/50 hover:scale-105 transition-all duration-500 ${
-                    activeCard === "debris-removal"
-                      ? "scale-105 border-blue-400/50"
-                      : ""
-                  }`}
-                >
-                  <div className="absolute inset-0">
-                    <img
-                      src="/projects/debris-removal.JPG"
-                      alt="Marine debris removal underwater cleanup"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      onError={(e) => {
-                        e.target.src = "/images/default-cleanup.jpg";
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-blue-900/80 group-hover:via-blue-900/40 group-hover:to-blue-900/20 transition-all duration-500" />
-                  </div>
-                  <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                <div className="grid lg:grid-cols-2 gap-6 lg:gap-6 items-center">
+                  <div className="space-y-6 order-2 lg:order-1">
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors duration-300">
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 text-blue-200">
                         Marine Debris Removal
                       </h3>
-                    </div>
-                    <div
-                      className={`transform transition-all duration-500 mb-4 ${
-                        activeCard === "debris-removal"
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0"
-                      }`}
-                    >
-                      <p className="text-white/90 text-sm mb-4 leading-relaxed">
+                      <p className="text-white/90 text-lg leading-relaxed mb-6">
                         Regular underwater clean-up dives targeting marine
                         debris, especially plastics and ghost fishing gear,
                         which pose severe threats to reef health and marine
-                        life.
+                        life. Our "Dive Against Debris" program conducts
+                        systematic underwater surveys to locate and remove
+                        discarded fishing nets, plastic bottles, bags, and other
+                        harmful materials that can entangle marine animals or
+                        damage coral structures. Ghost nets, in particular,
+                        continue to trap fish and other marine life long after
+                        they're lost or abandoned, creating ongoing ecological
+                        damage. Through coordinated cleanup efforts, we not only
+                        remove existing debris but also document the types and
+                        quantities of waste found to support larger conservation
+                        advocacy efforts. Each cleanup dive is carefully planned
+                        to minimize disturbance to marine life while maximizing
+                        debris removal efficiency, ensuring that our
+                        interventions contribute to healthier, cleaner reef
+                        ecosystems throughout Sogod Bay.
                       </p>
 
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="px-3 py-1 bg-blue-500/30 rounded-full text-xs text-blue-200 border border-blue-400/40 backdrop-blur-sm">
+                      <div className="flex flex-wrap gap-3 mb-8">
+                        <span className="px-4 py-2 bg-blue-500/30 rounded-full text-sm text-blue-200 border border-blue-400/40 backdrop-blur-sm">
                           Dive Against Debris
                         </span>
-                        <span className="px-3 py-1 bg-blue-500/30 rounded-full text-xs text-blue-200 border border-blue-400/40 backdrop-blur-sm">
+                        <span className="px-4 py-2 bg-blue-500/30 rounded-full text-sm text-blue-200 border border-blue-400/40 backdrop-blur-sm">
                           Ghost Net Removal
                         </span>
-                        <span className="px-3 py-1 bg-blue-500/30 rounded-full text-xs text-blue-200 border border-blue-400/40 backdrop-blur-sm">
+                        <span className="px-4 py-2 bg-blue-500/30 rounded-full text-sm text-blue-200 border border-blue-400/40 backdrop-blur-sm">
                           Plastic Cleanup
                         </span>
                       </div>
                     </div>
+
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate("/projects/debris-removal");
-                      }}
-                      className={`w-full cursor-pointer transform transition-all duration-500 delay-100 bg-gradient-to-r from-blue-500 to-teal-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-teal-700 hover:scale-105 ${
-                        activeCard === "debris-removal"
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0"
-                      }`}
+                      onClick={() => navigate("/projects/debris-removal")}
+                      className="bg-gradient-to-r from-blue-500 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-teal-700 hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
                     >
-                      <span className="flex items-center justify-center gap-2">
-                        <span>Learn More</span>
-                        <svg
-                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </span>
+                      <span>Learn More</span>
+                      <svg
+                        className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
                     </button>
+                  </div>
+
+                  {/* Image Section */}
+                  <div className="relative h-80 lg:h-full rounded-2xl overflow-hidden border border-white/20 backdrop-blur-sm order-1 lg:order-2">
+                    <img
+                      src="/projects/debris-removal.JPG"
+                      alt="Marine debris removal underwater cleanup"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.src = "/images/default-cleanup.jpg";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
                   </div>
                 </div>
               </div>
+
+              {/* Pillar 3: COTS Monitoring - Image Left, Content Right */}
               <div
                 className={`transform transition-all duration-700 delay-300 ${
                   isVisible.approach
@@ -569,89 +550,91 @@ const AboutUs = () => {
                     : "translate-y-12 opacity-0"
                 }`}
               >
-                <div
-                  onClick={() => handleCardClick("cots-monitoring")}
-                  className={`group relative h-80 rounded-2xl overflow-hidden border border-white/20 bg-gradient-to-b from-teal-900/20 to-blue-900/10 backdrop-blur-sm hover:border-teal-400/50 hover:scale-105 transition-all duration-500 ${
-                    activeCard === "cots-monitoring"
-                      ? "scale-105 border-teal-400/50"
-                      : ""
-                  }`}
-                >
-                  <div className="absolute inset-0">
+                <div className="grid lg:grid-cols-2 gap-6 lg:gap-6 items-center">
+                  {/* Image Section */}
+                  <div className="relative h-80 lg:h-full rounded-2xl overflow-hidden border border-white/20 backdrop-blur-sm">
                     <img
                       src="/projects/cots-monitoring.JPG"
                       alt="Crown of thorns starfish monitoring"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover"
                       onError={(e) => {
                         e.target.src = "/images/default-starfish.jpg";
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-teal-900/80 group-hover:via-teal-900/40 group-hover:to-teal-900/20 transition-all duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
                   </div>
-                  <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+
+                  <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-teal-200 transition-colors duration-300">
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 text-teal-200">
                         COTS Monitoring & Response
                       </h3>
-                    </div>
-
-                    <div
-                      className={`transform transition-all duration-500 mb-4 ${
-                        activeCard === "cots-monitoring"
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0"
-                      }`}
-                    >
-                      <p className="text-white/90 text-sm mb-4 leading-relaxed">
-                        Regular monitoring and rapid-response removal of
-                        Crown-of-Thorns Starfish to prevent large-scale coral
-                        predation and protect reef ecosystems from outbreaks.
+                      <p className="text-white/90 text-lg leading-relaxed mb-6">
+                        Regular monitoring and rapid-response removal of{" "}
+                        <a
+                          href="https://en.wikipedia.org/wiki/Crown-of-thorns_starfish"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-teal-300 underline hover:text-teal-200 transition-colors duration-300"
+                        >
+                          Crown-of-Thorns Starfish (COTS)
+                        </a>{" "}
+                        to prevent large-scale coral predation and protect reef
+                        ecosystems from devastating outbreaks. Our comprehensive
+                        COTS management program involves systematic underwater
+                        surveys to track population densities and identify early
+                        signs of outbreak conditions before they become
+                        uncontrollable. These thorny starfish are voracious
+                        coral predators that can consume entire coral colonies
+                        at an alarming rate, leaving behind white skeletal
+                        remains that take decades to recover. Through trained
+                        dive teams and established monitoring protocols, we
+                        conduct regular population assessments across multiple
+                        reef sites in Sogod Bay, documenting COTS numbers,
+                        distribution patterns, and predation impact levels. This
+                        proactive approach has proven essential in maintaining
+                        healthy coral coverage and preventing the catastrophic
+                        reef degradation that uncontrolled COTS outbreaks can
+                        cause throughout the region.
                       </p>
 
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="px-3 py-1 bg-teal-500/30 rounded-full text-xs text-teal-200 border border-teal-400/40 backdrop-blur-sm">
+                      <div className="flex flex-wrap gap-3 mb-8">
+                        <span className="px-4 py-2 bg-green-500/30 rounded-full text-sm text-green-200 border border-green-400/40 backdrop-blur-sm">
                           Regular Monitoring
                         </span>
-                        <span className="px-3 py-1 bg-teal-500/30 rounded-full text-xs text-teal-200 border border-teal-400/40 backdrop-blur-sm">
+                        <span className="px-4 py-2 bg-green-500/30 rounded-full text-sm text-green-200 border border-green-400/40 backdrop-blur-sm">
                           Rapid Response
                         </span>
-                        <span className="px-3 py-1 bg-teal-500/30 rounded-full text-xs text-teal-200 border border-teal-400/40 backdrop-blur-sm">
+                        <span className="px-4 py-2 bg-green-500/30 rounded-full text-sm text-green-200 border border-green-400/40 backdrop-blur-sm">
                           Outbreak Prevention
                         </span>
                       </div>
                     </div>
 
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate("/projects/cots-monitoring");
-                      }}
-                      className={`w-full cursor-pointer transform transition-all duration-500 delay-100 bg-gradient-to-r from-teal-500 to-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-teal-600 hover:to-blue-700 hover:scale-105 ${
-                        activeCard === "cots-monitoring"
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0"
-                      }`}
+                      onClick={() => navigate("/projects/cots-monitoring")}
+                      className="bg-gradient-to-r from-green-500 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-teal-700 hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
                     >
-                      <span className="flex items-center justify-center gap-2">
-                        <span>Learn More</span>
-                        <svg
-                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </span>
+                      <span>Learn More</span>
+                      <svg
+                        className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
                     </button>
                   </div>
                 </div>
               </div>
+
+              {/* Pillar 4: Scientific Data Collection - Content Left, Image Right */}
               <div
                 className={`transform transition-all duration-700 delay-400 ${
                   isVisible.approach
@@ -659,84 +642,79 @@ const AboutUs = () => {
                     : "translate-y-12 opacity-0"
                 }`}
               >
-                <div
-                  onClick={() => handleCardClick("data-collection")}
-                  className={`group relative h-80 rounded-2xl overflow-hidden border border-white/20 bg-gradient-to-b from-blue-900/20 to-green-900/10 backdrop-blur-sm hover:border-blue-400/50 hover:scale-105 transition-all duration-500 ${
-                    activeCard === "data-collection"
-                      ? "scale-105 border-blue-400/50"
-                      : ""
-                  }`}
-                >
-                  <div className="absolute inset-0">
-                    <img
-                      src="/projects/data-collection1.jpg"
-                      alt="Scientific data collection underwater research"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      onError={(e) => {
-                        e.target.src = "/images/default-research.jpg";
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-blue-900/80 group-hover:via-blue-900/40 group-hover:to-blue-900/20 transition-all duration-500" />
-                  </div>
-                  <div className="relative z-10 p-6 h-full flex flex-col justify-between">
+                <div className="grid lg:grid-cols-2 gap-6 lg:gap-6 items-center">
+                  <div className="space-y-6 order-2 lg:order-1">
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors duration-300">
+                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 text-blue-200">
                         Scientific Data Collection
                       </h3>
-                    </div>
-                    <div
-                      className={`transform transition-all duration-500 mb-4 ${
-                        activeCard === "data-collection"
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0"
-                      }`}
-                    >
-                      <p className="text-white/90 text-sm mb-4 leading-relaxed">
-                        Evidence-based conservation through detailed monitoring
-                        of coral reef health, fish populations, and benthic
-                        communities to inform adaptive management strategies.
+                      <p className="text-white/90 text-lg leading-relaxed mb-6">
+                        To support evidence-based conservation, GREEN, Inc.
+                        conducts comprehensive scientific data collection
+                        focusing on coral reef health assessments, fish
+                        population dynamics, and benthic community structure
+                        analysis throughout Sogod Bay. Our systematic approach
+                        involves standardized underwater surveys using
+                        established protocols for coral coverage assessment,
+                        species identification, and mortality documentation. We
+                        monitor key indicators including coral bleaching events,
+                        disease prevalence, recruitment rates, and overall
+                        ecosystem resilience. Fish population studies encompass
+                        species diversity counts, abundance measurements, and
+                        behavioral observations that help us understand the
+                        intricate relationships between reef health and marine
+                        biodiversity. This scientific approach enables us to
+                        develop adaptive management strategies, prioritize
+                        restoration sites based on ecological significance, and
+                        measure the effectiveness of our conservation
+                        interventions.
                       </p>
 
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        <span className="px-3 py-1 bg-blue-500/30 rounded-full text-xs text-blue-200 border border-blue-400/40 backdrop-blur-sm">
+                      <div className="flex flex-wrap gap-3 mb-8">
+                        <span className="px-4 py-2 bg-blue-500/30 rounded-full text-sm text-blue-200 border border-blue-400/40 backdrop-blur-sm">
                           Reef Health Data
                         </span>
-                        <span className="px-3 py-1 bg-blue-500/30 rounded-full text-xs text-blue-200 border border-blue-400/40 backdrop-blur-sm">
+                        <span className="px-4 py-2 bg-blue-500/30 rounded-full text-sm text-blue-200 border border-blue-400/40 backdrop-blur-sm">
                           Fish Population Studies
                         </span>
-                        <span className="px-3 py-1 bg-blue-500/30 rounded-full text-xs text-blue-200 border border-blue-400/40 backdrop-blur-sm">
+                        <span className="px-4 py-2 bg-blue-500/30 rounded-full text-sm text-blue-200 border border-blue-400/40 backdrop-blur-sm">
                           Evidence-Based Strategies
                         </span>
                       </div>
                     </div>
+
                     <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate("/projects/data-collection");
-                      }}
-                      className={`w-full cursor-pointer transform transition-all duration-500 delay-100 bg-gradient-to-r from-blue-500 to-green-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-green-700 hover:scale-105 ${
-                        activeCard === "data-collection"
-                          ? "opacity-100 translate-y-0"
-                          : "opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0"
-                      }`}
+                      onClick={() => navigate("/projects/data-collection")}
+                      className="bg-gradient-to-r from-blue-500 to-teal-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-teal-700 hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
                     >
-                      <span className="flex items-center justify-center gap-2">
-                        <span>Learn More</span>
-                        <svg
-                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </span>
+                      <span>Learn More</span>
+                      <svg
+                        className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
                     </button>
+                  </div>
+
+                  {/* Image Section */}
+                  <div className="relative h-80 lg:h-full rounded-2xl overflow-hidden border border-white/20 backdrop-blur-sm order-1 lg:order-2">
+                    <img
+                      src="/projects/data-collection1.jpg"
+                      alt="Scientific data collection underwater research"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.src = "/images/default-research.jpg";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
                   </div>
                 </div>
               </div>
@@ -744,13 +722,13 @@ const AboutUs = () => {
 
             {/* Summary Statement */}
             <div
-              className={`text-center mb-10 transform transition-all duration-1000 delay-500 ${
+              className={`text-center mt-16 mb-10 transform transition-all duration-1000 delay-500 ${
                 isVisible.approach
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
               }`}
             >
-              <p className="text-white/90 text-lg max-w-3xl mx-auto mb-6">
+              <p className="text-white/90 text-lg max-w-4xl mx-auto mb-6">
                 Through these integrated activities, we aim to restore and
                 protect the reefs of Sogod Bay while fostering a culture of
                 science-based, community-supported marine conservation in
@@ -790,7 +768,7 @@ const AboutUs = () => {
             }}
           >
             <img
-              src="/images/small2.jpg"
+              src="/images/close1.jpg"
               alt="GREEN Inc. team conducting underwater research"
               className="w-full h-full object-cover"
             />
