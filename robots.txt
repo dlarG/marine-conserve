@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://marineconserve.netlify.app/sitemap.xml
+
+# Additional crawl optimization
+Crawl-delay: 1
