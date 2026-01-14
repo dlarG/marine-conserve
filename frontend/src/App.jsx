@@ -1,7 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
-import About from "./components/About";
 import Team from "./components/Team";
 import Methods from "./components/Methods";
 import MethodNavbar from "./components/MethodNavbar";
@@ -9,6 +8,13 @@ import Mission from "./components/Mission";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import MissionNavbar from "./components/MissionNavbar";
 import Course from "./components/Course";
+import Blogs from "./components/Blogs";
+
+import About1 from "./components/cuts/About1";
+import About2 from "./components/cuts/About2";
+import PillarAbout from "./components/cuts/PillarAbout";
+import About3 from "./components/cuts/About3";
+import TimelineAbout from "./components/cuts/TimeAbout";
 
 const HomePage = () => {
   return (
@@ -19,16 +25,20 @@ const HomePage = () => {
       </section>
 
       <section id="about">
-        <About />
+        <About1 />
+        <About2 />
+        <PillarAbout />
+        <About3 />
+        <TimelineAbout />
       </section>
 
-      <section
-        id="research"
-        className="min-h-screen bg-[#94B4C1] flex items-center justify-center"
-      >
-        <h2 className="text-4xl font-bold text-white">Research Section</h2>
+      <section id="blogs">
+        <Blogs />
       </section>
 
+      <section id="team" className="relative overflow-hidden mt-15 mb-15">
+        <Team />
+      </section>
       <section
         id="impact"
         className="min-h-screen bg-[#547792] flex items-center justify-center"
@@ -46,10 +56,6 @@ const HomePage = () => {
             </p>
           </div>
         </div>
-      </section>
-
-      <section id="team" className="relative overflow-hidden mt-15 mb-15">
-        <Team />
       </section>
     </div>
   );
