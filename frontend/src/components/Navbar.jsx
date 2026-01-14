@@ -19,7 +19,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const sections = ["hero", "about", "research", "impact", "team"];
+    const sections = ["hero", "about", "blogs", "team", "contact"];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100;
@@ -69,9 +69,9 @@ const Navbar = () => {
   const navigationItems = [
     { id: "hero", label: "Home" },
     { id: "about", label: "About Us" },
-    { id: "research", label: "Research" },
-    { id: "impact", label: "Impact" },
+    { id: "blogs", label: "Blogs" },
     { id: "team", label: "Team" },
+    { id: "contact", label: "Contact Us" },
   ];
 
   const handleLogoClick = () => {
