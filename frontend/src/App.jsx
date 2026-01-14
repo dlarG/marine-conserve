@@ -24,7 +24,7 @@ const HomePage = () => {
         <Hero />
       </section>
 
-      <section id="about">
+      <section id="about" className="relative overflow-hidden">
         <About1 />
         <About2 />
         <PillarAbout />

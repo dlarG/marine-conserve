@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function About2() {
+function About3() {
   const sectionRefs = useRef({});
-  const [sectionOffsets, setSectionOffsets] = useState({}); // Added missing state
+  const [sectionOffsets, setSectionOffsets] = useState({});
   const [scrollY, setScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState({
-    fullImage: false, // Changed from mainContainer to fullImage to match usage
+    fullImage: false,
   });
 
-  // Effect for calculating section offsets
   useEffect(() => {
     const calculateOffsets = () => {
       const offsets = {};
@@ -70,9 +69,18 @@ function About2() {
   return (
     <div
       ref={(el) => (sectionRefs.current["fullImage"] = el)}
-      className={`w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[60vh] overflow-hidden transform transition-all duration-1000 ${
+      className={`w-full h-[60vh] overflow-hidden transform transition-all duration-1000 ${
         isVisible.fullImage ? "scale-100 opacity-100" : "scale-95 opacity-0"
       }`}
+      style={{
+        position: "relative",
+        left: "50%",
+        right: "50%",
+        marginLeft: "-50vw",
+        marginRight: "-50vw",
+        width: "100vw",
+        maxWidth: "100vw",
+      }}
     >
       <div
         className="absolute inset-0 w-full h-[120%] -top-[10%]"
@@ -110,4 +118,4 @@ function About2() {
   );
 }
 
-export default About2;
+export default About3;
