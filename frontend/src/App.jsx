@@ -24,7 +24,7 @@ const HomePage = () => {
         <Hero />
       </section>
 
-      <section id="about">
+      <section id="about" className="relative overflow-hidden">
         <About1 />
         <About2 />
         <PillarAbout />
@@ -39,7 +39,7 @@ const HomePage = () => {
       <section id="team" className="relative overflow-hidden mt-15 mb-15">
         <Team />
       </section>
-      <section
+      {/* <section
         id="impact"
         className="min-h-screen bg-[#547792] flex items-center justify-center"
       >
@@ -56,7 +56,7 @@ const HomePage = () => {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
