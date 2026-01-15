@@ -138,7 +138,7 @@ function PillarAbout() {
 
                 <button
                   onClick={() => navigate("/projects/coral-restoration")}
-                  className="group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
+                  className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-500 transition-transform duration-500 group-hover:translate-x-full" />
                   <span className="relative flex items-center justify-center gap-2">
@@ -203,7 +203,7 @@ function PillarAbout() {
 
                 <button
                   onClick={() => navigate("/projects/debris-removal")}
-                  className="group relative bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-6 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
+                  className="cursor-pointer group relative bg-gradient-to-r from-blue-500 to-cyan-600 text-white px-6 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-500 transition-transform duration-500 group-hover:translate-x-full" />
                   <span className="relative flex items-center justify-center gap-2">
@@ -291,7 +291,7 @@ function PillarAbout() {
 
                 <button
                   onClick={() => navigate("/projects/cots-monitoring")}
-                  className="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
+                  className="cursor-pointer group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 transition-transform duration-500 group-hover:translate-x-full" />
                   <span className="relative flex items-center justify-center gap-2">
@@ -357,7 +357,7 @@ function PillarAbout() {
 
                 <button
                   onClick={() => navigate("/projects/data-collection")}
-                  className="group relative bg-gradient-to-r from-teal-500 to-blue-600 text-white px-6 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
+                  className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-blue-600 text-white px-6 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-teal-500 transition-transform duration-500 group-hover:translate-x-full" />
                   <span className="relative flex items-center justify-center gap-2">

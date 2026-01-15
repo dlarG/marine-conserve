@@ -13,22 +13,22 @@ const Blogs = () => {
       excerpt:
         "The first comprehensive guide documenting the rich marine biodiversity of Tagbak Marine Park, featuring over 200 species of corals, fish, and invertebrates.",
       category: "Research",
-      date: "March 15, 2024",
-      readTime: "8 min read",
-      image: "/images/blog-tagbak.jpg",
+      date: "October 15, 2017",
+      readTime: "25 min read",
+      image: "/images/tagbak1.jpg",
       tags: ["Biodiversity", "Marine Research", "Conservation"],
       featured: true,
     },
     {
       id: 2,
       title:
-        "Coral Restoration Success: 3-Year Monitoring Results from Sogod Bay",
+        "Coral Restoration Success: A Big Step Forward for Malitbog's Ocean Reefs",
       excerpt:
-        "Detailed analysis of coral restoration efforts showing 85% survival rate and significant reef recovery in restored areas of Sogod Bay.",
+        "A detailed report on our coral restoration project in Malitbog, showcasing significant reef recovery and community involvement over the past year.",
       category: "Monitoring",
-      date: "February 28, 2024",
-      readTime: "10 min read",
-      image: "/images/blog-coral-restoration.jpg",
+      date: "July 18, 2025",
+      readTime: "15 min read",
+      image: "/images/coral-restoration.jpg",
       tags: ["Coral Restoration", "Monitoring", "Success Stories"],
       featured: true,
     },
@@ -38,25 +38,26 @@ const Blogs = () => {
   const latestPosts = [
     {
       id: 3,
-      title: "Community Engagement: How Local Fishermen Became Marine Stewards",
+      title: "COTs Monitoring & Culling Update – Abgao, Malitbog ",
       excerpt:
-        "Transforming local fishing communities into active participants in marine conservation through education and sustainable livelihood programs.",
-      category: "Community",
-      date: "April 5, 2024",
+        "Great news from the reef! Yesterday we completed a follow up dive in Abgao to assess the Crown of Thorns starfish (COTs) situation almost one month after our first culling effort. The results are encouraging:",
+      category: "Cleanup",
+      date: "May 24, 2025",
       readTime: "6 min read",
-      image: "/images/blog-community.jpg",
+      image: "/images/cotss.jpg",
       tags: ["Community", "Education", "Sustainability"],
     },
     {
       id: 4,
-      title: "Ghost Net Removal: Documenting Our Largest Cleanup Operation",
+      title:
+        "(VSU) Marine Biology students conducted their corals and fish studies in Malitbog, Southern Leyte! ",
       excerpt:
-        "A detailed account of our recent ghost net removal operation that cleared over 500kg of abandoned fishing gear from critical reef areas.",
-      category: "Cleanup",
-      date: "April 12, 2024",
+        "As someone deeply passionate about environmental stewardship, I'm honored to have the opportunity to support students in their research endeavors. Whether it's assisting with data collection, offering guidance, or providing logistical support, I'm committed to empowering the next generation of environmental leaders.",
+      category: "Partnership",
+      date: "March 25, 2024",
       readTime: "7 min read",
-      image: "/images/blog-cleanup.jpg",
-      tags: ["Debris Removal", "Cleanup", "Marine Protection"],
+      image: "/images/partner.jpg",
+      tags: ["Education", "Marine Research", "Collaboration"],
     },
   ];
 
@@ -77,7 +78,7 @@ const Blogs = () => {
   };
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-teal-50 to-white">
+    <section className="relative py-20 bg-gradient-to-b from-teal-50 to-white">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-teal-900/5 to-transparent" />
@@ -107,9 +108,6 @@ const Blogs = () => {
           }`}
         >
           <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-teal-500 to-emerald-600 flex items-center justify-center">
-              <span className="text-white text-xl">📘</span>
-            </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Conservation{" "}
               <span className="bg-gradient-to-r from-teal-500 to-emerald-600 bg-clip-text text-transparent">
@@ -160,13 +158,6 @@ const Blogs = () => {
                       src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                      onError={(e) => {
-                        e.target.src = `https://images.unsplash.com/photo-${
-                          index === 0
-                            ? "1578662996442-483f8970f67a"
-                            : "1544551763-46a013bb70d5"
-                        }?w=800&h=400&fit=crop&q=80`;
-                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
@@ -226,7 +217,7 @@ const Blogs = () => {
 
                       <button
                         onClick={() => handleReadMore(post.id)}
-                        className="group inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold text-sm"
+                        className="cursor-pointer group inline-flex items-center gap-2 text-teal-600 hover:text-teal-700 font-semibold text-sm"
                       >
                         Read Full Story
                         <svg
@@ -338,7 +329,7 @@ const Blogs = () => {
 
                         <button
                           onClick={() => handleReadMore(post.id)}
-                          className="text-teal-600 hover:text-teal-700 font-medium text-sm flex items-center gap-1"
+                          className="cursor-pointer text-teal-600 hover:text-teal-700 font-medium text-sm flex items-center gap-1"
                         >
                           Read
                           <svg
@@ -384,7 +375,7 @@ const Blogs = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={handleViewAllPosts}
-                  className="group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
+                  className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-500 transition-transform duration-500 group-hover:translate-x-full" />
                   <span className="relative flex items-center justify-center gap-2">
@@ -405,7 +396,11 @@ const Blogs = () => {
                   </span>
                 </button>
 
-                <button className="group border-2 border-teal-500 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-all duration-500 transform hover:scale-105">
+                <a
+                  href="https://www.facebook.com/GREENIncorporatedSogodBay"
+                  target="_blank"
+                  className="cursor-pointer group border-2 border-teal-500 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-all duration-500 transform hover:scale-105"
+                >
                   <span className="relative flex items-center justify-center gap-2">
                     Subscribe to Newsletter
                     <svg
@@ -422,7 +417,7 @@ const Blogs = () => {
                       />
                     </svg>
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
