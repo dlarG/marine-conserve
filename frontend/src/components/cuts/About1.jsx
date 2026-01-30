@@ -1,10 +1,48 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
 function About1() {
   const sectionRefs = useRef({});
   const [isVisible, setIsVisible] = useState({
     mainContainer: false,
   });
+  const [counters, setCounters] = useState({
+    year: 1900,
+    yearsActive: 0,
+    studies: 0,
+  });
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const animateCounter = (key, start, end, duration) => {
+    const startTime = Date.now();
+    const range = end - start;
+
+    const updateCounter = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Use easeOutCubic for smooth animation
+      const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+      const currentValue = Math.floor(start + range * easeOutCubic);
+
+      setCounters((prev) => ({ ...prev, [key]: currentValue }));
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    };
+
+    requestAnimationFrame(updateCounter);
+  };
+
+  const startCounterAnimations = useCallback(() => {
+    // Year animation (1900 to 2013)
+    animateCounter("year", 1900, 2013, 5000);
+
+    // Years Active animation (0 to 10+)
+    animateCounter("yearsActive", 0, 10, 1500);
+
+    // Studies animation (0 to 35+)
+    animateCounter("studies", 0, 35, 1800);
+  }, []);
 
   useEffect(() => {
     const observers = [];
@@ -15,6 +53,11 @@ function About1() {
           ([entry]) => {
             if (entry.isIntersecting) {
               setIsVisible((prev) => ({ ...prev, [key]: true }));
+              // Start animations when the section becomes visible
+              if (key === "mainContainer" && !hasAnimated) {
+                startCounterAnimations();
+                setHasAnimated(true);
+              }
             }
           },
           { threshold: 0.1, rootMargin: "50px" }
@@ -27,13 +70,13 @@ function About1() {
     return () => {
       observers.forEach((observer) => observer.disconnect());
     };
-  }, []);
+  }, [hasAnimated, startCounterAnimations]);
 
   return (
     <div>
       <div
         ref={(el) => (sectionRefs.current["mainContainer"] = el)}
-        className={`bg-white w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden transform transition-all duration-1000 ${
+        className={`bg-white max-h-screen w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden transform transition-all duration-1000 ${
           isVisible.mainContainer
             ? "translate-x-0 opacity-100 scale-100"
             : "-translate-x-12 opacity-0 scale-95"
@@ -50,7 +93,6 @@ function About1() {
             >
               About <span className="text-teal-600">GREEN Inc.</span>
             </h3>
-
             <div
               className={`space-y-6 text-gray-700 transform transition-all duration-1000 delay-500 ${
                 isVisible.mainContainer
@@ -91,8 +133,7 @@ function About1() {
                 to protect and restore the reefs and coastal resources of
                 Southern Leyte.
               </p>
-            </div>
-
+            </div>{" "}
             <div
               className={`grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-gray-100 transform transition-all duration-1000 delay-700 ${
                 isVisible.mainContainer
@@ -102,19 +143,19 @@ function About1() {
             >
               <div className="text-center group hover:scale-110 transition-transform duration-300">
                 <div className="text-3xl font-bold text-blue-600 group-hover:animate-bounce">
-                  2013
+                  {counters.year}
                 </div>
                 <div className="text-gray-600 text-sm mt-1">Year Founded</div>
               </div>
               <div className="text-center group hover:scale-110 transition-transform duration-300">
                 <div className="text-3xl font-bold text-teal-600 group-hover:animate-bounce">
-                  10+
+                  {counters.yearsActive}+
                 </div>
                 <div className="text-gray-600 text-sm mt-1">Years Active</div>
               </div>
               <div className="text-center group hover:scale-110 transition-transform duration-300">
                 <div className="text-3xl font-bold text-green-600 group-hover:animate-bounce">
-                  35+
+                  {counters.studies}+
                 </div>
                 <div className="text-gray-600 text-sm mt-1">Studies</div>
               </div>

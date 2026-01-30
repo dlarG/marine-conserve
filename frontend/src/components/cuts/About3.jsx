@@ -86,7 +86,7 @@ function About3() {
         className="absolute inset-0 w-full h-[120%] -top-[10%]"
         style={{
           transform: `translateY(${
-            (scrollY - (sectionOffsets.fullImage || 0)) * 0.05
+            (scrollY - (sectionOffsets.fullImage || 0)) * 0.08
           }px)`,
           transition: "transform 0.1s ease-out",
         }}
