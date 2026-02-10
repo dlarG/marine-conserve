@@ -1,6 +1,7 @@
 import Navbar from "./components/navbars/Navbar";
 import MissionNavbar from "./components/navbars/MissionNavbar";
 import CoralRestorationNavbar from "./components/navbars/CoralRestorationNavbar";
+import DebriRemovalNavbar from "./components/navbars/DebriRemovalNavbar";
 
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
@@ -107,7 +108,12 @@ const DataCollectionPage = () => {
 };
 
 const DebriRemovalPage = () => {
-  return <DebriRemoval />;
+  return (
+    <>
+      <DebriRemovalNavbar />
+      <DebriRemoval />;
+    </>
+  );
 };
 
 function App() {
@@ -128,7 +134,10 @@ function App() {
             path="/projects/data-collection"
             element={<DataCollection />}
           />
-          <Route path="/projects/debris-removal" element={<DebriRemoval />} />
+          <Route
+            path="/projects/debris-removal"
+            element={<DebriRemovalPage />}
+          />
         </Routes>
         <Footer />
       </div>
