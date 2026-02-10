@@ -129,7 +129,7 @@ const Methods = () => {
                   height: `${20 + i * 8}px`,
                   left: `${10 + i * 12}%`,
                   top: `${20 + i * 10}%`,
-                  animation: `float ${4 + i * 0.5}s ease-in-out infinite`,
+                  animation: `float ${4 + i * 0.2}s ease-in-out infinite`,
                   animationDelay: `${i * 0.3}s`,
                 }}
               />

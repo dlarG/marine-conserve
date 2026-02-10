@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import DonateModal from "../DonateModal";
 import { useNavigate } from "react-router-dom";
+import DebriRemoval from "../projects/DebriRemoval";
 
-const CoralRestorationNavbar = () => {
+const DebriRemovalNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
@@ -322,4 +323,4 @@ const CoralRestorationNavbar = () => {
   );
 };
 
-export default CoralRestorationNavbar;
+export default DebriRemovalNavbar;
