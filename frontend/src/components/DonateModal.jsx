@@ -93,7 +93,7 @@ const DonateModal = ({ isOpen, onClose }) => {
             </div>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-white/10 rounded-full transition-colors"
+              className="cursor-pointer p-2 hover:bg-white/10 rounded-full transition-colors"
             >
               <svg
                 className="w-6 h-6"
@@ -227,7 +227,7 @@ const DonateModal = ({ isOpen, onClose }) => {
                       customAmount: "",
                     }))
                   }
-                  className={`p-3 rounded-lg border-2 transition-all font-medium ${
+                  className={`cursor-pointer p-3 rounded-lg border-2 transition-all font-medium ${
                     formData.amount === amount
                       ? "border-green-500 bg-green-50 text-green-700"
                       : "border-gray-200 hover:border-green-300 text-gray-700"
@@ -293,14 +293,14 @@ const DonateModal = ({ isOpen, onClose }) => {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+              className="cursor-pointer flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting || submitStatus === "success"}
-              className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="cursor-pointer flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {isSubmitting ? (
                 <>
