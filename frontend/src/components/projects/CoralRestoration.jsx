@@ -565,9 +565,9 @@ function CoralRestoration() {
               <span className="inline-block text-sm font-medium text-teal-600 uppercase tracking-wider mb-4">
                 Visual Journey
               </span>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Restoration
-                <span className="block text-transparent bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                Restoration{" "}
+                <span className="text-transparent bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text">
                   Gallery
                 </span>
               </h2>
