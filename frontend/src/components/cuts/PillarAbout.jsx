@@ -396,13 +396,13 @@ function PillarAbout() {
 
         {/* Summary Statement */}
         <div
-          className={`text-center mt-16 mb-10 transform transition-all duration-1000 delay-500 ${
+          className={`text-center mt-16 transform transition-all duration-1000 delay-500 ${
             isVisible.approach
               ? "translate-y-0 opacity-100"
               : "translate-y-8 opacity-0"
           }`}
         >
-          <div className="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8 border border-teal-100">
+          <div className="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8 border border-teal-300">
             <p className="text-gray-700 text-lg max-w-4xl mx-auto mb-6">
               Through these integrated activities, we aim to restore and protect
               the reefs of Sogod Bay while fostering a culture of science-based,
