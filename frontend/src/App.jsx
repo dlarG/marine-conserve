@@ -16,6 +16,11 @@ import PillarAbout from "./components/cuts/PillarAbout";
 import About3 from "./components/cuts/About3";
 import TimelineAbout from "./components/cuts/TimeAbout";
 
+import CoralRestoration from "./components/projects/CoralRestoration";
+import CotsResponse from "./components/projects/CotsResponse";
+import DataCollection from "./components/projects/DataCollection";
+import DebriRemoval from "./components/projects/DebriRemoval";
+
 const HomePage = () => {
   return (
     <div>
@@ -83,6 +88,10 @@ const CoursePage = () => {
   return <Course />;
 };
 
+const CoralRestorationPage = () => {
+  return <CoralRestoration />;
+};
+
 function App() {
   return (
     <Router>
@@ -92,6 +101,16 @@ function App() {
           <Route path="/methods" element={<MethodsPage />} />
           <Route path="/mission" element={<MissionPage />} />
           <Route path="/courses" element={<CoursePage />} />
+          <Route
+            path="/projects/coral-restoration"
+            element={<CoralRestorationPage />}
+          />
+          <Route path="/projects/cots-monitoring" element={<CotsResponse />} />
+          <Route
+            path="/projects/data-collection"
+            element={<DataCollection />}
+          />
+          <Route path="/projects/debris-removal" element={<DebriRemoval />} />
         </Routes>
         <Footer />
       </div>
