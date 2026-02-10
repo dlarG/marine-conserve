@@ -19,7 +19,7 @@ const CoralRestorationNavbar = () => {
   }, []);
 
   useEffect(() => {
-    const sections = ["hero", "about", "blogs", "team", "contact"];
+    const sections = ["hero", "overview", "process", "impact", "gallery"];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100;
@@ -68,10 +68,10 @@ const CoralRestorationNavbar = () => {
 
   const navigationItems = [
     { id: "hero", label: "Home" },
-    { id: "about", label: "About Us" },
-    { id: "blogs", label: "Blogs" },
-    { id: "team", label: "Team" },
-    { id: "contact", label: "Contact Us" },
+    { id: "overview", label: "Overview" },
+    { id: "process", label: "Process" },
+    { id: "impact", label: "Impact" },
+    { id: "gallery", label: "Gallery" },
   ];
 
   const handleLogoClick = () => {
