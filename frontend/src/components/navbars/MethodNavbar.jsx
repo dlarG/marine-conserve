@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DonateModal from "./DonateModal";
+import DonateModal from "../DonateModal";
 import { useNavigate } from "react-router-dom";
 
 const MethodNavbar = () => {

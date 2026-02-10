@@ -1,12 +1,13 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbars/Navbar";
+import MissionNavbar from "./components/navbars/MissionNavbar";
+import CoralRestorationNavbar from "./components/navbars/CoralRestorationNavbar";
+
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
 import Team from "./components/Team";
 import Methods from "./components/Methods";
-import MethodNavbar from "./components/MethodNavbar";
 import Mission from "./components/Mission";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MissionNavbar from "./components/MissionNavbar";
 import Course from "./components/Course";
 import Blogs from "./components/Blogs";
 
@@ -89,7 +90,24 @@ const CoursePage = () => {
 };
 
 const CoralRestorationPage = () => {
-  return <CoralRestoration />;
+  return (
+    <>
+      <CoralRestorationNavbar />
+      <CoralRestoration />
+    </>
+  );
+};
+
+const CotsResponsePage = () => {
+  return <CotsResponse />;
+};
+
+const DataCollectionPage = () => {
+  return <DataCollection />;
+};
+
+const DebriRemovalPage = () => {
+  return <DebriRemoval />;
 };
 
 function App() {
