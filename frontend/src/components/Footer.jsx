@@ -18,7 +18,7 @@ const Footer = () => {
             <div className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-full flex items-center justify-center">
                 <img
-                  src="logo/GREEN.jpg"
+                  src="/logo/GREEN.jpg"
                   alt="GREEN Inc. Logo"
                   className="rounded-full"
                 />

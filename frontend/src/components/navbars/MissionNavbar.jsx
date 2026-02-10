@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import DonateModal from "./DonateModal";
+import DonateModal from "../DonateModal";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -19,7 +19,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const sections = ["hero", "about", "blogs", "team", "contact"];
+    const sections = ["mission", "location", "projects"];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100;
@@ -67,16 +67,14 @@ const Navbar = () => {
   };
 
   const navigationItems = [
-    { id: "hero", label: "Home" },
-    { id: "about", label: "About Us" },
-    { id: "blogs", label: "Blogs" },
-    { id: "team", label: "Team" },
-    { id: "contact", label: "Contact Us" },
+    { id: "mission", label: "Our Mission" },
+    { id: "location", label: "Location" },
+    { id: "projects", label: "Projects" },
   ];
 
   const handleLogoClick = () => {
     navigate("/");
-    scrollToSection("hero");
+    scrollToSection("mission");
   };
 
   return (
@@ -159,32 +157,16 @@ const Navbar = () => {
               </div>
             </div>
 
-            <div className="inline-flex items-center space-x-3">
-              <button
-                onClick={() => navigate("/courses")}
-                className={`cursor:pointer hidden md:block px-4.5 py-2 rounded-full font-medium border-2 transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
-                  isScrolled
-                    ? "border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
-                    : "border-white/60 text-white hover:bg-white/10"
-                }`}
-                style={{ cursor: "pointer" }}
-              >
-                <span className="relative z-10">Courses</span>
-                <div
-                  className={`cursor:pointer absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
-                    isScrolled ? "bg-teal-600" : "bg-white/20"
-                  }`}
-                />
-              </button>
-
+            {/* Donate Button & Mobile Menu - Right side */}
+            <div className="inline-flex items-center space-x-4">
+              {/* Donate Button */}
               <button
                 onClick={handleDonateClick}
-                className={` hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
+                className={`hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
                   isScrolled
                     ? "bg-gradient-to-r from-teal-600 to-green-600 text-white"
                     : "bg-gradient-to-r from-teal-600/90 to-green-600/90 text-white"
                 }`}
-                style={{ cursor: "pointer" }}
               >
                 <span className="relative z-10">Donate</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-green-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
@@ -271,32 +253,13 @@ const Navbar = () => {
 
             <div className="pt-4 mt-2 border-t border-gray-300/50">
               <button
-                onClick={() => {
-                  navigate("/courses");
-                  setIsMobileMenuOpen(false);
-                }}
-                className={`relative w-full px-6 py-4 rounded-xl font-medium overflow-hidden group mb-3 border-2 ${
-                  isScrolled
-                    ? "border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
-                    : "border-white/60 text-white hover:bg-white/10"
-                }`}
-              >
-                <span className="relative z-10 flex items-center justify-center">
-                  Courses
-                </span>
-                <div
-                  className={`absolute inset-0 rounded-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
-                    isScrolled ? "bg-teal-600" : "bg-white/20"
-                  }`}
-                />
-              </button>
-
-              <button
                 onClick={handleDonateClick}
                 className="relative w-full px-6 py-4 rounded-xl font-medium overflow-hidden group"
               >
                 <span className="relative z-10 text-white flex items-center justify-center">
+                  <span className="mr-2">✨</span>
                   Donate Now
+                  <span className="ml-2">💚</span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-green-600 rounded-xl" />
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-green-700 rounded-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
