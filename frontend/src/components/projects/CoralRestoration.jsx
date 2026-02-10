@@ -11,12 +11,9 @@ function CoralRestoration() {
     impact: false,
     gallery: false,
   });
-  const [setIsLoaded] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const timer = setTimeout(() => setIsLoaded(true), 100);
-    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
