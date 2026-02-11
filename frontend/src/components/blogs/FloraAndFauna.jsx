@@ -150,13 +150,11 @@ const FloraAndFauna = () => {
               alt="Vibrant coral garden at Tagbak Marine Park"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {
-                e.target.src =
-                  "https://images.unsplash.com/photo-1546620177-1ad3b950c8e5?w=1200&h=500&fit=crop&q=80";
+                e.target.src = "/images/tagbak12.jpg";
               }}
             />
             <figcaption className="text-center text-gray-500 text-sm mt-4 italic">
-              The spectacular coral gardens of Tagbak Marine Park showcase over
-              50 species of hard corals
+              The spectacular coral gardens of Tagbak Marine Park
             </figcaption>
           </figure>
         </div>
@@ -221,8 +219,7 @@ const FloraAndFauna = () => {
               alt="Diverse fish species swimming among corals"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {
-                e.target.src =
-                  "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&h=500&fit=crop&q=80";
+                e.target.src = "/images/230918_4180.jpg";
               }}
             />
             <figcaption className="text-center text-gray-500 text-sm mt-4 italic">
@@ -285,8 +282,7 @@ const FloraAndFauna = () => {
               alt="Green sea turtle gliding over coral reef"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {
-                e.target.src =
-                  "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=500&fit=crop&q=80";
+                e.target.src = "/images/close1.jpg";
               }}
             />
             <figcaption className="text-center text-gray-500 text-sm mt-4 italic">
