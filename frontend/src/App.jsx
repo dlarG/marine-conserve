@@ -85,10 +85,10 @@ const MethodsPage = () => {
 
 const MissionPage = () => {
   return (
-    <div className="min-h-screen">
+    <>
       <MissionNavbar />
       <Mission />
-    </div>
+    </>
   );
 };
 

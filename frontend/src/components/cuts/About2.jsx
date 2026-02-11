@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function About3() {
+function About2() {
   const sectionRefs = useRef({});
   const [sectionOffsets, setSectionOffsets] = useState({});
   const [scrollY, setScrollY] = useState(0);
@@ -86,13 +86,13 @@ function About3() {
         className="absolute inset-0 w-full h-[120%] -top-[10%]"
         style={{
           transform: `translateY(${
-            (scrollY - (sectionOffsets.fullImage || 0)) * 0.05
+            (scrollY - (sectionOffsets.fullImage || 0)) * 0.08
           }px)`,
           transition: "transform 0.1s ease-out",
         }}
       >
         <img
-          src="/images/close.JPG"
+          src="/images/P9080045.jpg"
           alt="Close up image of fish"
           className="w-full h-full object-cover"
           onError={(e) => {
@@ -118,4 +118,4 @@ function About3() {
   );
 }
 
-export default About3;
+export default About2;

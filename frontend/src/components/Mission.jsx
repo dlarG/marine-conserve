@@ -3,7 +3,13 @@ import React, { useState, useEffect, useRef } from "react";
 const Mission = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [animatedSections, setAnimatedSections] = useState({});
+  const sectionRefs = useRef({});
+
   const heroRef = useRef(null);
+  const missionRef = useRef(null);
+  const locationRef = useRef(null);
+  const projectsRef = useRef({});
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -11,9 +17,24 @@ const Mission = () => {
 
     const handleScroll = () => {
       setScrollY(window.scrollY);
+
+      // Check section visibility
+      Object.keys(sectionRefs.current).forEach((key) => {
+        if (sectionRefs.current[key]) {
+          const rect = sectionRefs.current[key].getBoundingClientRect();
+          const isVisible =
+            rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
+
+          if (isVisible && !animatedSections[key]) {
+            setAnimatedSections((prev) => ({ ...prev, [key]: true }));
+          }
+        }
+      });
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
@@ -70,7 +91,6 @@ Our nurseries are located in Sogod Bay, Malitbog, in Southern Leyte, Philippines
           "/images/steel2.jpg",
         ],
         color: "from-blue-500 to-teal-500",
-        icon: "🔩",
       },
       {
         id: "rope-nursery",
@@ -88,7 +108,6 @@ This method prevents the sandy seafloor from smothering the fragments and possib
         ],
         images: ["/images/rope1.jpg", "/images/rope2.jpg", "/images/rope.jpg"],
         color: "from-emerald-500 to-green-500",
-        icon: "🧵",
       },
     ],
   };
@@ -116,7 +135,7 @@ This method prevents the sandy seafloor from smothering the fragments and possib
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.2}px) scale(1.1)`,
+            transform: `translateY(${scrollY * 0.08}px) scale(1.1)`,
             transition: "transform 0.1s ease-out",
           }}
         >
@@ -179,6 +198,35 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                 </span>
               </p>
             </div>
+
+            {/* Animated stats */}
+            <div
+              className={`mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto transform transition-all duration-1000 delay-1000 ${
+                isLoaded
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-8 opacity-0"
+              }`}
+            >
+              {missionData.mission.stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className={`text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transform transition-all duration-500 delay-${
+                    1200 + index * 200
+                  } ${
+                    isLoaded
+                      ? "translate-y-0 opacity-100 scale-100"
+                      : "translate-y-8 opacity-0 scale-95"
+                  } hover:scale-105 hover:bg-white/10 transition-all duration-300`}
+                >
+                  <div className="text-2xl md:text-3xl font-bold text-teal-300 mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-white/80 tracking-wide">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -189,27 +237,48 @@ This method prevents the sandy seafloor from smothering the fragments and possib
           }`}
         >
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center backdrop-blur-sm">
-            <div className="w-1 h-3 bg-gradient-to-b from-teal-300 to-emerald-300 rounded-full mt-2"></div>
+            <div className="w-1 h-3 bg-gradient-to-b from-teal-300 to-emerald-300 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section id="mission" className="relative py-10">
+      <section
+        id="mission"
+        ref={(el) => {
+          missionRef.current = el;
+          sectionRefs.current["mission"] = el;
+        }}
+        className="relative py-10"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-white via-teal-50/10 to-white"></div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Text content */}
             <div className="relative">
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-teal-100 to-emerald-100 rounded-full blur-xl opacity-70"></div>
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-teal-100 to-emerald-100 rounded-full blur-xl opacity-70 animate-float-slow"></div>
 
               <div className="relative">
-                <span className="inline-block text-sm font-medium text-teal-600 uppercase tracking-wider mb-4 bg-teal-50 px-4 py-2 rounded-full">
-                  Our Mission
-                </span>
+                <div
+                  className={`transform transition-all duration-700 delay-100 ${
+                    animatedSections["mission"]
+                      ? "translate-x-0 opacity-100"
+                      : "-translate-x-8 opacity-0"
+                  }`}
+                >
+                  <span className="inline-block text-sm font-medium text-teal-600 uppercase tracking-wider mb-4 bg-teal-50 px-4 py-2 rounded-full">
+                    Our Mission
+                  </span>
+                </div>
 
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight">
+                <h2
+                  className={`text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight transform transition-all duration-800 delay-200 ${
+                    animatedSections["mission"]
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-8 opacity-0"
+                  }`}
+                >
                   Protecting Our
                   <span className="block text-transparent bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text">
                     Marine Heritage
@@ -222,7 +291,13 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                       paragraph.trim() && (
                         <p
                           key={index}
-                          className="text-lg text-gray-700 leading-relaxed"
+                          className={`text-lg text-gray-700 leading-relaxed transform transition-all duration-700 delay-${
+                            300 + index * 100
+                          } ${
+                            animatedSections["mission"]
+                              ? "translate-y-0 opacity-100"
+                              : "translate-y-8 opacity-0"
+                          }`}
                         >
                           {paragraph}
                         </p>
@@ -230,52 +305,70 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                   )}
                 </div>
 
-                <div className="mt-12 grid grid-cols-2 gap-6">
-                  <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-50 to-white p-6 border border-teal-100 hover:border-teal-300 transition-all duration-300 hover:shadow-xl">
-                    <div className="text-2xl md:text-3xl font-bold text-teal-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                      10+
+                <div
+                  className={`mt-12 grid grid-cols-2 gap-6 transform transition-all duration-800 delay-600 ${
+                    animatedSections["mission"]
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-12 opacity-0"
+                  }`}
+                >
+                  {missionData.mission.stats.slice(0, 2).map((stat, index) => (
+                    <div
+                      key={index}
+                      className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-50 to-white p-6 border border-teal-100 hover:border-teal-300 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
+                    >
+                      <div className="text-2xl md:text-3xl font-bold text-teal-600 mb-2 group-hover:scale-110 transition-transform duration-300">
+                        {stat.value}
+                      </div>
+                      <div className="text-gray-700 font-medium">
+                        {stat.label}
+                      </div>
+                      <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-teal-100 rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
                     </div>
-                    <div className="text-gray-700 font-medium">
-                      Years Experience
-                    </div>
-                  </div>
-
-                  <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-50 to-white p-6 border border-emerald-100 hover:border-emerald-300 transition-all duration-300 hover:shadow-xl">
-                    <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                      5000+
-                    </div>
-                    <div className="text-gray-700 font-medium">
-                      Coral Fragments
-                    </div>
-                  </div>
+                  ))}
                 </div>
 
-                <button
-                  onClick={() => scrollToSection("location")}
-                  className="mt-8 group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300"
+                <div
+                  className={`mt-8 transform transition-all duration-800 delay-800 ${
+                    animatedSections["mission"]
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-12 opacity-0"
+                  }`}
                 >
-                  <span>Explore Our Location</span>
-                  <svg
-                    className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <button
+                    onClick={() => scrollToSection("location")}
+                    className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </button>
+                    <span>Explore Our Location</span>
+                    <svg
+                      className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Image */}
+            {/* Image with animation */}
             <div className="relative">
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full blur-xl opacity-60"></div>
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl group hover:shadow-3xl transition-shadow duration-500">
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full blur-xl opacity-60 animate-float-medium delay-500"></div>
+              <div
+                className={`relative rounded-3xl overflow-hidden shadow-2xl group hover:shadow-3xl transition-all duration-700 ${
+                  animatedSections["mission"]
+                    ? "translate-x-0 opacity-100 scale-100"
+                    : "translate-x-8 opacity-0 scale-95"
+                }`}
+                style={{ transitionDelay: "400ms" }}
+              >
                 <div className="aspect-[3/3] overflow-hidden">
                   <img
                     src={missionData.mission.image}
@@ -292,11 +385,24 @@ This method prevents the sandy seafloor from smothering the fragments and possib
       </section>
 
       {/* Location Section */}
-      <section id="location" className="relative py-10">
+      <section
+        id="location"
+        ref={(el) => {
+          locationRef.current = el;
+          sectionRefs.current["location"] = el;
+        }}
+        className="relative py-10"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-white via-blue-50/10 to-white"></div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <div
+            className={`text-center max-w-3xl mx-auto mb-12 md:mb-16 transform transition-all duration-700 ${
+              animatedSections["location"]
+                ? "translate-y-0 opacity-100"
+                : "translate-y-8 opacity-0"
+            }`}
+          >
             <span className="inline-block text-sm font-medium text-blue-600 uppercase tracking-wider mb-4 bg-blue-50 px-4 py-2 rounded-full">
               Project Location
             </span>
@@ -312,9 +418,17 @@ This method prevents the sandy seafloor from smothering the fragments and possib
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center mb-16">
+            {/* Map with animation */}
             <div className="relative">
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-100 to-teal-100 rounded-full blur-xl opacity-70"></div>
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl group hover:shadow-3xl transition-shadow duration-500">
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-blue-100 to-teal-100 rounded-full blur-xl opacity-70 animate-float-slow"></div>
+              <div
+                className={`relative rounded-3xl overflow-hidden shadow-2xl group hover:shadow-3xl transition-all duration-700 transform ${
+                  animatedSections["location"]
+                    ? "translate-x-0 opacity-100 scale-100"
+                    : "-translate-x-8 opacity-0 scale-95"
+                }`}
+                style={{ transitionDelay: "200ms" }}
+              >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={missionData.location.mapImage}
@@ -323,22 +437,35 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                     onError={(e) => handleImageError(e)}
                   />
                 </div>
-                {/* Location marker */}
+                {/* Animated location marker */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <div className="relative">
                     <div className="w-12 h-12 bg-red-500 rounded-full animate-ping opacity-20" />
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-red-600 rounded-full border-4 border-white shadow-lg" />
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-red-600 rounded-full border-4 border-white shadow-lg animate-bounce-slow" />
+                  </div>
+                </div>
+                <div className="absolute bottom-6 left-6 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+                    <span className="text-sm font-medium text-gray-700">
+                      Restoration Site
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Description */}
+            {/* Description with staggered animations */}
             <div className="relative">
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-teal-100 to-blue-100 rounded-full blur-xl opacity-50"></div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-teal-100 to-blue-100 rounded-full blur-xl opacity-50 animate-float-medium delay-300"></div>
 
               <div className="relative">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                <h3
+                  className={`text-2xl md:text-3xl font-bold text-gray-900 mb-6 transform transition-all duration-700 delay-300 ${
+                    animatedSections["location"]
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-8 opacity-0"
+                  }`}
+                >
                   Strategic Location Advantages
                 </h3>
 
@@ -348,7 +475,13 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                       paragraph.trim() && (
                         <p
                           key={index}
-                          className="text-lg text-gray-700 leading-relaxed"
+                          className={`text-lg text-gray-700 leading-relaxed transform transition-all duration-700 delay-${
+                            400 + index * 100
+                          } ${
+                            animatedSections["location"]
+                              ? "translate-y-0 opacity-100"
+                              : "translate-y-8 opacity-0"
+                          }`}
                         >
                           {paragraph}
                         </p>
@@ -356,11 +489,20 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                   )}
                 </div>
 
-                {/* Features grid */}
+                {/* Features grid with staggered animations */}
                 <div className="grid sm:grid-cols-2 gap-4">
                   {missionData.location.features.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3 group">
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300">
+                    <div
+                      key={index}
+                      className={`flex items-start gap-3 group transform transition-all duration-500 delay-${
+                        600 + index * 100
+                      } ${
+                        animatedSections["location"]
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-8 opacity-0"
+                      }`}
+                    >
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                         <svg
                           className="w-3 h-3 text-white"
                           fill="none"
@@ -375,7 +517,9 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                           />
                         </svg>
                       </div>
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="text-gray-700 group-hover:text-teal-600 transition-colors duration-300">
+                        {feature}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -386,11 +530,23 @@ This method prevents the sandy seafloor from smothering the fragments and possib
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="relative py-10">
+      <section
+        id="projects"
+        ref={(el) => {
+          sectionRefs.current["projects"] = el;
+        }}
+        className="relative py-10"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-white via-emerald-50/10 to-white"></div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-10">
+          <div
+            className={`text-center max-w-3xl mx-auto mb-10 transform transition-all duration-700 ${
+              animatedSections["projects"]
+                ? "translate-y-0 opacity-100"
+                : "translate-y-8 opacity-0"
+            }`}
+          >
             <span className="inline-block text-sm font-medium text-emerald-600 uppercase tracking-wider mb-4 bg-emerald-50 px-4 py-2 rounded-full">
               Restoration Projects
             </span>
@@ -409,19 +565,39 @@ This method prevents the sandy seafloor from smothering the fragments and possib
             <div
               key={project.id}
               id={project.id}
+              ref={(el) => {
+                projectsRef.current[project.id] = el;
+                sectionRefs.current[project.id] = el;
+              }}
               className={`mb-10 ${
                 index % 2 === 1 ? "lg:flex-row-reverse" : ""
               }`}
             >
               <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
-                {/* Project images gallery */}
-                <div className="relative">
+                {/* Project images gallery with animation */}
+                <div
+                  className={`relative transform transition-all duration-700 delay-300 ${
+                    animatedSections[project.id]
+                      ? index % 2 === 0
+                        ? "translate-x-0 opacity-100"
+                        : "translate-x-0 opacity-100"
+                      : index % 2 === 0
+                      ? "-translate-x-8 opacity-0"
+                      : "translate-x-8 opacity-0"
+                  }`}
+                >
                   <div className="grid grid-cols-2 gap-4">
                     {project.images.map((img, imgIndex) => (
                       <div
                         key={imgIndex}
                         className={`relative rounded-2xl overflow-hidden shadow-lg group ${
                           imgIndex === 0 ? "col-span-2" : ""
+                        } transform transition-all duration-500 delay-${
+                          400 + imgIndex * 100
+                        } ${
+                          animatedSections[project.id]
+                            ? "translate-y-0 opacity-100 scale-100"
+                            : "translate-y-8 opacity-0 scale-95"
                         }`}
                       >
                         <div className="aspect-[4/3] overflow-hidden">
@@ -438,16 +614,28 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                   </div>
                 </div>
 
-                {/* Project details */}
+                {/* Project details with staggered animations */}
                 <div className="relative">
-                  <div className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-emerald-100 to-green-100 rounded-full blur-xl opacity-70"></div>
+                  <div className="absolute -top-6 -left-6 w-20 h-20 bg-gradient-to-br from-emerald-100 to-green-100 rounded-full blur-xl opacity-70 animate-float-slow"></div>
 
                   <div className="relative">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                    <h3
+                      className={`text-2xl md:text-3xl font-bold text-gray-900 mb-4 transform transition-all duration-700 delay-300 ${
+                        animatedSections[project.id]
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-8 opacity-0"
+                      }`}
+                    >
                       {project.title}
                     </h3>
 
-                    <p className="text-lg text-emerald-600 font-medium mb-6">
+                    <p
+                      className={`text-lg text-emerald-600 font-medium mb-6 transform transition-all duration-700 delay-400 ${
+                        animatedSections[project.id]
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-8 opacity-0"
+                      }`}
+                    >
                       {project.subtitle}
                     </p>
 
@@ -457,15 +645,27 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                         .map((paragraph, pIndex) => (
                           <p
                             key={pIndex}
-                            className="text-gray-700 leading-relaxed"
+                            className={`text-gray-700 leading-relaxed transform transition-all duration-700 delay-${
+                              500 + pIndex * 100
+                            } ${
+                              animatedSections[project.id]
+                                ? "translate-y-0 opacity-100"
+                                : "translate-y-8 opacity-0"
+                            }`}
                           >
                             {paragraph}
                           </p>
                         ))}
                     </div>
 
-                    {/* Features */}
-                    <div>
+                    {/* Features with animation */}
+                    <div
+                      className={`transform transition-all duration-700 delay-700 ${
+                        animatedSections[project.id]
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-8 opacity-0"
+                      }`}
+                    >
                       <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                         <svg
                           className="w-5 h-5 text-emerald-600"
@@ -486,9 +686,15 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                         {project.features.map((feature, fIndex) => (
                           <div
                             key={fIndex}
-                            className="flex items-start gap-2 group"
+                            className={`flex items-start gap-2 group transform transition-all duration-500 delay-${
+                              800 + fIndex * 100
+                            } ${
+                              animatedSections[project.id]
+                                ? "translate-y-0 opacity-100"
+                                : "translate-y-8 opacity-0"
+                            }`}
                           >
-                            <div className="w-5 h-5 rounded-full bg-gradient-to-r from-emerald-100 to-green-100 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300">
+                            <div className="w-5 h-5 rounded-full bg-gradient-to-r from-emerald-100 to-green-100 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                               <svg
                                 className="w-3 h-3 text-emerald-600"
                                 fill="none"
@@ -503,7 +709,9 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                                 />
                               </svg>
                             </div>
-                            <span className="text-gray-700">{feature}</span>
+                            <span className="text-gray-700 group-hover:text-emerald-600 transition-colors duration-300">
+                              {feature}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -517,7 +725,11 @@ This method prevents the sandy seafloor from smothering the fragments and possib
       </section>
 
       {/* Footer CTA */}
-      <div className="relative py-10 overflow-hidden">
+      <div
+        className={`relative py-10 overflow-hidden transform transition-all duration-1000 ${
+          isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+        }`}
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-teal-600 via-emerald-600 to-teal-500"></div>
 
         {/* Animated pattern overlay */}
@@ -531,16 +743,44 @@ This method prevents the sandy seafloor from smothering the fragments and possib
           ></div>
         </div>
 
+        {/* Animated floating elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-6 h-6 rounded-full bg-gradient-to-r from-white/10 to-white/5 animate-float-slow"
+              style={{
+                top: `${10 + i * 12}%`,
+                left: `${5 + ((i * 15) % 85)}%`,
+                animationDelay: `${i * 200}ms`,
+                animationDuration: `${8 + (i % 3)}s`,
+              }}
+            />
+          ))}
+        </div>
+
         <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 leading-tight">
+          <h2
+            className={`text-3xl md:text-4xl font-bold text-white mb-8 leading-tight transform transition-all duration-700 delay-200 ${
+              isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
+          >
             Join Our
             <span className="block">Conservation Mission</span>
           </h2>
-          <p className="text-xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto">
+          <p
+            className={`text-xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto transform transition-all duration-700 delay-400 ${
+              isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
+          >
             Together, we can restore Southern Leyte's coral reefs and protect
             marine biodiversity for future generations.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div
+            className={`flex flex-col sm:flex-row gap-6 justify-center transform transition-all duration-700 delay-600 ${
+              isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
+          >
             <button className="cursor-pointer group relative bg-white text-teal-600 px-8 py-4 rounded-xl font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-r from-teal-50 to-emerald-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <span className="relative flex items-center justify-center gap-2">
