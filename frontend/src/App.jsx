@@ -151,7 +151,7 @@ function App() {
             element={<DebriRemovalPage />}
           />
 
-          <Route path="/blog" element={<AllBlogPage />} />
+          <Route path="/blogs" element={<AllBlogPage />} />
           <Route path="/blog/1" element={<FloraAndFaunaPage />} />
           <Route path="/blog/2" element={<MalitbogCoralres />} />
         </Routes>

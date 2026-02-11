@@ -225,8 +225,7 @@ const AllBlogPost = () => {
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.3}px)`,
-            transition: "transform 0.1s ease-out",
+            transform: `translateY(${scrollY * 0.15}px)`,
           }}
         >
           <img
@@ -241,7 +240,7 @@ const AllBlogPost = () => {
           <div className="text-center text-white max-w-4xl mx-auto">
             <button
               onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-2 mb-6 text-white/80 hover:text-white transition-colors duration-300"
+              className="cursor-pointer inline-flex items-center gap-2 mb-6 text-white/80 hover:text-white transition-colors duration-300"
             >
               <svg
                 className="w-5 h-5"
@@ -256,7 +255,7 @@ const AllBlogPost = () => {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-              Back
+              Back to Homepage
             </button>
 
             <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">

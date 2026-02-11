@@ -29,7 +29,7 @@ const FloraAndFauna = () => {
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.2}px)`,
+            transform: `translateY(${scrollY * 0.15}px)`,
           }}
         >
           <img
@@ -63,7 +63,7 @@ const FloraAndFauna = () => {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-              Back to Blogs
+              Back to Homepage
             </button>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
@@ -348,7 +348,7 @@ const FloraAndFauna = () => {
         <div className="border-t border-gray-200 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <button
             onClick={() => navigate("/blogs")}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-teal-50 text-teal-600 hover:bg-teal-100 rounded-lg font-semibold transition-colors duration-300"
+            className="cursor-pointer inline-flex items-center gap-2 px-6 py-3 bg-teal-50 text-teal-600 hover:bg-teal-100 rounded-lg font-semibold transition-colors duration-300"
           >
             <svg
               className="w-5 h-5"

@@ -74,7 +74,7 @@ const Blogs = () => {
   };
 
   const handleViewAllPosts = () => {
-    navigate("/blog");
+    navigate("/blogs");
   };
 
   return (
