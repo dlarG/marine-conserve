@@ -25,18 +25,17 @@ const FloraAndFauna = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-[60vh] overflow-hidden">
+      <section className="relative h-[50vh] overflow-hidden">
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.05}px)`,
-            transition: "transform 0.1s ease-out",
+            transform: `translateY(${scrollY * 0.2}px)`,
           }}
         >
           <img
             src="/images/tagbak1.jpg"
             alt="Tagbak Marine Park underwater biodiversity"
-            className="w-full h-[120%] object-cover"
+            className="w-full h-[110%] object-cover"
             onError={(e) => {
               e.target.src =
                 "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=800&fit=crop&q=80";
@@ -49,7 +48,7 @@ const FloraAndFauna = () => {
           <div className="text-center text-white max-w-4xl mx-auto">
             <button
               onClick={() => navigate(-1)}
-              className="inline-flex items-center gap-2 mb-6 text-white/80 hover:text-white transition-colors duration-300"
+              className="cursor-pointer inline-flex items-center gap-2 mb-6 text-white/80 hover:text-white transition-colors duration-300"
             >
               <svg
                 className="w-5 h-5"
@@ -66,12 +65,6 @@ const FloraAndFauna = () => {
               </svg>
               Back to Blogs
             </button>
-
-            <div className="mb-6">
-              <span className="inline-block px-4 py-2 bg-teal-500/90 backdrop-blur-sm rounded-full text-sm font-semibold">
-                Research
-              </span>
-            </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
               Flora & Fauna of Tagbak Marine Park:
