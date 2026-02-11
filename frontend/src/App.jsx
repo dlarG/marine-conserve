@@ -2,6 +2,8 @@ import Navbar from "./components/navbars/Navbar";
 import MissionNavbar from "./components/navbars/MissionNavbar";
 import CoralRestorationNavbar from "./components/navbars/CoralRestorationNavbar";
 import DebriRemovalNavbar from "./components/navbars/DebriRemovalNavbar";
+import CotsMonitoringNavbar from "./components/navbars/CotsMonitoringNavbar";
+import DataCollectionNavbar from "./components/navbars/DataCollectionNavbar";
 
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
@@ -22,6 +24,10 @@ import CoralRestoration from "./components/projects/CoralRestoration";
 import CotsResponse from "./components/projects/CotsResponse";
 import DataCollection from "./components/projects/DataCollection";
 import DebriRemoval from "./components/projects/DebriRemoval";
+
+import AllBlogPost from "./components/blogs/AllBlogPost";
+import FloraAndFauna from "./components/blogs/FloraAndFauna";
+import MalitbogCoralres from "./components/blogs/MalitbogCoralres";
 
 const HomePage = () => {
   return (
@@ -99,12 +105,13 @@ const CoralRestorationPage = () => {
   );
 };
 
-const CotsResponsePage = () => {
-  return <CotsResponse />;
-};
-
 const DataCollectionPage = () => {
-  return <DataCollection />;
+  return (
+    <>
+      <DataCollectionNavbar />
+      <DataCollection />;
+    </>
+  );
 };
 
 const DebriRemovalPage = () => {
@@ -112,6 +119,23 @@ const DebriRemovalPage = () => {
     <>
       <DebriRemovalNavbar />
       <DebriRemoval />;
+    </>
+  );
+};
+
+const FloraAndFaunaPage = () => {
+  return <FloraAndFauna />;
+};
+
+const AllBlogPage = () => {
+  return <AllBlogPost />;
+};
+
+const CotsResponsePage = () => {
+  return (
+    <>
+      <CotsMonitoringNavbar />
+      <CotsResponse />
     </>
   );
 };
@@ -129,15 +153,22 @@ function App() {
             path="/projects/coral-restoration"
             element={<CoralRestorationPage />}
           />
-          <Route path="/projects/cots-monitoring" element={<CotsResponse />} />
+          <Route
+            path="/projects/cots-monitoring"
+            element={<CotsResponsePage />}
+          />
           <Route
             path="/projects/data-collection"
-            element={<DataCollection />}
+            element={<DataCollectionPage />}
           />
           <Route
             path="/projects/debris-removal"
             element={<DebriRemovalPage />}
           />
+
+          <Route path="/blogs" element={<AllBlogPage />} />
+          <Route path="/blog/1" element={<FloraAndFaunaPage />} />
+          <Route path="/blog/2" element={<MalitbogCoralres />} />
         </Routes>
         <Footer />
       </div>
