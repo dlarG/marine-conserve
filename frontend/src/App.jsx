@@ -23,6 +23,9 @@ import CotsResponse from "./components/projects/CotsResponse";
 import DataCollection from "./components/projects/DataCollection";
 import DebriRemoval from "./components/projects/DebriRemoval";
 
+import FloraAndFauna from "./components/blogs/FloraAndFauna";
+import MalitbogCoralres from "./components/blogs/MalitbogCoralres";
+
 const HomePage = () => {
   return (
     <div>
@@ -116,6 +119,10 @@ const DebriRemovalPage = () => {
   );
 };
 
+const FloraAndFaunaPage = () => {
+  return <FloraAndFauna />;
+};
+
 function App() {
   return (
     <Router>
@@ -138,6 +145,9 @@ function App() {
             path="/projects/debris-removal"
             element={<DebriRemovalPage />}
           />
+
+          <Route path="/blog/1" element={<FloraAndFaunaPage />} />
+          <Route path="/blog/2" element={<MalitbogCoralres />} />
         </Routes>
         <Footer />
       </div>
