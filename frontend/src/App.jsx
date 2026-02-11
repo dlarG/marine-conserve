@@ -2,6 +2,8 @@ import Navbar from "./components/navbars/Navbar";
 import MissionNavbar from "./components/navbars/MissionNavbar";
 import CoralRestorationNavbar from "./components/navbars/CoralRestorationNavbar";
 import DebriRemovalNavbar from "./components/navbars/DebriRemovalNavbar";
+import CotsMonitoringNavbar from "./components/navbars/CotsMonitoringNavbar";
+import DataCollectionNavbar from "./components/navbars/DataCollectionNavbar";
 
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
@@ -103,12 +105,13 @@ const CoralRestorationPage = () => {
   );
 };
 
-const CotsResponsePage = () => {
-  return <CotsResponse />;
-};
-
 const DataCollectionPage = () => {
-  return <DataCollection />;
+  return (
+    <>
+      <DataCollectionNavbar />
+      <DataCollection />;
+    </>
+  );
 };
 
 const DebriRemovalPage = () => {
@@ -128,6 +131,15 @@ const AllBlogPage = () => {
   return <AllBlogPost />;
 };
 
+const CotsResponsePage = () => {
+  return (
+    <>
+      <CotsMonitoringNavbar />
+      <CotsResponse />
+    </>
+  );
+};
+
 function App() {
   return (
     <Router>
@@ -141,10 +153,13 @@ function App() {
             path="/projects/coral-restoration"
             element={<CoralRestorationPage />}
           />
-          <Route path="/projects/cots-monitoring" element={<CotsResponse />} />
+          <Route
+            path="/projects/cots-monitoring"
+            element={<CotsResponsePage />}
+          />
           <Route
             path="/projects/data-collection"
-            element={<DataCollection />}
+            element={<DataCollectionPage />}
           />
           <Route
             path="/projects/debris-removal"
