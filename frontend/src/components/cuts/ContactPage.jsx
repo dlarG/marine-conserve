@@ -39,7 +39,7 @@ const ContactPage = () => {
   const sectionRef = useRef(null);
 
   // Malitbog coordinates
-  const malitbogCoordinates = [10.173982, 124.994709];
+  const malitbogCoordinates = [10.158098, 125.002838];
 
   useEffect(() => {
     const observer = new IntersectionObserver(

@@ -67,7 +67,6 @@ We rehabilitate the more resistant coral colonies and introduce them to the loca
       title: "Project Location",
       subtitle: "Sogod Bay, Malitbog, Southern Leyte",
       description: `The project currently consists of a coral nursery with an associated coral garden. The success of a specific restoration method is dependent on the location and its conditions. In the past ten years, we have had the opportunity to test different types of nurseries at numerous sites and adapt our methods to best suit our criteria.
-
 Our nurseries are located in Sogod Bay, Malitbog, in Southern Leyte, Philippines. We mainly use rope and steel structures as our coral nursery units (CNU), at depths between 5 - 20 m. The correct depth is a balancing act between providing enough solar light penetration for photosynthesis to occur and limiting wave action to prevent damage.`,
       mapImage: "/images/sogodbay.jpg",
       features: [
