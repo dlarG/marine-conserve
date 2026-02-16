@@ -202,8 +202,9 @@ const ContactPage = () => {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Have questions about our marine conservation efforts? We'd love to
-              hear from you. Reach out and help us protect our oceans together.
+              We would love to hear from you whether it is for asking questions,
+              sharing a good idea or anything else - get hold on us via email or
+              message.
             </p>
           </div>
         </div>

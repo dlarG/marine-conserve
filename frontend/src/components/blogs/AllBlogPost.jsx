@@ -26,10 +26,9 @@ const AllBlogPost = () => {
       category: "Research",
       date: "October 15, 2017",
       readTime: "25 min read",
-      image:
-        "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=500&fit=crop&q=80",
+      image: "/images/tagbak1.jpg",
       tags: ["Biodiversity", "Marine Research", "Conservation"],
-      author: "Dr. Maria Santos",
+      author: "Jerome Jack Napala",
       featured: true,
     },
     {
@@ -41,8 +40,7 @@ const AllBlogPost = () => {
       category: "Monitoring",
       date: "July 18, 2025",
       readTime: "15 min read",
-      image:
-        "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=800&h=500&fit=crop&q=80",
+      image: "/images/coral-restoration.jpg",
       tags: ["Coral Restoration", "Monitoring", "Success Stories"],
       author: "Dr. Elena Rodriguez",
       featured: true,
@@ -150,20 +148,6 @@ const AllBlogPost = () => {
       author: "Tech Lead David Kim",
       featured: false,
     },
-    {
-      id: 10,
-      title: "Sustainable Tourism: Balancing Conservation with Economic Growth",
-      excerpt:
-        "How eco-tourism initiatives can support marine conservation efforts while providing sustainable income for coastal communities.",
-      category: "Community",
-      date: "May 17, 2024",
-      readTime: "11 min read",
-      image:
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop&q=80",
-      tags: ["Eco-tourism", "Sustainable Development", "Economic Impact"],
-      author: "Tourism Director Lisa Park",
-      featured: false,
-    },
   ];
 
   useEffect(() => {
@@ -197,14 +181,7 @@ const AllBlogPost = () => {
   const featuredPosts = blogPosts.filter((post) => post.featured);
 
   const handleReadMore = (postId) => {
-    if (postId === 1) {
-      navigate("/blog/flora-and-fauna");
-    } else if (postId === 2) {
-      navigate("/blog/malitbog-coral-restoration");
-    } else {
-      // For other posts, you can create similar components or show a "Coming Soon" message
-      navigate(`/blog/post-${postId}`);
-    }
+    navigate(`/blog/${postId}`);
   };
 
   const getCategoryColor = (category) => {
@@ -221,17 +198,17 @@ const AllBlogPost = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative h-[50vh] overflow-hidden">
+      <section className="relative h-[60vh] overflow-hidden">
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.15}px)`,
+            transform: `translateY(${scrollY * 0.2}px)`,
           }}
         >
           <img
-            src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=600&fit=crop&q=80"
+            src="/hero/hero11.jpg"
             alt="Marine conservation research and documentation"
-            className="w-full h-[120%] object-cover"
+            className="w-full h-[100%] object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/50" />
         </div>
@@ -240,7 +217,7 @@ const AllBlogPost = () => {
           <div className="text-center text-white max-w-4xl mx-auto">
             <button
               onClick={() => navigate(-1)}
-              className="cursor-pointer inline-flex items-center gap-2 mb-6 text-white/80 hover:text-white transition-colors duration-300"
+              className="cursor-pointer inline-flex items-center gap-2 mb-4 text-white/80 hover:text-white transition-colors duration-300"
             >
               <svg
                 className="w-5 h-5"
@@ -259,8 +236,7 @@ const AllBlogPost = () => {
             </button>
 
             <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-              Marine Conservation
-              <span className="block text-teal-300">Blog & Research</span>
+              GREEN Inc. <span className="text-teal-300">Blog & Stories</span>
             </h1>
 
             <p className="text-xl leading-relaxed text-white/90 max-w-2xl mx-auto">
@@ -363,7 +339,7 @@ const AllBlogPost = () => {
 
                       <button
                         onClick={() => handleReadMore(post.id)}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 text-teal-600 hover:bg-teal-100 rounded-lg font-medium transition-colors duration-300"
+                        className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-teal-50 text-teal-600 hover:bg-teal-100 rounded-lg font-medium transition-colors duration-300"
                       >
                         Read More
                         <svg
@@ -428,7 +404,7 @@ const AllBlogPost = () => {
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                    className={`cursor-pointer px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                       selectedCategory === category
                         ? "bg-teal-500 text-white shadow-lg shadow-teal-500/25"
                         : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -534,7 +510,7 @@ const AllBlogPost = () => {
 
                       <button
                         onClick={() => handleReadMore(post.id)}
-                        className="inline-flex items-center gap-1 text-teal-600 hover:text-teal-700 font-medium text-sm transition-colors duration-300"
+                        className="cursor-pointer inline-flex items-center gap-1 text-teal-600 hover:text-teal-700 font-medium text-sm transition-colors duration-300"
                       >
                         Read
                         <svg
@@ -602,29 +578,49 @@ const AllBlogPost = () => {
           )}
         </section>
 
-        {/* Newsletter Subscription */}
-        <section className="mt-16 bg-gradient-to-r from-teal-500 to-emerald-500 rounded-2xl p-8 md:p-12">
-          <div className="text-center text-white max-w-2xl mx-auto">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Stay Updated
-            </h3>
-            <p className="text-teal-100 mb-8">
-              Subscribe to our newsletter for the latest marine conservation
-              research, project updates, and educational content delivered to
-              your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-white focus:outline-none"
-              />
-              <button className="px-6 py-3 bg-white text-teal-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                Subscribe
-              </button>
+        <div
+          className={`mt-10 text-center transform transition-all duration-1000 delay-500 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          }`}
+        >
+          <div className="bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8 md:p-12 border border-teal-100">
+            <div className="max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Stay Updated with Our Conservation Journey
+              </h3>
+              <p className="text-gray-600 mb-8">
+                Subscribe to our newsletter for regular updates on marine
+                conservation projects, research findings, and community
+                initiatives.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="https://www.facebook.com/GREENIncorporatedSogodBay"
+                  target="_blank"
+                  className="cursor-pointer group border-2 border-teal-500 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-all duration-500 transform hover:scale-105"
+                >
+                  <span className="relative flex items-center justify-center gap-2">
+                    Subscribe to Newsletter
+                    <svg
+                      className="w-5 h-5 group-hover:rotate-12 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
       </div>
     </div>
   );
