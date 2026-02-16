@@ -25,8 +25,13 @@ const Mission = () => {
           const isVisible =
             rect.top < window.innerHeight * 0.8 && rect.bottom > 0;
 
-          if (isVisible && !animatedSections[key]) {
-            setAnimatedSections((prev) => ({ ...prev, [key]: true }));
+          if (isVisible) {
+            setAnimatedSections((prev) => {
+              if (!prev[key]) {
+                return { ...prev, [key]: true };
+              }
+              return prev;
+            });
           }
         }
       });
