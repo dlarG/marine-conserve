@@ -342,28 +342,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* <div
-        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-        }`}
-        style={{
-          transitionDelay: "2s",
-          opacity: Math.max(0, 1 - scrollY / 300),
-        }}
-      >
-        <button
-          onClick={handleScrollToContent}
-          className="group animate-bounce hover:animate-none"
-          aria-label="Scroll to content"
-        >
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-8 h-12 border-2 border-white/40 rounded-full flex justify-center group-hover:border-white transition-all duration-300 group-hover:shadow-lg group-hover:shadow-green-500/25">
-              <div className="w-1 h-4 bg-gradient-to-b from-green-300 to-teal-400 rounded-full mt-2 animate-pulse group-hover:animate-none"></div>
-            </div>
-          </div>
-        </button>
-      </div> */}
     </div>
   );
 };

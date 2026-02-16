@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ContactModal from "./ContactModal";
+import ApplyModal from "./ApplyModal";
 
 const teamMembers = [
   {
@@ -487,7 +487,7 @@ const Team = () => {
           </div>
         </div>
       </div>
-      <ContactModal
+      <ApplyModal
         isOpen={isContactModalOpen}
         onClose={() => setIsContactModalOpen(false)}
       />

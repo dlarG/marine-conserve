@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ContactModal = ({ isOpen, onClose }) => {
+const ApplyModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -382,4 +382,4 @@ const ContactModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default ContactModal;
+export default ApplyModal;

@@ -19,6 +19,7 @@ import About2 from "./components/cuts/About2";
 import PillarAbout from "./components/cuts/PillarAbout";
 import About3 from "./components/cuts/About3";
 import TimelineAbout from "./components/cuts/TimeAbout";
+import ContactPage from "./components/cuts/ContactPage";
 
 import CoralRestoration from "./components/projects/CoralRestoration";
 import CotsResponse from "./components/projects/CotsResponse";
@@ -52,24 +53,9 @@ const HomePage = () => {
       <section id="team" className="relative overflow-hidden mt-15 mb-15">
         <Team />
       </section>
-      {/* <section
-        id="impact"
-        className="min-h-screen bg-[#547792] flex items-center justify-center"
-      >
-        <div className="inline-flex items-center gap-4 bg-white rounded-2xl px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-          <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center animate-bounce">
-            <span className="text-xl">📘</span>
-          </div>
-          <div className="text-left">
-            <p className="text-gray-900 font-semibold">
-              Published "Flora & Fauna of Tagbak Marine Park"
-            </p>
-            <p className="text-gray-600 text-sm">
-              The first comprehensive guide to the area's marine biodiversity
-            </p>
-          </div>
-        </div>
-      </section> */}
+      <section id="contact">
+        <ContactPage />
+      </section>
     </div>
   );
 };
