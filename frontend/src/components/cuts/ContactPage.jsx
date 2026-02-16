@@ -429,15 +429,94 @@ const ContactPage = () => {
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <Marker position={malitbogCoordinates} icon={greenIcon}>
-                      <Popup>
-                        <div className="text-center">
-                          <strong className="text-teal-700">GREEN Inc.</strong>
-                          <br />
-                          Marine Conservation Center
-                          <br />
-                          <span className="text-sm text-gray-600">
-                            Malitbog, Southern Leyte
-                          </span>
+                      <Popup className="custom-popup">
+                        <div className="text-center p-2 max-w-xs">
+                          {/* Stock Image of Building */}
+                          <div className="relative w-full h-32 rounded-lg overflow-hidden">
+                            <img
+                              src="/images/office.jpg"
+                              alt="GREEN Inc. Marine Conservation Center"
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                          </div>
+
+                          {/* Organization Name */}
+                          <strong className="text-base font-bold text-teal-700 block">
+                            GREEN Inc.
+                          </strong>
+
+                          {/* Location Details */}
+                          <div className="space-y-1 mb-1">
+                            <p className="text-sm text-gray-600 flex items-center justify-center">
+                              <svg
+                                className="w-4 h-4 mr-1 text-teal-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                />
+                              </svg>
+                              Purok 5, Brgy. San Pedro, Malitbog
+                            </p>
+                            <p className="text-sm text-gray-600 flex items-center justify-center">
+                              <svg
+                                className="w-4 h-4 mr-1 text-teal-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M3 12l2-2 2 2 4-4 2 2 4-4 2 2"
+                                />
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M3 12h18"
+                                />
+                              </svg>
+                              Southern Leyte, Philippines 6612
+                            </p>
+                          </div>
+
+                          {/* Call to Action Button */}
+                          <button
+                            onClick={() => {
+                              // You can add functionality here to open contact form or directions
+                              console.log("Get directions clicked");
+                            }}
+                            className="mt-3 w-full bg-gradient-to-r from-teal-600 to-green-600 text-white text-xs py-2 px-3 rounded-lg hover:from-teal-700 hover:to-green-700 transition-all duration-300 flex items-center justify-center"
+                          >
+                            <svg
+                              className="w-3 h-3 mr-1"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                              />
+                            </svg>
+                            Get Directions
+                          </button>
                         </div>
                       </Popup>
                     </Marker>

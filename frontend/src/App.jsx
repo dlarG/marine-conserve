@@ -30,6 +30,8 @@ import AllBlogPost from "./components/blogs/AllBlogPost";
 import FloraAndFauna from "./components/blogs/FloraAndFauna";
 import MalitbogCoralres from "./components/blogs/MalitbogCoralres";
 
+import "./index.css";
+
 const HomePage = () => {
   return (
     <div>
