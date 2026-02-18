@@ -47,7 +47,7 @@ const FloraAndFauna = () => {
         <div className="relative z-10 h-full flex items-center justify-center px-4">
           <div className="text-center text-white max-w-4xl mx-auto">
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => navigate("/")}
               className="cursor-pointer inline-flex items-center gap-2 mb-6 text-white/80 hover:text-white transition-colors duration-300"
             >
               <svg
