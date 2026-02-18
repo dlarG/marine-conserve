@@ -132,6 +132,7 @@ This method prevents the sandy seafloor from smothering the fragments and possib
     <div className="min-h-screen bg-white">
       {/* Hero Section with Parallax */}
       <section
+        id="hero"
         ref={heroRef}
         className="relative overflow-hidden h-[70vh] md:h-[70vh]"
       >

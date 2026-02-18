@@ -19,7 +19,7 @@ const MissionNavbar = () => {
   }, []);
 
   useEffect(() => {
-    const sections = ["hero", "overview", "process", "gallery"];
+    const sections = ["hero", "mission", "location", "projects"];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100;
@@ -68,9 +68,9 @@ const MissionNavbar = () => {
 
   const navigationItems = [
     { id: "hero", label: "Home" },
-    { id: "overview", label: "Overview" },
-    { id: "process", label: "Process" },
-    { id: "gallery", label: "Gallery" },
+    { id: "mission", label: "Mission" },
+    { id: "location", label: "Location" },
+    { id: "projects", label: "Projects" },
   ];
 
   const handleLogoClick = () => {
