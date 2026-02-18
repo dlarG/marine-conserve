@@ -146,12 +146,12 @@ This method prevents the sandy seafloor from smothering the fragments and possib
         <div
           className="absolute inset-0"
           style={{
-            transform: `translateY(${scrollY * 0.08}px) scale(1.1)`,
+            transform: `translateY(${scrollY * 0.3}px) scale(1.1)`,
             transition: "transform 0.1s ease-out",
           }}
         >
           <img
-            src="/images/123321.jpg"
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384141/small2_wmdmjz.jpg"
             alt="Coral Reef Background"
             className="w-full h-[120%] object-cover"
             style={{ minHeight: "calc(70vh + 100px)" }}
@@ -183,7 +183,7 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                   : "translate-y-8 opacity-0"
               }`}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-4">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-2 md:mb-4">
                 <span className="inline-block animate-slide-up">Restoring</span>{" "}
                 <span className="inline-block text-transparent bg-gradient-to-r from-teal-200 via-emerald-200 to-blue-200 bg-clip-text animate-slide-up delay-150">
                   Ocean Life
@@ -191,13 +191,13 @@ This method prevents the sandy seafloor from smothering the fragments and possib
               </h1>
 
               <div
-                className={`h-1 w-64 bg-gradient-to-r from-teal-400 to-emerald-400 mx-auto mb-8 transform transition-all duration-1000 delay-500 ${
+                className={`h-1 w-64 bg-gradient-to-r from-teal-400 to-emerald-400 mx-auto mb-2 md:mb-8 transform transition-all duration-1000 delay-500 ${
                   isLoaded ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
                 }`}
               ></div>
 
               <p
-                className={`text-xl md:text-2xl lg:text-2xl leading-relaxed font-light max-w-4xl mx-auto text-white/90 tracking-wide transform transition-all duration-1000 delay-700 ${
+                className={`text-base md:text-xl lg:text-xl leading-relaxed font-light max-w-4xl mx-auto text-white/90 tracking-wide transform transition-all duration-1000 delay-700 ${
                   isLoaded
                     ? "translate-y-0 opacity-100"
                     : "translate-y-8 opacity-0"
@@ -212,23 +212,14 @@ This method prevents the sandy seafloor from smothering the fragments and possib
 
             {/* Animated stats */}
             <div
-              className={`mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto transform transition-all duration-1000 delay-1000 ${
+              className={`mt-3 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 max-w-3xl mx-auto transform transition-all duration-1000 delay-1000 ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
               }`}
             >
               {missionData.mission.stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className={`text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 transform transition-all duration-500 delay-${
-                    1200 + index * 200
-                  } ${
-                    isLoaded
-                      ? "translate-y-0 opacity-100 scale-100"
-                      : "translate-y-8 opacity-0 scale-95"
-                  } hover:scale-105 hover:bg-white/10 transition-all duration-300`}
-                >
+                <div key={index}>
                   <div className="text-2xl md:text-3xl font-bold text-teal-300 mb-1">
                     {stat.value}
                   </div>
