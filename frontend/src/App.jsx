@@ -19,6 +19,7 @@ import PillarAbout from "./components/cuts/PillarAbout";
 import About3 from "./components/cuts/About3";
 import TimelineAbout from "./components/cuts/TimeAbout";
 import ContactPage from "./components/cuts/ContactPage";
+import About4 from "./components/cuts/About4";
 
 import CoralRestoration from "./components/projects/CoralRestoration";
 import CotsResponse from "./components/projects/CotsResponse";
@@ -51,6 +52,7 @@ const HomePage = () => {
 
       <section id="blogs">
         <Blogs />
+        <About4 />
       </section>
 
       <section id="team" className="relative overflow-hidden mt-15 mb-15">
