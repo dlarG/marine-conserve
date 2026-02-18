@@ -47,14 +47,13 @@ const AllBlogPost = () => {
     },
     {
       id: 3,
-      title: "Community-Based Marine Conservation: Engaging Local Fishermen",
+      title: "Possible Double Act in Sogod Bay? ",
       excerpt:
-        "How we partnered with local fishing communities to implement sustainable practices while maintaining their traditional livelihoods and cultural heritage.",
+        "Some intriguing news from our recent reef monitoring dives: an overseas echinoderm expert, after reviewing photo submissions, believes we may be looking at two different species of crown of thorns sea stars (COTS) in Sogod Bay our usual Acanthaster solaris and the less commonly encountered Acanthaster brevispinus, known for its shorter spines and flatter profile.",
       category: "Community",
       date: "December 5, 2024",
       readTime: "12 min read",
-      image:
-        "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=500&fit=crop&q=80",
+      image: "/images/P7240134.jpg",
       tags: [
         "Community Engagement",
         "Sustainable Fishing",

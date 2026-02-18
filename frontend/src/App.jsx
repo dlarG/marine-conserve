@@ -12,7 +12,6 @@ import Methods from "./components/Methods";
 import Mission from "./components/Mission";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Course from "./components/Course";
-import Blogs from "./components/Blogs";
 
 import About1 from "./components/cuts/About1";
 import About2 from "./components/cuts/About2";
@@ -26,9 +25,11 @@ import CotsResponse from "./components/projects/CotsResponse";
 import DataCollection from "./components/projects/DataCollection";
 import DebriRemoval from "./components/projects/DebriRemoval";
 
+import Blogs from "./components/Blogs";
 import AllBlogPost from "./components/blogs/AllBlogPost";
 import FloraAndFauna from "./components/blogs/FloraAndFauna";
 import MalitbogCoralres from "./components/blogs/MalitbogCoralres";
+import DoubleActOfSogod from "./components/blogs/DoubleActOfSogod";
 
 import "./index.css";
 
@@ -157,6 +158,7 @@ function App() {
           <Route path="/blogs" element={<AllBlogPage />} />
           <Route path="/blog/1" element={<FloraAndFaunaPage />} />
           <Route path="/blog/2" element={<MalitbogCoralres />} />
+          <Route path="/blog/3" element={<DoubleActOfSogod />} />
         </Routes>
         <Footer />
       </div>
