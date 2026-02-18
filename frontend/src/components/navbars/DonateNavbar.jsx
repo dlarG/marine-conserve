@@ -19,6 +19,10 @@ const DonateNavbar = () => {
   }, []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const sections = ["hero", "threats", "solutions", "impact"];
 
     const handleScroll = () => {
