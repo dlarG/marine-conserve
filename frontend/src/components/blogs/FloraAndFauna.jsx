@@ -33,7 +33,7 @@ const FloraAndFauna = () => {
           }}
         >
           <img
-            src="/images/tagbak1.jpg"
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384151/tagbak1_t27wnl.jpg"
             alt="Tagbak Marine Park underwater biodiversity"
             className="w-full h-[110%] object-cover"
             onError={(e) => {
@@ -146,7 +146,7 @@ const FloraAndFauna = () => {
         >
           <figure className="mb-12">
             <img
-              src="/images/tagbak-coral-garden.jpg"
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384074/cnu_izhwlg.jpg"
               alt="Vibrant coral garden at Tagbak Marine Park"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {
@@ -154,7 +154,8 @@ const FloraAndFauna = () => {
               }}
             />
             <figcaption className="text-center text-gray-500 text-sm mt-4 italic">
-              The spectacular coral gardens of Tagbak Marine Park
+              The spectacular coral gardens of Tagbak Marine Park are home to a
+              dazzling array of marine life
             </figcaption>
           </figure>
         </div>
@@ -215,7 +216,7 @@ const FloraAndFauna = () => {
         >
           <figure className="mb-12">
             <img
-              src="/images/tagbak-fish-diversity.jpg"
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384137/school-fish_j7yyxm.webp"
               alt="Diverse fish species swimming among corals"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {
@@ -278,7 +279,7 @@ const FloraAndFauna = () => {
         >
           <figure className="mb-12">
             <img
-              src="/images/tagbak-turtle.jpg"
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771390101/pexels-belle-co-99483-847393_gmmazx.jpg"
               alt="Green sea turtle gliding over coral reef"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {

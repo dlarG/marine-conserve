@@ -170,7 +170,7 @@ function About1() {
           >
             <div className="absolute inset-0 overflow-hidden">
               <img
-                src="/images/aboutus1.jpg"
+                src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384066/aboutus1_skah4r.jpg"
                 alt="GREEN Inc. team conducting underwater research"
                 className="w-full h-full object-cover transition-transform duration-700"
                 onError={(e) => {

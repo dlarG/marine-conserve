@@ -55,7 +55,8 @@ const Mission = () => {
 Our mission is to support our local reefs and the surrounding communities. 
 
 We rehabilitate the more resistant coral colonies and introduce them to the local reefs. Here they grow and construct reefs capable of withstanding the current climatic challenges. In assisting the reefs, we also help surrounding communities by sustaining their livelihood in fishery and tourism.`,
-      image: "/images/PH.png",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384129/PH_jtmoag.png",
       stats: [
         { value: "10+", label: "Years Experience" },
         { value: "5000+", label: "Coral Fragments Restored" },
@@ -68,7 +69,8 @@ We rehabilitate the more resistant coral colonies and introduce them to the loca
       subtitle: "Sogod Bay, Malitbog, Southern Leyte",
       description: `The project currently consists of a coral nursery with an associated coral garden. The success of a specific restoration method is dependent on the location and its conditions. In the past ten years, we have had the opportunity to test different types of nurseries at numerous sites and adapt our methods to best suit our criteria.
 Our nurseries are located in Sogod Bay, Malitbog, in Southern Leyte, Philippines. We mainly use rope and steel structures as our coral nursery units (CNU), at depths between 5 - 20 m. The correct depth is a balancing act between providing enough solar light penetration for photosynthesis to occur and limiting wave action to prevent damage.`,
-      mapImage: "/images/sogodbay.jpg",
+      mapImage:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384145/sogodbay_vupcfy.jpg",
       features: [
         "Optimal depth: 5-20 meters",
         "Protected bay location",
@@ -90,9 +92,9 @@ Our nurseries are located in Sogod Bay, Malitbog, in Southern Leyte, Philippines
           "Stable foundation for growth",
         ],
         images: [
-          "/images/steel1.jpg",
-          "/images/steel.jpg",
-          "/images/steel2.jpg",
+          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384149/steel2_a9rpgt.jpg",
+          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384148/steel1_abv4vn.jpg",
+          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384146/steel_zm2pf2.jpg",
         ],
         color: "from-blue-500 to-teal-500",
       },
@@ -110,7 +112,11 @@ This method prevents the sandy seafloor from smothering the fragments and possib
           "Increases resilience",
           "Sustainable design",
         ],
-        images: ["/images/rope1.jpg", "/images/rope2.jpg", "/images/rope.jpg"],
+        images: [
+          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384134/rope1_kfygiw.jpg",
+          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384136/rope2_qiljvj.jpg",
+          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384133/rope_cuguwh.jpg",
+        ],
         color: "from-emerald-500 to-green-500",
       },
     ],

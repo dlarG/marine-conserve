@@ -56,7 +56,7 @@ function About4() {
           >
             <div className="absolute inset-0 overflow-hidden">
               <img
-                src="/images/resort.jpg"
+                src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384130/resort_lgfsik.jpg"
                 alt="GREEN Inc. team conducting underwater research"
                 className="w-full h-full object-cover transition-transform duration-700"
                 onError={(e) => {

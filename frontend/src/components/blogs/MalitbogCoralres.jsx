@@ -33,7 +33,7 @@ const MalitbogCoralres = () => {
           }}
         >
           <img
-            src="/images/coral-restoration1.jpg"
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384084/coral-restoration1_h0tw83.jpg"
             alt="Malitbog coral restoration project in progress"
             className="w-full h-[100%] object-cover"
             onError={(e) => {
@@ -184,7 +184,16 @@ const MalitbogCoralres = () => {
         >
           <figure className="mb-12">
             <img
-              src="/projects/coral-restoration/071018_4346.JPG"
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384417/PB080058_jzitbw.jpg"
+              alt="Before and after comparison of restored coral reef"
+              className="w-full mb-5 h-[500px] object-cover rounded-2xl shadow-2xl"
+              onError={(e) => {
+                e.target.src =
+                  "https://images.unsplash.com/photo-1591025207163-942350e47db2?w=1200&h=500&fit=crop&q=80";
+              }}
+            />
+            <img
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384067/backg_gcss6b.jpg"
               alt="Before and after comparison of restored coral reef"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {
@@ -249,7 +258,7 @@ const MalitbogCoralres = () => {
         >
           <figure className="mb-12">
             <img
-              src="/projects/coral-restoration/071018_4351.JPG"
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384081/community_solution_jlkhtq.jpg"
               alt="Community volunteers participating in coral transplantation"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {
@@ -322,7 +331,7 @@ const MalitbogCoralres = () => {
         >
           <figure className="mb-12">
             <img
-              src="/projects/coral-restoration/PB080058.JPG"
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384063/230918_4180_npngvl.jpg"
               alt="Thriving coral colonies showing new growth and fish activity"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {
@@ -421,7 +430,7 @@ const MalitbogCoralres = () => {
         <div className="border-t border-gray-200 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <button
             onClick={() => navigate("/blogs")}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 rounded-lg font-semibold transition-colors duration-300"
+            className="cursor-pointer inline-flex items-center gap-2 px-6 py-3 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 rounded-lg font-semibold transition-colors duration-300"
           >
             <svg
               className="w-5 h-5"
@@ -441,25 +450,31 @@ const MalitbogCoralres = () => {
 
           <div className="flex items-center gap-4">
             <span className="text-gray-500 text-sm">
-              Share this success story:
+              Share this success stories:
             </span>
             <div className="flex gap-2">
-              <button className="p-2 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 rounded-lg transition-colors">
+              <button className="cursor-pointer p-2 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors">
                 <svg
-                  className="w-5 h-5"
                   fill="currentColor"
-                  viewBox="0 0 24 24"
+                  width="25px"
+                  height="25px"
+                  viewBox="-2 -4 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="xMinYMin"
+                  class="jam jam-twitter"
                 >
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                  <path d="M20 1.907a8.292 8.292 0 0 1-2.356.637A4.07 4.07 0 0 0 19.448.31a8.349 8.349 0 0 1-2.607.98A4.12 4.12 0 0 0 13.846.015c-2.266 0-4.103 1.81-4.103 4.04 0 .316.036.625.106.92A11.708 11.708 0 0 1 1.393.754a3.964 3.964 0 0 0-.554 2.03c0 1.403.724 2.64 1.824 3.363A4.151 4.151 0 0 1 .805 5.64v.05c0 1.958 1.415 3.591 3.29 3.963a4.216 4.216 0 0 1-1.08.141c-.265 0-.522-.025-.773-.075a4.098 4.098 0 0 0 3.832 2.807 8.312 8.312 0 0 1-5.095 1.727c-.332 0-.658-.02-.979-.056a11.727 11.727 0 0 0 6.289 1.818c7.547 0 11.673-6.157 11.673-11.496l-.014-.523A8.126 8.126 0 0 0 20 1.907z" />
                 </svg>
               </button>
-              <button className="p-2 bg-emerald-50 text-emerald-600 hover:bg-emerald-100 rounded-lg transition-colors">
+              <button className="cursor-pointer p-2 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors">
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
+                  {" "}
+                  <title>Facebook icon</title>
+                  <path d="M23.9981 11.9991C23.9981 5.37216 18.626 0 11.9991 0C5.37216 0 0 5.37216 0 11.9991C0 17.9882 4.38789 22.9522 10.1242 23.8524V15.4676H7.07758V11.9991H10.1242V9.35553C10.1242 6.34826 11.9156 4.68714 14.6564 4.68714C15.9692 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V11.9991H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 22.9522 23.9981 17.9882 23.9981 11.9991Z" />
                 </svg>
               </button>
             </div>

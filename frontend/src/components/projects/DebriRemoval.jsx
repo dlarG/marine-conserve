@@ -79,7 +79,7 @@ function DebriRemoval() {
           }}
         >
           <img
-            src="/projects/debris-removal.JPG"
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384229/debris-removal_lumhle.jpg"
             alt="Marine debris removal underwater cleanup"
             className="w-full h-[120%] object-cover"
             style={{ minHeight: "calc(70vh + 100px)" }}
@@ -255,7 +255,7 @@ function DebriRemoval() {
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl group hover:shadow-3xl transition-shadow duration-500">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
-                      src="/projects/debri-removal/P9160011.JPG"
+                      src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384301/P9160011_c80zpq.jpg"
                       alt="Underwater debris cleanup operation"
                       className="w-full h-full object-cover"
                       onError={(e) => {
@@ -527,32 +527,32 @@ function DebriRemoval() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  src: "/projects/debri-removal/IMG_1214.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384295/IMG_1215_jqxoba.jpg",
                   alt: "Before and after debris removal comparison",
                   category: "Transformation",
                 },
                 {
-                  src: "/projects/debri-removal/IMG_1215.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384294/IMG_1214_wntgqw.jpg",
                   alt: "Ghost fishing net removal operation",
                   category: "Recovery",
                 },
                 {
-                  src: "/projects/debri-removal/P9160010.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384300/P9160010_qt0fkc.jpg",
                   alt: "Plastic debris collection underwater",
                   category: "Collection",
                 },
                 {
-                  src: "/projects/debri-removal/20161029-PA290045.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384074/cnu_izhwlg.jpg",
                   alt: "Community volunteer cleanup team",
                   category: "Community",
                 },
                 {
-                  src: "/projects/debri-removal/PA290044.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384304/PA290044_ex81t5.jpg",
                   alt: "Debris sorting and processing on surface",
                   category: "Processing",
                 },
                 {
-                  src: "/projects/debri-removal/P6140239.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384299/P6140239_feuccb.jpg",
                   alt: "Restored reef ecosystem after cleanup",
                   category: "Results",
                 },

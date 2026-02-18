@@ -80,7 +80,7 @@ function DataCollection() {
           }}
         >
           <img
-            src="/projects/data-collection1.jpg"
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384227/data-collection1_moq3iy.jpg"
             alt="Scientific data collection underwater research"
             className="w-full h-[120%] object-cover"
             style={{ minHeight: "calc(70vh + 100px)" }}
@@ -212,7 +212,7 @@ function DataCollection() {
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl group hover:shadow-3xl transition-shadow duration-500">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
-                      src="/projects/data-collection/P1280001.JPG"
+                      src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384334/P1280001_j9rsit.jpg"
                       alt="Underwater scientific research activities"
                       className="w-full h-full object-cover"
                       onError={(e) => {
@@ -375,27 +375,27 @@ function DataCollection() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  src: "/projects/data-collection/556987177_10238077943677542_4769185689283737038_n.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384328/data-collection_yau4zv.jpg",
                   alt: "Coral health assessment using transect line method",
                 },
                 {
-                  src: "/projects/data-collection/557068371_10238078344527563_6873362158842804122_n.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384325/557068371_10238078344527563_6873362158842804122_n_qdwncx.jpg",
                   alt: "Fish population counting and species identification",
                 },
                 {
-                  src: "/projects/data-collection/557265560_10238090922682009_2490871689071061588_n.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384327/557265560_10238090922682009_2490871689071061588_n_ilguuc.jpg",
                   alt: "Underwater data recording on waterproof slates",
                 },
                 {
-                  src: "/projects/data-collection/P3290154.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384336/P3290154_wa20fx.jpg",
                   alt: "Water quality sampling for chemical analysis",
                 },
                 {
-                  src: "/projects/data-collection/P1070085.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384333/P1070085_nztvfg.jpg",
                   alt: "Research team collaboration and methodology discussion",
                 },
                 {
-                  src: "/projects/data-collection/P1070080.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384331/P1070080_uxaist.jpg",
                   alt: "Scientific data analysis and statistical processing",
                 },
               ].map((image, index) => (

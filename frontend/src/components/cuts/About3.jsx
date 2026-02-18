@@ -92,7 +92,7 @@ function About3() {
         }}
       >
         <img
-          src="/images/close1.jpg"
+          src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384057/123_sj5noh.jpg"
           alt="Close up image of fish"
           className="w-full h-full object-cover"
           onError={(e) => {
