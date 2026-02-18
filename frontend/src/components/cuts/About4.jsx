@@ -66,10 +66,9 @@ function About4() {
               />
             </div>
             {/* Updated gradient overlay - positioned on the right side only */}
-            <div className="absolute top-0 right-0 w-32 lg:w-48 h-full bg-gradient-to-l from-white via-white/90 via-white/60 to-transparent"></div>
+            <div className="absolute top-0 right-0 w-32 lg:w-68 h-full bg-gradient-to-l from-white via-white/90 via-white/60 to-transparent"></div>
           </div>
 
-          {/* Text Content Section - Now on the Right */}
           <div className="p-10 lg:p-10 xl:p-12 relative z-10 order-1 lg:order-2">
             <h3
               className={`text-2xl md:text-3xl font-bold text-gray-900 mb-6 transform transition-all duration-1000 delay-300 ${
