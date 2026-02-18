@@ -4,6 +4,7 @@ import CoralRestorationNavbar from "./components/navbars/CoralRestorationNavbar"
 import DebriRemovalNavbar from "./components/navbars/DebriRemovalNavbar";
 import CotsMonitoringNavbar from "./components/navbars/CotsMonitoringNavbar";
 import DataCollectionNavbar from "./components/navbars/DataCollectionNavbar";
+import DonateNavbar from "./components/navbars/DonateNavbar";
 
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
@@ -79,7 +80,7 @@ const MethodsPage = () => {
 const DonatePage = () => {
   return (
     <>
-      <Navbar />
+      <DonateNavbar />
       <Donate />
     </>
   );
