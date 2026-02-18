@@ -100,8 +100,9 @@ function About4() {
                 restaurant.
               </p>
               <p className="text-lg leading-relaxed">
-                Sogod Bay Scuba Resort is a fundamental part of marine
-                conservation within the Bay of Southern Leyte and continues to
+                <strong>Sogod Bay Scuba Resort</strong> is a fundamental part of
+                marine conservation within the{" "}
+                <strong>Bay of Southern Leyte</strong> and continues to
                 encourage and support marine-related projects. The associated
                 PADI dive shop is actively arranging COT management, coral
                 nurseries, and diving against debris dives. Sogod Bay Coral

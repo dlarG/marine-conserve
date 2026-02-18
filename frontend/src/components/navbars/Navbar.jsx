@@ -61,8 +61,13 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleDonateClick = () => {
-    setIsDonateModalOpen(true);
+  // const handleDonateClick = () => {
+  //   setIsDonateModalOpen(true);
+  //   setIsMobileMenuOpen(false);
+  // };
+
+  const handleDonateClick1 = () => {
+    navigate("/donate");
     setIsMobileMenuOpen(false);
   };
 
@@ -178,7 +183,7 @@ const Navbar = () => {
               </button>
 
               <button
-                onClick={handleDonateClick}
+                onClick={handleDonateClick1}
                 className={` hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
                   isScrolled
                     ? "bg-gradient-to-r from-teal-600 to-green-600 text-white"
@@ -292,7 +297,7 @@ const Navbar = () => {
               </button>
 
               <button
-                onClick={handleDonateClick}
+                onClick={handleDonateClick1}
                 className="relative w-full px-6 py-4 rounded-xl font-medium overflow-hidden group"
               >
                 <span className="relative z-10 text-white flex items-center justify-center">

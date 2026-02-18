@@ -32,6 +32,8 @@ import FloraAndFauna from "./components/blogs/FloraAndFauna";
 import MalitbogCoralres from "./components/blogs/MalitbogCoralres";
 import DoubleActOfSogod from "./components/blogs/DoubleActOfSogod";
 
+import Donate from "./components/Donate";
+
 import "./index.css";
 
 const HomePage = () => {
@@ -70,6 +72,15 @@ const MethodsPage = () => {
     <>
       <Navbar />
       <Methods />
+    </>
+  );
+};
+
+const DonatePage = () => {
+  return (
+    <>
+      <Navbar />
+      <Donate />
     </>
   );
 };
@@ -144,6 +155,7 @@ function App() {
             path="/projects/coral-restoration"
             element={<CoralRestorationPage />}
           />
+          <Route path="/donate" element={<DonatePage />} />
           <Route
             path="/projects/cots-monitoring"
             element={<CotsResponsePage />}
