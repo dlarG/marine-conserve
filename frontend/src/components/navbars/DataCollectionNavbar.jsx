@@ -96,7 +96,7 @@ const DataCollectionNavbar = () => {
             >
               <div className="relative">
                 <img
-                  src="/logo/GREEN.jpg"
+                  src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384195/GREEN_stouub.jpg"
                   alt="GREEN Inc. Logo"
                   className="w-11 h-10.1 object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
                   onError={(e) => {

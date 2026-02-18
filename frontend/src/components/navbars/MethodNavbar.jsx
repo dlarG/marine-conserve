@@ -91,7 +91,7 @@ const MethodNavbar = () => {
               }}
             >
               <img
-                src="/logo/GREEN.jpg"
+                src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384195/GREEN_stouub.jpg"
                 alt="GREEN Inc. Logo"
                 className="w-11 h-10.1 object-contain rounded-full"
                 onError={(e) => {

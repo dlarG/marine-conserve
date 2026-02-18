@@ -79,7 +79,7 @@ function CotsResponse() {
           }}
         >
           <img
-            src="/projects/cots-monitoring.JPG"
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384227/cots-monitoring_jrysjy.jpg"
             alt="Crown of thorns starfish monitoring"
             className="w-full h-[120%] object-cover"
             style={{ minHeight: "calc(70vh + 100px)" }}
@@ -235,7 +235,7 @@ function CotsResponse() {
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl group hover:shadow-3xl transition-shadow duration-500">
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
-                      src="/projects/cots-monitoring/P5250150.jpg"
+                      src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384381/P5250150_c2uarv.jpg"
                       alt="COTS population survey underwater"
                       className="w-full h-full object-cover"
                       onError={(e) => {
@@ -514,27 +514,27 @@ function CotsResponse() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  src: "/projects/cots-monitoring/P7240134.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384388/P7240134_pbxkyt.jpg",
                   alt: "COTS species identification training with marine biologists",
                 },
                 {
-                  src: "/projects/cots-monitoring/cots-monitoring.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384371/cots-monitoring_v9osqs.jpg",
                   alt: "Safe COTS removal techniques using specialized tools",
                 },
                 {
-                  src: "/projects/cots-monitoring/P5250117.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384374/P5250117_l4mtpi.jpg",
                   alt: "Underwater population density survey and data collection",
                 },
                 {
-                  src: "/projects/cots-monitoring/P5250118.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384376/P5250118_ul6ohd.jpg",
                   alt: "Scientific assessment of coral damage from COTS predation",
                 },
                 {
-                  src: "/projects/cots-monitoring/P5250160.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384386/P5250160_qmlygb.jpg",
                   alt: "Dedicated COTS monitoring team in action underwater",
                 },
                 {
-                  src: "/projects/cots-monitoring/P5250150.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384380/P5250129_okz7q4.jpg",
                   alt: "Healthy reef ecosystem recovering after successful COTS control",
                 },
               ].map((image, index) => (

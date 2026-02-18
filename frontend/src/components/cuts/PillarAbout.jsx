@@ -98,7 +98,7 @@ function PillarAbout() {
             <div className="grid lg:grid-cols-2 gap-0">
               <div className="relative h-80 lg:h-auto">
                 <img
-                  src="/projects/coral-conservation.jpg"
+                  src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384149/steel2_a9rpgt.jpg"
                   alt="Coral restoration work underwater"
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -227,7 +227,7 @@ function PillarAbout() {
 
               <div className="relative h-80 lg:h-auto order-1 lg:order-2">
                 <img
-                  src="/projects/debris-removal.JPG"
+                  src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384229/debris-removal_lumhle.jpg"
                   alt="Marine debris removal underwater cleanup"
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -252,7 +252,7 @@ function PillarAbout() {
             <div className="grid lg:grid-cols-2 gap-0">
               <div className="relative h-80 lg:h-auto">
                 <img
-                  src="/projects/cots-monitoring.JPG"
+                  src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384227/cots-monitoring_jrysjy.jpg"
                   alt="Crown of thorns starfish monitoring"
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -381,7 +381,7 @@ function PillarAbout() {
 
               <div className="relative h-80 lg:h-auto order-1 lg:order-2">
                 <img
-                  src="/projects/data-collection1.jpg"
+                  src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384227/data-collection1_moq3iy.jpg"
                   alt="Scientific data collection underwater research"
                   className="w-full h-full object-cover"
                   onError={(e) => {

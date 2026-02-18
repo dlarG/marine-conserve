@@ -317,7 +317,7 @@ const Hero = () => {
         >
           <div className="relative max-w-full mx-auto lg:ml-auto">
             <img
-              src="/images/hero-img212.png"
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384101/hero-img21_lncb59.png"
               alt="Marine Conservation"
               className="w-full h-full"
             />

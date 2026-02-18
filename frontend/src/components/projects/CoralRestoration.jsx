@@ -23,7 +23,8 @@ function CoralRestoration() {
       subtitle: "Natural Substrate Integration",
       description:
         "Utilizing existing cracks and holes in stable substrates for coral fragment placement, ensuring minimal movement and rapid calcification within one week.",
-      image: "/images/wedging.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384166/wedging_t9m2fd.jpg",
       stats: [
         { label: "Success Rate", value: "92%" },
         { label: "Calcification", value: "1 Week" },
@@ -42,7 +43,8 @@ function CoralRestoration() {
       subtitle: "Enhanced Structural Support",
       description:
         "Modified secure attachment using concrete nails and plastic ties, providing stable foundations for coral growth based on proven DOST Filipinnovation techniques.",
-      image: "/images/nails1.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384112/nails1_v3v9xs.jpg",
       stats: [
         { label: "Durability", value: "Excellent" },
         { label: "Stability", value: "High" },
@@ -61,7 +63,8 @@ function CoralRestoration() {
       subtitle: "Biodegradable Artificial Reefs",
       description:
         "Sustainable ceramic tiles that mimic natural coral substrates and naturally erode over decades, leaving behind established coral communities.",
-      image: "/images/tiles1.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384157/tiles_lg8by3.jpg",
       stats: [
         { label: "Biodegradable", value: "Yes" },
         { label: "Erosion Time", value: "Decades" },
@@ -162,7 +165,7 @@ function CoralRestoration() {
           }}
         >
           <img
-            src="/projects/071018_4346.JPG"
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384221/071018_4346_obo6kl.jpg"
             alt="Coral restoration underwater work"
             className="w-full h-full object-cover"
             onError={(e) => {
@@ -285,7 +288,7 @@ function CoralRestoration() {
                 <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full blur-xl opacity-60"></div>
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
                   <img
-                    src="/projects/071018_4351.JPG"
+                    src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384222/071018_4351_juhsud.jpg"
                     alt="Underwater coral nursery"
                     className="w-full h-[500px] object-cover"
                     onError={(e) => {
@@ -580,27 +583,27 @@ function CoralRestoration() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  src: "/projects/coral-restoration/071018_4343.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384409/071018_4343_xgnx0z.jpg",
                   alt: "Before and after restoration comparison",
                 },
                 {
-                  src: "/projects/coral-restoration/071018_4333.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384407/071018_4333_jdnz08.jpg",
                   alt: "Coral nursery maintenance process",
                 },
                 {
-                  src: "/projects/coral-restoration/PB080058.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384417/PB080058_jzitbw.jpg",
                   alt: "Coral transplantation underwater work",
                 },
                 {
-                  src: "/projects/coral-restoration/P7240105.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384415/P7240105_mfhcbi.jpg",
                   alt: "Healthy restored reef ecosystem thriving",
                 },
                 {
-                  src: "/projects/coral-restoration/P3290154.JPG",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384415/P3290154_g7mysv.jpg",
                   alt: "Scientific coral health monitoring",
                 },
                 {
-                  src: "/projects/coral-restoration/555502458_10238099510616702_881221077159221412_n.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384411/555502458_10238099510616702_881221077159221412_n_b531if.jpg",
                   alt: "Community involvement in restoration activities",
                 },
               ].map((image, index) => (

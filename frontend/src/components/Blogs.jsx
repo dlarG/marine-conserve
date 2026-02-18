@@ -15,7 +15,8 @@ const Blogs = () => {
       category: "Research",
       date: "October 15, 2017",
       readTime: "25 min read",
-      image: "/images/tagbak1.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384151/tagbak1_t27wnl.jpg",
       tags: ["Biodiversity", "Marine Research", "Conservation"],
       featured: true,
     },
@@ -28,7 +29,8 @@ const Blogs = () => {
       category: "Monitoring",
       date: "July 18, 2025",
       readTime: "15 min read",
-      image: "/images/coral-restoration.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384083/coral-restoration_lqr4ot.jpg",
       tags: ["Coral Restoration", "Monitoring", "Success Stories"],
       featured: true,
     },
@@ -38,13 +40,14 @@ const Blogs = () => {
   const latestPosts = [
     {
       id: 3,
-      title: "COTs Monitoring & Culling Update – Abgao, Malitbog ",
+      title: "COTs Monitoring & Culling Update - Abgao, Malitbog ",
       excerpt:
         "Great news from the reef! Yesterday we completed a follow up dive in Abgao to assess the Crown of Thorns starfish (COTs) situation almost one month after our first culling effort. The results are encouraging:",
       category: "Cleanup",
       date: "May 24, 2025",
       readTime: "6 min read",
-      image: "/images/cotss.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384090/cotss_gdjxco.jpg",
       tags: ["Community", "Education", "Sustainability"],
     },
     {
@@ -56,7 +59,8 @@ const Blogs = () => {
       category: "Partnership",
       date: "March 25, 2024",
       readTime: "7 min read",
-      image: "/images/partner.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384122/partner_nx0qjo.jpg",
       tags: ["Education", "Marine Research", "Collaboration"],
     },
   ];

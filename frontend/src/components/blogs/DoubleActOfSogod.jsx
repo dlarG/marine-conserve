@@ -33,7 +33,7 @@ const DoubleActOfSogod = () => {
           }}
         >
           <img
-            src="/images/P7240134.jpg"
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384386/P5250160_qmlygb.jpg"
             alt="Crown of thorns sea stars (COTS) in Sogod Bay"
             className="w-full h-[110%] object-cover"
             onError={(e) => {
@@ -47,7 +47,7 @@ const DoubleActOfSogod = () => {
         <div className="relative z-10 h-full flex items-center justify-center px-4">
           <div className="text-center text-white max-w-4xl mx-auto">
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => navigate("/")}
               className="cursor-pointer inline-flex items-center gap-2 mb-6 text-white/80 hover:text-white transition-colors duration-300"
             >
               <svg
@@ -68,7 +68,7 @@ const DoubleActOfSogod = () => {
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
               Possible Double Act in{" "}
-              <span className="text-purple-300">Sogod Bay?</span>
+              <span className="text-green-300">Sogod Bay?</span>
             </h1>
 
             <div className="flex items-center justify-center gap-6 text-white/90">
@@ -144,7 +144,12 @@ const DoubleActOfSogod = () => {
         >
           <figure className="mb-12">
             <img
-              src="https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=1200&h=600&fit=crop&q=80"
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384371/P5250116_lbticc.jpg"
+              alt="Crown of thorns starfish on coral reef"
+              className="w-full mb-5 h-[500px] object-cover rounded-2xl shadow-2xl"
+            />
+            <img
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384376/P5250118_ul6ohd.jpg"
               alt="Crown of thorns starfish on coral reef"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
             />

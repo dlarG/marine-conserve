@@ -5,42 +5,48 @@ const teamMembers = [
   {
     name: "Jerome Jack Napala",
     role: "Green Inc. CEO, Marine Biologist, and PADI Divemaster",
-    image: "images/JeromaNapala.jpg",
+    image:
+      "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384106/JeromaNapala_x6fqh2.jpg",
     bio: "Jerome started the nursery almost twenty years ago after witnessing how his childhood reefs had begun to show signs of stress. He started with a couple of plastic bottles, ropes, and the will to succeed.",
     specialty: "Coral Nursery Management",
   },
   {
     name: "Christian Polo",
     role: "Coral Jardinero and PADI Divemaster",
-    image: "images/ChristianPolo.jpg",
+    image:
+      "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384070/ChristianPolo_kqmoeu.jpg",
     bio: "Christian has been a trusted helper and coral nurse for several years. He is a scuba divemaster and spends his days diving on the beautiful reefs in Sogod Bay.",
     specialty: "Scuba Diving & Reef Maintenance",
   },
   {
     name: "Jollibee Looc",
     role: "Marine Biologist, Coral Jardinera and PADI AOW Diver",
-    image: "images/JollibeeLooc.jpg",
+    image:
+      "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384109/JollibeeLooc_sin3gx.jpg",
     bio: "Jobs became a marine biologist with a PADI Advanced Open Water certificate, and her time working with GREEN, Inc. has helped her build her career.",
     specialty: "Marine Biology Research",
   },
   {
     name: "Nova Almine",
     role: "Marine Biologist, Coral Jardinera, and a PADI AOW",
-    image: "images/NovaAlmine.jpg",
+    image:
+      "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384114/NovaAlmine_sfxdgv.jpg",
     bio: "Nova joined GREEN, Inc. while doing her undergrad in marine biology. Growing up in Southern Leyte, she became deeply passionate about the ocean.",
     specialty: "Marine Ecosystem Studies",
   },
   {
     name: "Charlotte Henriksen",
     role: "Marine Biologist, Office Runner, and PADI Rescuer",
-    image: "images/CharlotteHenriksen.jpg",
+    image:
+      "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384069/CharlotteHenriksen_b5mmat.jpg",
     bio: "Growing up surrounded by seas and spending most of her childhood in or on water, she always knew the ocean as her home.",
     specialty: "Marine Conservation & Administration",
   },
   {
     name: "Jesse Lou Tinapay",
     role: "Liaison Officer",
-    image: "images/JesseLouTinapay.png",
+    image:
+      "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384107/JesseLouTinapay_o33zap.png",
     bio: "Jesse is the former Liaison Officer of Coral Cay Conservation and an experienced PADI Open Water Scuba Instructor with more than 3000 completed dives.",
     specialty: "Dive Instruction & Community Liaison",
   },

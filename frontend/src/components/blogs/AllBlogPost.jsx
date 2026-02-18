@@ -26,7 +26,8 @@ const AllBlogPost = () => {
       category: "Research",
       date: "October 15, 2017",
       readTime: "25 min read",
-      image: "/images/tagbak1.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384151/tagbak1_t27wnl.jpg",
       tags: ["Biodiversity", "Marine Research", "Conservation"],
       author: "Jerome Jack Napala",
       featured: true,
@@ -40,7 +41,8 @@ const AllBlogPost = () => {
       category: "Monitoring",
       date: "July 18, 2025",
       readTime: "15 min read",
-      image: "/images/coral-restoration.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384083/coral-restoration_lqr4ot.jpg",
       tags: ["Coral Restoration", "Monitoring", "Success Stories"],
       author: "Dr. Elena Rodriguez",
       featured: true,
@@ -53,7 +55,8 @@ const AllBlogPost = () => {
       category: "Community",
       date: "December 5, 2024",
       readTime: "12 min read",
-      image: "/images/P7240134.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384388/P7240134_pbxkyt.jpg",
       tags: [
         "Community Engagement",
         "Sustainable Fishing",
@@ -205,7 +208,7 @@ const AllBlogPost = () => {
           }}
         >
           <img
-            src="/hero/hero11.jpg"
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384010/hero11_zrsbc0.jpg"
             alt="Marine conservation research and documentation"
             className="w-full h-[100%] object-cover object-center"
           />
@@ -215,7 +218,7 @@ const AllBlogPost = () => {
         <div className="relative z-10 h-full flex items-center justify-center px-4">
           <div className="text-center text-white max-w-4xl mx-auto">
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => navigate("/")}
               className="cursor-pointer inline-flex items-center gap-2 mb-4 text-white/80 hover:text-white transition-colors duration-300"
             >
               <svg

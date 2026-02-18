@@ -50,7 +50,8 @@ const Course = () => {
       id: 1,
       title: "Marine Biology Fundamentals",
       subtitle: "Foundation Course",
-      image: "/images/conserve.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384082/conserve_p6ituq.jpg",
       duration: "8 weeks",
       level: "Beginner",
       price: "$599",
@@ -89,7 +90,8 @@ const Course = () => {
       id: 2,
       title: "Discover Scuba Diving",
       subtitle: "Learn Scuba Diving Basics",
-      image: "/images/steel2.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396163/pexels-debal-das-59599429-7970796_saucto.jpg",
       duration: "6 weeks",
       level: "Intermediate",
       price: "$899",
@@ -129,7 +131,8 @@ const Course = () => {
       id: 3,
       title: "Open Water Diver",
       subtitle: "Professional Training",
-      image: "/images/1222.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396227/pexels-leonardo-lamas-32247393-7001658_jez7o0.jpg",
       duration: "6 weeks",
       level: "Advanced",
       price: "$1,299",
@@ -168,7 +171,8 @@ const Course = () => {
       id: 4,
       title: "Advanced Open Water Diver",
       subtitle: "Professional Development",
-      image: "/images/conserve.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396302/pexels-ruben-galante-3187936-4809004_agffbd.jpg",
       duration: "10 weeks",
       level: "Advanced",
       price: "$1,099",
@@ -206,7 +210,8 @@ const Course = () => {
       id: 5,
       title: "Underwater Photography & Videography",
       subtitle: "Creative Documentation",
-      image: "/images/5.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396412/pexels-tomfisk-1522160_xmorgy.jpg",
       duration: "6 weeks",
       level: "Intermediate",
       price: "$799",
@@ -233,43 +238,6 @@ const Course = () => {
         "Exhibition opportunity",
         "Online gallery space",
         "Professional critique sessions",
-      ],
-      notIncluded: [
-        "Camera equipment purchase",
-        "Memory cards and batteries",
-        "Diving equipment rental",
-        "Photo printing costs",
-      ],
-    },
-    {
-      id: 6,
-      title: "Emergency First Response for Divers",
-      subtitle: "Safety Training",
-      image: "/images/5.jpg",
-      duration: "6 weeks",
-      level: "Intermediate",
-      price: "$799",
-      shortDescription:
-        "Learn essential first aid skills for diving emergencies",
-      description:
-        "Emergency First Response for Divers is a course designed to teach divers how to respond to diving emergencies and provide basic first aid. This course covers primary and secondary care, CPR, and the use of an AED.",
-      skills: [
-        "CPR and first aid techniques",
-        "Emergency response protocols",
-        "Oxygen administration",
-        "Dive accident management",
-      ],
-      prerequisites: [
-        "Open Water Diving certification",
-        "Basic photography knowledge",
-        "Own underwater camera system",
-        "Good buoyancy control",
-      ],
-      included: [
-        "CPR and first aid training materials",
-        "Emergency response equipment",
-        "First aid kit",
-        "Certification exam fees",
       ],
       notIncluded: [
         "Camera equipment purchase",

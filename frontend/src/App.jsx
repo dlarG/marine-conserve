@@ -19,6 +19,7 @@ import PillarAbout from "./components/cuts/PillarAbout";
 import About3 from "./components/cuts/About3";
 import TimelineAbout from "./components/cuts/TimeAbout";
 import ContactPage from "./components/cuts/ContactPage";
+import About4 from "./components/cuts/About4";
 
 import CoralRestoration from "./components/projects/CoralRestoration";
 import CotsResponse from "./components/projects/CotsResponse";
@@ -30,6 +31,8 @@ import AllBlogPost from "./components/blogs/AllBlogPost";
 import FloraAndFauna from "./components/blogs/FloraAndFauna";
 import MalitbogCoralres from "./components/blogs/MalitbogCoralres";
 import DoubleActOfSogod from "./components/blogs/DoubleActOfSogod";
+
+import Donate from "./components/Donate";
 
 import "./index.css";
 
@@ -51,6 +54,7 @@ const HomePage = () => {
 
       <section id="blogs">
         <Blogs />
+        <About4 />
       </section>
 
       <section id="team" className="relative overflow-hidden mt-15 mb-15">
@@ -68,6 +72,15 @@ const MethodsPage = () => {
     <>
       <Navbar />
       <Methods />
+    </>
+  );
+};
+
+const DonatePage = () => {
+  return (
+    <>
+      <Navbar />
+      <Donate />
     </>
   );
 };
@@ -142,6 +155,7 @@ function App() {
             path="/projects/coral-restoration"
             element={<CoralRestorationPage />}
           />
+          <Route path="/donate" element={<DonatePage />} />
           <Route
             path="/projects/cots-monitoring"
             element={<CotsResponsePage />}
