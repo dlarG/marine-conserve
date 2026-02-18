@@ -224,6 +224,7 @@ const Hero = () => {
                 to protect Sogod Bay's rich marine ecosystems.
               </p>
             </div>
+
             <div
               className={`flex flex-wrap gap-4 lg:justify-start justify-center transform transition-all duration-1000 ${
                 isLoaded

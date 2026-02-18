@@ -73,7 +73,7 @@ const DonateModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  const donationAmounts = ["25", "50", "100", "250", "500"];
+  const donationAmounts = ["250", "500", "1000", "2500", "5000"];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -233,7 +233,7 @@ const DonateModal = ({ isOpen, onClose }) => {
                       : "border-gray-200 hover:border-green-300 text-gray-700"
                   }`}
                 >
-                  ${amount}
+                  ₱{amount}
                 </button>
               ))}
             </div>
