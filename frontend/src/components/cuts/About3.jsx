@@ -107,10 +107,11 @@ function About3() {
       >
         <div className="text-center text-white px-4">
           <h3 className="text-3xl md:text-5xl font-bold mb-6 drop-shadow-lg">
-            Protecting Marine Ecosystems
+            Protecting Our Oceans, Preserving Our Future
           </h3>
           <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-            Through scientific research and community partnerships
+            At GREEN Inc., we are committed to safeguarding our oceans and
+            ensuring their health for future generations.
           </p>
         </div>
       </div>

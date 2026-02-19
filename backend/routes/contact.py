@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 import os
 import logging
 from datetime import datetime
-import resend
+import resend # type: ignore
 from datetime import datetime
 
 logger = logging.getLogger(__name__)

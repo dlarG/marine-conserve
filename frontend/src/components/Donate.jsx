@@ -6,7 +6,7 @@ const Donate = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState(null);
-
+  const [scrollY, setScrollY] = useState(0);
   // Define refs
   const heroRef = useRef(null);
   const threatsRef = useRef(null);
@@ -15,6 +15,15 @@ const Donate = () => {
   const ctaRef = useRef(null);
 
   // Define donation amounts
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -177,17 +186,51 @@ const Donate = () => {
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
       >
+        {/* Parallax Background */}
         <div className="absolute inset-0">
-          <img
-            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384143/small3_j2rhed.jpg"
-            alt="Sogod Bay"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-teal-900/80" />
+          <div
+            className="absolute inset-0 will-change-transform"
+            style={{
+              transform: `translateY(${scrollY * 0.3}px)`,
+              transformStyle: "preserve-3d",
+            }}
+          >
+            <img
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384143/small3_j2rhed.jpg"
+              alt="Sogod Bay"
+              className="w-full h-[120vh] object-cover"
+              style={{
+                minHeight: "calc(100vh + 200px)",
+                objectPosition: "center center",
+              }}
+            />
+          </div>
 
-          {/* Animated Wave Overlay */}
+          {/* Gradient Overlay - with parallax */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-teal-900/80"
+            style={{
+              transform: `translateY(${scrollY * 0.2}px)`,
+            }}
+          />
+
+          <div
+            className="absolute bottom-0 left-0 right-0"
+            style={{
+              transform: `translateY(${scrollY * 0.1}px)`,
+            }}
+          >
+            <svg
+              className="w-full h-32 text-white/10 animate-pulse"
+              viewBox="0 0 1440 120"
+              fill="currentColor"
+            >
+              <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" />
+            </svg>
+          </div>
         </div>
 
+        {/* Content - moves at normal speed for contrast */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
           <div
             className={`transform transition-all duration-1000 ${
@@ -279,8 +322,13 @@ const Donate = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        {/* Scroll Indicator - with subtle parallax */}
+        <div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+          style={{
+            transform: `translate(-50%, ${scrollY * 0.2}px)`,
+          }}
+        >
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
             <div className="w-1 h-2 bg-white/50 rounded-full mt-2 animate-pulse" />
           </div>
