@@ -1,14 +1,15 @@
 from flask import Blueprint, request, jsonify
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 import os
 import logging
 from datetime import datetime
+import resend
 
 logger = logging.getLogger(__name__)
 
 contact_bp = Blueprint('contact', __name__)
+
+# Initialize Resend with API key
+resend.api_key = os.getenv('RESEND_API_KEY')
 
 def validate_email_data(data):
     """Validate required email fields"""
@@ -93,6 +94,7 @@ def create_email_template(name, email, subject, message):
                 justify-content: center;
                 margin: 0 auto 20px;
                 font-size: 40px;
+                color: white;
             }}
             
             .header h1 {{
@@ -128,14 +130,6 @@ def create_email_template(name, email, subject, message):
                 margin-bottom: 35px;
                 font-size: 15px;
                 color: #065f46;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }}
-            
-            .intro-icon {{
-                font-size: 24px;
-                line-height: 1;
             }}
             
             .section-title {{
@@ -145,21 +139,6 @@ def create_email_template(name, email, subject, message):
                 margin-bottom: 20px;
                 padding-bottom: 10px;
                 border-bottom: 2px solid #e2e8f0;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }}
-            
-            .section-title span {{
-                background: #0f766e;
-                color: white;
-                width: 28px;
-                height: 28px;
-                border-radius: 8px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 14px;
             }}
             
             /* Card grid layout */
@@ -175,13 +154,6 @@ def create_email_template(name, email, subject, message):
                 border-radius: 16px;
                 padding: 18px;
                 border: 1px solid #e2e8f0;
-                transition: all 0.2s ease;
-                margin-bottom: 10px;
-            }}
-            
-            .info-card:hover {{
-                border-color: #0f766e;
-                box-shadow: 0 4px 12px rgba(15, 118, 110, 0.1);
             }}
             
             .info-label {{
@@ -190,9 +162,6 @@ def create_email_template(name, email, subject, message):
                 letter-spacing: 0.5px;
                 color: #64748b;
                 margin-bottom: 6px;
-                display: flex;
-                align-items: center;
-                gap: 4px;
             }}
             
             .info-value {{
@@ -212,17 +181,14 @@ def create_email_template(name, email, subject, message):
                 background: #f8fafc;
                 border-radius: 20px;
                 padding: 24px;
-                margin-top: -10px;
                 border: 1px solid #e2e8f0;
+                margin-bottom: 30px;
             }}
             
             .message-header {{
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                margin-bottom: 15px;
                 color: #0f766e;
                 font-weight: 600;
+                margin-bottom: 15px;
             }}
             
             .message-content {{
@@ -236,41 +202,6 @@ def create_email_template(name, email, subject, message):
                 white-space: pre-wrap;
             }}
             
-            .message-content::first-line {{
-                font-weight: 500;
-                color: #1e293b;
-            }}
-            
-            /* Meta information */
-            .meta-info {{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background: #f1f5f9;
-                padding: 15px 20px;
-                border-radius: 12px;
-                margin-top: 20px;
-                font-size: 14px;
-                color: #475569;
-            }}
-            
-            .timestamp {{
-                display: flex;
-                align-items: center;
-                gap: 6px;
-            }}
-            
-            .timestamp-icon {{
-                font-size: 16px;
-            }}
-            
-            /* Divider */
-            .divider {{
-                height: 1px;
-                background: linear-gradient(to right, transparent, #e2e8f0, transparent);
-                margin: 30px 0;
-            }}
-            
             /* Action buttons */
             .actions {{
                 text-align: center;
@@ -279,21 +210,13 @@ def create_email_template(name, email, subject, message):
             
             .reply-button {{
                 display: inline-block;
-                background: #0f763a;
+                background: #0f766e;
                 color: white;
                 text-decoration: none;
                 padding: 14px 32px;
                 border-radius: 40px;
                 font-weight: 600;
                 font-size: 16px;
-                box-shadow: 0 8px 16px -4px rgba(15, 118, 110, 0.3);
-                transition: all 0.2s ease;
-            }}
-            
-            .reply-button:hover {{
-                background: #059669;
-                transform: translateY(-2px);
-                box-shadow: 0 12px 20px -8px rgba(15, 118, 110, 0.4);
             }}
             
             /* Footer */
@@ -309,13 +232,11 @@ def create_email_template(name, email, subject, message):
                 font-weight: 700;
                 color: #0f766e;
                 margin-bottom: 15px;
-                letter-spacing: -0.5px;
             }}
             
             .footer-text {{
                 color: #64748b;
                 font-size: 13px;
-                line-height: 1.6;
                 margin: 5px 0;
             }}
             
@@ -343,15 +264,6 @@ def create_email_template(name, email, subject, message):
                 .info-grid {{
                     grid-template-columns: 1fr;
                 }}
-                
-                .header h1 {{
-                    font-size: 24px;
-                }}
-                
-                .reply-button {{
-                    display: block;
-                    text-align: center;
-                }}
             }}
         </style>
     </head>
@@ -359,11 +271,7 @@ def create_email_template(name, email, subject, message):
         <div class="email-wrapper">
             <div class="header">
                 <div class="header-content">
-                    <div class="header-icon">
-                        <img src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771383563/GREEN_Circ_buvqxc.png" 
-                            alt="GREEN Inc. Logo" 
-                            />
-                    </div>
+                    <div class="header-icon">🌊</div>
                     <h1>New Contact Form Submission</h1>
                     <div class="header-badge">GREEN Inc. Marine Conservation</div>
                 </div>
@@ -371,66 +279,44 @@ def create_email_template(name, email, subject, message):
             
             <div class="content">
                 <div class="intro">
-                    <span>You've received a new inquiry from your website contact form.</span>
+                    <span>📧 You've received a new inquiry from your website contact form.</span>
                 </div>
                 
                 <div class="section-title">
-                    Contact Information
+                    📋 Contact Information
                 </div>
                 
                 <div class="info-grid">
                     <div class="info-card">
-                        <div class="info-label">
-                            Full Name
-                        </div>
+                        <div class="info-label">👤 Full Name</div>
                         <div class="info-value">{name}</div>
                     </div>
                     
                     <div class="info-card">
-                        <div class="info-label">
-                            Email Address
-                        </div>
+                        <div class="info-label">📧 Email Address</div>
                         <div class="info-value small">{email}</div>
                     </div>
                     
                     <div class="info-card">
-                        <div class="info-label">
-                            Subject
-                        </div>
+                        <div class="info-label">📋 Subject</div>
                         <div class="info-value">{subject}</div>
                     </div>
                     
                     <div class="info-card">
-                        <div class="info-label">
-                            Submitted
-                        </div>
+                        <div class="info-label">🕐 Submitted</div>
                         <div class="info-value small">{datetime.now().strftime('%B %d, %Y at %I:%M %p')}</div>
                     </div>
                 </div>
                 
                 <div class="message-section">
-                    <div class="message-header">
-                        Message Content
-                    </div>
-                    <div class="message-content">
-                        {message.replace(chr(10), '<br>')}
-                    </div>
+                    <div class="message-header">💬 Message Content</div>
+                    <div class="message-content">{message.replace(chr(10), '<br>')}</div>
                 </div>
-                
-                <div class="divider"></div>
                 
                 <div class="actions">
                     <a href="mailto:{email}?subject=Re: {subject}" class="reply-button">
                         ✉️ Reply to {name}
                     </a>
-                </div>
-                
-                <div class="meta-info">
-                    <div class="timestamp">
-                        <span class="timestamp-icon">⏱</span>
-                        Response expected within 24-48 hours
-                    </div>
-                    <div>Secure inquiry</div>
                 </div>
             </div>
             
@@ -454,58 +340,48 @@ def create_email_template(name, email, subject, message):
     """
     return html_template
 
-def send_email_via_mailtrap(to_email, subject, html_content, reply_to_email):
-    """Send email using SMTP (works with both mailtrap and Mailtrap)"""
+def send_email_via_resend(to_email, subject, html_content, reply_to_email, sender_name):
+    """Send email using Resend API"""
     try:
-        # Get SMTP credentials from environment variables
-        smtp_username = os.getenv('MAILTRAP_SMTP_USERNAME')
-        smtp_password = os.getenv('MAILTRAP_SMTP_PASSWORD')
-        smtp_server = os.getenv('MAILTRAP_SMTP_SERVER', 'sandbox.smtp.mailtrap.io')
-        smtp_port = int(os.getenv('MAILTRAP_SMTP_PORT', '2525'))  # Use port from .env
-        from_email = os.getenv('MAILTRAP_FROM_EMAIL', 'noreply@marineconservation.com')
+        # Get configuration from environment
+        from_email = os.getenv('RESEND_FROM_EMAIL', 'info@sogodbaycoralrestoration.com')
+        from_name = os.getenv('RESEND_FROM_NAME', 'GREEN Inc. Marine Conservation')
         
-        if not smtp_username or not smtp_password:
-            raise ValueError("SMTP credentials not configured")
+        # Prepare email data
+        email_data = {
+            "from": f"{from_name} <{from_email}>",
+            "to": [to_email],
+            "subject": subject,
+            "html": html_content,
+            "reply_to": [reply_to_email],
+            "headers": {
+                "X-Entity-Ref-ID": f"contact-form-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+            }
+        }
         
-        logger.info(f"SMTP Config - Server: {smtp_server}, Port: {smtp_port}, Username: {smtp_username}")
+        logger.info(f"Sending email via Resend to {to_email}")
+        logger.info(f"From: {from_name} <{from_email}>")
+        logger.info(f"Reply-to: {reply_to_email}")
         
-        # Create message
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = subject
-        msg['From'] = f"Marine Conservation Contact <{from_email}>"
-        msg['To'] = to_email
-        msg['Reply-To'] = reply_to_email
+        # Send email using Resend
+        response = resend.Emails.send(email_data)
         
-        # Add HTML content
-        html_part = MIMEText(html_content, 'html')
-        msg.attach(html_part)
+        logger.info(f"Resend response: {response}")
         
-        # Connect to SMTP server and send email
-        logger.info(f"Connecting to {smtp_server}:{smtp_port}")
+        if response and response.get('id'):
+            logger.info(f"Email sent successfully. Message ID: {response['id']}")
+            return True, f"Email sent successfully (ID: {response['id']})"
+        else:
+            logger.error(f"Unexpected Resend response: {response}")
+            return False, "Failed to send email - no message ID received"
         
-        with smtplib.SMTP(smtp_server, smtp_port) as server:
-            server.starttls()
-            logger.info("Starting TLS...")
-            server.login(smtp_username, smtp_password)
-            logger.info("Login successful")
-            server.send_message(msg)
-            
-        logger.info(f"Email sent successfully to {to_email}")
-        return True, "Email sent successfully"
-        
-    except smtplib.SMTPAuthenticationError as e:
-        logger.error(f"SMTP Authentication failed: {str(e)}")
-        return False, "Email authentication failed. Please check credentials."
-    except smtplib.SMTPException as e:
-        logger.error(f"SMTP error: {str(e)}")
-        return False, f"Email server error: {str(e)}"
     except Exception as e:
-        logger.error(f"Failed to send email: {str(e)}")
+        logger.error(f"Resend API error: {str(e)}")
         return False, f"Failed to send email: {str(e)}"
 
 @contact_bp.route('/contact', methods=['POST'])
 def send_contact_email():
-    """Handle contact form submissions"""
+    """Handle contact form submissions using Resend"""
     try:
         # Get JSON data from request
         data = request.get_json()
@@ -534,15 +410,16 @@ def send_contact_email():
         
         # Create email content
         html_content = create_email_template(name, email, subject, message)
-        email_subject = f"GREEN Inc. Inquiry: {subject}"
+        email_subject = f"GREEN Inc. Contact Form: {subject}"
         
         # Send email to your organization
         to_email = os.getenv('CONTACT_EMAIL', 'info@sogodbaycoralrestoration.com')
-        success, result_message = send_email_via_mailtrap(
+        success, result_message = send_email_via_resend(
             to_email=to_email,
             subject=email_subject,
             html_content=html_content,
-            reply_to_email=email
+            reply_to_email=email,
+            sender_name=name
         )
         
         if success:
@@ -565,24 +442,29 @@ def send_contact_email():
 
 @contact_bp.route('/contact/test', methods=['GET'])
 def test_email_config():
-    """Test endpoint to verify email configuration"""
+    """Test endpoint to verify Resend configuration"""
     try:
-        # Check if all required environment variables are set
-        required_vars = ['MAILTRAP_SMTP_USERNAME', 'MAILTRAP_SMTP_PASSWORD', 'CONTACT_EMAIL']
-        missing_vars = [var for var in required_vars if not os.getenv(var)]
-        
-        if missing_vars:
+        # Check if API key is configured
+        api_key = os.getenv('RESEND_API_KEY')
+        if not api_key:
             return jsonify({
                 'status': 'error',
-                'message': f'Missing environment variables: {", ".join(missing_vars)}'
+                'message': 'RESEND_API_KEY not configured'
+            }), 500
+        
+        # Check if API key format is correct
+        if not api_key.startswith('re_'):
+            return jsonify({
+                'status': 'error',
+                'message': 'Invalid Resend API key format'
             }), 500
         
         return jsonify({
             'status': 'success',
-            'message': 'Email configuration is valid',
-            'smtp_server': os.getenv('MAILTRAP_SMTP_SERVER', 'smtp.mailtrap.io'),
-            'smtp_port': os.getenv('MAILTRAP_SMTP_PORT', '2525'),
-            'from_email': os.getenv('MAILTRAP_FROM_EMAIL', 'noreply@your-domain.com'),
+            'message': 'Resend configuration is valid',
+            'api_key_prefix': api_key[:8] + '...',
+            'from_email': os.getenv('RESEND_FROM_EMAIL', 'info@sogodbaycoralrestoration.com'),
+            'from_name': os.getenv('RESEND_FROM_NAME', 'GREEN Inc. Marine Conservation'),
             'contact_email': os.getenv('CONTACT_EMAIL')
         })
         
@@ -590,4 +472,56 @@ def test_email_config():
         return jsonify({
             'status': 'error',
             'message': str(e)
+        }), 500
+
+@contact_bp.route('/contact/send-test', methods=['POST'])
+def send_test_email():
+    """Send a test email to verify Resend is working"""
+    try:
+        # Get test email from request
+        data = request.get_json()
+        test_email = data.get('email') if data else os.getenv('CONTACT_EMAIL')
+        
+        if not test_email:
+            return jsonify({
+                'status': 'error',
+                'message': 'No test email provided'
+            }), 400
+        
+        # Create test email content
+        html_content = create_email_template(
+            name="Test User",
+            email=test_email,
+            subject="Test Email Configuration",
+            message="This is a test message to verify that Resend API is working correctly."
+        )
+        
+        # Send test email
+        success, result_message = send_email_via_resend(
+            to_email=test_email,
+            subject="GREEN Inc. - Test Email",
+            html_content=html_content,
+            reply_to_email=test_email,
+            sender_name="Test User"
+        )
+        
+        if success:
+            return jsonify({
+                'status': 'success',
+                'message': f'Test email sent successfully to {test_email}',
+                'details': result_message
+            }), 200
+        else:
+            return jsonify({
+                'status': 'error',
+                'message': 'Failed to send test email',
+                'details': result_message
+            }), 500
+            
+    except Exception as e:
+        logger.error(f"Error sending test email: {str(e)}")
+        return jsonify({
+            'status': 'error',
+            'message': 'Failed to send test email',
+            'details': str(e)
         }), 500
