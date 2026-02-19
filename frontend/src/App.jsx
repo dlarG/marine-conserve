@@ -35,6 +35,8 @@ import DoubleActOfSogod from "./components/blogs/DoubleActOfSogod";
 
 import Donate from "./components/Donate";
 
+import CarouselEffect from "./components/CarouselEffect";
+
 import "./index.css";
 
 const HomePage = () => {
@@ -157,6 +159,7 @@ function App() {
             element={<CoralRestorationPage />}
           />
           <Route path="/donate" element={<DonatePage />} />
+          <Route path="/carousel" element={<CarouselEffect />} />
           <Route
             path="/projects/cots-monitoring"
             element={<CotsResponsePage />}

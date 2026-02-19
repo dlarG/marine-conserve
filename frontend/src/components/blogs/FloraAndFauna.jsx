@@ -128,7 +128,7 @@ const FloraAndFauna = () => {
               extensive research expeditions.
             </p>
 
-            <p className="text-lg leading-relaxed text-gray-600 mb-12">
+            <p className="text-lg leading-relaxed text-gray-700 font-light mb-12">
               Our research team has spent countless hours underwater,
               meticulously cataloging the incredible biodiversity that thrives
               within these protected waters. From vibrant coral gardens to
@@ -171,7 +171,7 @@ const FloraAndFauna = () => {
               Marine Biodiversity Overview
             </h2>
 
-            <p className="text-lg leading-relaxed text-gray-700 mb-6">
+            <p className="text-lg leading-relaxed text-gray-700 font-light mb-6">
               The marine park encompasses 15.69 hectares of pristine coral reef
               ecosystem, featuring an remarkable diversity of marine species.
               Our comprehensive surveys have identified distinct habitat zones,
@@ -197,7 +197,7 @@ const FloraAndFauna = () => {
               </div>
             </div>
 
-            <p className="text-lg leading-relaxed text-gray-700">
+            <p className="text-lg leading-relaxed text-gray-700 font-light">
               The coral formations range from massive brain corals to delicate
               branching species, creating complex three-dimensional structures
               that provide shelter and feeding grounds for countless marine
