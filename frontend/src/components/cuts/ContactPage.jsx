@@ -37,6 +37,7 @@ const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const sectionRef = useRef(null);
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   // Malitbog coordinates
   const malitbogCoordinates = [10.158098, 125.002838];
@@ -78,7 +79,7 @@ const ContactPage = () => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
