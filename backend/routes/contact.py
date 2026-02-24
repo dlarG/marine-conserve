@@ -272,7 +272,7 @@ def create_email_template(name, email, subject, message):
         <div class="email-wrapper">
             <div class="header">
                 <div class="header-content">
-                    <div class="header-icon">🌊</div>
+                    <div class="header-icon"><img src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384196/GREEN_Circ_uhjl4s.png"/></div>
                     <h1>New Contact Form Submission</h1>
                     <div class="header-badge">GREEN Inc. Marine Conservation</div>
                 </div>

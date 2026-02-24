@@ -96,8 +96,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
 
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Light rays */}
-          {[...Array(4)].map((_, i) => (
+          {/* {[...Array(4)].map((_, i) => (
             <div
               key={i}
               className="absolute rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
@@ -110,7 +109,7 @@ const Hero = () => {
                 animationDelay: `${i * 0.3}s`,
               }}
             />
-          ))}
+          ))} */}
           <div className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-teal-300/30 to-transparent transform rotate-12 blur-sm" />
           <div className="absolute top-0 right-1/3 w-1 h-full bg-gradient-to-b from-blue-300/20 to-transparent transform -rotate-6 blur-sm" />
           <div className="absolute top-0 left-2/3 w-1 h-full bg-gradient-to-b from-emerald-300/25 to-transparent transform rotate-3 blur-sm" />
