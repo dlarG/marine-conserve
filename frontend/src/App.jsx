@@ -151,6 +151,7 @@ const DonatePage = () => {
     <>
       <DonateNavbar />
       <Donate />
+      <Footer />
     </>
   );
 };
@@ -165,7 +166,12 @@ const MissionPage = () => {
 };
 
 const CoursePage = () => {
-  return <Course />;
+  return (
+    <>
+      <Course />
+      <Footer />
+    </>
+  );
 };
 
 const CoralRestorationPage = () => {

@@ -3,7 +3,7 @@ import DonateModal from "./DonateModal";
 
 const Donate = () => {
   const [isVisible, setIsVisible] = useState({});
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [, setIsLoaded] = useState(false);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [scrollY, setScrollY] = useState(0);
@@ -31,6 +31,7 @@ const Donate = () => {
     }, 100);
     return () => clearTimeout(timer);
   }, []);
+
   useEffect(() => {
     const refs = {
       hero: heroRef,
@@ -160,167 +161,78 @@ const Donate = () => {
         "Before GREEN Inc. started their work, I watched our reefs die. Now, I see baby corals growing where there was only rubble. Every donation makes this possible.",
       author: "Juan Dela Cruz",
       role: "Local Fisherman, Malitbog",
-      image: "/images/avatar-placeholder.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1774851532/pexels-hao-peng-2148478861-30975982_xggp1z.jpg",
     },
     {
       quote:
         "The data we collect shows real recovery. In just two years, we've seen fish populations increase by 40% in our protected areas.",
       author: "Dr. Maria Santos",
       role: "Marine Biologist",
-      image: "/images/avatar-placeholder.jpg",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1774851591/pexels-batitay-japheth-43379766-16333664_qzlac8.jpg",
     },
   ];
 
-  const impactNumbers = [
-    { value: "10+", label: "Barangays Protected" },
-    { value: "50+", label: "Active Volunteers" },
-    { value: "10,000+", label: "Corals Saved" },
-    { value: "15+", label: "Years of Impact" },
-  ];
+  const backgroundVideoUrl =
+    "https://res.cloudinary.com/dfsxmtyxk/video/upload/v1774838153/17454115-uhd_3840_2160_25fps_tkhd3n.mp4";
+  const title = "Your Donation Saves Lives";
+  const subtitle =
+    "Every peso brings us closer to saving Sogod Bay's coral reefs. Your support funds actual dives, removes threats, and restores hope for thousands of marine species and coastal communities.";
 
   return (
     <>
       {/* Hero Section */}
-      <section
-        id="hero"
-        ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      >
-        {/* Parallax Background */}
-        <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 will-change-transform"
-            style={{
-              transform: `translateY(${scrollY * 0.3}px)`,
-              transformStyle: "preserve-3d",
-            }}
-          >
-            <img
-              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384143/small3_j2rhed.jpg"
-              alt="Sogod Bay"
-              className="w-full h-[120vh] object-cover"
-              style={{
-                minHeight: "calc(100vh + 200px)",
-                objectPosition: "center center",
-              }}
-            />
-          </div>
-
-          {/* Gradient Overlay - with parallax */}
-          <div
-            className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-teal-900/80"
-            style={{
-              transform: `translateY(${scrollY * 0.2}px)`,
-            }}
+      <section id="hero" ref={heroRef}>
+        <header className="relative w-full h-[50vh] overflow-hidden">
+          {/* Background Video */}
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src={backgroundVideoUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
           />
 
+          {/* Overlay */}
           <div
-            className="absolute bottom-0 left-0 right-0"
-            style={{
-              transform: `translateY(${scrollY * 0.1}px)`,
-            }}
-          >
-            <svg
-              className="w-full h-32 text-white/10 animate-pulse"
-              viewBox="0 0 1440 120"
-              fill="currentColor"
-            >
-              <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" />
-            </svg>
-          </div>
-        </div>
+            className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/60"
+            aria-hidden="true"
+          />
 
-        {/* Content - moves at normal speed for contrast */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
-          <div
-            className={`transform transition-all duration-1000 ${
-              isVisible.hero
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-          >
-            <h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              <span className="block">Your Donation</span>
-              <span className="block bg-gradient-to-r from-teal-300 via-green-300 to-emerald-300 bg-clip-text text-transparent">
-                Saves Lives
-              </span>
-            </h1>
+          {/* Content */}
+          <div className="relative h-full max-w-7xl mx-auto px-4 flex mt-30">
+            <div className="max-w-2xl">
+              <h1 className="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+                {title}
+              </h1>
 
-            <p className="text-l md:text-xl text-white/90 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Every peso brings us closer to saving Sogod Bay's coral reefs.
-              Your support funds actual dives, removes threats, and restores
-              hope for thousands of marine species and coastal communities.
-            </p>
+              <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
+                {subtitle}
+              </p>
 
-            <div
-              className={`flex flex-wrap gap-2 md:gap-4 justify-center transform transition-all duration-1000 ${
-                isLoaded
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
-              style={{ transitionDelay: "1s" }}
-            >
-              <button
-                onClick={handleDonateClick}
-                style={{ cursor: "pointer" }}
-                className="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 transition-transform duration-500 group-hover:translate-x-full" />
-                <span className="relative flex items-center justify-center gap-3">
-                  <span>Make a Contribution</span>
-                  <svg
-                    className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </span>
-              </button>
-
-              <button
-                className="group border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:border-white/60 hover:bg-white/5 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 active:scale-95"
-                style={{ cursor: "pointer" }}
-              >
-                <span className="relative flex items-center justify-center gap-3">
-                  <svg
-                    className="w-5 h-5 group-hover:rotate-12 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                    />
-                  </svg>
-                  <span>Explore Our Impact</span>
-                </span>
-              </button>
-            </div>
-
-            {/* Quick Impact Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto lg:mt-16 mt-5">
-              {impactNumbers.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl mb-1">{stat.icon}</div>
-                  <div className="text-2xl font-bold text-white">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs text-white/70">{stat.label}</div>
-                </div>
-              ))}
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  onClick={() => handleDonateClick()}
+                  className="cursor-pointer px-5 py-2.5 rounded-full bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors"
+                >
+                  Make Contribution
+                </a>
+                <a
+                  onClick={() => {
+                    "/about";
+                  }}
+                  className="px-5 py-2.5 rounded-full bg-white/10 text-white font-medium border border-white/20 hover:bg-white/15 transition-colors"
+                >
+                  Explore Our Impact
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </header>
 
         {/* Scroll Indicator - with subtle parallax */}
         <div
@@ -548,7 +460,7 @@ const Donate = () => {
       <section
         id="impact"
         ref={impactRef}
-        className="relative py-24 bg-white overflow-hidden"
+        className="relative py-12 bg-white overflow-hidden"
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 left-0 w-64 h-64 bg-teal-100 rounded-full filter blur-3xl opacity-30" />
@@ -585,7 +497,11 @@ const Donate = () => {
                 <div className="flex items-start mb-4">
                   <div className="flex-shrink-0 mr-4">
                     <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-green-500 rounded-full flex items-center justify-center text-white text-2xl">
-                      {story.author.charAt(0)}
+                      <img
+                        src={story.image}
+                        alt={story.author}
+                        className="w-full h-full object-cover rounded-full"
+                      />
                     </div>
                   </div>
                   <div>
@@ -599,54 +515,13 @@ const Donate = () => {
               </div>
             ))}
           </div>
-
-          {/* Impact Numbers */}
-          <div
-            className={`grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 transform transition-all duration-1000 delay-400 ${
-              isVisible.impact
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-          >
-            {[
-              {
-                number: "40%",
-                label: "Increase in fish biomass",
-                color: "text-teal-600",
-              },
-              {
-                number: "2,500+",
-                label: "Corals transplanted",
-                color: "text-green-600",
-              },
-              {
-                number: "15+",
-                label: "Communities protected",
-                color: "text-blue-600",
-              },
-              {
-                number: "5+",
-                label: "Years of continuous work",
-                color: "text-purple-600",
-              },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className={`text-3xl font-bold ${stat.color} mb-2`}>
-                  {stat.number}
-                </div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section
+      {/* <section
         ref={ctaRef}
         className="relative py-24 bg-gradient-to-br from-teal-900 to-green-900 text-white overflow-hidden"
       >
-        {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -715,7 +590,6 @@ const Donate = () => {
               </p>
             </div>
 
-            {/* Trust Badges */}
             <div className="flex flex-wrap gap-6 justify-center mt-12 pt-8 border-t border-white/20">
               <div className="flex items-center">
                 <svg
@@ -758,7 +632,33 @@ const Donate = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+      <div className="mb-10 text-center">
+        <div className="inline-block p-8 rounded-2xl bg-gradient-to-r from-teal-50 to-blue-50 border border-teal-100 max-w-2xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-teal-200/30 rounded-full -translate-y-16 translate-x-16 blur-2xl" />
+          <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-200/30 rounded-full translate-y-16 -translate-x-16 blur-2xl" />
+
+          <h3 className="text-2xl font-bold text-gray-900 mb-4 relative z-10">
+            Make a Lasting Impact with Your Donation
+          </h3>
+          <p className="text-gray-600 mb-6 relative z-10">
+            100% of your donation goes directly to conservation programs. We're
+            run by volunteers, so every peso counts.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center relative z-10">
+            <button
+              style={{ cursor: "pointer" }}
+              onClick={() => handleDonateClick()}
+              className="relative px-8 py-3 bg-gradient-to-r from-teal-600 to-green-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-teal-600 transition-transform duration-500 group-hover:translate-x-full" />
+              <span className="relative flex items-center justify-center gap-2">
+                Donate Now
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Donate Modal */}
       <DonateModal
