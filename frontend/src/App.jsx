@@ -13,6 +13,7 @@ import Methods from "./components/Methods";
 import Mission from "./components/Mission";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Course from "./components/Course";
+import AboutHero from "./components/cuts/AboutHero";
 
 import About1 from "./components/cuts/About1";
 import About2 from "./components/cuts/About2";
@@ -65,6 +66,35 @@ const HomePage = () => {
       </section>
       <section id="contact">
         <ContactPage />
+      </section>
+    </div>
+  );
+};
+
+const HomePage2 = () => {
+  return (
+    <div>
+      <Navbar />
+      <section id="hero">
+        <Hero />
+      </section>
+      <Footer />
+    </div>
+  );
+};
+
+const AboutPage = () => {
+  return (
+    <div>
+      <Navbar />
+      <section id="about" className="relative overflow-hidden">
+        <AboutHero />
+        <About1 />
+        <About2 />
+        <PillarAbout />
+        <About3 />
+        <TimelineAbout />
+        <Footer />
       </section>
     </div>
   );
@@ -150,7 +180,8 @@ function App() {
     <Router>
       <div className="min-h-screen">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage2 />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/methods" element={<MethodsPage />} />
           <Route path="/mission" element={<MissionPage />} />
           <Route path="/courses" element={<CoursePage />} />
@@ -178,7 +209,6 @@ function App() {
           <Route path="/blog/2" element={<MalitbogCoralres />} />
           <Route path="/blog/3" element={<DoubleActOfSogod />} />
         </Routes>
-        <Footer />
       </div>
     </Router>
   );

@@ -159,11 +159,11 @@ const Hero = () => {
               isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
-            <p className="text-xs text-center lg:text-left lg:mt-10 lg:text-sm uppercase tracking-widest text-teal-300 mb-4 mt-10 lg:mt-0 font-semibold">
+            <p className="text-[0.7rem] text-center lg:text-left lg:mt-10 lg:text-[0.8rem] uppercase tracking-widest text-teal-300 mb-4 mt-10 lg:mt-0 font-semibold">
               Protecting Our Oceans
             </p>
 
-            <h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-5xl text-center lg:text-left mt-5 lg:mt-0 font-bold text-white mb-6 leading-tight tracking-tight">
+            <h1 className="text-3xl sm:text-3xl md:text-[2.3rem] lg:text-[2.8rem] text-center lg:text-left mt-5 lg:mt-0 font-bold text-white mb-6 leading-tight tracking-tight">
               <span
                 className={`block bg-gradient-to-r from-white via-teal-100 to-emerald-100 bg-clip-text text-transparent transform transition-all duration-1000 ${
                   isLoaded
@@ -204,7 +204,7 @@ const Hero = () => {
               }`}
               style={{ transitionDelay: "0.8s" }}
             >
-              <p className="text-l sm:text-xl md:text-xl text-white/90 mb-8 md:max-w-full lg:max-w-2xl leading-relaxed">
+              <p className="text-l sm:text-lg md:text-l text-white/90 mb-8 md:max-w-full lg:max-w-2xl leading-relaxed">
                 GREEN, Inc. launches a full-time marine conservation operation
                 in Malitbog, Southern Leyte, focusing on{" "}
                 <span className="text-green-300 font-semibold">
@@ -225,7 +225,7 @@ const Hero = () => {
             </div>
 
             <div
-              className={`flex flex-wrap gap-4 lg:justify-start justify-center transform transition-all duration-1000 ${
+              className={`flex flex-wrap gap-3 sm:gap-4 lg:justify-start justify-center transform transition-all duration-1000 ${
                 isLoaded
                   ? "translate-y-0 opacity-100"
                   : "translate-y-8 opacity-0"
@@ -235,13 +235,13 @@ const Hero = () => {
               <button
                 onClick={() => navigate("/mission")}
                 style={{ cursor: "pointer" }}
-                className="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95"
+                className="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-5 sm:px-6 lg:px-8 py-3 sm:py-3.5 lg:py-4 rounded-xl text-base sm:text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95 max-w-full"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 transition-transform duration-500 group-hover:translate-x-full" />
-                <span className="relative flex items-center justify-center gap-3">
-                  <span>Support Our Mission</span>
+                <span className="relative flex items-center justify-center gap-2 sm:gap-3">
+                  <span className="whitespace-nowrap">Support Our Mission</span>
                   <svg
-                    className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                    className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -257,12 +257,12 @@ const Hero = () => {
               </button>
 
               <button
-                className="group border-2 border-white/30 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:border-white/60 hover:bg-white/5 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 active:scale-95"
+                className="group border-2 border-white/30 text-white px-5 sm:px-6 lg:px-8 py-3 sm:py-3.5 lg:py-4 rounded-xl text-base sm:text-lg font-semibold hover:border-white/60 hover:bg-white/5 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 active:scale-95 max-w-full"
                 style={{ cursor: "pointer" }}
               >
-                <span className="relative flex items-center justify-center gap-3">
+                <span className="relative flex items-center justify-center gap-2 sm:gap-3">
                   <svg
-                    className="w-5 h-5 group-hover:rotate-12 transition-transform"
+                    className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 transition-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -274,39 +274,10 @@ const Hero = () => {
                       d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
                     />
                   </svg>
-                  <span>Explore Our Impact</span>
+                  <span className="whitespace-nowrap">Explore Our Impact</span>
                 </span>
               </button>
             </div>
-            {/* <div
-              className={`grid grid-cols-3 gap-6 mt-12 transform transition-all duration-1000 ${
-                isLoaded
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
-              style={{ transitionDelay: "1.2s" }}
-            >
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-300 mb-1">
-                  50+
-                </div>
-                <div className="text-sm text-white/70">Research Projects</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-300 mb-1">
-                  1000+
-                </div>
-                <div className="text-sm text-white/70">
-                  Coral Colonies Saved
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-300 mb-1">
-                  15+
-                </div>
-                <div className="text-sm text-white/70">Community Partners</div>
-              </div>
-            </div> */}
           </div>
         </div>
         <div
@@ -315,7 +286,7 @@ const Hero = () => {
           }`}
           style={{ transitionDelay: "1.4s" }}
         >
-          <div className="relative max-w-full mx-auto lg:ml-auto">
+          <div className="hidden md:flex relative max-w-full mx-auto lg:ml-auto brightness-115 contrast-95">
             <img
               src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384101/hero-img21_lncb59.png"
               alt="Marine Conservation"
