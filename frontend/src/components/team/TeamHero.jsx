@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
-const AboutHero = ({
+const TeamHero = ({
   title = "What We Do",
   subtitle = "We at GREEN Inc. protect and restore marine ecosystems through community-led conservation, research, and education.",
-  backgroundVideoUrl = "https://res.cloudinary.com/dfsxmtyxk/video/upload/v1774838153/17454115-uhd_3840_2160_25fps_tkhd3n.mp4",
+  backgroundVideoUrl = "https://res.cloudinary.com/dfsxmtyxk/video/upload/v1774837305/14920043-uhd_3840_2160_25fps_sob7sx.mp4",
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,4 +59,4 @@ const AboutHero = ({
   );
 };
 
-export default AboutHero;
+export default TeamHero;

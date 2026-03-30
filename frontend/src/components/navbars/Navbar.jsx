@@ -46,7 +46,7 @@ const Navbar = () => {
   const navigationItems = [
     { id: "home", label: "Home", goto: "/" },
     { id: "about", label: "About Us", goto: "/about" },
-    { id: "blogs", label: "Blogs", goto: "/blogs" },
+    { id: "blogs", label: "Blogs", goto: "/blog" },
     { id: "team", label: "Team", goto: "/team" },
     { id: "contact", label: "Contact Us", goto: "/contact" },
   ];

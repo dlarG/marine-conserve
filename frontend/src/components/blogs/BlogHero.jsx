@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
-const AboutHero = ({
-  title = "What We Do",
-  subtitle = "We at GREEN Inc. protect and restore marine ecosystems through community-led conservation, research, and education.",
-  backgroundVideoUrl = "https://res.cloudinary.com/dfsxmtyxk/video/upload/v1774838153/17454115-uhd_3840_2160_25fps_tkhd3n.mp4",
+const BlogHero = ({
+  title = "Our Blog And Stories",
+  subtitle = "Discover the latest news, insights, and stories from GREEN Inc. Dive into our blog to learn about marine conservation, community initiatives, and the impact of our work on marine ecosystems.",
+  backgroundVideoUrl = "https://res.cloudinary.com/dfsxmtyxk/video/upload/v1774838240/17454110-uhd_3840_2160_25fps_cidtyu.mp4",
 }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,4 +59,4 @@ const AboutHero = ({
   );
 };
 
-export default AboutHero;
+export default BlogHero;

@@ -14,6 +14,9 @@ import Mission from "./components/Mission";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Course from "./components/Course";
 import AboutHero from "./components/cuts/AboutHero";
+import BlogHero from "./components/blogs/BlogHero";
+import TeamHero from "./components/team/TeamHero";
+import ContactHero from "./components/contact/ContactHero";
 
 import About1 from "./components/cuts/About1";
 import About2 from "./components/cuts/About2";
@@ -39,6 +42,7 @@ import Donate from "./components/Donate";
 import CarouselEffect from "./components/CarouselEffect";
 
 import "./index.css";
+import { Contact } from "lucide-react";
 
 const HomePage = () => {
   return (
@@ -87,7 +91,7 @@ const AboutPage = () => {
   return (
     <div>
       <Navbar />
-      <section id="about" className="relative overflow-hidden">
+      <section className="relative overflow-hidden">
         <AboutHero />
         <About1 />
         <About2 />
@@ -96,6 +100,39 @@ const AboutPage = () => {
         <TimelineAbout />
         <Footer />
       </section>
+    </div>
+  );
+};
+
+const BlogPage = () => {
+  return (
+    <div className="relative overflow-hidden">
+      <Navbar />
+      <BlogHero />
+      <Blogs />
+      <Footer />
+    </div>
+  );
+};
+
+const TeamPage = () => {
+  return (
+    <div className="relative overflow-hidden">
+      <Navbar />
+      <TeamHero />
+      <Team />
+      <Footer />
+    </div>
+  );
+};
+
+const ContactPage2 = () => {
+  return (
+    <div className="relative overflow-hidden">
+      <Navbar />
+      <ContactHero />
+      <ContactPage />
+      <Footer />
     </div>
   );
 };
@@ -204,10 +241,14 @@ function App() {
             element={<DebriRemovalPage />}
           />
 
+          <Route path="/blog" element={<BlogPage />} />
           <Route path="/blogs" element={<AllBlogPage />} />
           <Route path="/blog/1" element={<FloraAndFaunaPage />} />
           <Route path="/blog/2" element={<MalitbogCoralres />} />
           <Route path="/blog/3" element={<DoubleActOfSogod />} />
+
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/contact" element={<ContactPage2 />} />
         </Routes>
       </div>
     </Router>
