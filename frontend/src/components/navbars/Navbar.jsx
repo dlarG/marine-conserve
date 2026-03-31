@@ -1,50 +1,22 @@
 import React, { useState, useEffect } from "react";
 import DonateModal from "../DonateModal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const sections = ["hero", "about", "blogs", "team", "contact"];
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && scrollPosition >= section.offsetTop) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
   }, [isMobileMenuOpen]);
 
   const scrollToSection = (sectionId) => {
@@ -72,16 +44,43 @@ const Navbar = () => {
   };
 
   const navigationItems = [
-    { id: "hero", label: "Home" },
-    { id: "about", label: "About Us" },
-    { id: "blogs", label: "Blogs" },
-    { id: "team", label: "Team" },
-    { id: "contact", label: "Contact Us" },
+    { id: "home", label: "Home", goto: "/" },
+    { id: "about", label: "About Us", goto: "/about" },
+    { id: "blogs", label: "Blogs", goto: "/blog" },
+    { id: "team", label: "Team", goto: "/team" },
+    { id: "contact", label: "Contact Us", goto: "/contact" },
   ];
-
   const handleLogoClick = () => {
     navigate("/");
     scrollToSection("hero");
+  };
+
+  const desktopLinkClass = ({ isActive }) => {
+    const base =
+      "cursor-pointer font-medium transition-all duration-300 relative px-4 py-2 rounded-full group";
+    const inactive = isScrolled
+      ? "text-gray-700 hover:text-[#2E5E2E]"
+      : "text-white/80 hover:text-white";
+
+    const active = isScrolled
+      ? "text-[#2E5E2E] bg-teal-50/80"
+      : "text-white bg-white/20";
+
+    return `${base} ${isActive ? active : inactive}`;
+  };
+
+  const mobileLinkClass = ({ isActive }) => {
+    const base =
+      "block w-full text-left text-base font-medium py-4 px-6 rounded-xl transition-all duration-300 relative overflow-hidden group";
+    const inactive = isScrolled
+      ? "text-gray-800 hover:bg-gray-50"
+      : "text-white/90 hover:bg-white/10";
+
+    const active = isScrolled
+      ? "bg-gradient-to-r from-teal-50 to-green-50 text-[#2E5E2E]"
+      : "bg-gradient-to-r from-teal-900/30 to-green-900/30 text-white";
+
+    return `${base} ${isActive ? active : inactive}`;
   };
 
   return (
@@ -127,21 +126,14 @@ const Navbar = () => {
             <div className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
               <div className="flex items-center space-x-1 bg-white/10 backdrop-blur-sm rounded-full px-2 py-1">
                 {navigationItems.map((item) => (
-                  <button
+                  <NavLink
                     key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`cursor-pointer font-medium transition-all duration-300 relative px-4 py-2 rounded-full group ${
-                      activeSection === item.id
-                        ? isScrolled
-                          ? "text-[#2E5E2E]"
-                          : "text-white"
-                        : isScrolled
-                        ? "text-gray-700 hover:text-[#2E5E2E]"
-                        : "text-white/80 hover:text-white"
-                    }`}
+                    to={item.goto}
+                    end={item.end}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={desktopLinkClass}
                   >
                     {item.label}
-                    {/* Hover underline effect */}
                     <span
                       className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 w-0 group-hover:w-4 transition-all duration-300 ${
                         isScrolled
@@ -149,17 +141,7 @@ const Navbar = () => {
                           : "bg-gradient-to-r from-teal-300 to-green-300"
                       }`}
                     />
-                    {/* Active indicator */}
-                    {activeSection === item.id && (
-                      <span
-                        className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 w-6 rounded-full ${
-                          isScrolled
-                            ? "bg-gradient-to-r from-teal-600 to-green-600"
-                            : "bg-gradient-to-r from-teal-400 to-green-400"
-                        }`}
-                      />
-                    )}
-                  </button>
+                  </NavLink>
                 ))}
               </div>
             </div>
@@ -167,7 +149,7 @@ const Navbar = () => {
             <div className="inline-flex items-center space-x-3">
               <button
                 onClick={() => navigate("/courses")}
-                className={`cursor:pointer hidden md:block px-4.5 py-2 rounded-full font-medium border-2 transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
+                className={`hidden md:block px-4.5 py-2 rounded-full font-medium border-2 transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
                   isScrolled
                     ? "border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
                     : "border-white/60 text-white hover:bg-white/10"
@@ -176,7 +158,7 @@ const Navbar = () => {
               >
                 <span className="relative z-10">Courses</span>
                 <div
-                  className={`cursor:pointer absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
+                  className={`absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
                     isScrolled ? "bg-teal-600" : "bg-white/20"
                   }`}
                 />
@@ -184,7 +166,7 @@ const Navbar = () => {
 
               <button
                 onClick={handleDonateClick1}
-                className={` hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
+                className={`hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
                   isScrolled
                     ? "bg-gradient-to-r from-teal-600 to-green-600 text-white"
                     : "bg-gradient-to-r from-teal-600/90 to-green-600/90 text-white"
@@ -247,31 +229,17 @@ const Navbar = () => {
         >
           <div className="px-4 py-6 space-y-2">
             {navigationItems.map((item) => (
-              <button
+              <NavLink
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left text-base font-medium py-4 px-6 rounded-xl transition-all duration-300 relative overflow-hidden group ${
-                  activeSection === item.id
-                    ? isScrolled
-                      ? "bg-gradient-to-r from-teal-50 to-green-50 text-[#2E5E2E]"
-                      : "bg-gradient-to-r from-teal-900/30 to-green-900/30 text-white"
-                    : isScrolled
-                    ? "text-gray-800 hover:bg-gray-50"
-                    : "text-white/90 hover:bg-white/10"
-                }`}
+                to={item.goto}
+                end={item.end}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={mobileLinkClass}
               >
                 <span className="relative z-10 flex items-center">
                   <span>{item.label}</span>
-                  {activeSection === item.id && (
-                    <span className="ml-auto">
-                      <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse" />
-                    </span>
-                  )}
                 </span>
-                {activeSection === item.id && (
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-teal-400 to-green-400 rounded-r" />
-                )}
-              </button>
+              </NavLink>
             ))}
 
             <div className="pt-4 mt-2 border-t border-gray-300/50">

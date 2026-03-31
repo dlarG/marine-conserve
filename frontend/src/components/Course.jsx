@@ -54,7 +54,7 @@ const Course = () => {
         "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384082/conserve_p6ituq.jpg",
       duration: "8 weeks",
       level: "Beginner",
-      price: "$599",
+      price: "₱599",
       shortDescription:
         "Learn the basics of marine ecosystems and biodiversity",
       description:
@@ -94,7 +94,7 @@ const Course = () => {
         "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396163/pexels-debal-das-59599429-7970796_saucto.jpg",
       duration: "6 weeks",
       level: "Intermediate",
-      price: "$899",
+      price: "₱899",
       shortDescription:
         "Beginner-friendly course to learn scuba diving basics.",
       description:
@@ -135,7 +135,7 @@ const Course = () => {
         "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396227/pexels-leonardo-lamas-32247393-7001658_jez7o0.jpg",
       duration: "6 weeks",
       level: "Advanced",
-      price: "$1,299",
+      price: "₱1,299",
       shortDescription:
         "A highly-trained PADI Instructor will teach you how to scuba dive in a relaxed, supportive learning environment",
       description:
@@ -175,7 +175,7 @@ const Course = () => {
         "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396302/pexels-ruben-galante-3187936-4809004_agffbd.jpg",
       duration: "10 weeks",
       level: "Advanced",
-      price: "$1,099",
+      price: "₱1,099",
       shortDescription:
         "Enhance your skills in underwater exploration and conservation",
       description:
@@ -214,7 +214,7 @@ const Course = () => {
         "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396412/pexels-tomfisk-1522160_xmorgy.jpg",
       duration: "6 weeks",
       level: "Intermediate",
-      price: "$799",
+      price: "₱799",
       shortDescription: "Capture stunning marine life through lens",
       description:
         "Learn professional underwater photography and videography techniques to document marine life and create compelling content for conservation awareness.",

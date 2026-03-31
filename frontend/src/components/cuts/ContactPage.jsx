@@ -37,7 +37,8 @@ const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const sectionRef = useRef(null);
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  // import.meta.env.VITE_API_URL;
+  const API_URL = "http://localhost:5000";
 
   // Malitbog coordinates
   const malitbogCoordinates = [10.158098, 125.002838];
@@ -189,12 +190,10 @@ const ContactPage = () => {
       ref={sectionRef}
       className="relative py-10 overflow-hidden bg-gradient-to-b from-teal-50 to-white"
     >
-      {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
 
-        {/* Ocean wave pattern */}
         <div className="absolute bottom-0 left-0 right-0">
           <svg
             className="w-full h-auto text-teal-100 opacity-30"
@@ -352,7 +351,7 @@ const ContactPage = () => {
                         onChange={handleChange}
                         required
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all"
-                        placeholder="john@example.com"
+                        placeholder="john@gmail.com"
                       />
                     </div>
                   </div>
