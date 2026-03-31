@@ -29,15 +29,6 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setScrollY(window.scrollY);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
-
   useEffect(() => {
     let animationId;
     let startTime;
@@ -72,13 +63,6 @@ const Hero = () => {
       }
     };
   }, []);
-  // const handleScrollToContent = () => {
-  //   window.scrollTo({
-  //     top: window.innerHeight,
-  //     behavior: "smooth",
-  //   });
-  // };
-
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
@@ -90,26 +74,11 @@ const Hero = () => {
               "linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(167, 243, 208, 0.15) 50%, rgba(20, 184, 166, 0.05) 100%)",
           }}
         />
-        {/* <img src="/hero/hero1.JPG" alt="a photo of someone diving" /> */}
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-teal-900/80 via-transparent to-blue-900/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-teal-900/100 via-teal-900/60 via-teal-900/40 to-transparent" />
 
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
-              style={{
-                width: `${20 + i * 8}px`,
-                height: `${20 + i * 8}px`,
-                left: `${10 + i * 12}%`,
-                top: `${20 + i * 10}%`,
-                animation: `float ${4 + i * 0.5}s ease-in-out infinite`,
-                animationDelay: `${i * 0.3}s`,
-              }}
-            />
-          ))} */}
           <div className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-teal-300/30 to-transparent transform rotate-12 blur-sm" />
           <div className="absolute top-0 right-1/3 w-1 h-full bg-gradient-to-b from-blue-300/20 to-transparent transform -rotate-6 blur-sm" />
           <div className="absolute top-0 left-2/3 w-1 h-full bg-gradient-to-b from-emerald-300/25 to-transparent transform rotate-3 blur-sm" />
@@ -159,8 +128,8 @@ const Hero = () => {
               isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}
           >
-            <p className="text-[0.7rem] text-center lg:text-left lg:mt-10 lg:text-[0.8rem] uppercase tracking-widest text-teal-300 mb-4 mt-10 lg:mt-0 font-semibold">
-              Protecting Our Oceans
+            <p className="text-[0.5rem] text-center lg:text-left lg:mt-10 lg:text-[0.6rem] uppercase tracking-widest text-teal-300 mb-4 mt-10 lg:mt-0 font-semibold">
+              Protecting Our Oceans since 2013
             </p>
 
             <h1 className="text-3xl sm:text-3xl md:text-[2.3rem] lg:text-[2.8rem] text-center lg:text-left mt-5 lg:mt-0 font-bold text-white mb-6 leading-tight tracking-tight">
@@ -281,34 +250,25 @@ const Hero = () => {
           </div>
         </div>
         <div
-          className={`w-full lg:w-1/2 transform transition-all duration-1000 ${
+          className={`w-full lg:w-1/2 mt-12 lg:mt-0 transform transition-all duration-1000 ${
             isLoaded ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
           }`}
           style={{ transitionDelay: "1.4s" }}
         >
-          <div className="hidden md:flex relative max-w-full mx-auto lg:ml-auto brightness-115 contrast-95">
-            <img
-              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384101/hero-img21_lncb59.png"
-              alt="Marine Conservation"
-              className="w-full h-full"
-            />
-            <div className="absolute -top-8 right-8">
-              <div className="relative">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <div
-                    key={`bubble-${i}`}
-                    className="absolute rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
-                    style={{
-                      width: `${8 + i * 4}px`,
-                      height: `${8 + i * 4}px`,
-                      left: `${i * 15}px`,
-                      top: `${i * -15}px`,
-                      animation: `float ${3 + i * 0.5}s ease-in-out infinite`,
-                      animationDelay: `${i * 0.3}s`,
-                    }}
-                  />
-                ))}
-              </div>
+          <div className="relative max-w-full mx-auto lg:ml-auto">
+            <div className="relative">
+              {/* Outer glow effect */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 via-teal-500/20 to-emerald-500/20 rounded-full blur-2xl opacity-70" />
+
+              <img
+                src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384101/hero-img21_lncb59.png"
+                alt="Marine conservation in Southern Leyte - GREEN, Inc. team protecting coral reefs"
+                className="w-full h-auto relative z-10"
+                loading="eager"
+                style={{
+                  filter: "drop-shadow(0 0 15px rgba(0,255,0,0.1))",
+                }}
+              />
             </div>
           </div>
         </div>

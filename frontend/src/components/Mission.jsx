@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import MissionVissionHome from "./MissionVissionHome";
 
 const Mission = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const [, setIsLoaded] = useState(false);
+  const [, setScrollY] = useState(0);
   const [animatedSections, setAnimatedSections] = useState({});
   const sectionRefs = useRef({});
 
-  const heroRef = useRef(null);
   const missionRef = useRef(null);
   const locationRef = useRef(null);
   const projectsRef = useRef({});
@@ -136,125 +136,15 @@ This method prevents the sandy seafloor from smothering the fragments and possib
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section with Parallax */}
-      <section
-        id="hero"
-        ref={heroRef}
-        className="relative overflow-hidden h-[70vh] md:h-[70vh]"
-      >
-        {/* Main background image with parallax */}
-        <div
-          className="absolute inset-0"
-          style={{
-            transform: `translateY(${scrollY * 0.3}px) scale(1.1)`,
-            transition: "transform 0.1s ease-out",
-          }}
-        >
-          <img
-            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384141/small2_wmdmjz.jpg"
-            alt="Coral Reef Background"
-            className="w-full h-[120%] object-cover"
-            style={{ minHeight: "calc(70vh + 100px)" }}
-            onError={(e) => handleImageError(e, "/images/default-bg.jpg")}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
-        </div>
-
-        {/* Parallax overlay elements */}
-        <div
-          className="absolute inset-0"
-          style={{
-            transform: `translateY(${scrollY * 0.3}px)`,
-            transition: "transform 0.1s ease-out",
-          }}
-        >
-          <div className="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-teal-400/20 blur-xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-24 h-24 rounded-full bg-emerald-400/20 blur-xl animate-pulse delay-700"></div>
-          <div className="absolute top-1/3 right-1/3 w-20 h-20 rounded-full bg-blue-400/15 blur-xl animate-pulse delay-300"></div>
-        </div>
-
-        {/* Hero content */}
-        <div className="relative z-10 h-full flex items-center justify-center px-4">
-          <div className="text-center text-white max-w-6xl mx-auto">
-            <div
-              className={`transform transition-all duration-1000 delay-300 ${
-                isLoaded
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
-            >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-2 md:mb-4">
-                <span className="inline-block animate-slide-up">Restoring</span>{" "}
-                <span className="inline-block text-transparent bg-gradient-to-r from-teal-200 via-emerald-200 to-blue-200 bg-clip-text animate-slide-up delay-150">
-                  Ocean Life
-                </span>
-              </h1>
-
-              <div
-                className={`h-1 w-64 bg-gradient-to-r from-teal-400 to-emerald-400 mx-auto mb-2 md:mb-8 transform transition-all duration-1000 delay-500 ${
-                  isLoaded ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
-                }`}
-              ></div>
-
-              <p
-                className={`text-base md:text-xl lg:text-xl leading-relaxed font-light max-w-4xl mx-auto text-white/90 tracking-wide transform transition-all duration-1000 delay-700 ${
-                  isLoaded
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
-                }`}
-              >
-                Preserving Southern Leyte's coral reefs through innovative
-                <span className="block mt-2 font-medium text-white">
-                  restoration techniques and community engagement.
-                </span>
-              </p>
-            </div>
-
-            {/* Animated stats */}
-            <div
-              className={`mt-3 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 max-w-3xl mx-auto transform transition-all duration-1000 delay-1000 ${
-                isLoaded
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
-            >
-              {missionData.mission.stats.map((stat, index) => (
-                <div key={index}>
-                  <div className="text-2xl md:text-3xl font-bold text-teal-300 mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-white/80 tracking-wide">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Enhanced scroll indicator */}
-        <div
-          className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce ${
-            isLoaded ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center backdrop-blur-sm">
-            <div className="w-1 h-3 bg-gradient-to-b from-teal-300 to-emerald-300 rounded-full mt-2 animate-pulse"></div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission Section */}
       <section
         id="mission"
         ref={(el) => {
           missionRef.current = el;
           sectionRefs.current["mission"] = el;
         }}
-        className="relative py-10"
+        className="relative mb-10 py-12 px-6 md:px-12 lg:px-20 bg-gradient-to-b from-[#eaf7ef] to-white overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-teal-50/10 to-white"></div>
-
+        <MissionVissionHome />
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Text content */}
@@ -725,106 +615,6 @@ This method prevents the sandy seafloor from smothering the fragments and possib
           ))}
         </div>
       </section>
-
-      {/* Footer CTA */}
-      <div
-        className={`relative py-10 overflow-hidden transform transition-all duration-1000 ${
-          isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-        }`}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-600 via-emerald-600 to-teal-500"></div>
-
-        {/* Animated pattern overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-              backgroundSize: "100px 100px",
-            }}
-          ></div>
-        </div>
-
-        {/* Animated floating elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(8)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-6 h-6 rounded-full bg-gradient-to-r from-white/10 to-white/5 animate-float-slow"
-              style={{
-                top: `${10 + i * 12}%`,
-                left: `${5 + ((i * 15) % 85)}%`,
-                animationDelay: `${i * 200}ms`,
-                animationDuration: `${8 + (i % 3)}s`,
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4">
-          <h2
-            className={`text-3xl md:text-4xl font-bold text-white mb-8 leading-tight transform transition-all duration-700 delay-200 ${
-              isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-          >
-            Join Our
-            <span className="block">Conservation Mission</span>
-          </h2>
-          <p
-            className={`text-xl text-white/90 mb-12 leading-relaxed max-w-3xl mx-auto transform transition-all duration-700 delay-400 ${
-              isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-          >
-            Together, we can restore Southern Leyte's coral reefs and protect
-            marine biodiversity for future generations.
-          </p>
-          <div
-            className={`flex flex-col sm:flex-row gap-6 justify-center transform transition-all duration-700 delay-600 ${
-              isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-          >
-            <button className="cursor-pointer group relative bg-white text-teal-600 px-8 py-4 rounded-xl font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-50 to-emerald-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <span className="relative flex items-center justify-center gap-2">
-                <span>Support Our Mission</span>
-                <svg
-                  className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </span>
-            </button>
-
-            <button className="cursor-pointer group relative border-2 border-white text-white px-8 py-4 rounded-xl font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105">
-              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-              <span className="relative flex items-center justify-center gap-2">
-                <span>Learn More</span>
-                <svg
-                  className="w-5 h-5 group-hover:rotate-12 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

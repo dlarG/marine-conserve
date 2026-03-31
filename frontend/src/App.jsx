@@ -40,9 +40,11 @@ import DoubleActOfSogod from "./components/blogs/DoubleActOfSogod";
 import Donate from "./components/Donate";
 
 import CarouselEffect from "./components/CarouselEffect";
-
+import HomeAbout from "./components/HomeAbout";
 import "./index.css";
 import { Contact } from "lucide-react";
+import CtaHome from "./components/CtaHome";
+import MissionHero from "./components/mission/MissionHero";
 
 const HomePage = () => {
   return (
@@ -81,6 +83,8 @@ const HomePage2 = () => {
       <Navbar />
       <section id="hero">
         <Hero />
+        <HomeAbout />
+        <CtaHome />
       </section>
       <Footer />
     </div>
@@ -160,7 +164,9 @@ const MissionPage = () => {
   return (
     <>
       <MissionNavbar />
+      <MissionHero />
       <Mission />
+      <Footer />
     </>
   );
 };
