@@ -94,24 +94,24 @@ const HomeAbout = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4">
               <img
-                src="https://images.unsplash.com/photo-1583212292454-1fe6229263d4?w=400&h=300&fit=crop"
+                src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771387710/P6140239_d37zrt.jpg"
                 alt="Coral reef conservation"
                 className="rounded-2xl shadow-lg w-full h-48 object-cover"
               />
               <img
-                src="https://images.unsplash.com/photo-1534551766-b920b3f0c9a1?w=400&h=300&fit=crop"
+                src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384334/P1280001_j9rsit.jpg"
                 alt="Diving education"
                 className="rounded-2xl shadow-lg w-full h-40 object-cover"
               />
             </div>
             <div className="space-y-4 pt-8">
               <img
-                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=300&fit=crop"
+                src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384415/P3290154_g7mysv.jpg"
                 alt="Marine research"
                 className="rounded-2xl shadow-lg w-full h-40 object-cover"
               />
               <img
-                src="https://images.unsplash.com/photo-1582653291997-079a1b04a5bc?w=400&h=300&fit=crop"
+                src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384300/P9160010_qt0fkc.jpg"
                 alt="Community engagement"
                 className="rounded-2xl shadow-lg w-full h-48 object-cover"
               />

@@ -5,18 +5,22 @@ import os
 from datetime import datetime
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 logger = logging.getLogger(__name__)
 
 def create_app():
     app = Flask(__name__)
     
-    # CORS configuration
+    # CORS configuration - add your frontend URLs
     CORS(app, origins=[
         "http://localhost:5173", 
         "http://localhost:8888", 
+        "http://localhost:3000",
         "https://marineconserve.netlify.app",
-        "https://your-actual-frontend-domain.com"
+        # Add your production frontend URL here
     ])
     
     # Import and register routes
@@ -28,6 +32,14 @@ def create_app():
         return jsonify({
             'status': 'success',
             'message': 'Marine Conservation API is running',
+            'timestamp': datetime.now().isoformat()
+        })
+    
+    @app.route('/api/health')
+    def api_health():
+        return jsonify({
+            'status': 'success',
+            'message': 'API is healthy',
             'timestamp': datetime.now().isoformat()
         })
 

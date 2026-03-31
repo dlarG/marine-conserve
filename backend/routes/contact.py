@@ -1,16 +1,14 @@
 from flask import Blueprint, request, jsonify
 import os
 import logging
-from datetime import datetime
-import resend # type: ignore
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
 contact_bp = Blueprint('contact', __name__)
-
-# Initialize Resend with API key
-resend.api_key = os.getenv('RESEND_API_KEY')
 
 def validate_email_data(data):
     """Validate required email fields"""
@@ -29,6 +27,8 @@ def validate_email_data(data):
 
 def create_email_template(name, email, subject, message):
     """Create modern HTML email template"""
+    current_date = datetime.now().strftime("%B %d, %Y at %I:%M %p")
+    
     html_template = f"""
     <!DOCTYPE html>
     <html>
@@ -37,303 +37,116 @@ def create_email_template(name, email, subject, message):
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Contact Form Submission - Marine Conservation</title>
         <style>
-            /* Reset styles */
-            * {{
+            body {{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
                 margin: 0;
                 padding: 0;
-                box-sizing: border-box;
+                background-color: #f4f7f6;
             }}
-            
-            body {{
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-                line-height: 1.6;
-                color: #1e293b;
-                background-color: #f1f5f9;
-                margin: 0;
-                padding: 20px;
-            }}
-            
-            .email-wrapper {{
+            .container {{
                 max-width: 600px;
-                margin: 0 auto;
+                margin: 20px auto;
                 background-color: #ffffff;
-                border-radius: 24px;
+                border-radius: 12px;
                 overflow: hidden;
-                box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }}
-            
-            /* Header with wave pattern */
             .header {{
-                background: linear-gradient(135deg, #0f766e 0%, #059669 100%);
-                padding: 40px 30px;
-                position: relative;
+                background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+                color: white;
+                padding: 30px;
                 text-align: center;
             }}
-            
-            .header::after {{
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                height: 30px;
-                background: linear-gradient(to bottom right, transparent 49%, #ffffff 50%);
-            }}
-            
-            .header-content {{
-                position: relative;
-                z-index: 2;
-            }}
-            
-            .header-icon {{
-                width: 80px;
-                height: 80px;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin: 0 auto 20px;
-                font-size: 40px;
-                color: white;
-            }}
-            
             .header h1 {{
-                color: white;
                 margin: 0;
                 font-size: 28px;
                 font-weight: 600;
-                letter-spacing: -0.5px;
             }}
-            
-            .header-badge {{
-                display: inline-block;
-                background: rgba(255, 255, 255, 0.15);
-                color: white;
-                padding: 6px 16px;
-                border-radius: 30px;
-                font-size: 14px;
-                margin-top: 15px;
-                font-weight: 500;
-            }}
-            
-            /* Content area */
             .content {{
-                padding: 40px 35px;
-                background: #ffffff;
+                padding: 30px;
+                background-color: #f1f5f9;
             }}
-            
-            .intro {{
-                background: #f0fdf4;
-                border-left: 4px solid #059669;
-                padding: 16px 20px;
-                border-radius: 12px;
-                margin-bottom: 35px;
-                font-size: 15px;
-                color: #065f46;
-            }}
-            
-            .section-title {{
-                color: #0f766e;
-                font-size: 18px;
-                font-weight: 600;
+            .field {{
                 margin-bottom: 20px;
-                padding-bottom: 10px;
-                border-bottom: 2px solid #e2e8f0;
+                padding: 15px;
+                background-color: #f8fafc;
+                border-radius: 8px;
+                border-left: 4px solid #0d9488;
             }}
-            
-            /* Card grid layout */
-            .info-grid {{
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-                margin-bottom: 30px;
-            }}
-            
-            .info-card {{
-                background: #f8fafc;
-                border-radius: 16px;
-                padding: 18px;
-                border: 1px solid #e2e8f0;
-            }}
-            
-            .info-label {{
-                font-size: 12px;
+            .field-label {{
+                font-weight: 600;
+                color: #0f766e;
+                margin-bottom: 8px;
+                font-size: 14px;
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
-                color: #64748b;
-                margin-bottom: 6px;
             }}
-            
-            .info-value {{
-                font-size: 16px;
-                font-weight: 600;
+            .field-value {{
                 color: #1e293b;
-                word-break: break-word;
+                font-size: 16px;
+                word-wrap: break-word;
             }}
-            
-            .info-value.small {{
-                font-size: 14px;
-                font-weight: 400;
-            }}
-            
-            /* Message section */
-            .message-section {{
-                background: #f8fafc;
-                border-radius: 20px;
-                padding: 24px;
-                border: 1px solid #e2e8f0;
-                margin-bottom: 30px;
-            }}
-            
-            .message-header {{
-                color: #0f766e;
-                font-weight: 600;
-                margin-bottom: 15px;
-            }}
-            
             .message-content {{
-                background: white;
+                background-color: #f8fafc;
                 padding: 20px;
-                border-radius: 12px;
-                border: 1px solid #e2e8f0;
-                font-size: 15px;
-                line-height: 1.7;
-                color: #334155;
+                border-radius: 8px;
+                margin-top: 10px;
                 white-space: pre-wrap;
+                font-family: inherit;
             }}
-            
-            /* Action buttons */
-            .actions {{
-                text-align: center;
-                margin: 35px 0 20px;
-            }}
-            
-            .reply-button {{
-                display: inline-block;
-                background: #0f766e;
-                color: white;
-                text-decoration: none;
-                padding: 14px 32px;
-                border-radius: 40px;
-                font-weight: 600;
-                font-size: 16px;
-            }}
-            
-            /* Footer */
             .footer {{
-                background: #f8fafc;
-                padding: 30px 35px 25px;
+                background-color: #101727;
+                padding: 20px;
                 text-align: center;
-                border-top: 1px solid #e2e8f0;
+                font-size: 12px;
+                color: white;
             }}
-            
-            .footer-logo {{
-                font-size: 24px;
-                font-weight: 700;
-                color: #0f766e;
-                margin-bottom: 15px;
-            }}
-            
-            .footer-text {{
-                color: #64748b;
-                font-size: 13px;
-                margin: 5px 0;
-            }}
-            
-            .footer-highlight {{
-                background: #f1f5f9;
-                padding: 12px;
-                border-radius: 30px;
+            .badge {{
                 display: inline-block;
-                margin-top: 15px;
-                font-size: 14px;
-                color: #1e293b;
-                border: 1px solid #e2e8f0;
-            }}
-            
-            .footer-highlight strong {{
-                color: #0f766e;
-            }}
-            
-            /* Responsive */
-            @media (max-width: 600px) {{
-                .content {{
-                    padding: 30px 20px;
-                }}
-                
-                .info-grid {{
-                    grid-template-columns: 1fr;
-                }}
+                background-color: #10b981;
+                color: white;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 12px;
+                margin-top: 10px;
             }}
         </style>
     </head>
     <body>
-        <div class="email-wrapper">
+        <div class="container">
             <div class="header">
-                <div class="header-content">
-                    <div class="header-icon"><img src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384196/GREEN_Circ_uhjl4s.png"/></div>
-                    <h1>New Contact Form Submission</h1>
-                    <div class="header-badge">GREEN Inc. Marine Conservation</div>
-                </div>
+                <img src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384196/GREEN_Circ_uhjl4s.png" alt="GREEN Inc. Logo" style="width: 70px; height: 70px;">
+                <p>New Contact Form Submission</p>
+                <div class="badge">Received: {current_date}</div>
             </div>
-            
             <div class="content">
-                <div class="intro">
-                    <span>📧 You've received a new inquiry from your website contact form.</span>
+                <div class="field">
+                    <div class="field-label">Name</div>
+                    <div class="field-value">{name}</div>
                 </div>
                 
-                <div class="section-title">
-                    📋 Contact Information
-                </div>
-                
-                <div class="info-grid">
-                    <div class="info-card">
-                        <div class="info-label">👤 Full Name</div>
-                        <div class="info-value">{name}</div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-label">📧 Email Address</div>
-                        <div class="info-value small">{email}</div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-label">📋 Subject</div>
-                        <div class="info-value">{subject}</div>
-                    </div>
-                    
-                    <div class="info-card">
-                        <div class="info-label">🕐 Submitted</div>
-                        <div class="info-value small">{datetime.now().strftime('%B %d, %Y at %I:%M %p')}</div>
+                <div class="field">
+                    <div class="field-label">Email</div>
+                    <div class="field-value">
+                        <a href="mailto:{email}" style="color: #0d9488; text-decoration: none;">{email}</a>
                     </div>
                 </div>
                 
-                <div class="message-section">
-                    <div class="message-header">💬 Message Content</div>
-                    <div class="message-content">{message.replace(chr(10), '<br>')}</div>
+                <div class="field">
+                    <div class="field-label">Subject</div>
+                    <div class="field-value">{subject}</div>
                 </div>
                 
-                <div class="actions">
-                    <a href="mailto:{email}?subject=Re: {subject}" class="reply-button">
-                        ✉️ Reply to {name}
-                    </a>
+                <div class="field">
+                    <div class="field-label">Message</div>
+                    <div class="message-content">{message}</div>
                 </div>
             </div>
-            
             <div class="footer">
-                <div class="footer-logo">GREEN Inc.</div>
-                <div class="footer-text">Marine Conservation Initiative</div>
-                <div class="footer-text">Preserving our oceans for future generations</div>
-                
-                <div class="footer-highlight">
-                    <strong>Quick reply to:</strong> {email}
-                </div>
-                
-                <div style="margin-top: 20px; font-size: 11px; color: #94a3b8;">
-                    This is an automated message from your website contact form.<br>
-                    Please do not reply directly to this email.
-                </div>
+                <p>This message was sent from the contact form on your website.</p>
+                <p>© 2024 GREEN Inc. Marine Conservation | Sogod Bay Coral Restoration</p>
             </div>
         </div>
     </body>
@@ -341,101 +154,111 @@ def create_email_template(name, email, subject, message):
     """
     return html_template
 
-def send_email_via_resend(to_email, subject, html_content, reply_to_email, sender_name):
-    """Send email using Resend API"""
+def send_email_via_gmail(to_email, subject, html_content, reply_to_email):
+    """
+    Send email directly using Gmail SMTP
+    """
     try:
-        # Get configuration from environment
-        from_email = os.getenv('RESEND_FROM_EMAIL', 'info@sogodbaycoralrestoration.com')
-        from_name = os.getenv('RESEND_FROM_NAME', 'GREEN Inc. Marine Conservation')
+        # Gmail SMTP configuration
+        smtp_server = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+        smtp_port = int(os.getenv('SMTP_PORT', 587))
+        smtp_username = os.getenv('SMTP_USERNAME')
+        smtp_password = os.getenv('SMTP_PASSWORD')
+        from_email = os.getenv('SMTP_FROM_EMAIL', smtp_username)
         
-        # Prepare email data
-        email_data = {
-            "from": f"{from_name} <{from_email}>",
-            "to": [to_email],
-            "subject": subject,
-            "html": html_content,
-            "reply_to": [reply_to_email],
-            "headers": {
-                "X-Entity-Ref-ID": f"contact-form-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
-            }
-        }
+        # Validate credentials
+        if not smtp_username or not smtp_password:
+            logger.error("SMTP credentials missing!")
+            return False, "SMTP credentials not configured"
         
-        logger.info(f"Sending email via Resend to {to_email}")
-        logger.info(f"From: {from_name} <{from_email}>")
-        logger.info(f"Reply-to: {reply_to_email}")
+        logger.info(f"Attempting to send email from {from_email} to {to_email}")
         
-        # Send email using Resend
-        response = resend.Emails.send(email_data)
+        # Create message
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = subject
+        msg['From'] = f"GREEN Inc. Marine Conservation <{from_email}>"
+        msg['To'] = to_email
+        msg['Reply-To'] = reply_to_email
         
-        logger.info(f"Resend response: {response}")
+        # Attach HTML content
+        msg.attach(MIMEText(html_content, 'html', 'utf-8'))
         
-        if response and response.get('id'):
-            logger.info(f"Email sent successfully. Message ID: {response['id']}")
-            return True, f"Email sent successfully (ID: {response['id']})"
-        else:
-            logger.error(f"Unexpected Resend response: {response}")
-            return False, "Failed to send email - no message ID received"
+        # Send email
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.set_debuglevel(1)  # Enable debug output
+            server.starttls()
+            server.login(smtp_username, smtp_password)
+            server.send_message(msg)
+            
+        logger.info(f"✅ Email sent successfully to {to_email}")
+        return True, "Email sent successfully via Gmail"
         
+    except smtplib.SMTPAuthenticationError as e:
+        logger.error(f"❌ Gmail authentication failed: {str(e)}")
+        return False, "Email authentication failed. Please check your Gmail app password."
+    except smtplib.SMTPException as e:
+        logger.error(f"❌ SMTP error: {str(e)}")
+        return False, f"SMTP error: {str(e)}"
     except Exception as e:
-        logger.error(f"Resend API error: {str(e)}")
-        return False, f"Failed to send email: {str(e)}"
+        logger.error(f"❌ Unexpected error: {str(e)}")
+        return False, str(e)
 
 @contact_bp.route('/contact', methods=['POST'])
 def send_contact_email():
-    """Handle contact form submissions using Resend"""
     try:
-        # Get JSON data from request
         data = request.get_json()
-        
+        logger.info(f"📨 Received contact form submission")
+
         if not data:
-            return jsonify({
-                'status': 'error',
-                'message': 'No data provided'
-            }), 400
-        
-        # Validate data
+            return jsonify({'status': 'error', 'message': 'No data provided'}), 400
+
         is_valid, error_message = validate_email_data(data)
         if not is_valid:
-            return jsonify({
-                'status': 'error',
-                'message': error_message
-            }), 400
-        
-        # Extract form data
+            return jsonify({'status': 'error', 'message': error_message}), 400
+
         name = data.get('name', '').strip()
         email = data.get('email', '').strip()
         subject = data.get('subject', '').strip()
         message = data.get('message', '').strip()
-        
-        logger.info(f"Processing contact form from {name} ({email})")
-        
-        # Create email content
+
+        logger.info(f"📝 Processing contact from: {name} <{email}>")
+
+        # Create HTML email content
         html_content = create_email_template(name, email, subject, message)
         email_subject = f"GREEN Inc. Contact Form: {subject}"
-        
-        # Send email to your organization
-        to_email = os.getenv('CONTACT_EMAIL', 'info@sogodbaycoralrestoration.com')
-        success, result_message = send_email_via_resend(
+
+        # Get recipient email from environment
+        to_email = os.getenv('CONTACT_EMAIL')
+        if not to_email:
+            logger.error("CONTACT_EMAIL not configured in environment")
+            return jsonify({
+                'status': 'error',
+                'message': 'Email configuration error. Please contact administrator.'
+            }), 500
+
+        # Send email via Gmail
+        success, details = send_email_via_gmail(
             to_email=to_email,
             subject=email_subject,
             html_content=html_content,
-            reply_to_email=email,
-            sender_name=name
+            reply_to_email=email
         )
-        
+
         if success:
+            logger.info(f"✅ Contact form processed successfully for {email}")
             return jsonify({
                 'status': 'success',
                 'message': 'Thank you for your message! We will get back to you soon.'
             }), 200
         else:
+            logger.error(f"❌ Failed to send email: {details}")
             return jsonify({
                 'status': 'error',
-                'message': 'Failed to send message. Please try again later.'
+                'message': f'Failed to send message. Error: {details}'
             }), 500
-            
+
     except Exception as e:
-        logger.error(f"Error in contact endpoint: {str(e)}")
+        logger.error(f"❌ Error in contact endpoint: {str(e)}", exc_info=True)
         return jsonify({
             'status': 'error',
             'message': 'Internal server error. Please try again later.'
@@ -443,84 +266,96 @@ def send_contact_email():
 
 @contact_bp.route('/contact/test', methods=['GET'])
 def test_email_config():
-    """Test endpoint to verify Resend configuration"""
+    """
+    Test if Gmail SMTP configuration is properly set up
+    """
+    missing = []
+    smtp_server = os.getenv('SMTP_SERVER')
+    smtp_username = os.getenv('SMTP_USERNAME')
+    smtp_password = os.getenv('SMTP_PASSWORD')
+    contact_email = os.getenv('CONTACT_EMAIL')
+    
+    if not smtp_server:
+        missing.append("SMTP_SERVER")
+    if not smtp_username:
+        missing.append("SMTP_USERNAME")
+    if not smtp_password:
+        missing.append("SMTP_PASSWORD")
+    if not contact_email:
+        missing.append("CONTACT_EMAIL")
+
+    if missing:
+        return jsonify({
+            'status': 'error',
+            'message': f"Missing configuration: {', '.join(missing)}",
+            'configured': False
+        }), 500
+
+    # Test Gmail connection
     try:
-        # Check if API key is configured
-        api_key = os.getenv('RESEND_API_KEY')
-        if not api_key:
-            return jsonify({
-                'status': 'error',
-                'message': 'RESEND_API_KEY not configured'
-            }), 500
-        
-        # Check if API key format is correct
-        if not api_key.startswith('re_'):
-            return jsonify({
-                'status': 'error',
-                'message': 'Invalid Resend API key format'
-            }), 500
-        
+        with smtplib.SMTP(smtp_server, int(os.getenv('SMTP_PORT', 587))) as server:
+            server.starttls()
+            server.login(smtp_username, smtp_password)
+            
         return jsonify({
             'status': 'success',
-            'message': 'Resend configuration is valid',
-            'api_key_prefix': api_key[:8] + '...',
-            'from_email': os.getenv('RESEND_FROM_EMAIL', 'info@sogodbaycoralrestoration.com'),
-            'from_name': os.getenv('RESEND_FROM_NAME', 'GREEN Inc. Marine Conservation'),
-            'contact_email': os.getenv('CONTACT_EMAIL')
-        })
-        
+            'message': 'Gmail SMTP configuration is valid and working!',
+            'configured': True,
+            'smtp_server': smtp_server,
+            'smtp_port': int(os.getenv('SMTP_PORT', 587)),
+            'from_email': smtp_username,
+            'contact_email': contact_email
+        }), 200
     except Exception as e:
         return jsonify({
             'status': 'error',
-            'message': str(e)
+            'message': f'Gmail authentication failed: {str(e)}',
+            'configured': False
         }), 500
 
 @contact_bp.route('/contact/send-test', methods=['POST'])
 def send_test_email():
-    """Send a test email to verify Resend is working"""
+    """
+    Send a test email to verify everything works
+    """
     try:
-        # Get test email from request
         data = request.get_json()
-        test_email = data.get('email') if data else os.getenv('CONTACT_EMAIL')
-        
+        test_email = (data or {}).get('email') or os.getenv('CONTACT_EMAIL')
+
         if not test_email:
-            return jsonify({
-                'status': 'error',
-                'message': 'No test email provided'
-            }), 400
-        
-        # Create test email content
+            return jsonify({'status': 'error', 'message': 'No test email provided'}), 400
+
+        logger.info(f"📧 Sending test email to {test_email}")
+
         html_content = create_email_template(
             name="Test User",
             email=test_email,
             subject="Test Email Configuration",
-            message="This is a test message to verify that Resend API is working correctly."
+            message="This is a test message to verify Gmail SMTP is working correctly. If you received this, your email configuration is working! 🎉"
         )
-        
-        # Send test email
-        success, result_message = send_email_via_resend(
+
+        success, details = send_email_via_gmail(
             to_email=test_email,
-            subject="GREEN Inc. - Test Email",
+            subject="🌊 GREEN Inc. - Test Email (Gmail SMTP)",
             html_content=html_content,
-            reply_to_email=test_email,
-            sender_name="Test User"
+            reply_to_email=test_email
         )
-        
+
         if success:
             return jsonify({
                 'status': 'success',
                 'message': f'Test email sent successfully to {test_email}',
-                'details': result_message
+                'details': details
             }), 200
         else:
             return jsonify({
                 'status': 'error',
                 'message': 'Failed to send test email',
-                'details': result_message
+                'details': details
             }), 500
-            
+
     except Exception as e:
-        logger.error(f"Error sending test email: {str(e)}")
+        logger.error(f"❌ Error sending test email: {str(e)}")
         return jsonify({
             'status': 'error',
             'message': 'Failed to send test email',

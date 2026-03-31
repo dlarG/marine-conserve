@@ -37,7 +37,8 @@ const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const sectionRef = useRef(null);
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  // import.meta.env.VITE_API_URL;
+  const API_URL = "http://localhost:5000";
 
   // Malitbog coordinates
   const malitbogCoordinates = [10.158098, 125.002838];
