@@ -47,6 +47,8 @@ import CtaHome from "./components/CtaHome";
 import MissionHero from "./components/mission/MissionHero";
 import { useState } from "react";
 
+import DiscoverScubaDive from "./components/courses/diver_certification/DiscoverScubaDive";
+
 const HomePage = () => {
   return (
     <div>
@@ -538,6 +540,11 @@ function App() {
 
           <Route path="/team" element={<TeamPage />} />
           <Route path="/contact" element={<ContactPage2 />} />
+
+          <Route
+            path="/courses/discover-scuba"
+            element={<DiscoverScubaDive />}
+          />
         </Routes>
       </div>
     </Router>

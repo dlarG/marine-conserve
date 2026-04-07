@@ -18,70 +18,63 @@ const Navbar = () => {
     () => [
       {
         key: "discover-scuba",
-        label: "Discover Scuba Diving",
+        label: "Diver Certification Path",
         items: [
-          { label: "Scuba Diving Basics", slug: "basic" },
-          { label: "Scuba Diving Intermediate", slug: "intermediate" },
-          { label: "Scuba Diving Advanced", slug: "advanced" },
+          { label: "Discover Scuba Diving" },
+          { label: "Open Water Diver", slug: "basic" },
+          { label: "Advanced Open Water Diver", slug: "advanced" },
+          { label: "Rescue Diver", slug: "rescue" },
+          { label: "Divemaster", slug: "divemaster" },
         ],
       },
       {
-        key: "open-water",
-        label: "Open Water Diver",
+        key: "special-courses",
+        label: "Special Courses",
         items: [
-          { label: "Overview", slug: "overview" },
-          { label: "Requirements", slug: "requirements" },
-          { label: "Schedule", slug: "schedule" },
+          { label: "Marine Photography", slug: "marine-photography" },
+          { label: "Deep Diver", slug: "deep-diver" },
+          { label: "Navigation", slug: "navigation" },
+          { label: "Night Diver", slug: "night-diver" },
+          {
+            label: "Peak Performance Buoyancy",
+            slug: "peak-performance-buoyancy",
+          },
         ],
       },
       {
-        key: "advanced-open-water",
-        label: "Advanced Open Water Diver",
-        items: [
-          { label: "Overview", slug: "overview" },
-          { label: "Adventure Dives", slug: "adventure-dives" },
-          { label: "Schedule", slug: "schedule" },
-        ],
-      },
-      {
-        key: "rescue-diver",
-        label: "Rescue Diver",
-        items: [
-          { label: "Overview", slug: "overview" },
-          { label: "Prerequisites", slug: "prerequisites" },
-          { label: "Schedule", slug: "schedule" },
-        ],
-      },
-      {
-        key: "efr",
-        label: "Emergency First Response",
+        key: "safety-courses",
+        label: "Safety & Emergency Training",
         items: [
           { label: "Primary Care", slug: "primary-care" },
           { label: "Secondary Care", slug: "secondary-care" },
-          { label: "Schedule", slug: "schedule" },
-        ],
-      },
-      {
-        key: "divemaster",
-        label: "Divemaster",
-        items: [
-          { label: "Overview", slug: "overview" },
-          { label: "Internship", slug: "internship" },
-          { label: "Schedule", slug: "schedule" },
-        ],
-      },
-      {
-        key: "marine-photography",
-        label: "Marine Photography",
-        items: [
-          { label: "Beginner", slug: "beginner" },
-          { label: "Intermediate", slug: "intermediate" },
-          { label: "Advanced", slug: "advanced" },
         ],
       },
     ],
     []
   );
+
+  // Updated to match the newly created coursesMenu keys
+  const coursePathMap = {
+    "special-courses": "special-courses",
+    "safety-courses": "safety-courses",
+  };
+  const goToCourse = (courseKey, subSlug) => {
+    const base = coursePathMap[courseKey] || courseKey;
+
+    // If you want a "View all" behavior, special-case it:
+    if (courseKey === "all") {
+      navigate("/courses");
+      setIsCoursesOpen(false);
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    const url = subSlug ? `/courses/${base}/${subSlug}` : `/courses/${base}`;
+
+    navigate(url);
+    setIsCoursesOpen(false);
+    setIsMobileMenuOpen(false);
+  };
 
   const clearCloseTimer = () => {
     if (closeTimerRef.current) {
@@ -207,33 +200,6 @@ const Navbar = () => {
     return `${base} ${colors}`;
   };
 
-  const coursePathMap = {
-    "discover-scuba": "scuba-diving",
-    "open-water": "openwater-diver",
-    "advanced-open-water": "advanced-openwater-diver",
-    "rescue-diver": "rescue-diver",
-    efr: "emergency-first-response",
-    divemaster: "divemaster",
-    "marine-photography": "marine-photography",
-  };
-  const goToCourse = (courseKey, subSlug) => {
-    const base = coursePathMap[courseKey] || courseKey;
-
-    // If you want a "View all" behavior, special-case it:
-    if (courseKey === "all") {
-      navigate("/courses");
-      setIsCoursesOpen(false);
-      setIsMobileMenuOpen(false);
-      return;
-    }
-
-    const url = subSlug ? `/courses/${base}/${subSlug}` : `/courses/${base}`;
-
-    navigate(url);
-    setIsCoursesOpen(false);
-    setIsMobileMenuOpen(false);
-  };
-
   return (
     <>
       <nav
@@ -340,17 +306,17 @@ const Navbar = () => {
 
                 {isCoursesOpen && (
                   <div
-                    className={`absolute right-0 mt-3 w-[1180px] rounded-2xl overflow-hidden shadow-2xl border ${
+                    className={`absolute right-0 mt-3 w-[1080px] justify-center align-middle  rounded-2xl overflow-hidden shadow-2xl border ${
                       isScrolled
                         ? "bg-white border-gray-200"
-                        : "bg-gray-900/95 border-white/10 backdrop-blur-xl"
+                        : "border-white/10 backdrop-blur-2xl"
                     }`}
                     role="menu"
                     onMouseEnter={openCourses}
                     onMouseLeave={scheduleCloseCourses}
                   >
-                    <div className="p-5">
-                      <div className="grid grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="p-10">
+                      <div className="grid w-full mx-auto grid-cols-3 lg:grid-cols-3 gap-6">
                         {coursesMenu.map((course) => (
                           <div key={course.key} className="min-w-0">
                             <button
