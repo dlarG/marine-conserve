@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import DonateModal from "../DonateModal";
 import { useNavigate, NavLink } from "react-router-dom";
 
@@ -7,7 +7,100 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
 
+  // Courses dropdown states (CHANGED: click-to-open + click-to-select)
+  const [isCoursesOpen, setIsCoursesOpen] = useState(false);
+  const coursesRef = useRef(null);
+  const closeTimerRef = useRef(null);
+
   const navigate = useNavigate();
+
+  const coursesMenu = useMemo(
+    () => [
+      {
+        key: "discover-scuba",
+        label: "Discover Scuba Diving",
+        items: [
+          { label: "Scuba Diving Basics", slug: "basic" },
+          { label: "Scuba Diving Intermediate", slug: "intermediate" },
+          { label: "Scuba Diving Advanced", slug: "advanced" },
+        ],
+      },
+      {
+        key: "open-water",
+        label: "Open Water Diver",
+        items: [
+          { label: "Overview", slug: "overview" },
+          { label: "Requirements", slug: "requirements" },
+          { label: "Schedule", slug: "schedule" },
+        ],
+      },
+      {
+        key: "advanced-open-water",
+        label: "Advanced Open Water Diver",
+        items: [
+          { label: "Overview", slug: "overview" },
+          { label: "Adventure Dives", slug: "adventure-dives" },
+          { label: "Schedule", slug: "schedule" },
+        ],
+      },
+      {
+        key: "rescue-diver",
+        label: "Rescue Diver",
+        items: [
+          { label: "Overview", slug: "overview" },
+          { label: "Prerequisites", slug: "prerequisites" },
+          { label: "Schedule", slug: "schedule" },
+        ],
+      },
+      {
+        key: "efr",
+        label: "Emergency First Response",
+        items: [
+          { label: "Primary Care", slug: "primary-care" },
+          { label: "Secondary Care", slug: "secondary-care" },
+          { label: "Schedule", slug: "schedule" },
+        ],
+      },
+      {
+        key: "divemaster",
+        label: "Divemaster",
+        items: [
+          { label: "Overview", slug: "overview" },
+          { label: "Internship", slug: "internship" },
+          { label: "Schedule", slug: "schedule" },
+        ],
+      },
+      {
+        key: "marine-photography",
+        label: "Marine Photography",
+        items: [
+          { label: "Beginner", slug: "beginner" },
+          { label: "Intermediate", slug: "intermediate" },
+          { label: "Advanced", slug: "advanced" },
+        ],
+      },
+    ],
+    []
+  );
+
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  const openCourses = () => {
+    clearCloseTimer();
+    setIsCoursesOpen(true);
+  };
+
+  const scheduleCloseCourses = () => {
+    clearCloseTimer();
+    closeTimerRef.current = setTimeout(() => {
+      setIsCoursesOpen(false);
+    }, 1500);
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -18,6 +111,32 @@ const Navbar = () => {
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
   }, [isMobileMenuOpen]);
+
+  // NEW: close courses dropdown when clicking outside or pressing Esc
+  useEffect(() => {
+    const handlePointerDown = (e) => {
+      // close immediately if clicking outside
+      if (!isCoursesOpen) return;
+      if (coursesRef.current && !coursesRef.current.contains(e.target)) {
+        setIsCoursesOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setIsCoursesOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isCoursesOpen]);
+
+  useEffect(() => {
+    return () => clearCloseTimer();
+  }, []);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -33,11 +152,6 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
-  // const handleDonateClick = () => {
-  //   setIsDonateModalOpen(true);
-  //   setIsMobileMenuOpen(false);
-  // };
-
   const handleDonateClick1 = () => {
     navigate("/donate");
     setIsMobileMenuOpen(false);
@@ -50,6 +164,7 @@ const Navbar = () => {
     { id: "team", label: "Team", goto: "/team" },
     { id: "contact", label: "Contact Us", goto: "/contact" },
   ];
+
   const handleLogoClick = () => {
     navigate("/");
     scrollToSection("hero");
@@ -81,6 +196,42 @@ const Navbar = () => {
       : "bg-gradient-to-r from-teal-900/30 to-green-900/30 text-white";
 
     return `${base} ${isActive ? active : inactive}`;
+  };
+
+  const coursesButtonClass = () => {
+    const base =
+      "hidden cursor-pointer md:inline-flex items-center gap-2 px-4.5 py-2 rounded-full font-medium border-2 transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group";
+    const colors = isScrolled
+      ? "border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
+      : "border-white/60 text-white hover:bg-white/10";
+    return `${base} ${colors}`;
+  };
+
+  const coursePathMap = {
+    "discover-scuba": "scuba-diving",
+    "open-water": "openwater-diver",
+    "advanced-open-water": "advanced-openwater-diver",
+    "rescue-diver": "rescue-diver",
+    efr: "emergency-first-response",
+    divemaster: "divemaster",
+    "marine-photography": "marine-photography",
+  };
+  const goToCourse = (courseKey, subSlug) => {
+    const base = coursePathMap[courseKey] || courseKey;
+
+    // If you want a "View all" behavior, special-case it:
+    if (courseKey === "all") {
+      navigate("/courses");
+      setIsCoursesOpen(false);
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
+    const url = subSlug ? `/courses/${base}/${subSlug}` : `/courses/${base}`;
+
+    navigate(url);
+    setIsCoursesOpen(false);
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -147,23 +298,101 @@ const Navbar = () => {
             </div>
 
             <div className="inline-flex items-center space-x-3">
-              <button
-                onClick={() => navigate("/courses")}
-                className={`hidden md:block px-4.5 py-2 rounded-full font-medium border-2 transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
-                  isScrolled
-                    ? "border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
-                    : "border-white/60 text-white hover:bg-white/10"
-                }`}
-                style={{ cursor: "pointer" }}
+              {/* CHANGED: Courses mega menu (hover-open + delayed close) */}
+              <div
+                className="hidden md:block relative"
+                ref={coursesRef}
+                onMouseEnter={openCourses}
+                onMouseLeave={scheduleCloseCourses}
               >
-                <span className="relative z-10">Courses</span>
-                <div
-                  className={`absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
-                    isScrolled ? "bg-teal-600" : "bg-white/20"
-                  }`}
-                />
-              </button>
+                <button
+                  type="button"
+                  className={coursesButtonClass()}
+                  aria-haspopup="menu"
+                  aria-expanded={isCoursesOpen}
+                  onFocus={openCourses}
+                  onBlur={scheduleCloseCourses}
+                >
+                  <span className="relative z-10">Courses</span>
 
+                  <svg
+                    className={`relative z-10 w-4 h-4 transition-transform duration-200 ${
+                      isCoursesOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+
+                  <div
+                    className={`absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
+                      isScrolled ? "bg-teal-600" : "bg-white/20"
+                    }`}
+                  />
+                </button>
+
+                {isCoursesOpen && (
+                  <div
+                    className={`absolute right-0 mt-3 w-[1180px] rounded-2xl overflow-hidden shadow-2xl border ${
+                      isScrolled
+                        ? "bg-white border-gray-200"
+                        : "bg-gray-900/95 border-white/10 backdrop-blur-xl"
+                    }`}
+                    role="menu"
+                    onMouseEnter={openCourses}
+                    onMouseLeave={scheduleCloseCourses}
+                  >
+                    <div className="p-5">
+                      <div className="grid grid-cols-3 lg:grid-cols-4 gap-6">
+                        {coursesMenu.map((course) => (
+                          <div key={course.key} className="min-w-0">
+                            <button
+                              type="button"
+                              onClick={() => goToCourse(course.key)}
+                              className={`w-full cursor-pointer text-left font-extrabold tracking-wide uppercase text-sm mb-3 ${
+                                isScrolled
+                                  ? "text-gray-900 hover:text-teal-700"
+                                  : "text-white hover:text-teal-200"
+                              }`}
+                            >
+                              {course.label}
+                            </button>
+
+                            {/* Sub-items */}
+                            <div className="space-y-2">
+                              {(course.items || []).map((item) => (
+                                <button
+                                  key={item.slug}
+                                  type="button"
+                                  onClick={() =>
+                                    goToCourse(course.key, item.slug)
+                                  }
+                                  className={`w-full cursor-pointer text-left text-sm ${
+                                    isScrolled
+                                      ? "text-gray-600 hover:text-gray-900"
+                                      : "text-white/70 hover:text-white"
+                                  }`}
+                                >
+                                  {item.label}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Donate button */}
               <button
                 onClick={handleDonateClick1}
                 className={`hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
@@ -176,40 +405,6 @@ const Navbar = () => {
                 <span className="relative z-10">Donate</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-green-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/30 rounded-full transition-all duration-300" />
-              </button>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`md:hidden p-2.5 rounded-xl transition-all duration-300 relative group ${
-                  isScrolled
-                    ? "bg-gray-100 hover:bg-gray-200 text-gray-800"
-                    : "bg-white/10 hover:bg-white/20 text-white"
-                }`}
-                aria-label="Toggle menu"
-              >
-                <svg
-                  className="w-6 h-6 transition-transform duration-300 group-hover:rotate-90"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  {isMobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
               </button>
             </div>
           </div>

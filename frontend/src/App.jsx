@@ -316,10 +316,7 @@ const TeamPage = () => {
       <TeamHero onReady={() => setTeamHeroReady(true)} />
 
       {teamHeroReady ? (
-        <section
-          id="team-content"
-          className="relative overflow-hidden mt-15 mb-15"
-        >
+        <section id="team-content" className="relative overflow-hidden">
           <Team />
           <Footer />
         </section>
