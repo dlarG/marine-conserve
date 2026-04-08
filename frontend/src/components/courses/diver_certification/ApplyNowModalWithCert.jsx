@@ -1,12 +1,13 @@
 import React, { useMemo, useState } from "react";
 
-const ApplyNowModal = ({
+const ApplyNowModalWithCert = ({
   isOpen,
   onClose,
   courseKey,
   courseTitle,
   dateOptions = [],
   apiBaseUrl = "http://localhost:5000",
+  certLabel = "Prior Certification Photo *",
 }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,11 +17,11 @@ const ApplyNowModal = ({
   const [message, setMessage] = useState("");
   const [ack, setAck] = useState(false);
 
-  // NEW
+  const [priorCertImage, setPriorCertImage] = useState(null);
   const [medicalPdf, setMedicalPdf] = useState(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState(null); // {type, message}
+  const [status, setStatus] = useState(null);
 
   const canSubmit = useMemo(() => {
     return (
@@ -28,9 +29,10 @@ const ApplyNowModal = ({
       email.trim() &&
       selectedDateRange.trim() &&
       ack &&
+      !!priorCertImage &&
       !isSubmitting
     );
-  }, [fullName, email, selectedDateRange, ack, isSubmitting]);
+  }, [fullName, email, selectedDateRange, ack, priorCertImage, isSubmitting]);
 
   if (!isOpen) return null;
 
@@ -54,8 +56,9 @@ const ApplyNowModal = ({
       fd.append("selectedDateRange", selectedDateRange);
       fd.append("message", message);
       fd.append("acknowledgedPersonalEmail", String(ack));
-      fd.append("requiresPriorCert", "false");
+      fd.append("requiresPriorCert", "true");
 
+      fd.append("priorCertImage", priorCertImage);
       if (medicalPdf) fd.append("medicalPdf", medicalPdf);
 
       const res = await fetch(`${apiBaseUrl}/api/courses/apply-multipart`, {
@@ -74,6 +77,7 @@ const ApplyNowModal = ({
       setEmail("");
       setMessage("");
       setAck(false);
+      setPriorCertImage(null);
       setMedicalPdf(null);
     } catch (err) {
       setStatus({
@@ -101,6 +105,9 @@ const ApplyNowModal = ({
               </div>
               <div className="text-lg md:text-xl font-extrabold">
                 {courseTitle || "Apply"}
+              </div>
+              <div className="text-xs opacity-90 mt-1">
+                Prior certification is required for this course.
               </div>
             </div>
 
@@ -171,12 +178,27 @@ const ApplyNowModal = ({
                   </option>
                 ))}
               </select>
+            </div>
+
+            {/* REQUIRED prior cert image */}
+            <div className="mt-4">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                {certLabel}
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setPriorCertImage(e.target.files?.[0] || null)}
+                className="cursor-pointer block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
+                required
+              />
               <p className="mt-1 text-xs text-gray-500">
-                We will confirm availability via email.
+                Upload a photo of your previous certification card/certificate
+                (JPG/PNG/WEBP).
               </p>
             </div>
 
-            {/* NEW: Medical PDF */}
+            {/* Optional medical PDF */}
             <div className="mt-4">
               <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Medical Certificate (PDF){" "}
@@ -208,14 +230,14 @@ const ApplyNowModal = ({
 
             <div className="mt-4 flex items-start gap-3">
               <input
-                id="ack"
+                id="ack-withcert"
                 type="checkbox"
                 checked={ack}
                 onChange={(e) => setAck(e.target.checked)}
                 className="mt-1 h-4 w-4 accent-teal-600"
                 required
               />
-              <label htmlFor="ack" className="text-sm text-gray-600">
+              <label htmlFor="ack-withcert" className="text-sm text-gray-600">
                 I confirm that the email I entered is my personal email address
                 and can be used to contact me for confirmation and feedback.
               </label>
@@ -245,4 +267,4 @@ const ApplyNowModal = ({
   );
 };
 
-export default ApplyNowModal;
+export default ApplyNowModalWithCert;

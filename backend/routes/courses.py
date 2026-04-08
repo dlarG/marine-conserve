@@ -2,12 +2,23 @@ from flask import Blueprint, request, jsonify
 import os
 import logging
 from datetime import datetime
-
-from routes.contact import send_email_via_gmail  # reuse your SMTP sender
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+from email.mime.image import MIMEImage
 
 logger = logging.getLogger(__name__)
 
 courses_bp = Blueprint("courses", __name__)
+
+ALLOWED_IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp"}
+ALLOWED_PDF_EXTS = {".pdf"}
+
+def _ext(filename: str) -> str:
+    if not filename or "." not in filename:
+        return ""
+    return "." + filename.rsplit(".", 1)[-1].lower()
 
 def validate_application_data(data):
     required = ["fullName", "email", "courseKey", "courseTitle", "selectedDateRange"]
@@ -152,8 +163,57 @@ def create_course_application_template(payload):
     """
     return html
 
+def send_email_via_gmail(to_email, subject, html_content, reply_to_email=None, attachments=None):
+    """
+    attachments: list of dicts {filename: str, content_bytes: bytes, mime_type?: str}
+    """
+    # Use the env vars that exist in backend/.env
+    gmail_user = os.getenv("SMTP_USERNAME")
+    gmail_pass = os.getenv("SMTP_PASSWORD")
+    if not gmail_user or not gmail_pass:
+        return False, "Missing SMTP_USERNAME or SMTP_PASSWORD env vars"
+
+    msg = MIMEMultipart()
+    msg["From"] = gmail_user
+    msg["To"] = to_email
+    msg["Subject"] = subject
+    if reply_to_email:
+        msg["Reply-To"] = reply_to_email
+
+    msg.attach(MIMEText(html_content, "html", "utf-8"))
+
+    attachments = attachments or []
+    for att in attachments:
+        filename = att.get("filename")
+        content_bytes = att.get("content_bytes")
+        mime_type = (att.get("mime_type") or "").lower()
+        if not filename or not content_bytes:
+            continue
+
+        # Prefer correct MIME for images; PDFs can stay as application/*
+        if mime_type.startswith("image/"):
+            part = MIMEImage(content_bytes, _subtype=mime_type.split("/", 1)[1], name=filename)
+        else:
+            part = MIMEApplication(content_bytes, Name=filename)
+
+        part["Content-Disposition"] = f'attachment; filename="{filename}"'
+        msg.attach(part)
+
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(gmail_user, gmail_pass)
+            server.sendmail(gmail_user, to_email, msg.as_string())
+        return True, "sent"
+    except Exception as e:
+        logger.error("Email send failed", exc_info=True)
+        return False, str(e)
+
 @courses_bp.route("/courses/apply", methods=["POST"])
 def apply_course():
+    """
+    JSON-only application (Discover Scuba) - now DEPRECATED in favor of /courses/apply-multipart,
+    but kept for compatibility.
+    """
     try:
         data = request.get_json() or {}
         ok, err = validate_application_data(data)
@@ -162,36 +222,101 @@ def apply_course():
 
         to_email = os.getenv("CONTACT_EMAIL")
         if not to_email:
-            return jsonify({
-                "status": "error",
-                "message": "Email configuration error. CONTACT_EMAIL missing."
-            }), 500
+            return jsonify({"status": "error", "message": "CONTACT_EMAIL missing"}), 500
 
         course_title = data.get("courseTitle")
         applicant = data.get("fullName")
         subject = f"Course Application: {course_title} ({applicant})"
-
         html_content = create_course_application_template(data)
 
         success, details = send_email_via_gmail(
             to_email=to_email,
             subject=subject,
             html_content=html_content,
-            reply_to_email=data.get("email")
+            reply_to_email=data.get("email"),
+            attachments=[]
         )
 
         if success:
-            return jsonify({
-                "status": "success",
-                "message": "Application sent! We'll contact you via email soon."
-            }), 200
+            return jsonify({"status": "success", "message": "Application sent! We'll contact you via email soon."}), 200
 
-        return jsonify({
-            "status": "error",
-            "message": "Failed to send application email",
-            "details": details
-        }), 500
+        return jsonify({"status": "error", "message": "Failed to send application email", "details": details}), 500
+    except Exception as e:
+        logger.error(f"Error in /courses/apply: {str(e)}", exc_info=True)
+        return jsonify({"status": "error", "message": "Internal server error"}), 500
+
+@courses_bp.route("/courses/apply-multipart", methods=["POST"])
+def apply_course_multipart():
+    """
+    Multipart form endpoint to support attachments:
+    - priorCertImage (required for courses that need it)
+    - medicalPdf (optional for all)
+    """
+    try:
+        form = request.form or {}
+
+        data = {
+            "fullName": (form.get("fullName") or "").strip(),
+            "email": (form.get("email") or "").strip(),
+            "courseKey": (form.get("courseKey") or "").strip(),
+            "courseTitle": (form.get("courseTitle") or "").strip(),
+            "selectedDateRange": (form.get("selectedDateRange") or "").strip(),
+            "message": (form.get("message") or "").strip(),
+            "acknowledgedPersonalEmail": (form.get("acknowledgedPersonalEmail") or "").lower() in ("true", "1", "yes", "on"),
+            "requiresPriorCert": (form.get("requiresPriorCert") or "").lower() in ("true", "1", "yes", "on"),
+        }
+
+        ok, err = validate_application_data(data)
+        if not ok:
+            return jsonify({"status": "error", "message": err}), 400
+
+        prior_cert = request.files.get("priorCertImage")
+        medical_pdf = request.files.get("medicalPdf")
+
+        attachments = []
+
+        if data["requiresPriorCert"]:
+            if not prior_cert or not prior_cert.filename:
+                return jsonify({"status": "error", "message": "Prior certification image is required for this course."}), 400
+
+            ext = _ext(prior_cert.filename)
+            if ext not in ALLOWED_IMAGE_EXTS:
+                return jsonify({"status": "error", "message": "Prior certification must be an image (jpg, png, webp)."}), 400
+
+            attachments.append({
+                "filename": f"prior-cert{ext}",
+                "content_bytes": prior_cert.read(),
+            })
+
+        if medical_pdf and medical_pdf.filename:
+            ext = _ext(medical_pdf.filename)
+            if ext not in ALLOWED_PDF_EXTS:
+                return jsonify({"status": "error", "message": "Medical certificate must be a PDF."}), 400
+            attachments.append({
+                "filename": "medical-certificate.pdf",
+                "content_bytes": medical_pdf.read(),
+            })
+
+        to_email = os.getenv("CONTACT_EMAIL")
+        if not to_email:
+            return jsonify({"status": "error", "message": "CONTACT_EMAIL missing"}), 500
+
+        subject = f"Course Application: {data['courseTitle']} ({data['fullName']})"
+        html_content = create_course_application_template(data)
+
+        success, details = send_email_via_gmail(
+            to_email=to_email,
+            subject=subject,
+            html_content=html_content,
+            reply_to_email=data.get("email"),
+            attachments=attachments
+        )
+
+        if success:
+            return jsonify({"status": "success", "message": "Application sent! We'll contact you via email soon."}), 200
+
+        return jsonify({"status": "error", "message": "Failed to send application email", "details": details}), 500
 
     except Exception as e:
-        logger.error(f"Error in course application endpoint: {str(e)}", exc_info=True)
+        logger.error("Error in /courses/apply-multipart", exc_info=True)
         return jsonify({"status": "error", "message": "Internal server error"}), 500

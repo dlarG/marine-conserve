@@ -340,6 +340,95 @@ const RescueDiver = () => {
           </div>
         </div>
       </section>
+      <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Continue Your Journey
+              </h2>
+              <p className="text-lg text-gray-600">
+                Ready for more? Take the next step with our certification
+                courses.
+              </p>
+            </div>
+            <a
+              href="/courses"
+              className="text-teal-700 font-semibold hover:text-teal-800 inline-flex items-center gap-2 group"
+            >
+              View All Courses
+              <span className="group-hover:translate-x-1 transition-transform">
+                →
+              </span>
+            </a>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Open Water Diver",
+                description:
+                  "Your first step into the underwater world. Learn the basics and get certified to dive anywhere in the world.",
+                href: "/courses/open-water",
+                image:
+                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549211/pexels-domingo-dias-260502921-12678039_uygdph.jpg",
+                level: "Previous Course",
+              },
+              {
+                title: "Rescue Diver",
+                description:
+                  "Learn to prevent and manage problems in the water and become a stronger buddy.",
+                href: "/courses/rescue-diver",
+                image:
+                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549361/pexels-cannontaler-20481590_yck89a.jpg",
+                level: "Current Course",
+              },
+              {
+                title: "Divemaster",
+                description:
+                  "Take the plunge into leadership and dive theory. Become a dive professional.",
+                href: "/courses/divemaster",
+                image:
+                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396227/pexels-leonardo-lamas-32247393-7001658_jez7o0.jpg",
+                level: "Advanced",
+              },
+            ].map((c) => (
+              <a
+                key={c.href}
+                href={c.href}
+                className="group relative h-[400px] rounded-3xl overflow-hidden"
+              >
+                <img
+                  src={c.image}
+                  alt={c.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                <div className="absolute top-6 left-6">
+                  <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/30">
+                    {c.level}
+                  </span>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {c.title}
+                  </h3>
+                  <p className="text-white/80 mb-4">{c.description}</p>
+                  <span className="inline-flex items-center text-white font-semibold group-hover:gap-3 transition-all">
+                    Learn More
+                    <span className="ml-2 group-hover:translate-x-2 transition-transform">
+                      →
+                    </span>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <Footer />
 

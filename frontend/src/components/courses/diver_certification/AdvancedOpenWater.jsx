@@ -110,8 +110,8 @@ const AdvancedOpenWater = () => {
         rightTitle: "Prerequisites",
         rightItems: [
           "Open Water Diver certification (or equivalent)",
-          "Minimum age requirement (set your policy)",
-          "Completed medical questionnaire / clearance if required",
+          "Minimum age requirement (12 years old, varies by agency)",
+          "Completed medical certificate / clearance if required",
           "Comfortable diving in open water conditions",
         ],
       },
@@ -158,7 +158,7 @@ const AdvancedOpenWater = () => {
           "After successful completion, you’ll receive your Advanced Open Water Diver certification (or the appropriate completion record, depending on your training agency and processing).",
         rightTitle: "Certificate Preview",
         rightImage: {
-          src: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80",
+          src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775615829/Blue_and_Gold_Elegant_Certificate_Workshop_Participation_4_s9cnuz.png",
           alt: "Certificate preview (placeholder image)",
         },
       },
@@ -258,13 +258,6 @@ const AdvancedOpenWater = () => {
                     {active?.leftText}
                   </p>
                 </div>
-
-                <a
-                  href="#dates"
-                  className="inline-flex px-6 py-3 rounded-xl border-2 border-teal-600 text-teal-700 font-bold hover:bg-teal-600 hover:text-white transition-colors"
-                >
-                  VIEW COURSE DATES
-                </a>
               </div>
 
               <div className="mt-8 rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">

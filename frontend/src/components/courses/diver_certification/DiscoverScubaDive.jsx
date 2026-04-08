@@ -446,7 +446,7 @@ const DiscoverScubaDive = () => {
                 title: "Advanced Open Water",
                 description:
                   "Build confidence, refine skills, and try different adventure dives.",
-                href: "/courses/advanced-openwater-diver",
+                href: "/courses/advanced-open-water",
                 image:
                   "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549270/pexels-diego-sandoval-3158170-4767068_ccrfv9.jpg",
                 level: "Intermediate",

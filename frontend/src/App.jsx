@@ -51,6 +51,8 @@ import DiscoverScubaDive from "./components/courses/diver_certification/Discover
 import OpenWaterDiver from "./components/courses/diver_certification/OpenWaterDiver";
 import AdvancedOpenWater from "./components/courses/diver_certification/AdvancedOpenWater";
 import RescueDiver from "./components/courses/diver_certification/RescueDiver";
+import Divemaster from "./components/courses/diver_certification/Divemaster";
+
 const HomePage = () => {
   return (
     <div>
@@ -553,6 +555,7 @@ function App() {
             element={<AdvancedOpenWater />}
           />
           <Route path="/courses/rescue-diver" element={<RescueDiver />} />
+          <Route path="/courses/divemaster" element={<Divemaster />} />
         </Routes>
       </div>
     </Router>
