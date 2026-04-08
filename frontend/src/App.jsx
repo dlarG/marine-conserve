@@ -48,7 +48,9 @@ import MissionHero from "./components/mission/MissionHero";
 import { useState } from "react";
 
 import DiscoverScubaDive from "./components/courses/diver_certification/DiscoverScubaDive";
-
+import OpenWaterDiver from "./components/courses/diver_certification/OpenWaterDiver";
+import AdvancedOpenWater from "./components/courses/diver_certification/AdvancedOpenWater";
+import RescueDiver from "./components/courses/diver_certification/RescueDiver";
 const HomePage = () => {
   return (
     <div>
@@ -545,6 +547,12 @@ function App() {
             path="/courses/discover-scuba"
             element={<DiscoverScubaDive />}
           />
+          <Route path="/courses/open-water" element={<OpenWaterDiver />} />
+          <Route
+            path="/courses/advanced-open-water"
+            element={<AdvancedOpenWater />}
+          />
+          <Route path="/courses/rescue-diver" element={<RescueDiver />} />
         </Routes>
       </div>
     </Router>

@@ -18,18 +18,18 @@ const Navbar = () => {
     () => [
       {
         key: "discover-scuba",
-        label: "Diver Certification Path",
+        label: "PADI Diver Certification Path",
         items: [
           { label: "Discover Scuba Diving" },
-          { label: "Open Water Diver", slug: "basic" },
-          { label: "Advanced Open Water Diver", slug: "advanced" },
-          { label: "Rescue Diver", slug: "rescue" },
+          { label: "Open Water Diver", slug: "open-water" },
+          { label: "Advanced Open Water Diver", slug: "advanced-open-water" },
+          { label: "Rescue Diver", slug: "rescue-diver" },
           { label: "Divemaster", slug: "divemaster" },
         ],
       },
       {
         key: "special-courses",
-        label: "Special Courses",
+        label: "Specialty Courses",
         items: [
           { label: "Marine Photography", slug: "marine-photography" },
           { label: "Deep Diver", slug: "deep-diver" },
@@ -69,7 +69,7 @@ const Navbar = () => {
       return;
     }
 
-    const url = subSlug ? `/courses/${base}/${subSlug}` : `/courses/${base}`;
+    const url = subSlug ? `/courses/${subSlug}` : `/courses/${base}`;
 
     navigate(url);
     setIsCoursesOpen(false);
