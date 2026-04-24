@@ -27,7 +27,7 @@ const AllBlogPost = () => {
       date: "October 15, 2017",
       readTime: "25 min read",
       image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384151/tagbak1_t27wnl.jpg",
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777005357/Tagbak_Marine_Park_Cover_diggxh.jpg",
       tags: ["Biodiversity", "Marine Research", "Conservation"],
       author: "Jerome Jack Napala",
       featured: true,

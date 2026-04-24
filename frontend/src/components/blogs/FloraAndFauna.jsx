@@ -146,7 +146,7 @@ const FloraAndFauna = () => {
         >
           <figure className="mb-12">
             <img
-              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384074/cnu_izhwlg.jpg"
+              src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777005357/Tagbak_Marine_Park_Cover_diggxh.jpg"
               alt="Vibrant coral garden at Tagbak Marine Park"
               className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
               onError={(e) => {
