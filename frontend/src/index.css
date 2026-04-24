@@ -28,6 +28,95 @@ html {
   scroll-behavior: smooth;
 }
 
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@100;200;300;400;500;600;700;800&display=swap");
+
+/* Tailwind v4 Theme Configuration */
+@theme {
+  --font-playfair: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Ocean Colors */
+  --color-ocean-50: #f0f9f8;
+  --color-ocean-100: #d5f0ed;
+  --color-ocean-200: #aae3db;
+  --color-ocean-300: #78cfc4;
+  --color-ocean-400: #4db5a8;
+  --color-ocean-500: #34998e;
+  --color-ocean-600: #287b73;
+  --color-ocean-700: #0f766e;
+  --color-ocean-800: #0d6b63;
+  --color-ocean-900: #0a4f49;
+
+  /* Sand Colors */
+  --color-sand-50: #faf8f5;
+  --color-sand-100: #f5f0eb;
+  --color-sand-200: #ebe2d6;
+  --color-sand-300: #dccbb8;
+  --color-sand-400: #c9af94;
+  --color-sand-500: #b89570;
+  --color-sand-600: #a87c54;
+  --color-sand-700: #8c6442;
+  --color-sand-800: #725139;
+  --color-sand-900: #5e4331;
+
+  /* Gold Colors */
+  --color-gold-400: #f5a623;
+  --color-gold-500: #e89509;
+  --color-gold-600: #cc7d00;
+
+  /* Green Colors */
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+
+  /* Breakpoints */
+  --breakpoint-xs: 475px;
+}
+
+/* Base Styles */
+@layer base {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: white;
+  }
+}
+
+/* Smooth scrolling with offset for fixed navbar */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f0eb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0f766e;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0d6b63;
+}
+
+/* Mobile tap highlight removal */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent content shift with scrollbar */
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
 body {
   font-family: "Noto Sans";
   line-height: 1.6;
