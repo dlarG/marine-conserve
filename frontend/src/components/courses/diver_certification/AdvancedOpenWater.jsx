@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Navbar from "../../navbars/Navbar";
 import Footer from "../../Footer";
 import ApplyNowModal from "./ApplyNowModal";
@@ -38,6 +38,10 @@ const BulletList = ({ items }) => {
 const AdvancedOpenWater = () => {
   const [isApplyOpen, setIsApplyOpen] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = "PADI Advanced Open Water Diver Course | GREEN Inc.";
+  }, []);
   const dateRanges = useMemo(
     () => [
       {

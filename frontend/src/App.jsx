@@ -446,7 +446,7 @@ const DonatePage = () => {
 const MissionPage = () => {
   return (
     <>
-      <MissionNavbar />
+      <Navbar />
       <MissionHero />
       <Mission />
       <Footer />

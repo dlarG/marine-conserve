@@ -20,7 +20,7 @@ const Navbar = () => {
         key: "discover-scuba",
         label: "PADI Diver Certification Path",
         items: [
-          { label: "Discover Scuba Diving" },
+          { label: "Discover Scuba Diving", slug: "discover-scuba" }, // FIX
           { label: "Open Water Diver", slug: "open-water" },
           { label: "Advanced Open Water Diver", slug: "advanced-open-water" },
           { label: "Rescue Diver", slug: "rescue-diver" },
@@ -371,6 +371,40 @@ const Navbar = () => {
                 <span className="relative z-10">Donate</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-green-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-white/30 rounded-full transition-all duration-300" />
+              </button>
+              <button
+                type="button"
+                className={`md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl border transition ${
+                  isScrolled
+                    ? "bg-white border-gray-200 text-gray-900"
+                    : "bg-white/10 border-white/20 text-white"
+                }`}
+                aria-label="Open menu"
+                aria-expanded={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen((v) => !v)}
+              >
+                {/* icon */}
+                <svg
+                  className="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                >
+                  {isMobileMenuOpen ? (
+                    <>
+                      <path d="M6 6l12 12" />
+                      <path d="M18 6l-12 12" />
+                    </>
+                  ) : (
+                    <>
+                      <path d="M4 6h16" />
+                      <path d="M4 12h16" />
+                      <path d="M4 18h16" />
+                    </>
+                  )}
+                </svg>
               </button>
             </div>
           </div>

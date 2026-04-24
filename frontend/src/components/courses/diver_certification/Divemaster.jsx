@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import Navbar from "../../navbars/Navbar";
 import Footer from "../../Footer";
 import ApplyNowModalWithCert from "./ApplyNowModalWithCert";
@@ -55,6 +55,10 @@ const CourseTile = ({ title, description, href }) => {
 };
 
 const Divemaster = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = "PADI Divemaster Course | GREEN Inc.";
+  }, []);
   const [isApplyOpen, setIsApplyOpen] = useState(false);
   const dateRanges = useMemo(
     () => [

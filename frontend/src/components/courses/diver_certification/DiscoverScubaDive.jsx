@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import Navbar from "../../navbars/Navbar";
 import Footer from "../../Footer";
 import ApplyNowModal from "./ApplyNowModal";
@@ -55,6 +55,10 @@ const CourseTile = ({ title, description, href }) => {
 };
 
 const DiscoverScubaDive = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = "PADI Discover Scuba Diving Course | GREEN Inc.";
+  }, []);
   const [isApplyOpen, setIsApplyOpen] = useState(false);
   const dateRanges = useMemo(
     () => [
