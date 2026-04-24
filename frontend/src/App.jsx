@@ -1,3 +1,5 @@
+import LittleLembeh from "./components/LittleLembeh";
+
 import Navbar from "./components/navbars/Navbar";
 import MissionNavbar from "./components/navbars/MissionNavbar";
 import CoralRestorationNavbar from "./components/navbars/CoralRestorationNavbar";
@@ -512,6 +514,7 @@ function App() {
     <Router>
       <div className="min-h-screen">
         <Routes>
+          <Route path="/home" element={<LittleLembeh />} />
           <Route path="/" element={<HomePage2 />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/methods" element={<MethodsPage />} />
