@@ -113,9 +113,9 @@ This method prevents the sandy seafloor from smothering the fragments and possib
           "Sustainable design",
         ],
         images: [
-          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384134/rope1_kfygiw.jpg",
-          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384136/rope2_qiljvj.jpg",
-          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384133/rope_cuguwh.jpg",
+          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775628346/PB220004_vuyuex.jpg",
+          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775628381/PB160004_q9sslx.jpg",
+          "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775628383/P8140017_hgdhlw.jpg",
         ],
         color: "from-emerald-500 to-green-500",
       },
@@ -142,7 +142,7 @@ This method prevents the sandy seafloor from smothering the fragments and possib
           missionRef.current = el;
           sectionRefs.current["mission"] = el;
         }}
-        className="relative mb-10 py-12 px-6 md:px-12 lg:px-20 bg-gradient-to-b from-[#eaf7ef] to-white overflow-hidden"
+        className="relative mb-10 px-6 md:px-12 lg:px-20 bg-gradient-to-b from-[#eaf7ef] to-white overflow-hidden"
       >
         <MissionVissionHome />
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
@@ -158,11 +158,7 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                       ? "translate-x-0 opacity-100"
                       : "-translate-x-8 opacity-0"
                   }`}
-                >
-                  <span className="inline-block text-sm font-medium text-teal-600 uppercase tracking-wider mb-4 bg-teal-50 px-4 py-2 rounded-full">
-                    Our Mission
-                  </span>
-                </div>
+                ></div>
 
                 <h2
                   className={`text-3xl md:text-4xl font-bold text-gray-900 mb-8 leading-tight transform transition-all duration-800 delay-200 ${
@@ -394,7 +390,7 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                           : "translate-y-8 opacity-0"
                       }`}
                     >
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-r from-emerald-500 to-green-500 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                         <svg
                           className="w-3 h-3 text-white"
                           fill="none"

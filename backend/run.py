@@ -26,6 +26,9 @@ def create_app():
     # Import and register routes
     from routes.contact import contact_bp
     app.register_blueprint(contact_bp, url_prefix='/api')
+
+    from routes.courses import courses_bp
+    app.register_blueprint(courses_bp, url_prefix="/api")
     
     @app.route('/')
     def health_check():

@@ -47,6 +47,12 @@ import CtaHome from "./components/CtaHome";
 import MissionHero from "./components/mission/MissionHero";
 import { useState } from "react";
 
+import DiscoverScubaDive from "./components/courses/diver_certification/DiscoverScubaDive";
+import OpenWaterDiver from "./components/courses/diver_certification/OpenWaterDiver";
+import AdvancedOpenWater from "./components/courses/diver_certification/AdvancedOpenWater";
+import RescueDiver from "./components/courses/diver_certification/RescueDiver";
+import Divemaster from "./components/courses/diver_certification/Divemaster";
+
 const HomePage = () => {
   return (
     <div>
@@ -316,10 +322,7 @@ const TeamPage = () => {
       <TeamHero onReady={() => setTeamHeroReady(true)} />
 
       {teamHeroReady ? (
-        <section
-          id="team-content"
-          className="relative overflow-hidden mt-15 mb-15"
-        >
+        <section id="team-content" className="relative overflow-hidden">
           <Team />
           <Footer />
         </section>
@@ -443,7 +446,7 @@ const DonatePage = () => {
 const MissionPage = () => {
   return (
     <>
-      <MissionNavbar />
+      <Navbar />
       <MissionHero />
       <Mission />
       <Footer />
@@ -541,6 +544,18 @@ function App() {
 
           <Route path="/team" element={<TeamPage />} />
           <Route path="/contact" element={<ContactPage2 />} />
+
+          <Route
+            path="/courses/discover-scuba"
+            element={<DiscoverScubaDive />}
+          />
+          <Route path="/courses/open-water" element={<OpenWaterDiver />} />
+          <Route
+            path="/courses/advanced-open-water"
+            element={<AdvancedOpenWater />}
+          />
+          <Route path="/courses/rescue-diver" element={<RescueDiver />} />
+          <Route path="/courses/divemaster" element={<Divemaster />} />
         </Routes>
       </div>
     </Router>
