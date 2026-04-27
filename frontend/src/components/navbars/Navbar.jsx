@@ -7,12 +7,25 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDonateModalOpen, setIsDonateModalOpen] = useState(false);
 
-  // Courses dropdown states (CHANGED: click-to-open + click-to-select)
+  // Courses dropdown states
   const [isCoursesOpen, setIsCoursesOpen] = useState(false);
   const coursesRef = useRef(null);
   const closeTimerRef = useRef(null);
 
   const navigate = useNavigate();
+
+  const volunteerOptions = [
+    { label: "Coral Conservation", path: "/volunteer/coral-conservation" },
+    {
+      label: "Marine Debris Removal",
+      path: "/volunteer/marine-debris-removal",
+    },
+    { label: "COTS Monitoring", path: "/volunteer/cots-monitoring" },
+    {
+      label: "Scientific Data Collection",
+      path: "/volunteer/scientific-data-collection",
+    },
+  ];
 
   const coursesMenu = useMemo(
     () => [
@@ -20,7 +33,7 @@ const Navbar = () => {
         key: "discover-scuba",
         label: "PADI Diver Certification Path",
         items: [
-          { label: "Discover Scuba Diving", slug: "discover-scuba" }, // FIX
+          { label: "Discover Scuba Diving", slug: "discover-scuba" },
           { label: "Open Water Diver", slug: "open-water" },
           { label: "Advanced Open Water Diver", slug: "advanced-open-water" },
           { label: "Rescue Diver", slug: "rescue-diver" },
@@ -49,19 +62,42 @@ const Navbar = () => {
           { label: "Secondary Care", slug: "secondary-care" },
         ],
       },
+      {
+        key: "volunteer-programs",
+        label: "Volunteer Programs",
+        items: volunteerOptions.map((opt) => ({
+          label: opt.label,
+          slug: opt.path,
+        })),
+      },
     ],
     []
   );
 
-  // Updated to match the newly created coursesMenu keys
+  const navigationItems = [
+    { id: "home", label: "Home", goto: "/" },
+    { id: "about", label: "About Us", goto: "/about" },
+    { id: "blogs", label: "Blogs", goto: "/blog" },
+    { id: "team", label: "Team", goto: "/team" },
+    { id: "contact", label: "Contact Us", goto: "/contact" },
+  ];
+
   const coursePathMap = {
     "special-courses": "special-courses",
     "safety-courses": "safety-courses",
   };
+
   const goToCourse = (courseKey, subSlug) => {
+    // Handle volunteer programs - navigate using the full path
+    if (courseKey === "volunteer-programs") {
+      navigate(subSlug);
+      setIsCoursesOpen(false);
+      setIsMobileMenuOpen(false);
+      return;
+    }
+
     const base = coursePathMap[courseKey] || courseKey;
 
-    // If you want a "View all" behavior, special-case it:
     if (courseKey === "all") {
       navigate("/courses");
       setIsCoursesOpen(false);
@@ -70,7 +106,6 @@ const Navbar = () => {
     }
 
     const url = subSlug ? `/courses/${subSlug}` : `/courses/${base}`;
-
     navigate(url);
     setIsCoursesOpen(false);
     setIsMobileMenuOpen(false);
@@ -105,18 +140,22 @@ const Navbar = () => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
   }, [isMobileMenuOpen]);
 
-  // NEW: close courses dropdown when clicking outside or pressing Esc
+  // Handle clicks outside dropdowns to close them
   useEffect(() => {
     const handlePointerDown = (e) => {
-      // close immediately if clicking outside
-      if (!isCoursesOpen) return;
-      if (coursesRef.current && !coursesRef.current.contains(e.target)) {
+      if (
+        isCoursesOpen &&
+        coursesRef.current &&
+        !coursesRef.current.contains(e.target)
+      ) {
         setIsCoursesOpen(false);
       }
     };
 
     const handleKeyDown = (e) => {
-      if (e.key === "Escape") setIsCoursesOpen(false);
+      if (e.key === "Escape") {
+        setIsCoursesOpen(false);
+      }
     };
 
     document.addEventListener("pointerdown", handlePointerDown);
@@ -128,7 +167,9 @@ const Navbar = () => {
   }, [isCoursesOpen]);
 
   useEffect(() => {
-    return () => clearCloseTimer();
+    return () => {
+      clearCloseTimer();
+    };
   }, []);
 
   const scrollToSection = (sectionId) => {
@@ -150,14 +191,6 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const navigationItems = [
-    { id: "home", label: "Home", goto: "/" },
-    { id: "about", label: "About Us", goto: "/about" },
-    { id: "blogs", label: "Blogs", goto: "/blog" },
-    { id: "team", label: "Team", goto: "/team" },
-    { id: "contact", label: "Contact Us", goto: "/contact" },
-  ];
-
   const handleLogoClick = () => {
     navigate("/");
     scrollToSection("hero");
@@ -169,11 +202,9 @@ const Navbar = () => {
     const inactive = isScrolled
       ? "text-gray-700 hover:text-[#2E5E2E]"
       : "text-white/80 hover:text-white";
-
     const active = isScrolled
       ? "text-[#2E5E2E] bg-teal-50/80"
       : "text-white bg-white/20";
-
     return `${base} ${isActive ? active : inactive}`;
   };
 
@@ -183,11 +214,9 @@ const Navbar = () => {
     const inactive = isScrolled
       ? "text-gray-800 hover:bg-gray-50"
       : "text-white/90 hover:bg-white/10";
-
     const active = isScrolled
       ? "bg-gradient-to-r from-teal-50 to-green-50 text-[#2E5E2E]"
       : "bg-gradient-to-r from-teal-900/30 to-green-900/30 text-white";
-
     return `${base} ${isActive ? active : inactive}`;
   };
 
@@ -246,7 +275,7 @@ const Navbar = () => {
                   <NavLink
                     key={item.id}
                     to={item.goto}
-                    end={item.end}
+                    end={item.id === "home"}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={desktopLinkClass}
                   >
@@ -264,7 +293,7 @@ const Navbar = () => {
             </div>
 
             <div className="inline-flex items-center space-x-3">
-              {/* CHANGED: Courses mega menu (hover-open + delayed close) */}
+              {/* Courses mega menu */}
               <div
                 className="hidden md:block relative"
                 ref={coursesRef}
@@ -279,8 +308,7 @@ const Navbar = () => {
                   onFocus={openCourses}
                   onBlur={scheduleCloseCourses}
                 >
-                  <span className="relative z-10">Courses</span>
-
+                  <span className="relative z-10">Programs</span>
                   <svg
                     className={`relative z-10 w-4 h-4 transition-transform duration-200 ${
                       isCoursesOpen ? "rotate-180" : "rotate-0"
@@ -296,7 +324,6 @@ const Navbar = () => {
                       d="M19 9l-7 7-7-7"
                     />
                   </svg>
-
                   <div
                     className={`absolute inset-0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
                       isScrolled ? "bg-teal-600" : "bg-white/20"
@@ -306,7 +333,7 @@ const Navbar = () => {
 
                 {isCoursesOpen && (
                   <div
-                    className={`absolute right-0 mt-3 w-[1080px] justify-center align-middle  rounded-2xl overflow-hidden shadow-2xl border ${
+                    className={`absolute right-0 mt-3 w-[1080px] justify-center align-middle rounded-2xl overflow-hidden shadow-2xl border ${
                       isScrolled
                         ? "bg-white border-gray-200"
                         : "border-white/10 backdrop-blur-2xl"
@@ -316,13 +343,21 @@ const Navbar = () => {
                     onMouseLeave={scheduleCloseCourses}
                   >
                     <div className="p-10">
-                      <div className="grid w-full mx-auto grid-cols-3 lg:grid-cols-3 gap-6">
+                      <div className="grid w-full mx-auto grid-cols-4 gap-6">
                         {coursesMenu.map((course) => (
                           <div key={course.key} className="min-w-0">
                             <button
                               type="button"
-                              onClick={() => goToCourse(course.key)}
-                              className={`w-full cursor-pointer text-left font-extrabold tracking-wide uppercase text-sm mb-3 ${
+                              onClick={() => {
+                                if (course.key !== "volunteer-programs") {
+                                  goToCourse(course.key);
+                                }
+                              }}
+                              className={`w-full text-left font-extrabold tracking-wide uppercase text-sm mb-3 ${
+                                course.key === "volunteer-programs"
+                                  ? "cursor-default"
+                                  : "cursor-pointer"
+                              } ${
                                 isScrolled
                                   ? "text-gray-900 hover:text-teal-700"
                                   : "text-white hover:text-teal-200"
@@ -331,7 +366,6 @@ const Navbar = () => {
                               {course.label}
                             </button>
 
-                            {/* Sub-items */}
                             <div className="space-y-2">
                               {(course.items || []).map((item) => (
                                 <button
@@ -383,7 +417,6 @@ const Navbar = () => {
                 aria-expanded={isMobileMenuOpen}
                 onClick={() => setIsMobileMenuOpen((v) => !v)}
               >
-                {/* icon */}
                 <svg
                   className="w-6 h-6"
                   viewBox="0 0 24 24"
@@ -427,7 +460,7 @@ const Navbar = () => {
               <NavLink
                 key={item.id}
                 to={item.goto}
-                end={item.end}
+                end={item.id === "home"}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={mobileLinkClass}
               >
@@ -450,7 +483,28 @@ const Navbar = () => {
                 }`}
               >
                 <span className="relative z-10 flex items-center justify-center">
-                  Courses
+                  Diving Courses
+                </span>
+                <div
+                  className={`absolute inset-0 rounded-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
+                    isScrolled ? "bg-teal-600" : "bg-white/20"
+                  }`}
+                />
+              </button>
+
+              <button
+                onClick={() => {
+                  navigate("/volunteer");
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`relative w-full px-6 py-4 rounded-xl font-medium overflow-hidden group mb-3 border-2 ${
+                  isScrolled
+                    ? "border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
+                    : "border-white/60 text-white hover:bg-white/10"
+                }`}
+              >
+                <span className="relative z-10 flex items-center justify-center">
+                  Volunteer Programs
                 </span>
                 <div
                   className={`absolute inset-0 rounded-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
