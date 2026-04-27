@@ -69,8 +69,10 @@ const Navbar = () => {
           label: opt.label,
           slug: opt.path,
         })),
+        isHighlighted: true, // Add flag for highlighting
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
@@ -293,7 +295,7 @@ const Navbar = () => {
             </div>
 
             <div className="inline-flex items-center space-x-3">
-              {/* Courses mega menu */}
+              {/* Programs mega menu */}
               <div
                 className="hidden md:block relative"
                 ref={coursesRef}
@@ -342,10 +344,17 @@ const Navbar = () => {
                     onMouseEnter={openCourses}
                     onMouseLeave={scheduleCloseCourses}
                   >
-                    <div className="p-10">
+                    <div className="p-8">
                       <div className="grid w-full mx-auto grid-cols-4 gap-6">
                         {coursesMenu.map((course) => (
-                          <div key={course.key} className="min-w-0">
+                          <div
+                            key={course.key}
+                            className={`min-w-0 ${
+                              course.isHighlighted
+                                ? "relative bg-gradient-to-br from-teal-50 to-green-50 rounded-xl p-4 -m-2 border border-teal-200"
+                                : ""
+                            }`}
+                          >
                             <button
                               type="button"
                               onClick={() => {
@@ -355,18 +364,26 @@ const Navbar = () => {
                               }}
                               className={`w-full text-left font-extrabold tracking-wide uppercase text-sm mb-3 ${
                                 course.key === "volunteer-programs"
-                                  ? "cursor-default"
+                                  ? "cursor-default text-teal-700"
                                   : "cursor-pointer"
                               } ${
-                                isScrolled
+                                !course.isHighlighted && isScrolled
                                   ? "text-gray-900 hover:text-teal-700"
-                                  : "text-white hover:text-teal-200"
+                                  : !course.isHighlighted
+                                  ? "text-white hover:text-teal-200"
+                                  : ""
                               }`}
                             >
-                              {course.label}
+                              {course.isHighlighted ? (
+                                <span className="flex items-center gap-2">
+                                  {course.label}
+                                </span>
+                              ) : (
+                                course.label
+                              )}
                             </button>
 
-                            <div className="space-y-2">
+                            <div className="space-y-1.5">
                               {(course.items || []).map((item) => (
                                 <button
                                   key={item.slug}
@@ -374,16 +391,44 @@ const Navbar = () => {
                                   onClick={() =>
                                     goToCourse(course.key, item.slug)
                                   }
-                                  className={`w-full cursor-pointer text-left text-sm ${
-                                    isScrolled
-                                      ? "text-gray-600 hover:text-gray-900"
-                                      : "text-white/70 hover:text-white"
+                                  className={`w-full cursor-pointer text-left text-sm rounded-lg px-3 py-2 transition-all duration-200 ${
+                                    course.isHighlighted
+                                      ? "text-teal-700 hover:bg-white/80 hover:text-teal-900 hover:shadow-sm"
+                                      : isScrolled
+                                      ? "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                                      : "text-white/70 hover:text-white hover:bg-white/5"
                                   }`}
                                 >
                                   {item.label}
                                 </button>
                               ))}
                             </div>
+
+                            {/* CTA for volunteer section */}
+                            {course.isHighlighted && (
+                              <button
+                                onClick={() => {
+                                  navigate("/volunteer");
+                                  setIsCoursesOpen(false);
+                                }}
+                                className="mt-4 w-full px-4 py-2.5 bg-gradient-to-r from-teal-500 to-green-500 text-white text-sm font-semibold rounded-lg hover:from-teal-600 hover:to-green-600 transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                              >
+                                <span>Make an Impact</span>
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                  />
+                                </svg>
+                              </button>
+                            )}
                           </div>
                         ))}
                       </div>
@@ -497,20 +542,15 @@ const Navbar = () => {
                   navigate("/volunteer");
                   setIsMobileMenuOpen(false);
                 }}
-                className={`relative w-full px-6 py-4 rounded-xl font-medium overflow-hidden group mb-3 border-2 ${
-                  isScrolled
-                    ? "border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white"
-                    : "border-white/60 text-white hover:bg-white/10"
-                }`}
+                className="relative w-full px-6 py-4 rounded-xl font-medium overflow-hidden group mb-3 bg-gradient-to-r from-teal-500/10 to-green-500/10 border-2 border-teal-500"
               >
-                <span className="relative z-10 flex items-center justify-center">
+                <span className="relative z-10 flex items-center justify-center gap-2">
                   Volunteer Programs
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-gradient-to-r from-teal-500 to-green-500 text-white">
+                    Featured
+                  </span>
                 </span>
-                <div
-                  className={`absolute inset-0 rounded-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
-                    isScrolled ? "bg-teal-600" : "bg-white/20"
-                  }`}
-                />
+                <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-green-500 rounded-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </button>
 
               <button
