@@ -164,16 +164,16 @@ const DiscoverScubaDive = () => {
           "Guided shallow-water dive experience",
           "Photos of your dive (optional add-on)",
           "Certificate of participation",
+          "Certificate of recognition (not a full certification, but a great keepsake)",
         ],
       },
       fees: {
         leftTitle: "Pricing",
         leftText:
-          "Pricing depends on group size, schedule, and any add-ons. Replace the placeholders with your official rates and we can format them into a proper price table.",
+          "Pricing depends on group size, schedule, and any add-ons. All prices are in pesos and include VAT. Contact us for custom group rates or private sessions.",
         rightTitle: "Tuition Fees",
         rightItems: [
-          "Intro Session: ₱3,000.00 (set your price)",
-          "Add-ons: ₱5,600.00 (photos, additional time, private session)",
+          "Half-day Session: ₱4,500.00 per person",
           "Group discounts: optional",
           "Reservation policy: optional",
         ],
@@ -239,9 +239,16 @@ const DiscoverScubaDive = () => {
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
-              Try scuba for the first time with a guided intro experience. Learn
-              the basics, build confidence, and explore underwater in a safe,
-              supportive environment.
+              Tempted with the idea of blowing bubbles underwater but just not
+              sure if you will like it? Or do you really want to get certified
+              but just don’t have the time? Then why not give the PADI discover
+              scuba dive a go.
+            </p>
+            <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
+              Upon completion of your first dive you will receive a certificate
+              of recognition, which can be used as credit towards your full Open
+              Water Course. The discover scuba dive is available to anyone 10
+              years of older.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">

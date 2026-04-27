@@ -199,8 +199,12 @@ const AdvancedOpenWater = () => {
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
-              Build confidence, refine your diving skills, and explore new
-              experiences through instructor-guided adventure dives.
+              Are you already open water certified? Would you like to gain more
+              knowledge and experience in diving? Have you wondered what it is
+              like down deep or how different things look at night; amazed at
+              how your dive leader always manages to find the boat and knows so
+              many different fish species? The answer to all these questions and
+              more is in the PADI Advanced Open Water Course.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">

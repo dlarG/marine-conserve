@@ -155,8 +155,8 @@ const OpenWaterDiver = () => {
         rightItems: [
           "Professional instruction by a certified PADI instructor",
           "Use of scuba equipment (mask, snorkel, fins, regulator, buoyancy control device, tank)",
-          "Pool or confined water training sessions",
-          "One open water dive experience (if included in your package)",
+          "Pool or confined water training sessions(5 sessions)",
+          "4 open water dive experience (40 ft on the first 2 dives and 60ft on your final dive)",
           "Briefing and debriefing sessions",
         ],
       },
@@ -165,8 +165,7 @@ const OpenWaterDiver = () => {
         leftText: "Pricing depends on group size, schedule, and any add-ons.",
         rightTitle: "Tuition Fees",
         rightItems: [
-          "Intro Session: ₱15,000.00 (pool session only, no open water dive)",
-          "Full Experience: ₱25,000.00 (includes pool session + one open water dive)",
+          "Full Price: ₱19,450.00",
           "Group discounts: optional",
           "Reservation policy: optional",
         ],
@@ -233,9 +232,7 @@ const OpenWaterDiver = () => {
 
             <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
               This courses is the first step in your scuba diving journey, right
-              after the Discover Scuba Diving experience. It's designed to give
-              you the skills and confidence to dive independently with a buddy,
-              opening up a whole new world of underwater exploration.
+              after the Discover Scuba Diving experience.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
