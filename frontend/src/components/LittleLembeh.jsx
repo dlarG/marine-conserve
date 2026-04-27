@@ -125,6 +125,7 @@ const App = () => {
   const heroScale = useTransform(scrollYProgress, [0, 0.08], [1, 0.95]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
     };
@@ -180,7 +181,7 @@ const App = () => {
             {/* Logo */}
             <motion.button
               onClick={() => scrollToSection("hero")}
-              className="flex items-center space-x-2 relative z-50"
+              className="cursor-pointer flex items-center space-x-2 relative z-50"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -189,31 +190,17 @@ const App = () => {
                   scrolled ? "text-ocean-800" : "text-white"
                 }`}
               >
-                Little Lembeh
+                Leyte Lembeh
               </span>
             </motion.button>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-              {/* Coral Restoration Link */}
-              <motion.a
-                href="/"
-                className={`relative text-sm font-medium tracking-wide transition-colors duration-300 flex items-center gap-2 ${
-                  scrolled
-                    ? "text-green-700 hover:text-green-600"
-                    : "text-green-300 hover:text-green-200"
-                }`}
-                whileHover={{ scale: 1.05 }}
-              >
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                Coral Restoration
-              </motion.a>
-
               {navItems.map((item) => (
                 <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative text-sm font-medium tracking-wide transition-colors duration-300 ${
+                  className={`cursor-pointer relative text-sm font-medium tracking-wide transition-colors duration-300 ${
                     scrolled
                       ? "text-ocean-800 hover:text-ocean-600"
                       : "text-white/90 hover:text-white"
@@ -226,7 +213,7 @@ const App = () => {
 
               <motion.button
                 onClick={() => scrollToSection("book")}
-                className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+                className={`cursor-pointer px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
                   scrolled
                     ? "bg-ocean-800 text-white hover:bg-ocean-700 shadow-lg shadow-ocean-800/20"
                     : "bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30"
@@ -241,7 +228,7 @@ const App = () => {
             {/* Mobile Menu Button */}
             <motion.button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center"
+              className="cursor-pointer lg:hidden relative z-50 w-10 h-10 flex items-center justify-center"
               whileTap={{ scale: 0.9 }}
             >
               <div className="w-6 h-5 relative flex flex-col justify-between">
@@ -285,22 +272,11 @@ const App = () => {
               className="lg:hidden bg-white/98 backdrop-blur-xl border-t border-ocean-100 overflow-hidden"
             >
               <div className="px-4 py-6 space-y-4">
-                {/* Coral Restoration Mobile */}
-                <motion.a
-                  href="/"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 px-4 py-3 rounded-xl bg-green-50 text-green-700 font-medium"
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  Coral Restoration Program
-                </motion.a>
-
                 {navItems.map((item) => (
                   <motion.button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left px-4 py-3 text-ocean-800 font-medium hover:bg-ocean-50 rounded-xl transition-colors"
+                    className="cursor-pointer block w-full text-left px-4 py-3 text-ocean-800 font-medium hover:bg-ocean-50 rounded-xl transition-colors"
                     whileTap={{ scale: 0.98 }}
                   >
                     {item.label}
@@ -309,7 +285,7 @@ const App = () => {
 
                 <motion.button
                   onClick={() => scrollToSection("book")}
-                  className="w-full px-6 py-3.5 bg-ocean-800 text-white font-medium rounded-xl hover:bg-ocean-700 transition-colors shadow-lg"
+                  className="cursor-pointer w-full px-6 py-3.5 bg-ocean-800 text-white font-medium rounded-xl hover:bg-ocean-700 transition-colors shadow-lg"
                   whileTap={{ scale: 0.98 }}
                 >
                   Book Your Stay
@@ -335,12 +311,12 @@ const App = () => {
           >
             <img
               src={images.hero}
-              alt="Little Lembeh Resort"
+              alt="Leyte Lembeh Resort"
               className="w-full h-full object-cover hidden md:block"
             />
             <img
               src={images.heroMobile}
-              alt="Little Lembeh Resort"
+              alt="Leyte Lembeh Resort"
               className="w-full h-full object-cover md:hidden"
             />
           </motion.div>
@@ -369,7 +345,7 @@ const App = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="font-playfair text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white mb-4 sm:mb-6 tracking-tight leading-none"
           >
-            Little
+            Leyte
             <br className="sm:hidden" /> Lembeh
           </motion.h1>
 
@@ -390,7 +366,7 @@ const App = () => {
           >
             <motion.button
               onClick={() => scrollToSection("book")}
-              className="w-full sm:w-auto px-8 sm:px-10 bg-gold-500 text-ocean-900 font-semibold rounded-full hover:bg-gold-400 transition-all duration-300 shadow-xl shadow-gold-500/25 text-sm sm:text-base"
+              className="cursor-pointer w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-4 bg-gold-500 text-ocean-900 font-semibold rounded-full hover:bg-gold-400 transition-all duration-300 shadow-xl shadow-gold-500/25 text-sm sm:text-base"
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 25px 50px -12px rgba(245, 158, 11, 0.4)",
@@ -401,7 +377,7 @@ const App = () => {
             </motion.button>
             <motion.button
               onClick={() => scrollToSection("about")}
-              className="w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 border-2 border-white/40 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
+              className="cursor-pointer w-full sm:w-auto px-8 sm:px-10 py-3.5 sm:py-4 border-2 border-white/40 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -422,13 +398,17 @@ const App = () => {
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center gap-2"
           >
-            <span className="text-white/50 text-xs tracking-widest uppercase">
+            <span
+              className="text-white/50 text-xs tracking-widest uppercase"
+              onClick={() => scrollToSection("about")}
+            >
               Scroll
             </span>
             <div className="w-5 h-8 border-2 border-white/50 rounded-full flex justify-center">
               <motion.div
                 animate={{ y: [0, 6, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
+                onClick={() => scrollToSection("about")}
                 className="w-1.5 h-1.5 bg-white rounded-full mt-1.5"
               />
             </div>
@@ -439,7 +419,7 @@ const App = () => {
       {/* ============ ABOUT SECTION ============ */}
       <section
         id="about"
-        className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-sand-50"
+        className="h-[100vh] py-16 sm:py-24 lg:py-24 px-4 sm:px-6 lg:px-8 bg-sand-50"
       >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -452,8 +432,8 @@ const App = () => {
                 >
                   <img
                     src={images.about}
-                    alt="Little Lembeh Resort View"
-                    className="w-full aspect-[4/5] object-cover"
+                    alt="Leyte Lembeh Resort View"
+                    className="w-full aspect-[4.5/5] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ocean-900/20 to-transparent" />
                 </motion.div>
@@ -477,7 +457,7 @@ const App = () => {
                 <div className="space-y-4 sm:space-y-6 text-ocean-700 leading-relaxed">
                   <p className="text-base sm:text-lg font-light">
                     Nestled along pristine white sand beaches with crystal-clear
-                    waters, Little Lembeh offers an exclusive escape where every
+                    waters, Leyte Lembeh offers an exclusive escape where every
                     moment is crafted for those who appreciate the
                     extraordinary.
                   </p>
@@ -543,7 +523,7 @@ const App = () => {
             </h2>
             <p className="text-ocean-200 font-light text-base sm:text-lg mb-8 max-w-2xl mx-auto">
               Join our mission to restore and protect the vibrant coral reefs
-              surrounding Little Lembeh and Sogod Bay. Every stay contributes to
+              surrounding Leyte Lembeh and Sogod Bay. Every stay contributes to
               marine conservation.
             </p>
             <motion.a
@@ -562,7 +542,7 @@ const App = () => {
       {/* ============ EXPERIENCES SECTION ============ */}
       <section
         id="experiences"
-        className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white"
+        className="h-[100vh] py-16 sm:py-24 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white"
       >
         <div className="max-w-7xl mx-auto">
           <ScrollReveal>
@@ -678,10 +658,10 @@ const App = () => {
                 role: "Travel Writer",
                 image: images.testimonial1,
                 quote:
-                  "Little Lembeh is everything you dream of and more. The diving is absolutely world-class, and the villas are pure luxury. I've never experienced anything quite like it.",
+                  "Leyte Lembeh is everything you dream of and more. The diving is absolutely world-class, and the villas are pure luxury. I've never experienced anything quite like it.",
               },
               {
-                name: "James Cooper",
+                name: "Malpz Waz Here",
                 role: "Marine Biologist",
                 image: images.testimonial2,
                 quote:
@@ -692,7 +672,7 @@ const App = () => {
                 role: "Luxury Travel Curator",
                 image: images.testimonial3,
                 quote:
-                  "The attention to detail at Little Lembeh is extraordinary. From the moment you arrive, every experience is thoughtfully curated. This is barefoot luxury at its finest.",
+                  "The attention to detail at Leyte Lembeh is extraordinary. From the moment you arrive, every experience is thoughtfully curated. This is barefoot luxury at its finest.",
               },
             ].map((testimonial, index) => (
               <motion.div
@@ -767,14 +747,14 @@ const App = () => {
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
             <motion.button
-              className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-5 bg-gold-500 text-ocean-900 font-semibold rounded-full text-base sm:text-lg hover:bg-gold-400 transition-all duration-300 shadow-2xl shadow-gold-500/25"
+              className="cursor-pointer w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-5 bg-gold-500 text-ocean-900 font-semibold rounded-full text-base sm:text-lg hover:bg-gold-400 transition-all duration-300 shadow-2xl shadow-gold-500/25"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Book Your Stay Now
             </motion.button>
             <motion.button
-              className="w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-5 border-2 border-white/40 text-white font-semibold rounded-full text-base sm:text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+              className="cursor-pointer w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-5 border-2 border-white/40 text-white font-semibold rounded-full text-base sm:text-lg hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -790,7 +770,7 @@ const App = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-16">
             <div className="sm:col-span-2 lg:col-span-1">
               <h3 className="font-playfair text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
-                Little Lembeh
+                Leyte Lembeh
               </h3>
               <p className="text-ocean-200 font-light leading-relaxed text-sm sm:text-base">
                 An exclusive tropical sanctuary where luxury meets pristine
@@ -820,7 +800,7 @@ const App = () => {
                           .replace(/ /g, "-")
                       )
                     }
-                    className="block text-ocean-200 hover:text-gold-400 transition-colors font-light text-sm sm:text-base"
+                    className="cursor-pointer block text-ocean-200 hover:text-gold-400 transition-colors font-light text-sm sm:text-base"
                     whileHover={{ x: 5 }}
                   >
                     {link}
@@ -859,18 +839,19 @@ const App = () => {
               </h4>
               <div className="space-y-3 sm:space-y-4 font-light text-ocean-200 text-sm sm:text-base">
                 <p>
-                  Jl. Paradise Beach No. 1<br />
-                  Lembeh Island, Indonesia
+                  Sabang, Malitbog, 6603
+                  <br />
+                  Southern Leyte, Philippines
                 </p>
-                <p>+62 123 4567 890</p>
-                <p>hello@littlelembeh.com</p>
+                <p>+63 9760 288 908</p>
+                <p>hello@leytelembeh.com</p>
               </div>
             </div>
           </div>
 
           <div className="border-t border-ocean-700 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-ocean-400 font-light text-xs sm:text-sm">
-              &copy; 2026 Little Lembeh. All rights reserved.
+              &copy; 2026 Leyte Lembeh. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
               {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
