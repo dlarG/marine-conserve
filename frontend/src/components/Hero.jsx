@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [marqueePosition, setMarqueePosition] = useState(0);
   const navigate = useNavigate();
-  const marqueeRef = useRef(null);
-  const containerRef = useRef(null);
 
   const pillars = [
     { title: "Coral Restoration", color: "text-green-300" },
@@ -29,42 +28,15 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    let animationId;
-    let startTime;
-    const speed = 40;
-    const gap = 64;
-
-    const animateMarquee = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-
-      const newPosition = (elapsed / 1000) * speed;
-      setMarqueePosition(newPosition);
-
-      if (marqueeRef.current && containerRef.current) {
-        const marqueeWidth = marqueeRef.current.offsetWidth;
-        const containerWidth = containerRef.current.offsetWidth;
-
-        if (newPosition > marqueeWidth + containerWidth + gap * 2) {
-          startTime = timestamp;
-          setMarqueePosition(0);
-        }
-      }
-
-      animationId = requestAnimationFrame(animateMarquee);
-    };
-
-    animationId = requestAnimationFrame(animateMarquee);
-
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, []);
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <style>
+        {`
+          .hero-carousel .swiper-wrapper {
+            transition-timing-function: linear !important;
+          }
+        `}
+      </style>
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-teal-900/40 via-teal-800/30 to-emerald-900/20" />
         <div
@@ -86,39 +58,41 @@ const Hero = () => {
       </div>
 
       <div
-        ref={containerRef}
-        className={`absolute bottom-10 left-0 w-full overflow-hidden z-20 transform transition-all duration-1000 ${
+        className={`hidden lg:flex absolute bottom-10 left-0 w-full overflow-hidden z-20 transform transition-all duration-1000 ${
           isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >
         <div className="absolute left-0 top-0 bottom-0 w-64 bg-gradient-to-r from-teal-900/80 via-teal-900/40 to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-64 bg-gradient-to-l from-teal-900/80 via-teal-900/40 to-transparent z-10 pointer-events-none" />
 
-        <div className="px-6">
-          <div
-            ref={marqueeRef}
-            className="flex whitespace-nowrap"
-            style={{
-              transform: `translateX(-${marqueePosition}px)`,
-              willChange: "transform",
+        <div className="px-10 w-7xl mx-auto relative z-20">
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={40}
+            slidesPerView="auto"
+            loop={true}
+            speed={4000}
+            autoplay={{
+              delay: 0,
+              disableOnInteraction: false,
             }}
+            className="hero-carousel w-full"
           >
-            {[...pillars, ...pillars, ...pillars, ...pillars].map(
-              (pillar, index) => (
-                <div
-                  key={`pillar-${index}`}
-                  className="inline-flex items-center mx-8 px-6 py-3 bg-white/5 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
-                >
-                  <span className="text-2xl mr-3">{pillar.icon}</span>
+            {[...pillars, ...pillars, ...pillars].map((pillar, index) => (
+              <SwiperSlide key={index} className="!w-auto py-2">
+                <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 cursor-pointer">
+                  {pillar.icon && (
+                    <span className="text-2xl mr-3">{pillar.icon}</span>
+                  )}
                   <span
-                    className={`font-semibold ${pillar.color} text-sm md:text-base`}
+                    className={`font-semibold ${pillar.color} text-sm md:text-base whitespace-nowrap`}
                   >
                     {pillar.title}
                   </span>
                 </div>
-              )
-            )}
-          </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-4 lg:px-4 flex flex-col lg:flex-row items-center justify-between min-h-[90vh] py-20">
@@ -257,7 +231,6 @@ const Hero = () => {
         >
           <div className="relative max-w-full mx-auto lg:ml-auto">
             <div className="relative">
-              {/* Outer glow effect */}
               <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 via-teal-500/20 to-emerald-500/20 rounded-full blur-2xl opacity-70" />
 
               <img
