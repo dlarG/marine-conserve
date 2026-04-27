@@ -102,11 +102,11 @@ const OpenWaterDiver = () => {
   );
   const tabs = useMemo(
     () => [
-      { key: "skills", label: "Skills to Learn" },
+      { key: "skills", label: "Description" },
       { key: "prereq", label: "Prerequisites" },
       { key: "inclusion", label: "What's Included" },
+      { key: "not_included", label: "What's Not Included" },
       { key: "fees", label: "Tuition Fees" },
-      { key: "not_included", label: "Not Included" },
       { key: "certificate", label: "Certificate" },
     ],
     []
@@ -123,7 +123,7 @@ const OpenWaterDiver = () => {
       skills: {
         leftTitle: "PADI Open Water Overview",
         leftText: baseDescription,
-        rightTitle: "Skills to Learn",
+        rightTitle: "What You'll Learn",
         rightItems: [
           "Equipment Setup: Learning to assemble and check your scuba unit.",
           "Underwater Navigation: Basic use of a compass and natural landmarks.",
@@ -162,7 +162,8 @@ const OpenWaterDiver = () => {
       },
       fees: {
         leftTitle: "Pricing",
-        leftText: "Pricing depends on group size, schedule, and any add-ons.",
+        leftText:
+          "The course is 3-4 days and gives you the foundational knowledge and skills you need to be a diver.",
         rightTitle: "Tuition Fees",
         rightItems: [
           "Full Price: ₱19,450.00",
@@ -171,7 +172,7 @@ const OpenWaterDiver = () => {
         ],
       },
       not_included: {
-        leftTitle: "Not Included",
+        leftTitle: "What's Not Included",
         leftText:
           "To avoid surprises, these common items are usually not covered unless you specify otherwise.",
         rightTitle: "Not Included",

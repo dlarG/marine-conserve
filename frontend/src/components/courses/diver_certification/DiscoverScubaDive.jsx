@@ -106,11 +106,11 @@ const DiscoverScubaDive = () => {
   );
   const tabs = useMemo(
     () => [
-      { key: "skills", label: "Skills to Learn" },
+      { key: "skills", label: "Description" },
       { key: "prereq", label: "Prerequisites" },
       { key: "inclusion", label: "What's Included" },
+      { key: "not_included", label: "What's Not Included" },
       { key: "fees", label: "Tuition Fees" },
-      { key: "not_included", label: "Not Included" },
       { key: "certificate", label: "Certificate" },
     ],
     []
@@ -127,7 +127,7 @@ const DiscoverScubaDive = () => {
       skills: {
         leftTitle: "Scuba Diving Basics",
         leftText: baseDescription,
-        rightTitle: "Skills to Learn",
+        rightTitle: "What You'll Learn",
         rightItems: [
           "Basic scuba equipment introduction and setup",
           "Pre-dive safety check & buddy procedures",
@@ -179,7 +179,7 @@ const DiscoverScubaDive = () => {
         ],
       },
       not_included: {
-        leftTitle: "Not Included",
+        leftTitle: "What's Not Included",
         leftText:
           "To avoid surprises, these common items are usually not covered unless you specify otherwise.",
         rightTitle: "Not Included",
@@ -193,7 +193,7 @@ const DiscoverScubaDive = () => {
       certificate: {
         leftTitle: "Certificate of Participation Preview",
         leftText:
-          "Upon completing your Discover Scuba Diving experience, you'll receive a certificate of participation. This certificate is a great keepsake to commemorate your first underwater adventure and can also serve as a stepping stone if you choose to pursue further scuba certifications in the future.",
+          "Upon completing your Discover Scuba Diving experience, you'll receive a certificate of participation. This certificate is a great keepsake to commemorate your first underwater adventure and can also serve as a stepping stone if you choose to pursue further scuba certifications in the future with us.",
         rightTitle: "Certificate Preview",
         rightImage: {
           src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775607945/Blue_and_Gold_Elegant_Certificate_Workshop_Participation_2_lshe1s.png",
