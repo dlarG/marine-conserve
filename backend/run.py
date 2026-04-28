@@ -30,6 +30,9 @@ def create_app():
     from routes.courses import courses_bp
     app.register_blueprint(courses_bp, url_prefix="/api")
     
+    from routes.volunteer import volunteer_bp
+    app.register_blueprint(volunteer_bp, url_prefix="/api")
+    
     @app.route('/')
     def health_check():
         return jsonify({

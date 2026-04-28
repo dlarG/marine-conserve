@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Clock, Users, Star, ArrowLeft } from "lucide-react";
+import VolunteerApplyModal from "./VolunteerApplyModal";
 
 const CoralRestoration1 = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const CoralRestoration1 = () => {
     window.scrollTo(0, 0);
     document.title = "Coral Restoration | GREEN Inc. Volunteer";
   }, []);
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
 
   const programData = {
     title: "Coral Restoration",
@@ -174,7 +176,10 @@ const CoralRestoration1 = () => {
                 <p className="text-teal-100 text-sm mb-6">
                   {programData.pricing.note}
                 </p>
-                <button className="w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all">
+                <button
+                  onClick={() => setIsApplyModalOpen(true)}
+                  className="w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all"
+                >
                   Apply Now
                 </button>
               </div>
@@ -388,6 +393,11 @@ const CoralRestoration1 = () => {
           </div>
         </div>
       </section>
+      <VolunteerApplyModal
+        isOpen={isApplyModalOpen}
+        onClose={() => setIsApplyModalOpen(false)}
+        programTitle="Coral Restoration"
+      />
     </div>
   );
 };
