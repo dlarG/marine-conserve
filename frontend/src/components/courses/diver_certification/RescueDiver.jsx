@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import Navbar from "../../navbars/Navbar";
 import Footer from "../../Footer";
 import ApplyNowModal from "./ApplyNowModal";
@@ -38,6 +38,10 @@ const BulletList = ({ items }) => {
 const RescueDiver = () => {
   const [isApplyOpen, setIsApplyOpen] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   const dateRanges = useMemo(
     () => [
       {
@@ -73,11 +77,11 @@ const RescueDiver = () => {
 
   const tabs = useMemo(
     () => [
-      { key: "skills", label: "Skills to Learn" },
+      { key: "skills", label: "Description" },
       { key: "prereq", label: "Prerequisites" },
       { key: "inclusion", label: "What's Included" },
+      { key: "not_included", label: "What's Not Included" },
       { key: "fees", label: "Tuition Fees" },
-      { key: "not_included", label: "Not Included" },
       { key: "certificate", label: "Certificate" },
     ],
     []
@@ -93,7 +97,29 @@ const RescueDiver = () => {
       skills: {
         leftTitle: "Rescue Diver Overview",
         leftText: baseDescription,
-        rightTitle: "Skills to Learn",
+        leftHighlight: {
+          title: "This course is 4-5 days and consists of:",
+          sections: [
+            {
+              label: "5 engaging classroom sessions",
+              description:
+                "Will expand your rescue knowledge through reviews and a final exam",
+              isBullet: true,
+            },
+            {
+              label: "10 exciting skill exercises",
+              description: "Will help you master in-water rescue skills",
+              isBullet: true,
+            },
+            {
+              label: "2 final in-water emergency scenarios",
+              description: "Will then test your newfound knowledge",
+              isBullet: true,
+            },
+          ],
+          note: "You should always be prepared during this course as you never know when a diver will need your help.",
+        },
+        rightTitle: "Skills You'll Learn",
         rightItems: [
           "Risk awareness and accident prevention",
           "Self-rescue skills and stress management",
@@ -110,10 +136,7 @@ const RescueDiver = () => {
           "Rescue training is challenging and rewarding. Make sure you meet the prerequisites and are comfortable in open water conditions.",
         rightTitle: "Prerequisites",
         rightItems: [
-          "Advanced Open Water Diver certification (or equivalent)",
-          "Current CPR/First Aid training (or take alongside; set your policy)",
-          "Minimum age requirement (set your policy)",
-          "Completed medical questionnaire / clearance if required",
+          "This course is available to anyone who has an advanced diving certificate.",
         ],
       },
       inclusion: {
@@ -131,18 +154,12 @@ const RescueDiver = () => {
       },
       fees: {
         leftTitle: "Pricing",
-        leftText:
-          "Pricing depends on group size, schedule, and any add-ons. Replace placeholders with your official rates.",
+        leftText: "Pricing depends on group size, schedule, and any add-ons.",
         rightTitle: "Tuition Fees",
-        rightItems: [
-          "Course Package: ₱—.— (set your price)",
-          "CPR/First Aid: ₱—.— (if bundled)",
-          "Equipment rental: optional",
-          "Reservation policy: optional",
-        ],
+        rightItems: ["Course Package: ₱19,950.00"],
       },
       not_included: {
-        leftTitle: "Not Included",
+        leftTitle: "What's Not Included",
         leftText:
           "Common items that may not be included unless specified in your package.",
         rightTitle: "Not Included",
@@ -156,7 +173,7 @@ const RescueDiver = () => {
       certificate: {
         leftTitle: "Certification Preview",
         leftText:
-          "After successful completion, you’ll receive your Rescue Diver certification (or the appropriate completion record, depending on processing).",
+          "Upon completion you will receive a PADI Project AWARE Rescue Diver Certificate that is a lifelong diving cert accepted worldwide and also takes you one step closer to beginning your PADI Divemaster Course, the first professional rating in PADI.",
         rightTitle: "Certificate Preview",
         rightImage: {
           src: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80",
@@ -196,9 +213,11 @@ const RescueDiver = () => {
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
-              Become a stronger, more confident diver by learning how to prevent
-              and manage problems in the water through realistic rescue
-              scenarios.
+              Could you recognize and help a diver in distress? Could you calm a
+              panicked diver down? What would you do if you came across an
+              unconscious diver? Do you have the confidence to take charge? This
+              fun filled and challenging course will teach you how to help
+              yourself and others who may be in need.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -243,7 +262,7 @@ const RescueDiver = () => {
             <button
               type="button"
               onClick={() => setIsApplyOpen(true)}
-              className="cursor-pointer w-full md:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-teal-600 to-green-600 text-white hover:shadow-lg transition-all whitespace-nowrap"
+              className="cursor-pointer w-full md:w-auto px-6 py-3 rounded-xl bg-teal-600 text-white hover:shadow-lg transition-all whitespace-nowrap"
             >
               APPLY NOW
             </button>
@@ -270,7 +289,7 @@ const RescueDiver = () => {
               </div>
 
               <div className="mt-8 rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
-                <img
+                {/* <img
                   src={active.rightImage.src}
                   alt={active.rightImage.alt || "Certificate image"}
                   className="w-full h-auto max-h-[720px] object-contain bg-white select-none"
@@ -278,7 +297,7 @@ const RescueDiver = () => {
                   draggable={false}
                   onDragStart={(e) => e.preventDefault()}
                   onContextMenu={(e) => e.preventDefault()}
-                />
+                /> */}
               </div>
             </div>
           ) : (
@@ -287,9 +306,67 @@ const RescueDiver = () => {
                 <h3 className="text-xl md:text-3xl font-light text-gray-700">
                   {active?.leftTitle}
                 </h3>
+
+                {/* Course overview text */}
                 <p className="mt-4 md:mt-6 text-sm md:text-lg text-gray-600">
                   {active?.leftText}
                 </p>
+
+                {/* Structured course breakdown - shows for any tab that has leftHighlight */}
+                {active?.leftHighlight && (
+                  <div className="mt-6 space-y-5">
+                    <p className="text-sm md:text-xl text-gray-700 font-medium">
+                      {active.leftHighlight.title}
+                    </p>
+
+                    {/* Sections with bullet points */}
+                    <ul className="space-y-3">
+                      {active.leftHighlight.sections.map((section, idx) => (
+                        <li key={idx} className="flex gap-3">
+                          <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-teal-600 flex-shrink-0" />
+                          <div>
+                            <span className="text-sm md:text-base text-gray-800 font-semibold">
+                              {section.label}
+                            </span>
+                            <span className="text-sm md:text-base text-gray-600">
+                              {" "}
+                              — {section.description}
+                            </span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Important note */}
+                    {active.leftHighlight.note && (
+                      <div className="bg-teal-50 border-l-4 border-teal-600 rounded-r-lg p-4">
+                        <p className="text-sm md:text-base text-teal-800 font-medium">
+                          {active.leftHighlight.note}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Prerequisite info */}
+                    {active.leftHighlight.prerequisite && (
+                      <div className="flex gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-teal-600 flex-shrink-0" />
+                        <p className="text-sm md:text-base text-gray-600">
+                          {active.leftHighlight.prerequisite}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Certification info */}
+                    {active.leftHighlight.certification && (
+                      <div className="flex gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-teal-600 flex-shrink-0" />
+                        <p className="text-sm md:text-base text-gray-600">
+                          {active.leftHighlight.certification}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <a
                   href="#dates"
