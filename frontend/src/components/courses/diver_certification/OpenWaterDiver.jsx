@@ -186,7 +186,7 @@ const OpenWaterDiver = () => {
       certificate: {
         leftTitle: "Certificate of Participation Preview",
         leftText:
-          "Upon completing your PADI Open Water experience, you'll receive a certificate of participation.",
+          "Upon completing your PADI Open Water experience, you'll receive a certificate of participation from us.",
         rightTitle: "Certificate Preview",
         rightImage: {
           src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775616064/Blue_and_Gold_Elegant_Certificate_Workshop_Participation_5_kqw3pj.png",
@@ -299,17 +299,7 @@ const OpenWaterDiver = () => {
                 </div>
               </div>
 
-              <div className="mt-8 rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
-                <img
-                  src={active.rightImage.src}
-                  alt={active.rightImage.alt || "Certificate image"}
-                  className="w-full h-auto max-h-[720px] object-contain bg-white select-none"
-                  loading="lazy"
-                  draggable={false}
-                  onDragStart={(e) => e.preventDefault()}
-                  onContextMenu={(e) => e.preventDefault()}
-                />
-              </div>
+              <div className="mt-8 rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm"></div>
             </div>
           ) : (
             <>
