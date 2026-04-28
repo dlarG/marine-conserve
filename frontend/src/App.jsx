@@ -464,6 +464,7 @@ const MissionPage = () => {
 const CoursePage = () => {
   return (
     <>
+      <Navbar />
       <Course />
       <Footer />
     </>

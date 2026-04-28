@@ -1,10 +1,62 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Course = () => {
-  const [activeTab, setActiveTab] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
+  const navigate = useNavigate();
+
+  const courseData = {
+    title: "Dive into your Marine Career",
+    tagline:
+      "Ready to explore the underwater world or take your diving skills to the next level? Our courses offer a complete range of PADI-certified courses, delivered in a safe, community-based, and conservation-focused environment",
+    heroImage:
+      "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777343136/555705217_10238078344967574_7898261656592206056_n_mjjsbg.jpg",
+    fullDescription: [
+      "Coral reefs are the rainforests of the sea, supporting 25% of all marine life while covering less than 1% of the ocean floor. In Sogod Bay, these vital ecosystems face threats from climate change, pollution, and destructive fishing practices.",
+      "As a Coral Restoration volunteer, you'll be at the forefront of our reef rehabilitation efforts. You'll work directly in our established underwater nurseries, learning the science behind coral propagation while actively contributing to habitat recovery.",
+      "This program is perfect for those who want to see tangible results from their conservation work. Every coral fragment you plant is a step toward restoring the vibrant marine ecosystems that Sogod Bay is known for.",
+    ],
+    activities: [
+      "Clean and maintain coral nursery structures",
+      "Harvest and prepare coral fragments for planting",
+      "Out-plant resilient coral species onto degraded reefs",
+      "Monitor coral health and growth rates",
+      "Document restoration progress through photography",
+      "Learn coral identification and ecology",
+      "Assist in nursery expansion projects",
+      "Participate in reef clean-up operations",
+    ],
+    duration: "Flexible (1–24+ weeks)",
+    bestFor: "Scuba divers passionate about reef restoration",
+    level: "Beginner to Advanced",
+    pricing: {
+      amount: "From ₱25,000/week",
+      note: "Long-term discounts available",
+    },
+    inclusions: [
+      "Hands-on coral nursery maintenance and transplantation",
+      "Training in coral identification and ecology",
+      "Regular reef monitoring and restoration dives",
+      "30-40 training and survey dives per month (weather permitting)",
+      "Complete scuba gear rental (BCD and Regulator)",
+      "Free use of snorkeling gear when off-duty",
+      "Tuition and lectures on marine conservation",
+      "All marine park fees",
+      "Support and supervision from experienced instructors",
+      "Shared accommodation",
+      "All meals, water, tea, and coffee",
+      "GREEN, Inc. T-shirt",
+    ],
+    outcomes: [
+      "Practical experience in coral reef restoration",
+      "Understanding of coral propagation techniques",
+      "Skills in underwater monitoring and data collection",
+      "Knowledge of reef ecology and conservation challenges",
+      "Certificate of participation/completion (based on duration)",
+    ],
+  };
 
   useEffect(() => {
     setIsLoaded(true);
@@ -47,223 +99,90 @@ const Course = () => {
 
   const courses = [
     {
-      id: 1,
-      title: "Marine Biology Fundamentals",
+      link: "discover-scuba",
+      title: "PADI Discover Scuba Diving",
       subtitle: "Foundation Course",
       image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384082/conserve_p6ituq.jpg",
-      duration: "8 weeks",
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775547474/pexels-aydenzaki-8029908_gdieio.jpg",
+      duration: "1-3 days",
       level: "Beginner",
-      price: "₱599",
+      price: "₱4,500.00",
       shortDescription:
-        "Learn the basics of marine ecosystems and biodiversity",
-      description:
-        "Comprehensive introduction to marine life, ecosystems, and conservation principles. Perfect for beginners wanting to understand ocean environments.",
-      skills: [
-        "Marine ecosystem identification",
-        "Species classification",
-        "Underwater observation techniques",
-        "Data collection methods",
-        "Marine conservation principles",
-      ],
-      prerequisites: [
-        "Basic swimming ability",
-        "High school diploma or equivalent",
-        "No prior marine experience required",
-      ],
-      included: [
-        "Course materials and textbooks",
-        "Lab access and equipment",
-        "Field trip to marine sanctuary",
-        "Certificate of completion",
-        "Access to online resources",
-        "Instructor support",
-      ],
-      notIncluded: [
-        "Accommodation",
-        "Meals during field trips",
-        "Personal diving equipment",
-        "Travel expenses",
-      ],
+        "This course provides a comprehensive introduction to scuba diving, covering essential skills and safety protocols.",
     },
     {
-      id: 2,
-      title: "Discover Scuba Diving",
-      subtitle: "Learn Scuba Diving Basics",
+      link: "open-water",
+      title: "PADI Open Water Diver",
+      subtitle: "Certification Course",
       image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396163/pexels-debal-das-59599429-7970796_saucto.jpg",
-      duration: "6 weeks",
-      level: "Intermediate",
-      price: "₱899",
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549211/pexels-domingo-dias-260502921-12678039_uygdph.jpg",
+      duration: "3-4 days",
+      level: "Beginner - Intermediate",
+      price: "₱19,450.00",
       shortDescription:
-        "Beginner-friendly course to learn scuba diving basics.",
-      description:
-        "Hands-on training in scuba diving techniques, including equipment usage, safety protocols, and underwater navigation.",
-      skills: [
-        "Basic scuba diving skills",
-        "Underwater communication",
-        "Buoyancy control",
-        "Marine life identification",
-        "Safety procedures",
-      ],
-      prerequisites: [
-        "Open Water Diving certification",
-        "Marine Biology Fundamentals or equivalent",
-        "Good physical fitness",
-        "Underwater photography basics (preferred)",
-      ],
-      included: [
-        "Specialized restoration tools",
-        "Diving equipment rental",
-        "Boat transportation to sites",
-        "Professional certification",
-        "Research project opportunity",
-        "Mentorship program",
-      ],
-      notIncluded: [
-        "Diving certification course",
-        "Personal diving gear",
-        "Insurance coverage",
-        "Accommodation and meals",
-      ],
+        "This course covers all the essential skills and knowledge needed to become a certified diver.",
     },
     {
-      id: 3,
-      title: "Open Water Diver",
+      link: "advanced-open-water",
+      title: "PADI Advanced Open Water Diver",
       subtitle: "Professional Training",
       image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396227/pexels-leonardo-lamas-32247393-7001658_jez7o0.jpg",
-      duration: "6 weeks",
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549270/pexels-diego-sandoval-3158170-4767068_ccrfv9.jpg",
+      duration: "2-3 days",
       level: "Advanced",
-      price: "₱1,299",
+      price: "₱15,950.00",
       shortDescription:
-        "A highly-trained PADI Instructor will teach you how to scuba dive in a relaxed, supportive learning environment",
-      description:
-        "Open Water Diver is the first scuba certification level. A highly-trained PADI Instructor will teach you how to scuba dive in a relaxed, supportive learning environment. By the end of the course, you'll have the skills and knowledge to dive at home or abroad and be an ambassador for the underwater world.",
-      skills: [
-        "Advanced diving techniques",
-        "Underwater research methods",
-        "Dive site assessment",
-        "Emergency response protocols",
-      ],
-      prerequisites: [
-        "Scuba Diving certification",
-        "50+ logged dives",
-        "CPR/First Aid certification",
-        "Medical fitness certificate",
-      ],
-      included: [
-        "Professional diving equipment",
-        "Scientific instruments training",
-        "Boat operations certification",
-        "Safety equipment",
-        "International certification",
-        "Job placement assistance",
-      ],
-      notIncluded: [
-        "Medical examinations",
-        "Personal protective equipment",
-        "Accommodation",
-        "Visa/travel arrangements",
-      ],
+        "This course focuses on refining your diving skills and expanding your knowledge in underwater exploration.",
     },
     {
-      id: 4,
-      title: "Advanced Open Water Diver",
-      subtitle: "Professional Development",
+      link: "rescue-diver",
+      title: "PADI Rescue Diver",
+      subtitle: "Emergency Response Training",
       image:
         "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396302/pexels-ruben-galante-3187936-4809004_agffbd.jpg",
-      duration: "10 weeks",
+      duration: "4-5 days",
       level: "Advanced",
-      price: "₱1,099",
+      price: "₱19,950.00",
       shortDescription:
-        "Enhance your skills in underwater exploration and conservation",
-      description:
-        "Advanced Open Water Diver is designed for divers who want to enhance their skills and knowledge in underwater exploration and conservation. This course focuses on advanced diving techniques, environmental awareness, and research methodologies.",
-      skills: [
-        "Project planning and management",
-        "Community engagement strategies",
-        "Policy analysis and development",
-        "Grant writing and fundraising",
-        "Stakeholder communication",
-      ],
-      prerequisites: [
-        "Bachelor's degree or equivalent experience",
-        "2+ years in environmental field",
-        "Previous conservation project involvement",
-        "Basic research methodology knowledge",
-      ],
-      included: [
-        "Advanced research equipment",
-        "Community outreach toolkit",
-        "Policy development templates",
-        "Grant application samples",
-        "Networking events access",
-      ],
-      notIncluded: [
-        "Field work expenses",
-        "Conference attendance fees",
-        "Personal project funding",
-      ],
+        "Rescue Diver is designed to equip divers with the skills and knowledge to prevent and manage diving emergencies, both for themselves and others.",
     },
     {
-      id: 5,
-      title: "Underwater Photography & Videography",
-      subtitle: "Creative Documentation",
+      link: "divemaster",
+      title: "PADI Divemaster",
+      subtitle: "Leadership Development",
       image:
         "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396412/pexels-tomfisk-1522160_xmorgy.jpg",
-      duration: "6 weeks",
-      level: "Intermediate",
-      price: "₱799",
-      shortDescription: "Capture stunning marine life through lens",
-      description:
-        "Learn professional underwater photography and videography techniques to document marine life and create compelling content for conservation awareness.",
-      skills: [
-        "Underwater camera operation",
-        "Lighting and composition",
-        "Marine life behavior documentation",
-        "Video editing techniques",
-        "Conservation storytelling",
-      ],
-      prerequisites: [
-        "Open Water Diving certification",
-        "Basic photography knowledge",
-        "Own underwater camera system",
-        "Good buoyancy control",
-      ],
-      included: [
-        "Professional lighting equipment",
-        "Video editing software license",
-        "Portfolio development session",
-        "Exhibition opportunity",
-        "Online gallery space",
-        "Professional critique sessions",
-      ],
-      notIncluded: [
-        "Camera equipment purchase",
-        "Memory cards and batteries",
-        "Diving equipment rental",
-        "Photo printing costs",
-      ],
+      duration: "4-6 weeks",
+      level: "Advanced - Professional",
+      price: "₱65,000.00",
+      shortDescription:
+        "Divemaster is the first professional level in the PADI system, designed to develop leadership skills and prepare divers for a career in the diving industry.",
     },
   ];
 
-  const getLevelColor = (level) => {
-    switch (level) {
-      case "Beginner":
-        return "bg-gradient-to-r from-green-400 to-emerald-500 text-white";
-      case "Intermediate":
-        return "bg-gradient-to-r from-yellow-400 to-amber-500 text-white";
-      case "Advanced":
-        return "bg-gradient-to-r from-red-400 to-rose-500 text-white";
-      default:
-        return "bg-gradient-to-r from-gray-400 to-gray-500 text-white";
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50 py-12 md:py-20 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50">
       {/* Background Elements */}
+      <section className="relative h-[60vh] min-h-[400px] flex items-center">
+        <div className="absolute inset-0">
+          <img
+            src={courseData.heroImage}
+            alt={courseData.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-teal-900/90 via-teal-900/60 to-transparent" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-3xl">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+              {courseData.title}
+            </h1>
+            <p className="text-lg text-gray-200 max-w-2xl">
+              {courseData.tagline}
+            </p>
+          </div>
+        </div>
+      </section>
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
         <div className="absolute top-0 right-0 w-72 h-72 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
@@ -278,43 +197,7 @@ const Course = () => {
         ></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16 relative">
-          <div className="inline-block mb-8">
-            <div className="relative w-full p-8 overflow-hidden">
-              <h1
-                className={`text-2xl md:text-4xl font-bold text-gray-900 mb-6 transition-all duration-1000 ${
-                  isLoaded
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
-                }`}
-              >
-                Dive Into Your{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-emerald-500 to-blue-600 animate-gradient">
-                  Marine Career
-                </span>
-              </h1>
-              <p
-                className={`text-sm md:text-lg text-gray-600 max-w-3xl mx-auto transition-all duration-1000 delay-300 ${
-                  isLoaded
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
-                }`}
-              >
-                Ready to explore the underwater world or take your diving skills
-                to the next level? Our courses offer a complete range of
-                PADI-certified courses, delivered in a safe, community-based,
-                and conservation-focused environment
-              </p>
-            </div>
-            <div className="absolute inset-0 border-2 border-dashed border-gray-300 rounded-2xl pointer-events-none"></div>
-            <div className="absolute inset-0 rounded-2xl overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-br from-blue-200 to-teal-200 opacity-30"></div>
-            </div>
-          </div>
-        </div>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24">
         {/* Course Cards Grid */}
         <div
           className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 transition-all duration-1000 delay-200 ${
@@ -327,7 +210,7 @@ const Course = () => {
               onMouseEnter={() => setHoveredCard(course.id)}
               onMouseLeave={() => setHoveredCard(null)}
               className=" group relative cursor-pointer"
-              onClick={() => setActiveTab(course.id - 1)}
+              onClick={() => navigate(`/courses/${course.link}`)}
             >
               {/* Card Glow Effect */}
               <div
@@ -394,234 +277,6 @@ const Course = () => {
                       }`}
                     >
                       →
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Active Course Details */}
-        <div
-          className={`mb-20 transition-all duration-500 ${
-            isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          {courses.map((course, index) => (
-            <div
-              key={course.id}
-              className={`transition-all duration-500 ${
-                activeTab === index ? "block" : "hidden"
-              }`}
-            >
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/50">
-                {/* Hero Section */}
-                <div className="relative h-96 overflow-hidden">
-                  <div className="absolute inset-0">
-                    <img
-                      src={course.image}
-                      alt={course.title}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.target.src =
-                          "https://images.unsplash.com/photo-1566024287286-457246b56b8a?w=1600&auto=format&fit=crop";
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                    <div className="max-w-4xl">
-                      <div className="flex items-center gap-4 mb-4">
-                        <span
-                          className={`px-4 py-1.5 rounded-full text-sm font-bold ${getLevelColor(
-                            course.level
-                          )}`}
-                        >
-                          {course.level}
-                        </span>
-                        <span className="bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium">
-                          {course.duration}
-                        </span>
-                        {course.badge && (
-                          <span
-                            className={`${course.badgeColor} px-4 py-1.5 rounded-full text-sm font-bold`}
-                          >
-                            {course.badge}
-                          </span>
-                        )}
-                      </div>
-                      <h2 className="text-4xl md:text-5xl font-bold mb-3">
-                        {course.title}
-                      </h2>
-                      <p className="text-xl opacity-90">{course.subtitle}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Course Content */}
-                <div className="p-8 md:p-12">
-                  <div className="grid lg:grid-cols-3 gap-12">
-                    {/* Main Content */}
-                    <div className="lg:col-span-2">
-                      {/* Description */}
-                      <div className="mb-12">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                          <span className="w-3 h-8 bg-gradient-to-b from-teal-400 to-emerald-500 rounded-full"></span>
-                          Course Overview
-                        </h3>
-                        <p className="text-gray-700 leading-relaxed text-lg bg-gradient-to-r from-teal-50 to-transparent p-6 rounded-2xl">
-                          {course.description}
-                        </p>
-                      </div>
-
-                      {/* Skills */}
-                      <div className="mb-12">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                          <span className="w-3 h-8 bg-gradient-to-b from-yellow-400 to-amber-500 rounded-full"></span>
-                          Skills You'll Master
-                        </h3>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {course.skills.map((skill, skillIndex) => (
-                            <div
-                              key={skillIndex}
-                              className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100 hover:border-teal-200 hover:shadow-lg transition-all duration-300"
-                            >
-                              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-teal-100 to-emerald-100 flex items-center justify-center text-teal-600 group-hover:scale-110 transition-transform duration-300">
-                                <span className="text-lg">✓</span>
-                              </div>
-                              <div>
-                                <span className="text-gray-800 font-medium">
-                                  {skill}
-                                </span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Prerequisites */}
-                      <div className="mb-12">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                          <span className="w-3 h-8 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full"></span>
-                          Requirements
-                        </h3>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {course.prerequisites.map((prereq, prereqIndex) => (
-                            <div
-                              key={prereqIndex}
-                              className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100"
-                            >
-                              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex items-center justify-center">
-                                <svg
-                                  className="w-3 h-3 text-white"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                              <span className="text-gray-700">{prereq}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Sidebar */}
-                    <div className="space-y-8">
-                      {/* Pricing Card */}
-                      <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white shadow-2xl">
-                        <div className="text-center mb-8">
-                          <div className="text-5xl font-bold mb-2">
-                            {course.price}
-                          </div>
-                          <p className="text-gray-300">
-                            Complete course package
-                          </p>
-                        </div>
-
-                        <button className="w-full group relative overflow-hidden bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105">
-                          <span className="relative z-10">Enroll Now</span>
-                          <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="absolute -inset-1 bg-gradient-to-r from-teal-400 to-emerald-400 rounded-xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        </button>
-
-                        <div className="mt-6 text-center text-gray-300 text-sm">
-                          ⚡ Limited spots available for next session
-                        </div>
-                      </div>
-
-                      {/* What's Included */}
-                      <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg">
-                        <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
-                          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
-                            <span className="text-green-600">✓</span>
-                          </div>
-                          What's Included
-                        </h4>
-                        <ul className="space-y-3">
-                          {course.included.map((item, itemIndex) => (
-                            <li
-                              key={itemIndex}
-                              className="text-gray-700 flex items-start gap-3 group"
-                            >
-                              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5 group-hover:scale-110 transition-transform duration-200">
-                                <svg
-                                  className="w-3 h-3 text-green-600"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                              <span className="text-sm">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* What's Not Included */}
-                      <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg">
-                        <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
-                          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-100 to-rose-100 flex items-center justify-center">
-                            <span className="text-red-600">✗</span>
-                          </div>
-                          Not Included
-                        </h4>
-                        <ul className="space-y-3">
-                          {course.notIncluded.map((item, itemIndex) => (
-                            <li
-                              key={itemIndex}
-                              className="text-gray-700 flex items-start gap-3 group"
-                            >
-                              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 group-hover:scale-110 transition-transform duration-200">
-                                <svg
-                                  className="w-3 h-3 text-red-600"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                              <span className="text-sm">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
                     </div>
                   </div>
                 </div>

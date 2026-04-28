@@ -30,7 +30,7 @@ const Navbar = () => {
   const coursesMenu = useMemo(
     () => [
       {
-        key: "discover-scuba",
+        key: "",
         label: "PADI Diver Certification Path",
         items: [
           { label: "Discover Scuba Diving", slug: "discover-scuba" },
@@ -41,7 +41,7 @@ const Navbar = () => {
         ],
       },
       {
-        key: "special-courses",
+        key: "",
         label: "Specialty Courses",
         items: [
           { label: "Marine Photography", slug: "marine-photography" },
@@ -55,8 +55,8 @@ const Navbar = () => {
         ],
       },
       {
-        key: "safety-courses",
-        label: "Safety & Emergency Training",
+        key: "",
+        label: "Emergency First Responder Course",
         items: [
           { label: "Primary Care", slug: "primary-care" },
           { label: "Secondary Care", slug: "secondary-care" },

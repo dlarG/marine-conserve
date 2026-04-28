@@ -1,4 +1,8 @@
+import React from "react";
+import { useNavigate } from "react-router-dom";
 const CtaHome = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-20 px-6 md:px-12 lg:px-20 bg-gradient-to-r from-[#2c6e3f] to-[#4c9a6c] relative overflow-hidden">
       {/* Background Pattern */}
@@ -39,24 +43,24 @@ const CtaHome = () => {
         </p>
 
         <div className="flex flex-wrap gap-4 justify-center">
-          <a
-            href="#donate"
-            className="px-8 py-3 bg-white text-[#2c6e3f] font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
+          <button
+            onClick={() => navigate("/donate")}
+            className="cursor-pointer px-8 py-3 bg-white text-[#2c6e3f] font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
           >
             Donate Now
-          </a>
-          <a
-            href="#volunteer"
-            className="px-8 py-3 bg-transparent text-white font-semibold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-200"
+          </button>
+          <button
+            onClick={() => navigate("/volunteer")}
+            className="cursor-pointer px-8 py-3 bg-transparent text-white font-semibold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-200"
           >
             Become a Volunteer
-          </a>
-          <a
-            href="#courses"
-            className="px-8 py-3 bg-transparent text-white font-semibold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-200"
+          </button>
+          <button
+            onClick={() => navigate("/courses")}
+            className="cursor-pointer px-8 py-3 bg-transparent text-white font-semibold rounded-lg border-2 border-white hover:bg-white/10 transition-all duration-200"
           >
             Explore Courses
-          </a>
+          </button>
         </div>
       </div>
     </section>
