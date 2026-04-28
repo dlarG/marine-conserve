@@ -388,22 +388,6 @@ const DiveAgainstDebri = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-teal-700 to-green-700">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Join the Mission?
-          </h2>
-          <p className="text-teal-100 text-lg mb-8">
-            Take the first step toward making a real difference in marine
-            conservation.
-          </p>
-          <button className="px-10 py-4 rounded-xl bg-white text-teal-700 font-bold hover:shadow-2xl transition-all text-lg">
-            Apply for This Program
-          </button>
-        </div>
-      </section>
     </div>
   );
 };
