@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Clock, Users, Star, ArrowLeft } from "lucide-react";
+import VolunteerApplyModal from "./VolunteerApplyModal";
+
 const ScientificDataColl = () => {
   const navigate = useNavigate();
 
+  const [isApplyModalOpen, setIsApplyModalOpen] = React.useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "Scientific Data Collection | GREEN Inc. Volunteer";
@@ -170,7 +173,10 @@ const ScientificDataColl = () => {
                 <p className="text-teal-100 text-sm mb-6">
                   {programData.pricing.note}
                 </p>
-                <button className="w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all">
+                <button
+                  onClick={() => setIsApplyModalOpen(true)}
+                  className="w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all"
+                >
                   Apply Now
                 </button>
               </div>
@@ -384,6 +390,11 @@ const ScientificDataColl = () => {
           </div>
         </div>
       </section>
+      <VolunteerApplyModal
+        isOpen={isApplyModalOpen}
+        onClose={() => setIsApplyModalOpen(false)}
+        programTitle="Scientific Data Collection"
+      />
     </div>
   );
 };

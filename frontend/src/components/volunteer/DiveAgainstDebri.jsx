@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Clock, Users, Star, ArrowLeft } from "lucide-react";
+import VolunteerApplyModal from "./VolunteerApplyModal";
 
 const DiveAgainstDebri = () => {
   const navigate = useNavigate();
+  const [isApplyModalOpen, setIsApplyModalOpen] = React.useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -174,7 +176,10 @@ const DiveAgainstDebri = () => {
                 <p className="text-teal-100 text-sm mb-6">
                   {programData.pricing.note}
                 </p>
-                <button className="w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all">
+                <button
+                  onClick={() => setIsApplyModalOpen(true)}
+                  className="w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all"
+                >
                   Apply Now
                 </button>
               </div>
@@ -388,6 +393,11 @@ const DiveAgainstDebri = () => {
           </div>
         </div>
       </section>
+      <VolunteerApplyModal
+        isOpen={isApplyModalOpen}
+        onClose={() => setIsApplyModalOpen(false)}
+        programTitle="Dive Against Debris"
+      />
     </div>
   );
 };
