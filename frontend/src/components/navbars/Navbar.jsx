@@ -15,10 +15,10 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const volunteerOptions = [
-    { label: "Coral Conservation", path: "/volunteer/coral-conservation" },
+    { label: "Coral Conservation", path: "/volunteer/coral-restoration" },
     {
       label: "Marine Debris Removal",
-      path: "/volunteer/marine-debris-removal",
+      path: "/volunteer/dive-against-debris",
     },
     { label: "COTS Monitoring", path: "/volunteer/cots-monitoring" },
     {
