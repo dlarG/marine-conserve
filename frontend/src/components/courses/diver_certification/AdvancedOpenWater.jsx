@@ -45,22 +45,52 @@ const AdvancedOpenWater = () => {
   const dateRanges = useMemo(
     () => [
       {
-        from: "February 5th",
-        to: "March 5th",
-        time: "Weekends • 9:00 AM – 12:00 PM",
+        from: "January 1st",
+        to: "February 1st",
+        time: "Opens Daily",
         slots: "8 slots",
       },
       {
-        from: "March 15th",
-        to: "April 15th",
-        time: "Tuesdays • 1:00 PM – 4:00 PM",
+        from: "February 1st",
+        to: "March 1st",
+        time: "Opens Daily",
+        slots: "8 slots",
+      },
+      {
+        from: "March 10th",
+        to: "April 10th",
+        time: "Opens Daily",
         slots: "6 slots",
       },
       {
-        from: "May 1st",
-        to: "June 1st",
-        time: "Sundays • 9:00 AM – 12:00 PM",
+        from: "April 20th",
+        to: "May 20th",
+        time: "Opens Daily",
         slots: "10 slots",
+      },
+      {
+        from: "June 20th",
+        to: "July 20th",
+        time: "Opens Daily",
+        slots: "10 slots",
+      },
+      {
+        from: "August 20th",
+        to: "September 20th",
+        time: "Opens Daily",
+        slots: "10 slots",
+      },
+      {
+        from: "October 1st",
+        to: "November 1st",
+        time: "Opens Daily",
+        slots: "8 slots",
+      },
+      {
+        from: "November 10th",
+        to: "December 10th",
+        time: "Opens Daily",
+        slots: "6 slots",
       },
     ],
     []

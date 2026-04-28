@@ -63,34 +63,52 @@ const DiscoverScubaDive = () => {
   const dateRanges = useMemo(
     () => [
       {
+        from: "January 1st",
+        to: "February 1st",
+        time: "Opens Daily",
+        slots: "8 slots",
+      },
+      {
         from: "February 1st",
         to: "March 1st",
-        time: "Saturdays • 9:00 AM – 12:00 PM",
+        time: "Opens Daily",
         slots: "8 slots",
       },
       {
         from: "March 10th",
         to: "April 10th",
-        time: "Tuesdays • 1:00 PM – 4:00 PM",
+        time: "Opens Daily",
         slots: "6 slots",
       },
       {
         from: "April 20th",
         to: "May 20th",
-        time: "Sundays • 9:00 AM – 12:00 PM",
+        time: "Opens Daily",
         slots: "10 slots",
       },
       {
         from: "June 20th",
         to: "July 20th",
-        time: "Sundays • 9:00 AM – 12:00 PM",
+        time: "Opens Daily",
         slots: "10 slots",
       },
       {
         from: "August 20th",
         to: "September 20th",
-        time: "Sundays • 9:00 AM – 12:00 PM",
+        time: "Opens Daily",
         slots: "10 slots",
+      },
+      {
+        from: "October 1st",
+        to: "November 1st",
+        time: "Opens Daily",
+        slots: "8 slots",
+      },
+      {
+        from: "November 10th",
+        to: "December 10th",
+        time: "Opens Daily",
+        slots: "6 slots",
       },
     ],
     []
@@ -244,12 +262,6 @@ const DiscoverScubaDive = () => {
               but just don’t have the time? Then why not give the PADI discover
               scuba dive a go.
             </p>
-            <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
-              Upon completion of your first dive you will receive a certificate
-              of recognition, which can be used as credit towards your full Open
-              Water Course. The discover scuba dive is available to anyone 10
-              years of older.
-            </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
               <a
@@ -295,7 +307,7 @@ const DiscoverScubaDive = () => {
             <button
               type="button"
               onClick={() => setIsApplyOpen(true)}
-              className="cursor-pointer w-full md:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-teal-600 to-green-600 text-white hover:shadow-lg transition-all whitespace-nowrap"
+              className="cursor-pointer w-full md:w-auto px-6 py-3 rounded-xl bg-teal-600 text-white hover:shadow-lg transition-all whitespace-nowrap"
             >
               APPLY NOW
             </button>
@@ -371,34 +383,46 @@ const DiscoverScubaDive = () => {
           <div className="mt-8 grid md:grid-cols-3 gap-6">
             {[
               {
-                from: "February 1st",
-                to: "March 1st",
-                time: "Saturdays • 9:00 AM – 12:00 PM",
+                from: "January 1st",
+                to: "February 1st",
+                time: "Opens Daily",
                 slots: "8 slots",
               },
               {
                 from: "March 10th",
                 to: "April 10th",
-                time: "Tuesdays • 1:00 PM – 4:00 PM",
+                time: "Opens Daily ",
                 slots: "6 slots",
               },
               {
                 from: "April 20th",
                 to: "May 20th",
-                time: "Sundays • 9:00 AM – 12:00 PM",
+                time: "Opens Daily",
                 slots: "10 slots",
               },
               {
                 from: "June 20th",
                 to: "July 20th",
-                time: "Sundays • 9:00 AM – 12:00 PM",
+                time: "Opens Daily",
                 slots: "10 slots",
               },
               {
                 from: "August 20th",
                 to: "September 20th",
-                time: "Sundays • 9:00 AM – 12:00 PM",
+                time: "Opens Daily",
                 slots: "10 slots",
+              },
+              {
+                from: "October 1st",
+                to: "November 1st",
+                time: "Opens Daily",
+                slots: "8 slots",
+              },
+              {
+                from: "November 10th",
+                to: "December 10th",
+                time: "Opens Daily",
+                slots: "6 slots",
               },
             ].map((d, idx) => (
               <div
