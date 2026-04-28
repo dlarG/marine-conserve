@@ -102,11 +102,11 @@ const OpenWaterDiver = () => {
   );
   const tabs = useMemo(
     () => [
-      { key: "skills", label: "Skills to Learn" },
+      { key: "skills", label: "Description" },
       { key: "prereq", label: "Prerequisites" },
       { key: "inclusion", label: "What's Included" },
+      { key: "not_included", label: "What's Not Included" },
       { key: "fees", label: "Tuition Fees" },
-      { key: "not_included", label: "Not Included" },
       { key: "certificate", label: "Certificate" },
     ],
     []
@@ -123,7 +123,7 @@ const OpenWaterDiver = () => {
       skills: {
         leftTitle: "PADI Open Water Overview",
         leftText: baseDescription,
-        rightTitle: "Skills to Learn",
+        rightTitle: "What You'll Learn",
         rightItems: [
           "Equipment Setup: Learning to assemble and check your scuba unit.",
           "Underwater Navigation: Basic use of a compass and natural landmarks.",
@@ -155,24 +155,24 @@ const OpenWaterDiver = () => {
         rightItems: [
           "Professional instruction by a certified PADI instructor",
           "Use of scuba equipment (mask, snorkel, fins, regulator, buoyancy control device, tank)",
-          "Pool or confined water training sessions",
-          "One open water dive experience (if included in your package)",
+          "Pool or confined water training sessions(5 sessions)",
+          "4 open water dive experience (40 ft on the first 2 dives and 60ft on your final dive)",
           "Briefing and debriefing sessions",
         ],
       },
       fees: {
         leftTitle: "Pricing",
-        leftText: "Pricing depends on group size, schedule, and any add-ons.",
+        leftText:
+          "The course is 3-4 days and gives you the foundational knowledge and skills you need to be a diver.",
         rightTitle: "Tuition Fees",
         rightItems: [
-          "Intro Session: ₱15,000.00 (pool session only, no open water dive)",
-          "Full Experience: ₱25,000.00 (includes pool session + one open water dive)",
+          "Full Price: ₱19,450.00",
           "Group discounts: optional",
           "Reservation policy: optional",
         ],
       },
       not_included: {
-        leftTitle: "Not Included",
+        leftTitle: "What's Not Included",
         leftText:
           "To avoid surprises, these common items are usually not covered unless you specify otherwise.",
         rightTitle: "Not Included",
@@ -186,7 +186,7 @@ const OpenWaterDiver = () => {
       certificate: {
         leftTitle: "Certificate of Participation Preview",
         leftText:
-          "Upon completing your PADI Open Water experience, you'll receive a certificate of participation.",
+          "Upon completing your PADI Open Water experience, you'll receive a certificate of participation from us.",
         rightTitle: "Certificate Preview",
         rightImage: {
           src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775616064/Blue_and_Gold_Elegant_Certificate_Workshop_Participation_5_kqw3pj.png",
@@ -233,9 +233,7 @@ const OpenWaterDiver = () => {
 
             <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
               This courses is the first step in your scuba diving journey, right
-              after the Discover Scuba Diving experience. It's designed to give
-              you the skills and confidence to dive independently with a buddy,
-              opening up a whole new world of underwater exploration.
+              after the Discover Scuba Diving experience.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -301,17 +299,7 @@ const OpenWaterDiver = () => {
                 </div>
               </div>
 
-              <div className="mt-8 rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
-                <img
-                  src={active.rightImage.src}
-                  alt={active.rightImage.alt || "Certificate image"}
-                  className="w-full h-auto max-h-[720px] object-contain bg-white select-none"
-                  loading="lazy"
-                  draggable={false}
-                  onDragStart={(e) => e.preventDefault()}
-                  onContextMenu={(e) => e.preventDefault()}
-                />
-              </div>
+              <div className="mt-8 rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm"></div>
             </div>
           ) : (
             <>

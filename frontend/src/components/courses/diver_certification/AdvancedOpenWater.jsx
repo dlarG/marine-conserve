@@ -77,11 +77,11 @@ const AdvancedOpenWater = () => {
 
   const tabs = useMemo(
     () => [
-      { key: "skills", label: "Skills to Learn" },
+      { key: "skills", label: "Description" },
       { key: "prereq", label: "Prerequisites" },
       { key: "inclusion", label: "What's Included" },
+      { key: "not_included", label: "What's Not Included" },
       { key: "fees", label: "Tuition Fees" },
-      { key: "not_included", label: "Not Included" },
       { key: "certificate", label: "Certificate" },
     ],
     []
@@ -91,13 +91,35 @@ const AdvancedOpenWater = () => {
 
   const tabModel = useMemo(() => {
     const baseDescription =
-      "The PADI Advanced Open Water Diver course helps you build confidence and expand your dive skills through a series of Adventure Dives. You’ll improve your navigation, get deeper-dive experience, and spend more time diving under instructor guidance.";
+      "The PADI Advanced Open Water Diver course helps you build confidence and expand your dive skills through a series of Adventure Dives. You’ll improve your navigation, get deeper-dive experience, and spend more time diving under instructor guidance. We will of course help you decide what the best dives for you are based on what you are interested in.";
 
     return {
       skills: {
         leftTitle: "Advanced Open Water Overview",
         leftText: baseDescription,
-        rightTitle: "Skills to Learn",
+        leftHighlight: {
+          title: "This course is 2-3 days and consists of:",
+          mandatory: [
+            "Deep dive – taking you to a depth of 30mts/100ft",
+            "Navigation dive – learn how to find that boat!",
+          ],
+          electiveIntro: "3 elective specialty dives",
+          electives: [
+            "AWARE fish identification dive",
+            "Boat dive",
+            "Digital underwater photography",
+            "Drift dive",
+            "Enriched air dive",
+            "Multilevel and computer dive",
+            "Night dive",
+            "Peak performance buoyancy dive",
+            "Search and recovery dive",
+            "Underwater naturalist dive",
+            "Wreck dive",
+          ],
+          knowledge: "5 knowledge development sessions",
+        },
+        rightTitle: "Skills You'll Learn",
         rightItems: [
           "Advanced buoyancy and trim refinement",
           "Underwater navigation (compass + natural navigation)",
@@ -114,7 +136,7 @@ const AdvancedOpenWater = () => {
         rightTitle: "Prerequisites",
         rightItems: [
           "Open Water Diver certification (or equivalent)",
-          "Minimum age requirement (12 years old, varies by agency)",
+          "Minimum age requirement (10 years old and above)",
           "Completed medical certificate / clearance if required",
           "Comfortable diving in open water conditions",
         ],
@@ -135,17 +157,12 @@ const AdvancedOpenWater = () => {
       fees: {
         leftTitle: "Pricing",
         leftText:
-          "Pricing depends on group size, schedule, and gear/rental needs. Replace the placeholders with your official rates.",
+          "Pricing still depends on group size, schedule, and gear/rental needs. Contact us for a personalized quote based on your preferences and requirements.",
         rightTitle: "Tuition Fees",
-        rightItems: [
-          "Course Package: ₱—.— (set your price)",
-          "Equipment rental: optional",
-          "Boat/park fees: may apply depending on dive sites",
-          "Reservation policy: optional",
-        ],
+        rightItems: ["Course Package: ₱15,950.00"],
       },
       not_included: {
-        leftTitle: "Not Included",
+        leftTitle: "What's Not Included",
         leftText:
           "Common items that may not be included unless specified in your package.",
         rightTitle: "Not Included",
@@ -159,7 +176,7 @@ const AdvancedOpenWater = () => {
       certificate: {
         leftTitle: "Certification Preview",
         leftText:
-          "After successful completion, you’ll receive your Advanced Open Water Diver certification (or the appropriate completion record, depending on your training agency and processing).",
+          "After successful completion, you’ll receive your Advanced Open Water Diver certification or certificate of participation from us.",
         rightTitle: "Certificate Preview",
         rightImage: {
           src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775615829/Blue_and_Gold_Elegant_Certificate_Workshop_Participation_4_s9cnuz.png",
@@ -199,8 +216,12 @@ const AdvancedOpenWater = () => {
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
-              Build confidence, refine your diving skills, and explore new
-              experiences through instructor-guided adventure dives.
+              Are you already open water certified? Would you like to gain more
+              knowledge and experience in diving? Have you wondered what it is
+              like down deep or how different things look at night; amazed at
+              how your dive leader always manages to find the boat and knows so
+              many different fish species? The answer to all these questions and
+              more is in the PADI Advanced Open Water Course.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -265,7 +286,7 @@ const AdvancedOpenWater = () => {
               </div>
 
               <div className="mt-8 rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
-                <img
+                {/* <img
                   src={active.rightImage.src}
                   alt={active.rightImage.alt || "Certificate image"}
                   className="w-full h-auto max-h-[720px] object-contain bg-white select-none"
@@ -273,7 +294,7 @@ const AdvancedOpenWater = () => {
                   draggable={false}
                   onDragStart={(e) => e.preventDefault()}
                   onContextMenu={(e) => e.preventDefault()}
-                />
+                /> */}
               </div>
             </div>
           ) : (
@@ -282,9 +303,62 @@ const AdvancedOpenWater = () => {
                 <h3 className="text-xl md:text-3xl font-light text-gray-700">
                   {active?.leftTitle}
                 </h3>
+
+                {/* Course overview text */}
                 <p className="mt-4 md:mt-6 text-sm md:text-lg text-gray-600">
                   {active?.leftText}
                 </p>
+
+                {/* Structured dive breakdown - only show for skills tab */}
+                {active?.leftHighlight && (
+                  <div className="mt-6 space-y-6">
+                    <p className="text-sm md:text-xl text-gray-700 font-medium">
+                      {active.leftHighlight.title}
+                    </p>
+
+                    {/* Mandatory dives */}
+                    <div>
+                      <p className="text-sm md:text-base text-teal-700 font-semibold mb-2">
+                        2 mandatory dives:
+                      </p>
+                      <ul className="space-y-2">
+                        {active.leftHighlight.mandatory.map((item, idx) => (
+                          <li key={idx} className="flex gap-3">
+                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-teal-600 flex-shrink-0" />
+                            <span className="text-sm md:text-base text-gray-600">
+                              {item}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Elective dives */}
+                    <div>
+                      <p className="text-sm md:text-base text-teal-700 font-semibold mb-2">
+                        {active.leftHighlight.electiveIntro} (choose from):
+                      </p>
+                      <ul className="space-y-2">
+                        {active.leftHighlight.electives.map((item, idx) => (
+                          <li key={idx} className="flex gap-3">
+                            <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-teal-600 flex-shrink-0" />
+                            <span className="text-sm md:text-base text-gray-600">
+                              {item}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Knowledge sessions */}
+                    <div className="flex gap-3">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-teal-600 flex-shrink-0" />
+                      <span className="text-sm md:text-base text-gray-600">
+                        {active.leftHighlight.knowledge}
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 <a
                   href="#dates"

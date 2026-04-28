@@ -106,11 +106,11 @@ const DiscoverScubaDive = () => {
   );
   const tabs = useMemo(
     () => [
-      { key: "skills", label: "Skills to Learn" },
+      { key: "skills", label: "Description" },
       { key: "prereq", label: "Prerequisites" },
       { key: "inclusion", label: "What's Included" },
+      { key: "not_included", label: "What's Not Included" },
       { key: "fees", label: "Tuition Fees" },
-      { key: "not_included", label: "Not Included" },
       { key: "certificate", label: "Certificate" },
     ],
     []
@@ -127,7 +127,7 @@ const DiscoverScubaDive = () => {
       skills: {
         leftTitle: "Scuba Diving Basics",
         leftText: baseDescription,
-        rightTitle: "Skills to Learn",
+        rightTitle: "What You'll Learn",
         rightItems: [
           "Basic scuba equipment introduction and setup",
           "Pre-dive safety check & buddy procedures",
@@ -164,22 +164,22 @@ const DiscoverScubaDive = () => {
           "Guided shallow-water dive experience",
           "Photos of your dive (optional add-on)",
           "Certificate of participation",
+          "Certificate of recognition (not a full certification, but a great keepsake)",
         ],
       },
       fees: {
         leftTitle: "Pricing",
         leftText:
-          "Pricing depends on group size, schedule, and any add-ons. Replace the placeholders with your official rates and we can format them into a proper price table.",
+          "Pricing depends on group size, schedule, and any add-ons. All prices are in pesos and include VAT. Contact us for custom group rates or private sessions.",
         rightTitle: "Tuition Fees",
         rightItems: [
-          "Intro Session: ₱3,000.00 (set your price)",
-          "Add-ons: ₱5,600.00 (photos, additional time, private session)",
+          "Half-day Session: ₱4,500.00 per person",
           "Group discounts: optional",
           "Reservation policy: optional",
         ],
       },
       not_included: {
-        leftTitle: "Not Included",
+        leftTitle: "What's Not Included",
         leftText:
           "To avoid surprises, these common items are usually not covered unless you specify otherwise.",
         rightTitle: "Not Included",
@@ -193,7 +193,7 @@ const DiscoverScubaDive = () => {
       certificate: {
         leftTitle: "Certificate of Participation Preview",
         leftText:
-          "Upon completing your Discover Scuba Diving experience, you'll receive a certificate of participation. This certificate is a great keepsake to commemorate your first underwater adventure and can also serve as a stepping stone if you choose to pursue further scuba certifications in the future.",
+          "Upon completing your Discover Scuba Diving experience, you'll receive a certificate of participation. This certificate is a great keepsake to commemorate your first underwater adventure and can also serve as a stepping stone if you choose to pursue further scuba certifications in the future with us.",
         rightTitle: "Certificate Preview",
         rightImage: {
           src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775607945/Blue_and_Gold_Elegant_Certificate_Workshop_Participation_2_lshe1s.png",
@@ -239,9 +239,16 @@ const DiscoverScubaDive = () => {
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
-              Try scuba for the first time with a guided intro experience. Learn
-              the basics, build confidence, and explore underwater in a safe,
-              supportive environment.
+              Tempted with the idea of blowing bubbles underwater but just not
+              sure if you will like it? Or do you really want to get certified
+              but just don’t have the time? Then why not give the PADI discover
+              scuba dive a go.
+            </p>
+            <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
+              Upon completion of your first dive you will receive a certificate
+              of recognition, which can be used as credit towards your full Open
+              Water Course. The discover scuba dive is available to anyone 10
+              years of older.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">

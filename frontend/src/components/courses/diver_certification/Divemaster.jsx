@@ -106,11 +106,11 @@ const Divemaster = () => {
   );
   const tabs = useMemo(
     () => [
-      { key: "skills", label: "Skills to Learn" },
+      { key: "skills", label: "Description" },
       { key: "prereq", label: "Prerequisites" },
       { key: "inclusion", label: "What's Included" },
+      { key: "not_included", label: "What's Not Included" },
       { key: "fees", label: "Tuition Fees" },
-      { key: "not_included", label: "Not Included" },
       { key: "certificate", label: "Certificate" },
     ],
     []
@@ -121,13 +121,13 @@ const Divemaster = () => {
   // NEW: content model for the two-column layout
   const tabModel = useMemo(() => {
     const baseDescription =
-      "The PADI Open Water Diver course is the foundational, globally recognized scuba certification, allowing you to dive independently with a buddy to a maximum depth of 18 meters (60 feet). It typically takes 3–4 days, combining theoretical knowledge, confined water skill practice, and four open water check-out dives.";
+      "The PADI Divemaster course is the first professional level in the PADI system, designed for those who want to take their passion for diving to the next level. As a Divemaster, you'll gain advanced knowledge and skills that allow you to lead certified divers, assist instructors, and even start your own diving business. This course typically takes 4-6 weeks to complete and includes both theoretical learning and practical experience in various diving environments.";
 
     return {
       skills: {
-        leftTitle: "Divemaster Skills Overview",
+        leftTitle: "PADI Divemaster Skills Overview",
         leftText: baseDescription,
-        rightTitle: "Skills to Learn",
+        rightTitle: "Skills You'll Learn",
         rightItems: [
           "Equipment Setup: Learning to assemble and check your scuba unit.",
           "Underwater Navigation: Basic use of a compass and natural landmarks.",
@@ -158,25 +158,22 @@ const Divemaster = () => {
         rightTitle: "Included",
         rightItems: [
           "Professional instruction by a certified PADI instructor",
-          "Use of scuba equipment (mask, snorkel, fins, regulator, buoyancy control device, tank)",
-          "Pool or confined water training sessions",
-          "One open water dive experience (if included in your package)",
-          "Briefing and debriefing sessions",
+          "PADI divemaster crew pack and digital instructor manual",
+          "FREE PADI AWARE Dive Against Debris",
+          "Unlimited diving (terms & conditions apply)",
+          "FREE Wi-Fi",
+          "FREE GREEN, Inc. t-shirt and log book",
         ],
       },
       fees: {
         leftTitle: "Pricing",
-        leftText: "Pricing depends on group size, schedule, and any add-ons.",
+        leftText:
+          "Pricing still depends on group size, schedule, and any add-ons.",
         rightTitle: "Tuition Fees",
-        rightItems: [
-          "Intro Session: ₱15,000.00 (pool session only, no open water dive)",
-          "Full Experience: ₱25,000.00 (includes pool session + one open water dive)",
-          "Group discounts: optional",
-          "Reservation policy: optional",
-        ],
+        rightItems: ["Full Price: ₱65,000.00"],
       },
       not_included: {
-        leftTitle: "Not Included",
+        leftTitle: "What's Not Included",
         leftText:
           "To avoid surprises, these common items are usually not covered unless you specify otherwise.",
         rightTitle: "Not Included",
@@ -190,11 +187,11 @@ const Divemaster = () => {
       certificate: {
         leftTitle: "Certificate of Participation Preview",
         leftText:
-          "Upon completing your PADI Open Water experience, you'll receive a certificate of participation.",
+          "Uplon completing this course you will receive a certificate of participation that recognizes your achievement and experience. While this certificate is not a scuba diving certification for independent diving, it serves as a great memento of your experience and can be shared with friends and family. And a certificate of recognition for your accomplishment in completing the PADI Divemaster course from PADI, which is a significant milestone in your diving journey. This certificate can be a great keepsake to commemorate your experience and dedication to diving, and it can also be shared with friends and family to celebrate your achievement.",
         rightTitle: "Certificate Preview",
         rightImage: {
           src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775616064/Blue_and_Gold_Elegant_Certificate_Workshop_Participation_5_kqw3pj.png",
-          alt: "Certificate preview (placeholder image)",
+          alt: "Certificate preview",
         },
         rightItems: [
           "Official certificate of participation",
@@ -232,14 +229,15 @@ const Divemaster = () => {
             </div>
 
             <h1 className="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-              PADI Open Water Diver
+              PADI Divemaster
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-white/85 leading-relaxed">
-              This courses is the first step in your scuba diving journey, right
-              after the Discover Scuba Diving experience. It's designed to give
-              you the skills and confidence to dive independently with a buddy,
-              opening up a whole new world of underwater exploration.
+              The PADI Divemaster is the first professional-level rating in the
+              PADI system, serving as the essential prerequisite for becoming a
+              PADI Instructor. It transforms qualified recreational divers into
+              dive leaders capable of supervising dive activities, assisting
+              instructors with student training, and guiding certified divers.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -286,7 +284,7 @@ const Divemaster = () => {
             <button
               type="button"
               onClick={() => setIsApplyOpen(true)}
-              className="cursor-pointer w-full md:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-teal-600 to-green-600 text-white hover:shadow-lg transition-all whitespace-nowrap"
+              className="cursor-pointer w-full md:w-auto px-6 py-3 rounded-xl bg-teal-600 text-white hover:shadow-lg transition-all whitespace-nowrap"
             >
               APPLY NOW
             </button>
@@ -306,7 +304,7 @@ const Divemaster = () => {
               </div>
 
               <div className="mt-8 rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
-                <img
+                {/* <img
                   src={active.rightImage.src}
                   alt={active.rightImage.alt || "Certificate image"}
                   className="w-full h-auto max-h-[720px] object-contain bg-white select-none"
@@ -314,7 +312,7 @@ const Divemaster = () => {
                   draggable={false}
                   onDragStart={(e) => e.preventDefault()}
                   onContextMenu={(e) => e.preventDefault()}
-                />
+                /> */}
               </div>
             </div>
           ) : (

@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Nato Sans"], // Change to your preferred font
+        sans: ["Inter"], // Change to your preferred font
         // You can also add multiple font options:
         // 'primary': ["Montserrat", "sans-serif"],
         // 'secondary': ["Open Sans", "sans-serif"],
