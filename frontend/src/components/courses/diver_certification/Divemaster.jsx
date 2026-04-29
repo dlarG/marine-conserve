@@ -63,34 +63,52 @@ const Divemaster = () => {
   const dateRanges = useMemo(
     () => [
       {
+        from: "January 1st",
+        to: "February 1st",
+        time: "Opens Daily",
+        slots: "8 slots",
+      },
+      {
         from: "February 1st",
         to: "March 1st",
-        time: "Saturdays • 9:00 AM – 12:00 PM",
+        time: "Opens Daily",
         slots: "8 slots",
       },
       {
         from: "March 10th",
         to: "April 10th",
-        time: "Tuesdays • 1:00 PM – 4:00 PM",
+        time: "Opens Daily",
         slots: "6 slots",
       },
       {
         from: "April 20th",
         to: "May 20th",
-        time: "Sundays • 9:00 AM – 12:00 PM",
+        time: "Opens Daily",
         slots: "10 slots",
       },
       {
         from: "June 20th",
         to: "July 20th",
-        time: "Sundays • 9:00 AM – 12:00 PM",
+        time: "Opens Daily",
         slots: "10 slots",
       },
       {
         from: "August 20th",
         to: "September 20th",
-        time: "Sundays • 9:00 AM – 12:00 PM",
+        time: "Opens Daily",
         slots: "10 slots",
+      },
+      {
+        from: "October 1st",
+        to: "November 1st",
+        time: "Opens Daily",
+        slots: "8 slots",
+      },
+      {
+        from: "November 10th",
+        to: "December 10th",
+        time: "Opens Daily",
+        slots: "6 slots",
       },
     ],
     []
@@ -356,40 +374,54 @@ const Divemaster = () => {
             Course Dates
           </h2>
           <p className="mt-2 text-gray-600 max-w-2xl">
-            We offer regular Discover Scuba Diving sessions throughout the year.
+            Available course dates for the PADI Divemaster certification. Each
+            session includes both classroom and in-water training, with flexible
+            scheduling to accommodate your needs.
           </p>
 
           <div className="mt-8 grid md:grid-cols-3 gap-6">
             {[
               {
-                from: "February 1st",
-                to: "March 1st",
-                time: "Saturdays • 9:00 AM – 12:00 PM",
+                from: "January 1st",
+                to: "February 1st",
+                time: "Opens Daily",
                 slots: "8 slots",
               },
               {
                 from: "March 10th",
                 to: "April 10th",
-                time: "Tuesdays • 1:00 PM – 4:00 PM",
+                time: "Opens Daily ",
                 slots: "6 slots",
               },
               {
                 from: "April 20th",
                 to: "May 20th",
-                time: "Sundays • 9:00 AM – 12:00 PM",
+                time: "Opens Daily",
                 slots: "10 slots",
               },
               {
                 from: "June 20th",
                 to: "July 20th",
-                time: "Sundays • 9:00 AM – 12:00 PM",
+                time: "Opens Daily",
                 slots: "10 slots",
               },
               {
                 from: "August 20th",
                 to: "September 20th",
-                time: "Sundays • 9:00 AM – 12:00 PM",
+                time: "Opens Daily",
                 slots: "10 slots",
+              },
+              {
+                from: "October 1st",
+                to: "November 1st",
+                time: "Opens Daily",
+                slots: "8 slots",
+              },
+              {
+                from: "November 10th",
+                to: "December 10th",
+                time: "Opens Daily",
+                slots: "6 slots",
               },
             ].map((d, idx) => (
               <div

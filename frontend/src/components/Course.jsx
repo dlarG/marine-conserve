@@ -1,636 +1,548 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Waves,
+  Camera,
+  Compass,
+  Moon,
+  Gauge,
+  Heart,
+  Activity,
+} from "lucide-react";
+
+const SectionHeader = ({ title, subtitle, icon }) => (
+  <div className="flex items-center gap-4 mb-8">
+    {icon && (
+      <div className="p-3 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 text-white">
+        {icon}
+      </div>
+    )}
+    <div>
+      <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
+      {subtitle && <p className="text-gray-600 mt-1">{subtitle}</p>}
+    </div>
+  </div>
+);
 
 const Course = () => {
-  const [activeTab, setActiveTab] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoaded(true);
-  }, []);
-
-  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // ──────────────────── Data ────────────────────
+  const diverCourses = [
+    {
+      id: "discover-scuba",
+      link: "discover-scuba",
+      title: "PADI Discover Scuba Diving",
+      subtitle: "Foundation Course",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775547474/pexels-aydenzaki-8029908_gdieio.jpg",
+      duration: "1-3 days",
+      level: "Beginner",
+      price: "₱4,500.00",
+      shortDescription:
+        "This course provides a comprehensive introduction to scuba diving, covering essential skills and safety protocols.",
+    },
+    {
+      id: "open-water",
+      link: "open-water",
+      title: "PADI Open Water Diver",
+      subtitle: "Certification Course",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549211/pexels-domingo-dias-260502921-12678039_uygdph.jpg",
+      duration: "3-4 days",
+      level: "Beginner - Intermediate",
+      price: "₱19,450.00",
+      shortDescription:
+        "This course covers all the essential skills and knowledge needed to become a certified diver.",
+    },
+    {
+      id: "advanced-open-water",
+      link: "advanced-open-water",
+      title: "PADI Advanced Open Water Diver",
+      subtitle: "Professional Training",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549270/pexels-diego-sandoval-3158170-4767068_ccrfv9.jpg",
+      duration: "2-3 days",
+      level: "Advanced",
+      price: "₱15,950.00",
+      shortDescription:
+        "This course focuses on refining your diving skills and expanding your knowledge in underwater exploration.",
+    },
+    {
+      id: "rescue-diver",
+      link: "rescue-diver",
+      title: "PADI Rescue Diver",
+      subtitle: "Emergency Response Training",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549361/pexels-cannontaler-20481590_yck89a.jpg",
+      duration: "4-5 days",
+      level: "Advanced",
+      price: "₱19,950.00",
+      shortDescription:
+        "Rescue Diver is designed to equip divers with the skills and knowledge to prevent and manage diving emergencies.",
+    },
+    {
+      id: "divemaster",
+      link: "divemaster",
+      title: "PADI Divemaster",
+      subtitle: "Leadership Development",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549211/pexels-domingo-dias-260502921-12678039_uygdph.jpg",
+      duration: "4-6 weeks",
+      level: "Advanced - Professional",
+      price: "₱65,000.00",
+      shortDescription:
+        "Divemaster is the first professional level in the PADI system, designed to develop leadership skills.",
+    },
+  ];
+
+  const specialtyCourses = [
+    {
+      id: "marine-photography",
+      link: "marine-photography",
+      title: "Marine Photography",
+      subtitle: "Specialty Course",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396412/pexels-tomfisk-1522160_xmorgy.jpg",
+      duration: "2 days",
+      level: "All Levels",
+      price: "₱12,500.00",
+      shortDescription:
+        "Capture the beauty of the underwater world. Learn composition, lighting, and camera techniques for stunning marine photography.",
+    },
+    {
+      id: "deep-diver",
+      link: "deep-diver",
+      title: "Deep Diver",
+      subtitle: "Specialty Course",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777348997/5152_uruygm.jpg",
+      duration: "2-3 days",
+      level: "Advanced",
+      price: "₱14,500.00",
+      shortDescription:
+        "Extend your depth limits safely. Learn deep dive planning, gas management, and how to handle narcosis.",
+    },
+    {
+      id: "navigation",
+      link: "navigation",
+      title: "Underwater Navigation",
+      subtitle: "Specialty Course",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777349048/pexels-mjlo-35252466_xgdai3.jpg",
+      duration: "2 days",
+      level: "All Levels",
+      price: "₱11,500.00",
+      shortDescription:
+        "Never get lost underwater again. Master compass navigation and natural navigation techniques.",
+    },
+    {
+      id: "night-diver",
+      link: "night-diver",
+      title: "Night Diver",
+      subtitle: "Specialty Course",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777349127/pexels-leonardo-lamas-32247393-7001553_gp8hys.jpg",
+      duration: "2 days",
+      level: "All Levels",
+      price: "₱12,000.00",
+      shortDescription:
+        "Experience the reef in a whole new light. Learn night diving protocols, communication, and navigation.",
+    },
+    {
+      id: "peak-performance-buoyancy",
+      link: "peak-performance-buoyancy",
+      title: "Peak Performance Buoyancy",
+      subtitle: "Specialty Course",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549211/pexels-domingo-dias-260502921-12678039_uygdph.jpg",
+      duration: "1-2 days",
+      level: "All Levels",
+      price: "₱10,500.00",
+      shortDescription:
+        "Achieve perfect buoyancy control. Reduce air consumption, protect marine life, and glide effortlessly.",
+    },
+  ];
+
+  const efrCourse = {
+    id: "efr",
+    link: "efr",
+    title: "Emergency First Response",
+    subtitle: "Primary & Secondary Care",
+    image:
+      "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549361/pexels-cannontaler-20481590_yck89a.jpg",
+    duration: "1-2 days",
+    level: "All Levels",
+    price: "₱8,500.00",
+    shortDescription:
+      "Learn CPR, first aid, and emergency management skills. Earn your Primary Care (CPR) and Secondary Care (First Aid) certifications.",
+    features: [
+      "Primary Care (CPR) certification",
+      "Secondary Care (First Aid) certification",
+      "AED training included",
+      "Emergency oxygen use orientation",
+      "Recognized worldwide",
+    ],
+  };
+
+  const volunteerPrograms = [
+    {
+      id: "coral-restoration",
+      link: "/volunteer/coral-restoration",
+      title: "Coral Restoration",
+      subtitle: "Restoring the Foundation",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777343136/555705217_10238078344967574_7898261656592206056_n_mjjsbg.jpg",
+      duration: "Flexible",
+      level: "All Levels",
+      shortDescription:
+        "Get hands-on with coral restoration. Work in underwater nurseries and out-plant resilient coral fragments.",
+    },
+    {
+      id: "dive-against-debris",
+      link: "/volunteer/dive-against-debris",
+      title: "Marine Debris Removal",
+      subtitle: "The War on Waste",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777343078/P8190137_zohnsu.jpg",
+      duration: "Flexible",
+      level: "All Levels",
+      shortDescription:
+        "Remove ghost gear and plastic pollution. Document debris to drive global policy changes.",
+    },
+    {
+      id: "cots-monitoring",
+      link: "/volunteer/cots-monitoring",
+      title: "COTS Monitoring",
+      subtitle: "Protecting the Reef",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777343004/255053295_1323088658146866_9006587557721285913_n_qfsh6m.jpg",
+      duration: "Flexible",
+      level: "All Levels",
+      shortDescription:
+        "Track and manage Crown-of-Thorns starfish outbreaks to protect coral reefs.",
+    },
+    {
+      id: "scientific-data",
+      link: "/volunteer/scientific-data-collection",
+      title: "Scientific Data Collection",
+      subtitle: "Scientific Discovery",
+      image:
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777342895/DSCF5597_lmehg1.jpg",
+      duration: "Flexible",
+      level: "All Levels",
+      shortDescription:
+        "Master ecological data gathering. Learn fish ID, substrate surveys, and contribute to long-term datasets.",
+    },
+  ];
 
   const whyDivewithUs = [
     {
       title: "Expert Instructors",
       description:
         "Learn from certified professionals with extensive diving and marine conservation experience.",
+      icon: "👨‍🏫",
     },
     {
       title: "Comprehensive Curriculum",
       description:
         "Our courses cover essential diving skills, safety protocols, and environmental awareness.",
+      icon: "📚",
     },
     {
       title: "Hands-on Training",
       description:
         "Gain practical experience through pool sessions and open water dives.",
+      icon: "🤿",
     },
     {
       title: "Personalized Attention",
       description:
         "Enjoy small class sizes with personalized support from instructors.",
+      icon: "🎯",
     },
     {
       title: "Modern Equipment",
       description: "Train with the latest diving gear and technology.",
+      icon: "⚙️",
     },
     {
       title: "Flexible Scheduling",
       description: "Choose from various course dates to fit your availability.",
+      icon: "📅",
     },
   ];
 
-  const courses = [
-    {
-      id: 1,
-      title: "Marine Biology Fundamentals",
-      subtitle: "Foundation Course",
-      image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384082/conserve_p6ituq.jpg",
-      duration: "8 weeks",
-      level: "Beginner",
-      price: "₱599",
-      shortDescription:
-        "Learn the basics of marine ecosystems and biodiversity",
-      description:
-        "Comprehensive introduction to marine life, ecosystems, and conservation principles. Perfect for beginners wanting to understand ocean environments.",
-      skills: [
-        "Marine ecosystem identification",
-        "Species classification",
-        "Underwater observation techniques",
-        "Data collection methods",
-        "Marine conservation principles",
-      ],
-      prerequisites: [
-        "Basic swimming ability",
-        "High school diploma or equivalent",
-        "No prior marine experience required",
-      ],
-      included: [
-        "Course materials and textbooks",
-        "Lab access and equipment",
-        "Field trip to marine sanctuary",
-        "Certificate of completion",
-        "Access to online resources",
-        "Instructor support",
-      ],
-      notIncluded: [
-        "Accommodation",
-        "Meals during field trips",
-        "Personal diving equipment",
-        "Travel expenses",
-      ],
-    },
-    {
-      id: 2,
-      title: "Discover Scuba Diving",
-      subtitle: "Learn Scuba Diving Basics",
-      image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396163/pexels-debal-das-59599429-7970796_saucto.jpg",
-      duration: "6 weeks",
-      level: "Intermediate",
-      price: "₱899",
-      shortDescription:
-        "Beginner-friendly course to learn scuba diving basics.",
-      description:
-        "Hands-on training in scuba diving techniques, including equipment usage, safety protocols, and underwater navigation.",
-      skills: [
-        "Basic scuba diving skills",
-        "Underwater communication",
-        "Buoyancy control",
-        "Marine life identification",
-        "Safety procedures",
-      ],
-      prerequisites: [
-        "Open Water Diving certification",
-        "Marine Biology Fundamentals or equivalent",
-        "Good physical fitness",
-        "Underwater photography basics (preferred)",
-      ],
-      included: [
-        "Specialized restoration tools",
-        "Diving equipment rental",
-        "Boat transportation to sites",
-        "Professional certification",
-        "Research project opportunity",
-        "Mentorship program",
-      ],
-      notIncluded: [
-        "Diving certification course",
-        "Personal diving gear",
-        "Insurance coverage",
-        "Accommodation and meals",
-      ],
-    },
-    {
-      id: 3,
-      title: "Open Water Diver",
-      subtitle: "Professional Training",
-      image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396227/pexels-leonardo-lamas-32247393-7001658_jez7o0.jpg",
-      duration: "6 weeks",
-      level: "Advanced",
-      price: "₱1,299",
-      shortDescription:
-        "A highly-trained PADI Instructor will teach you how to scuba dive in a relaxed, supportive learning environment",
-      description:
-        "Open Water Diver is the first scuba certification level. A highly-trained PADI Instructor will teach you how to scuba dive in a relaxed, supportive learning environment. By the end of the course, you'll have the skills and knowledge to dive at home or abroad and be an ambassador for the underwater world.",
-      skills: [
-        "Advanced diving techniques",
-        "Underwater research methods",
-        "Dive site assessment",
-        "Emergency response protocols",
-      ],
-      prerequisites: [
-        "Scuba Diving certification",
-        "50+ logged dives",
-        "CPR/First Aid certification",
-        "Medical fitness certificate",
-      ],
-      included: [
-        "Professional diving equipment",
-        "Scientific instruments training",
-        "Boat operations certification",
-        "Safety equipment",
-        "International certification",
-        "Job placement assistance",
-      ],
-      notIncluded: [
-        "Medical examinations",
-        "Personal protective equipment",
-        "Accommodation",
-        "Visa/travel arrangements",
-      ],
-    },
-    {
-      id: 4,
-      title: "Advanced Open Water Diver",
-      subtitle: "Professional Development",
-      image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396302/pexels-ruben-galante-3187936-4809004_agffbd.jpg",
-      duration: "10 weeks",
-      level: "Advanced",
-      price: "₱1,099",
-      shortDescription:
-        "Enhance your skills in underwater exploration and conservation",
-      description:
-        "Advanced Open Water Diver is designed for divers who want to enhance their skills and knowledge in underwater exploration and conservation. This course focuses on advanced diving techniques, environmental awareness, and research methodologies.",
-      skills: [
-        "Project planning and management",
-        "Community engagement strategies",
-        "Policy analysis and development",
-        "Grant writing and fundraising",
-        "Stakeholder communication",
-      ],
-      prerequisites: [
-        "Bachelor's degree or equivalent experience",
-        "2+ years in environmental field",
-        "Previous conservation project involvement",
-        "Basic research methodology knowledge",
-      ],
-      included: [
-        "Advanced research equipment",
-        "Community outreach toolkit",
-        "Policy development templates",
-        "Grant application samples",
-        "Networking events access",
-      ],
-      notIncluded: [
-        "Field work expenses",
-        "Conference attendance fees",
-        "Personal project funding",
-      ],
-    },
-    {
-      id: 5,
-      title: "Underwater Photography & Videography",
-      subtitle: "Creative Documentation",
-      image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396412/pexels-tomfisk-1522160_xmorgy.jpg",
-      duration: "6 weeks",
-      level: "Intermediate",
-      price: "₱799",
-      shortDescription: "Capture stunning marine life through lens",
-      description:
-        "Learn professional underwater photography and videography techniques to document marine life and create compelling content for conservation awareness.",
-      skills: [
-        "Underwater camera operation",
-        "Lighting and composition",
-        "Marine life behavior documentation",
-        "Video editing techniques",
-        "Conservation storytelling",
-      ],
-      prerequisites: [
-        "Open Water Diving certification",
-        "Basic photography knowledge",
-        "Own underwater camera system",
-        "Good buoyancy control",
-      ],
-      included: [
-        "Professional lighting equipment",
-        "Video editing software license",
-        "Portfolio development session",
-        "Exhibition opportunity",
-        "Online gallery space",
-        "Professional critique sessions",
-      ],
-      notIncluded: [
-        "Camera equipment purchase",
-        "Memory cards and batteries",
-        "Diving equipment rental",
-        "Photo printing costs",
-      ],
-    },
+  const categories = [
+    { key: "all", label: "All Courses" },
+    { key: "diver", label: "Diver Path" },
+    { key: "specialty", label: "Specialties" },
+    { key: "efr", label: "EFR" },
+    { key: "volunteer", label: "Volunteer" },
   ];
 
-  const getLevelColor = (level) => {
-    switch (level) {
-      case "Beginner":
-        return "bg-gradient-to-r from-green-400 to-emerald-500 text-white";
-      case "Intermediate":
-        return "bg-gradient-to-r from-yellow-400 to-amber-500 text-white";
-      case "Advanced":
-        return "bg-gradient-to-r from-red-400 to-rose-500 text-white";
-      default:
-        return "bg-gradient-to-r from-gray-400 to-gray-500 text-white";
+  const getAllCourses = () => {
+    let all = [];
+    if (activeCategory === "all" || activeCategory === "diver") {
+      all = [...all, ...diverCourses.map((c) => ({ ...c, category: "diver" }))];
     }
+    if (activeCategory === "all" || activeCategory === "specialty") {
+      all = [
+        ...all,
+        ...specialtyCourses.map((c) => ({ ...c, category: "specialty" })),
+      ];
+    }
+    if (activeCategory === "all" || activeCategory === "efr") {
+      all = [...all, { ...efrCourse, category: "efr" }];
+    }
+    if (activeCategory === "all" || activeCategory === "volunteer") {
+      all = [
+        ...all,
+        ...volunteerPrograms.map((c) => ({ ...c, category: "volunteer" })),
+      ];
+    }
+    return all;
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50 py-12 md:py-20 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-0 right-0 w-72 h-72 bg-teal-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-
-        {/* Wave pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16 relative">
-          <div className="inline-block mb-8">
-            <div className="relative w-full p-8 overflow-hidden">
-              <h1
-                className={`text-2xl md:text-4xl font-bold text-gray-900 mb-6 transition-all duration-1000 ${
-                  isLoaded
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
-                }`}
-              >
-                Dive Into Your{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-emerald-500 to-blue-600 animate-gradient">
-                  Marine Career
-                </span>
-              </h1>
-              <p
-                className={`text-sm md:text-lg text-gray-600 max-w-3xl mx-auto transition-all duration-1000 delay-300 ${
-                  isLoaded
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-8 opacity-0"
-                }`}
-              >
-                Ready to explore the underwater world or take your diving skills
-                to the next level? Our courses offer a complete range of
-                PADI-certified courses, delivered in a safe, community-based,
-                and conservation-focused environment
-              </p>
+  const renderCourseCard = (course, index) => (
+    <div
+      key={course.id || index}
+      onMouseEnter={() => setHoveredCard(course.id)}
+      onMouseLeave={() => setHoveredCard(null)}
+      className="group relative cursor-pointer"
+      onClick={() =>
+        navigate(
+          course.link.startsWith("/") ? course.link : `/courses/${course.link}`
+        )
+      }
+    >
+      <div
+        className={`absolute -inset-0.5 bg-gradient-to-r ${
+          course.badgeColor || "from-teal-500 to-blue-500"
+        } rounded-2xl blur opacity-0 group-hover:opacity-50 transition duration-500`}
+      ></div>
+      <div
+        className={`h-full relative bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 transition-all duration-300 ${
+          hoveredCard === course.id ? "transform -translate-y-2 shadow-2xl" : ""
+        }`}
+      >
+        <div className="relative h-48 overflow-hidden">
+          <img
+            src={course.image}
+            alt={course.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            onError={(e) => {
+              e.target.src =
+                "https://images.unsplash.com/photo-1566024287286-457246b56b8a?w=800&auto=format&fit=crop";
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          {course.badge && (
+            <div
+              className={`absolute top-4 right-4 ${course.badgeColor} text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5`}
+            >
+              {course.icon && course.icon}
+              {course.badge}
             </div>
-            <div className="absolute inset-0 border-2 border-dashed border-gray-300 rounded-2xl pointer-events-none"></div>
-            <div className="absolute inset-0 rounded-2xl overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-br from-blue-200 to-teal-200 opacity-30"></div>
+          )}
+        </div>
+        <div className="p-6">
+          <div className="mb-4">
+            <span className="text-sm font-medium text-teal-600">
+              {course.subtitle}
+            </span>
+            <h3 className="text-xl font-bold text-gray-900 mt-1 group-hover:text-teal-700 transition-colors duration-300">
+              {course.title}
+            </h3>
+            <p className="text-gray-600 text-sm mt-2 line-clamp-2">
+              {course.shortDescription}
+            </p>
+          </div>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              {course.price && (
+                <div className="text-2xl font-bold text-gray-900">
+                  {course.price}
+                </div>
+              )}
+              <div className="text-sm text-gray-500">• {course.duration}</div>
+            </div>
+            <div
+              className={`text-lg ${
+                hoveredCard === course.id ? "animate-pulse" : ""
+              }`}
+            >
+              →
+            </div>
+          </div>
+          {course.features && (
+            <div className="flex flex-wrap gap-2 mt-3 pt-3 border-t border-gray-100">
+              {course.features.slice(0, 3).map((f, i) => (
+                <span
+                  key={i}
+                  className="text-xs bg-red-50 text-red-600 px-2 py-1 rounded-full"
+                >
+                  {f}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50">
+      {/* ───────────────── Hero Section ───────────────── */}
+      <section className="relative h-[60vh] min-h-[400px] flex items-center">
+        <div className="absolute inset-0">
+          <img
+            src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777343136/555705217_10238078344967574_7898261656592206056_n_mjjsbg.jpg"
+            alt="Dive Courses"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-teal-900/90 via-teal-900/60 to-transparent" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-3xl">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+              Dive into your Marine Career
+            </h1>
+            <p className="text-lg text-gray-200 max-w-2xl">
+              Ready to explore the underwater world or take your diving skills
+              to the next level? Our courses offer a complete range of
+              PADI-certified courses, delivered in a safe, community-based, and
+              conservation-focused environment.
+            </p>
+            <div className="flex flex-wrap gap-3 mt-8">
+              <a
+                href="#diver-courses"
+                className="px-6 py-3 rounded-xl bg-white text-teal-700 font-semibold hover:shadow-lg transition-all"
+              >
+                View Courses
+              </a>
+              <a
+                href="#volunteer"
+                className="px-6 py-3 rounded-xl border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition-all"
+              >
+                Volunteer Programs
+              </a>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Course Cards Grid */}
-        <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 transition-all duration-1000 delay-200 ${
-            isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          {courses.map((course) => (
-            <div
-              key={course.id}
-              onMouseEnter={() => setHoveredCard(course.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-              className=" group relative cursor-pointer"
-              onClick={() => setActiveTab(course.id - 1)}
-            >
-              {/* Card Glow Effect */}
-              <div
-                className={`absolute -inset-0.5 bg-gradient-to-r ${course.badgeColor} rounded-2xl blur opacity-0 group-hover:opacity-50 transition duration-500`}
-              ></div>
-
-              {/* Main Card */}
-              <div
-                className={`h-full relative bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 transition-all duration-300 ${
-                  hoveredCard === course.id
-                    ? "transform -translate-y-2 shadow-2xl"
-                    : ""
-                }`}
-              >
-                {/* Image Container */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={course.image}
-                    alt={course.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    onError={(e) => {
-                      e.target.src =
-                        "https://images.unsplash.com/photo-1566024287286-457246b56b8a?w=800&auto=format&fit=crop";
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-
-                  {/* Badge */}
-                  {course.badge && (
-                    <div
-                      className={`absolute top-4 right-4 ${course.badgeColor} text-white text-xs font-bold px-3 py-1.5 rounded-full`}
-                    >
-                      {course.badge}
-                    </div>
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="mb-4">
-                    <span className="text-sm font-medium text-teal-600">
-                      {course.subtitle}
-                    </span>
-                    <h3 className="text-xl font-bold text-gray-900 mt-1 group-hover:text-teal-700 transition-colors duration-300">
-                      {course.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm mt-2 line-clamp-2">
-                      {course.shortDescription}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-4">
-                      <div className="text-2xl font-bold text-gray-900">
-                        {course.price}
-                      </div>
-                      <div className="text-sm text-gray-500">
-                        • {course.duration}
-                      </div>
-                    </div>
-                    <div
-                      className={`text-lg ${
-                        hoveredCard === course.id ? "animate-pulse" : ""
-                      }`}
-                    >
-                      →
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Active Course Details */}
-        <div
-          className={`mb-20 transition-all duration-500 ${
-            isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          {courses.map((course, index) => (
-            <div
-              key={course.id}
-              className={`transition-all duration-500 ${
-                activeTab === index ? "block" : "hidden"
+      {/* ───────────────── Category Filter ───────────────── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 -mt-8">
+        <div className="bg-white rounded-2xl shadow-lg p-2 flex flex-wrap gap-2 justify-center">
+          {categories.map((cat) => (
+            <button
+              key={cat.key}
+              onClick={() => setActiveCategory(cat.key)}
+              className={`cursor-pointer px-5 py-2.5 rounded-xl font-semibold text-sm transition-all ${
+                activeCategory === cat.key
+                  ? "bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md"
+                  : "text-gray-600 hover:bg-gray-100"
               }`}
             >
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-white/50">
-                {/* Hero Section */}
-                <div className="relative h-96 overflow-hidden">
-                  <div className="absolute inset-0">
-                    <img
-                      src={course.image}
-                      alt={course.title}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        e.target.src =
-                          "https://images.unsplash.com/photo-1566024287286-457246b56b8a?w=1600&auto=format&fit=crop";
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                    <div className="max-w-4xl">
-                      <div className="flex items-center gap-4 mb-4">
-                        <span
-                          className={`px-4 py-1.5 rounded-full text-sm font-bold ${getLevelColor(
-                            course.level
-                          )}`}
-                        >
-                          {course.level}
-                        </span>
-                        <span className="bg-white/20 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium">
-                          {course.duration}
-                        </span>
-                        {course.badge && (
-                          <span
-                            className={`${course.badgeColor} px-4 py-1.5 rounded-full text-sm font-bold`}
-                          >
-                            {course.badge}
-                          </span>
-                        )}
-                      </div>
-                      <h2 className="text-4xl md:text-5xl font-bold mb-3">
-                        {course.title}
-                      </h2>
-                      <p className="text-xl opacity-90">{course.subtitle}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Course Content */}
-                <div className="p-8 md:p-12">
-                  <div className="grid lg:grid-cols-3 gap-12">
-                    {/* Main Content */}
-                    <div className="lg:col-span-2">
-                      {/* Description */}
-                      <div className="mb-12">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                          <span className="w-3 h-8 bg-gradient-to-b from-teal-400 to-emerald-500 rounded-full"></span>
-                          Course Overview
-                        </h3>
-                        <p className="text-gray-700 leading-relaxed text-lg bg-gradient-to-r from-teal-50 to-transparent p-6 rounded-2xl">
-                          {course.description}
-                        </p>
-                      </div>
-
-                      {/* Skills */}
-                      <div className="mb-12">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                          <span className="w-3 h-8 bg-gradient-to-b from-yellow-400 to-amber-500 rounded-full"></span>
-                          Skills You'll Master
-                        </h3>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {course.skills.map((skill, skillIndex) => (
-                            <div
-                              key={skillIndex}
-                              className="group flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100 hover:border-teal-200 hover:shadow-lg transition-all duration-300"
-                            >
-                              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-teal-100 to-emerald-100 flex items-center justify-center text-teal-600 group-hover:scale-110 transition-transform duration-300">
-                                <span className="text-lg">✓</span>
-                              </div>
-                              <div>
-                                <span className="text-gray-800 font-medium">
-                                  {skill}
-                                </span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Prerequisites */}
-                      <div className="mb-12">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                          <span className="w-3 h-8 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full"></span>
-                          Requirements
-                        </h3>
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {course.prerequisites.map((prereq, prereqIndex) => (
-                            <div
-                              key={prereqIndex}
-                              className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100"
-                            >
-                              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex items-center justify-center">
-                                <svg
-                                  className="w-3 h-3 text-white"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                              <span className="text-gray-700">{prereq}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Sidebar */}
-                    <div className="space-y-8">
-                      {/* Pricing Card */}
-                      <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-white shadow-2xl">
-                        <div className="text-center mb-8">
-                          <div className="text-5xl font-bold mb-2">
-                            {course.price}
-                          </div>
-                          <p className="text-gray-300">
-                            Complete course package
-                          </p>
-                        </div>
-
-                        <button className="w-full group relative overflow-hidden bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105">
-                          <span className="relative z-10">Enroll Now</span>
-                          <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="absolute -inset-1 bg-gradient-to-r from-teal-400 to-emerald-400 rounded-xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                        </button>
-
-                        <div className="mt-6 text-center text-gray-300 text-sm">
-                          ⚡ Limited spots available for next session
-                        </div>
-                      </div>
-
-                      {/* What's Included */}
-                      <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg">
-                        <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
-                          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-100 to-emerald-100 flex items-center justify-center">
-                            <span className="text-green-600">✓</span>
-                          </div>
-                          What's Included
-                        </h4>
-                        <ul className="space-y-3">
-                          {course.included.map((item, itemIndex) => (
-                            <li
-                              key={itemIndex}
-                              className="text-gray-700 flex items-start gap-3 group"
-                            >
-                              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5 group-hover:scale-110 transition-transform duration-200">
-                                <svg
-                                  className="w-3 h-3 text-green-600"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                              <span className="text-sm">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* What's Not Included */}
-                      <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-lg">
-                        <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-3 text-lg">
-                          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-100 to-rose-100 flex items-center justify-center">
-                            <span className="text-red-600">✗</span>
-                          </div>
-                          Not Included
-                        </h4>
-                        <ul className="space-y-3">
-                          {course.notIncluded.map((item, itemIndex) => (
-                            <li
-                              key={itemIndex}
-                              className="text-gray-700 flex items-start gap-3 group"
-                            >
-                              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5 group-hover:scale-110 transition-transform duration-200">
-                                <svg
-                                  className="w-3 h-3 text-red-600"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              </div>
-                              <span className="text-sm">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              {cat.label}
+            </button>
           ))}
         </div>
+      </div>
 
-        {/* Why Dive With Us */}
+      {/* ───────────────── Main Content ───────────────── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16">
+        {/* All Courses Grid (when filtered) */}
+        {activeCategory !== "all" ? (
+          <div>
+            <SectionHeader
+              title={categories.find((c) => c.key === activeCategory)?.label}
+              subtitle={
+                activeCategory === "diver"
+                  ? "Your path from beginner to professional"
+                  : activeCategory === "specialty"
+                  ? "Enhance your skills with specialized training"
+                  : activeCategory === "efr"
+                  ? "Life-saving skills for every diver"
+                  : "Dive with purpose, conserve with impact"
+              }
+            />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              {getAllCourses().map((course, idx) =>
+                renderCourseCard(course, idx)
+              )}
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* ───────────────── DIVER PATH ───────────────── */}
+            <div id="diver-courses" className="mb-20">
+              <SectionHeader
+                title="Diver Certification Path"
+                subtitle="Your journey from beginner to dive professional"
+              />
+              <div
+                className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-1000 ${
+                  isLoaded
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-8 opacity-0"
+                }`}
+              >
+                {diverCourses.map((course, idx) =>
+                  renderCourseCard(course, idx)
+                )}
+              </div>
+            </div>
+
+            {/* ───────────────── SPECIALTY COURSES ───────────────── */}
+            <div className="mb-20">
+              <SectionHeader
+                title="Specialty Courses"
+                subtitle="Expand your diving capabilities with focused training"
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {specialtyCourses.map((course, idx) =>
+                  renderCourseCard(course, idx)
+                )}
+              </div>
+            </div>
+
+            {/* ───────────────── EFR COURSE ───────────────── */}
+            <div className="mb-20">
+              <SectionHeader
+                title="Emergency First Response"
+                subtitle="Essential life-saving skills for divers and non-divers alike"
+              />
+              <div className="max-w-lg">{renderCourseCard(efrCourse, 0)}</div>
+            </div>
+
+            {/* ───────────────── VOLUNTEER PROGRAMS ───────────────── */}
+            <div id="volunteer" className="mb-20">
+              <SectionHeader
+                title="Volunteer Programs"
+                subtitle="Combine diving with hands-on marine conservation"
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {volunteerPrograms.map((program, idx) =>
+                  renderCourseCard(program, idx)
+                )}
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* ───────────────── Why Choose Us ───────────────── */}
         <div
           className={`mb-20 transition-all duration-1000 delay-300 ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
@@ -648,7 +560,6 @@ const Course = () => {
               create the perfect learning environment
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {whyDivewithUs.map((reason, index) => (
               <div key={index} className="group relative">
@@ -667,7 +578,7 @@ const Course = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
+        {/* ───────────────── CTA ───────────────── */}
         <div
           className={`text-center bg-gradient-to-r from-teal-500/10 via-emerald-500/10 to-blue-500/10 rounded-3xl p-12 backdrop-blur-sm border border-white/30 shadow-xl transition-all duration-1000 delay-500 ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
@@ -684,7 +595,6 @@ const Course = () => {
             <button className="group relative overflow-hidden bg-gradient-to-r from-teal-600 to-emerald-600 text-white font-bold py-4 px-8 rounded-xl hover:from-teal-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
               <span className="relative z-10">Contact Admissions</span>
               <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute -inset-1 bg-gradient-to-r from-teal-400 to-emerald-400 rounded-xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </button>
             <button className="group bg-white text-gray-800 font-bold py-4 px-8 rounded-xl border-2 border-teal-200 hover:border-teal-300 transition-all duration-300 transform hover:scale-105 shadow-lg">
               Download Course Catalog
@@ -696,7 +606,8 @@ const Course = () => {
       {/* Custom Animations */}
       <style jsx>{`
         @keyframes blob {
-          0% {
+          0%,
+          100% {
             transform: translate(0px, 0px) scale(1);
           }
           33% {
@@ -705,67 +616,16 @@ const Course = () => {
           66% {
             transform: translate(-20px, 20px) scale(0.9);
           }
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
         }
-
-        @keyframes wave {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateX(-50%) translateY(0px);
-          }
-          50% {
-            transform: translateX(-50%) translateY(-20px);
-          }
-        }
-
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-
         .animate-blob {
           animation: blob 7s infinite;
         }
-
         .animation-delay-2000 {
           animation-delay: 2s;
         }
-
         .animation-delay-4000 {
           animation-delay: 4s;
         }
-
-        .animate-wave {
-          animation: wave 2s linear infinite;
-        }
-
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
-        }
-
         .line-clamp-2 {
           display: -webkit-box;
           -webkit-line-clamp: 2;

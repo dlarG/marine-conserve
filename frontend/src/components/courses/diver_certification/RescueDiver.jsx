@@ -45,22 +45,52 @@ const RescueDiver = () => {
   const dateRanges = useMemo(
     () => [
       {
-        from: "February 12th",
-        to: "March 12th",
-        time: "Weekends • 9:00 AM – 12:00 PM",
+        from: "January 1st",
+        to: "February 1st",
+        time: "Opens Daily",
         slots: "8 slots",
       },
       {
-        from: "April 5th",
-        to: "May 5th",
-        time: "Sundays • 1:00 PM – 4:00 PM",
+        from: "February 1st",
+        to: "March 1st",
+        time: "Opens Daily",
+        slots: "8 slots",
+      },
+      {
+        from: "March 10th",
+        to: "April 10th",
+        time: "Opens Daily",
         slots: "6 slots",
       },
       {
-        from: "June 10th",
-        to: "July 10th",
-        time: "Saturdays • 9:00 AM – 12:00 PM",
+        from: "April 20th",
+        to: "May 20th",
+        time: "Opens Daily",
         slots: "10 slots",
+      },
+      {
+        from: "June 20th",
+        to: "July 20th",
+        time: "Opens Daily",
+        slots: "10 slots",
+      },
+      {
+        from: "August 20th",
+        to: "September 20th",
+        time: "Opens Daily",
+        slots: "10 slots",
+      },
+      {
+        from: "October 1st",
+        to: "November 1st",
+        time: "Opens Daily",
+        slots: "8 slots",
+      },
+      {
+        from: "November 10th",
+        to: "December 10th",
+        time: "Opens Daily",
+        slots: "6 slots",
       },
     ],
     []
@@ -396,7 +426,9 @@ const RescueDiver = () => {
             Course Dates
           </h2>
           <p className="mt-2 text-gray-600 max-w-2xl">
-            Upcoming Rescue Diver schedules.
+            Available course dates for the PADI Rescue Diver certification. Each
+            date range represents a separate course session with limited slots,
+            so be sure to book early!
           </p>
 
           <div className="mt-8 grid md:grid-cols-3 gap-6">

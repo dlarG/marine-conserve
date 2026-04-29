@@ -55,6 +55,11 @@ import AdvancedOpenWater from "./components/courses/diver_certification/Advanced
 import RescueDiver from "./components/courses/diver_certification/RescueDiver";
 import Divemaster from "./components/courses/diver_certification/Divemaster";
 
+import VolunteerHomepage from "./components/volunteer/VolunteerHomepage";
+import CoralRestoration1 from "./components/volunteer/CoralRestoration1";
+import DiveAgainstDebri from "./components/volunteer/DiveAgainstDebri";
+import COTSMonitoring from "./components/volunteer/COTSMonitoring";
+import ScientificDataColl from "./components/volunteer/ScientificDataColl";
 const HomePage = () => {
   return (
     <div>
@@ -459,6 +464,7 @@ const MissionPage = () => {
 const CoursePage = () => {
   return (
     <>
+      <Navbar />
       <Course />
       <Footer />
     </>
@@ -505,6 +511,60 @@ const CotsResponsePage = () => {
     <>
       <CotsMonitoringNavbar />
       <CotsResponse />
+    </>
+  );
+};
+
+const VolunteerPage = () => {
+  return (
+    <>
+      <Navbar />
+      <div className="min-h-screen">
+        <section id="volunteer-hero">
+          <VolunteerHomepage />
+        </section>
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+const CoralResVolunteerPage = () => {
+  return (
+    <>
+      <Navbar />
+      <CoralRestoration1 />
+      <Footer />
+    </>
+  );
+};
+
+const DiveAgainstDebriVolunteerPage = () => {
+  return (
+    <>
+      <Navbar />
+      <DiveAgainstDebri />
+      <Footer />
+    </>
+  );
+};
+
+const COTSMonitoringVolunteerPage = () => {
+  return (
+    <>
+      <Navbar />
+      <COTSMonitoring />
+      <Footer />
+    </>
+  );
+};
+
+const SciDataCollectionVolunteerPage = () => {
+  return (
+    <>
+      <Navbar />
+      <ScientificDataColl />
+      <Footer />
     </>
   );
 };
@@ -559,6 +619,24 @@ function App() {
           />
           <Route path="/courses/rescue-diver" element={<RescueDiver />} />
           <Route path="/courses/divemaster" element={<Divemaster />} />
+
+          <Route path="/volunteer" element={<VolunteerPage />} />
+          <Route
+            path="/volunteer/coral-restoration"
+            element={<CoralResVolunteerPage />}
+          />
+          <Route
+            path="/volunteer/dive-against-debris"
+            element={<DiveAgainstDebriVolunteerPage />}
+          />
+          <Route
+            path="/volunteer/cots-monitoring"
+            element={<COTSMonitoringVolunteerPage />}
+          />
+          <Route
+            path="/volunteer/scientific-data-collection"
+            element={<SciDataCollectionVolunteerPage />}
+          />
         </Routes>
       </div>
     </Router>
