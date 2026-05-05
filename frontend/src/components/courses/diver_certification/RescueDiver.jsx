@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import Navbar from "../../navbars/Navbar";
 import Footer from "../../Footer";
 import ApplyNowModal from "./ApplyNowModal";
+import ApplyNowModalWithCert from "./ApplyNowModalWithCert";
 
 const TabLink = ({ active, onClick, children }) => {
   return (
@@ -541,13 +542,14 @@ const RescueDiver = () => {
 
       <Footer />
 
-      <ApplyNowModal
+      <ApplyNowModalWithCert
         isOpen={isApplyOpen}
         onClose={() => setIsApplyOpen(false)}
         courseKey="rescue"
         courseTitle="PADI Rescue Diver"
         dateOptions={dateOptions}
         apiBaseUrl="http://localhost:5000"
+        certLabel="Advanced Open Water Certificate *"
       />
     </div>
   );

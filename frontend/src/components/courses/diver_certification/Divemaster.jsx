@@ -536,11 +536,11 @@ const Divemaster = () => {
       <ApplyNowModalWithCert
         isOpen={isApplyOpen}
         onClose={() => setIsApplyOpen(false)}
-        courseKey="open-water"
-        courseTitle="PADI Open Water Diver"
+        courseKey="divemaster"
+        courseTitle="PADI Divemaster"
         dateOptions={dateOptions}
         apiBaseUrl="http://localhost:5000"
-        certLabel="Discover Scuba Certificate Photo *"
+        certLabel="Rescue Diver Certificate *"
       />
     </div>
   );
