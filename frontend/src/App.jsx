@@ -493,8 +493,9 @@ const DataCollectionPage = () => {
 const DebriRemovalPage = () => {
   return (
     <>
-      <DebriRemovalNavbar />
+      <Navbar />
       <DebriRemoval />;
+      <Footer />
     </>
   );
 };

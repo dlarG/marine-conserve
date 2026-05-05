@@ -9,7 +9,10 @@ const MissionVissionHome = () => {
   ];
 
   return (
-    <section className="py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+    <section
+      id="mission-content"
+      className="py-12 md:py-16 px-4 sm:px-6 lg:px-8"
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">

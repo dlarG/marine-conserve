@@ -41,7 +41,7 @@ const MissionHero = ({
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
-              href="#about-content"
+              href="#mission-content"
               className="px-5 py-2.5 rounded-full bg-teal-600 text-white font-medium hover:bg-teal-700 transition-colors"
             >
               Learn more

@@ -200,12 +200,12 @@ const Navbar = () => {
 
   const desktopLinkClass = ({ isActive }) => {
     const base =
-      "cursor-pointer font-medium transition-all duration-300 relative px-4 py-2 rounded-full group";
+      "cursor-pointer font-medium transition-all duration-300 relative px-4 py-2.5 rounded-full group";
     const inactive = isScrolled
       ? "text-gray-700 hover:text-[#2E5E2E]"
       : "text-white/80 hover:text-white";
     const active = isScrolled
-      ? "text-[#2E5E2E] bg-teal-50/80"
+      ? "text-[#2E5E2E] bg-teal-100"
       : "text-white bg-white/20";
     return `${base} ${isActive ? active : inactive}`;
   };
@@ -236,8 +236,8 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-lg py-2"
-            : "bg-transparent py-4"
+            ? "bg-white/95 backdrop-blur-xl shadow-lg py-4"
+            : "bg-transparent py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4">
@@ -440,7 +440,7 @@ const Navbar = () => {
               {/* Donate button */}
               <button
                 onClick={handleDonateClick1}
-                className={`hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 relative overflow-hidden group ${
+                className={`hidden md:block px-5 py-2.5 rounded-full font-medium shadow-lg hover:bg-teal-700 transition-all duration-300 transform active:scale-95 relative overflow-hidden group ${
                   isScrolled
                     ? "bg-teal-600 to-green-600 text-white"
                     : "bg-teal-600/90 text-white"
