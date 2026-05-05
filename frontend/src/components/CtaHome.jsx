@@ -4,7 +4,7 @@ const CtaHome = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="py-20 px-6 md:px-12 lg:px-20 bg-gradient-to-r from-[#2c6e3f] to-[#4c9a6c] relative overflow-hidden">
+    <section className="py-20 px-6 md:px-12 lg:px-20 bg-gradient-to-r from-teal-800 to-emerald-800 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <svg

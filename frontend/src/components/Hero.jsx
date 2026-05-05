@@ -200,6 +200,7 @@ const Hero = () => {
               </button>
 
               <button
+                onClick={() => navigate("/volunteer")}
                 className="group border-2 border-white/30 text-white px-5 sm:px-6 lg:px-8 py-3 sm:py-3.5 lg:py-4 rounded-xl text-base sm:text-lg font-semibold hover:border-white/60 hover:bg-white/5 backdrop-blur-sm transition-all duration-500 transform hover:scale-105 active:scale-95 max-w-full"
                 style={{ cursor: "pointer" }}
               >

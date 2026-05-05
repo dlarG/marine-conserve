@@ -73,22 +73,27 @@ const VolunteerHomepage = () => {
               <br />
               <span className="text-teal-300">Conserve with Impact.</span>
             </h1>
-            <p className="text-xl md:text-lg text-gray-200 leading-relaxed mb-10 max-w-2xl">
-              Join GREEN, Inc. and be part of hands-on marine conservation
-              efforts. Your mission awaits beneath the surface—restore reefs,
-              remove debris, and protect marine life in one of the Philippines'
-              most biodiverse bays.
+            <p className="text-l sm:text-lg md:text-l text-white/90 mb-8 md:max-w-full lg:max-w-2xl leading-relaxed">
+              Join GREEN, Inc. and be part of{" "}
+              <span className="text-green-300">
+                hands-on marine conservation efforts.
+              </span>{" "}
+              Your mission awaits beneath the surface—
+              <span className="text-green-300">
+                restore reefs, remove debris, and protect marine life
+              </span>{" "}
+              in one of the Philippines' most biodiverse bays.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-5">
               <a
                 href="#programs"
-                className="px-8 py-4 rounded-xl bg-gradient-to-r from-teal-500 to-green-500 text-white font-semibold hover:shadow-lg hover:shadow-teal-500/25 transition-all text-lg"
+                className="px-5 py-3 rounded-xl bg-teal-600 text-white font-semibold hover:shadow-lg hover:bg-teal-700 transition-all text-lg"
               >
                 Explore Programs
               </a>
               <a
                 href="#apply"
-                className="px-8 py-4 rounded-xl border-2 border-white/30 text-white font-semibold hover:bg-white/10 backdrop-blur-sm transition-all text-lg"
+                className="px-5 py-3 rounded-xl border-2 border-white/30 text-white font-semibold hover:bg-white/10 backdrop-blur-sm transition-all text-lg"
               >
                 Apply Now
               </a>
@@ -109,7 +114,7 @@ const VolunteerHomepage = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
               Choose Your{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-green-600">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">
                 Program
               </span>
             </h2>
