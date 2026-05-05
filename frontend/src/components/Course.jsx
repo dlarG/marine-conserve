@@ -592,11 +592,11 @@ const Course = () => {
             passion for the ocean into meaningful careers
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="group relative overflow-hidden bg-gradient-to-r from-teal-600 to-emerald-600 text-white font-bold py-4 px-8 rounded-xl hover:from-teal-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="cursor-pointer group relative overflow-hidden bg-gradient-to-r from-teal-600 to-emerald-600 text-white font-bold py-4 px-8 rounded-xl hover:from-teal-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
               <span className="relative z-10">Contact Admissions</span>
               <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
-            <button className="group bg-white text-gray-800 font-bold py-4 px-8 rounded-xl border-2 border-teal-200 hover:border-teal-300 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="cursor-pointer group bg-white text-gray-800 font-bold py-4 px-8 rounded-xl border-2 border-teal-200 hover:border-teal-300 transition-all duration-300 transform hover:scale-105 shadow-lg">
               Download Course Catalog
             </button>
           </div>

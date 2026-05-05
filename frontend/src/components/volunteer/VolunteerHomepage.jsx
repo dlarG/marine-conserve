@@ -41,7 +41,7 @@ const VolunteerHomepage = () => {
         "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777343004/255053295_1323088658146866_9006587557721285913_n_qfsh6m.jpg",
     },
     {
-      id: "scientific-data",
+      id: "scientific-data-collection",
       title: "Scientific Data Collection",
       subtitle: "Scientific Discovery",
       description:

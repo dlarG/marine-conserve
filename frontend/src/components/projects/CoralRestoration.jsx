@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
 function CoralRestoration() {
@@ -11,6 +12,7 @@ function CoralRestoration() {
     impact: false,
     gallery: false,
   });
+  const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [currentMethod, setCurrentMethod] = useState(0);
   const [direction, setDirection] = useState("next");
@@ -59,16 +61,16 @@ function CoralRestoration() {
     },
     {
       id: "terracotta",
-      title: "Terracotta Tiles",
-      subtitle: "Biodegradable Artificial Reefs",
+      title: "Experimental Approach",
+      subtitle: "Some of our experimental approaches",
       description:
         "Sustainable ceramic tiles that mimic natural coral substrates and naturally erode over decades, leaving behind established coral communities.",
       image:
         "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384157/tiles_lg8by3.jpg",
       stats: [
-        { label: "Biodegradable", value: "Yes" },
-        { label: "Erosion Time", value: "Decades" },
-        { label: "Cost Efficiency", value: "High" },
+        { label: "Terracota Tiles" },
+        { label: "Placeholder2" },
+        { label: "Placeholder3" },
       ],
       features: [
         "Calcium carbonate similarity",
@@ -256,7 +258,7 @@ function CoralRestoration() {
                     </p>
                   </div>
 
-                  <div className="mt-12 grid grid-cols-2 gap-6">
+                  {/* <div className="mt-12 grid grid-cols-2 gap-6">
                     <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-50 to-white p-6 border border-teal-100 hover:border-teal-300 transition-all duration-300">
                       <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:scale-105 transition-transform duration-300">
                         5+
@@ -280,7 +282,7 @@ function CoralRestoration() {
                       </div>
                       <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-emerald-100 rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -653,7 +655,10 @@ function CoralRestoration() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25">
+              <button
+                onClick={() => navigate("/volunteer/coral-restoration")}
+                className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-500 transition-transform duration-500 group-hover:translate-x-full" />
                 <span className="relative flex items-center justify-center gap-2">
                   <span>Support This Project</span>

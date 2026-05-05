@@ -175,7 +175,7 @@ const COTSMonitoring = () => {
                 </p>
                 <button
                   onClick={() => setIsApplyModalOpen(true)}
-                  className="w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all"
+                  className="cursor-pointer w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all"
                 >
                   Apply Now
                 </button>

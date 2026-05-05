@@ -178,9 +178,9 @@ const Hero = () => {
               <button
                 onClick={() => navigate("/mission")}
                 style={{ cursor: "pointer" }}
-                className="group relative bg-gradient-to-r from-green-500 to-emerald-600 text-white px-5 sm:px-6 lg:px-8 py-3 sm:py-3.5 lg:py-4 rounded-xl text-base sm:text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25 active:scale-95 max-w-full"
+                className="group relative text-white px-5 sm:px-6 lg:px-8 py-3 sm:py-3.5 lg:py-4 rounded-xl text-base sm:text-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-2xl active:scale-95 max-w-full"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-green-500 transition-transform duration-500 group-hover:translate-x-full" />
+                <div className="absolute inset-0 bg-emerald-600 transition-transform duration-500" />
                 <span className="relative flex items-center justify-center gap-2 sm:gap-3">
                   <span className="whitespace-nowrap">Support Our Mission</span>
                   <svg

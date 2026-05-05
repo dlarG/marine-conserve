@@ -474,8 +474,9 @@ const CoursePage = () => {
 const CoralRestorationPage = () => {
   return (
     <>
-      <CoralRestorationNavbar />
+      <Navbar />
       <CoralRestoration />
+      <Footer />
     </>
   );
 };
