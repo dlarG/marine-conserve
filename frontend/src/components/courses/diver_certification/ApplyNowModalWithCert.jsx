@@ -98,16 +98,16 @@ const ApplyNowModalWithCert = ({
 
       <div className="absolute inset-0 flex items-center justify-center p-4">
         <div className="w-full max-w-2xl rounded-2xl bg-white shadow-2xl overflow-hidden border border-gray-100">
-          <div className="px-6 py-4 bg-gradient-to-r from-teal-600 to-green-600 text-white flex items-center justify-between">
+          <div className="px-6 py-6 bg-gradient-to-r from-teal-600 to-emerald-600 text-white flex items-center justify-between">
             <div>
               <div className="text-xs font-semibold tracking-wider opacity-90">
                 COURSE APPLICATION
               </div>
-              <div className="text-lg md:text-xl font-extrabold">
+              <div className="text-lg md:text-xl font-extrabold mt-2">
                 {courseTitle || "Apply"}
-              </div>
-              <div className="text-xs opacity-90 mt-1">
-                Prior certification is required for this course.
+                <span className="text-xs">
+                  &nbsp; (Prior certification is required for this course)
+                </span>
               </div>
             </div>
 
@@ -133,9 +133,9 @@ const ApplyNowModalWithCert = ({
               </div>
             )}
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-4 mb-5">
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                <label className="ml-2 block text-sm font-semibold text-gray-700 mb-1">
                   Full Name *
                 </label>
                 <input
@@ -162,8 +162,8 @@ const ApplyNowModalWithCert = ({
               </div>
             </div>
 
-            <div className="mt-4">
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <div className="mb-5">
+              <label className="ml-2 block text-sm font-semibold text-gray-700 mb-1">
                 Select Course Date Range *
               </label>
               <select
@@ -181,8 +181,8 @@ const ApplyNowModalWithCert = ({
             </div>
 
             {/* REQUIRED prior cert image */}
-            <div className="mt-4">
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <div className="mb-5">
+              <label className="ml-2 block text-sm font-semibold text-gray-700 mb-1">
                 {certLabel}
               </label>
               <input
@@ -192,15 +192,15 @@ const ApplyNowModalWithCert = ({
                 className="cursor-pointer block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
                 required
               />
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="ml-2 mt-1 text-xs text-gray-500">
                 Upload a photo of your previous certification card/certificate
                 (JPG/PNG/WEBP).
               </p>
             </div>
 
             {/* Optional medical PDF */}
-            <div className="mt-4">
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+            <div className="mb-5">
+              <label className="ml-2 block text-sm font-semibold text-gray-700 mb-1">
                 Medical Certificate (PDF){" "}
                 <span className="text-gray-400">(optional)</span>
               </label>
@@ -210,13 +210,13 @@ const ApplyNowModalWithCert = ({
                 onChange={(e) => setMedicalPdf(e.target.files?.[0] || null)}
                 className="cursor-pointer block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-teal-50 file:text-teal-700 hover:file:bg-teal-100"
               />
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="ml-2 mt-1 text-xs text-gray-500">
                 Optional but highly encouraged for faster processing.
               </p>
             </div>
 
             <div className="mt-4">
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+              <label className="ml-2 block text-sm font-semibold text-gray-700 mb-1">
                 Additional Message
               </label>
               <textarea
@@ -228,7 +228,7 @@ const ApplyNowModalWithCert = ({
               />
             </div>
 
-            <div className="mt-4 flex items-start gap-3">
+            <div className="ml-2 mt-4 flex items-start gap-3">
               <input
                 id="ack-withcert"
                 type="checkbox"
