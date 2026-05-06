@@ -656,13 +656,13 @@ function CoralRestoration() {
                 </span>
               </button>
 
-              <a
-                href="https://www.facebook.com/GREENIncorporatedSogodBay"
+              <button
+                onClick={() => navigate("/volunteer/coral-restoration")}
                 target="_blank"
                 className="cursor-pointer group border-2 border-teal-500 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-all duration-500 transform hover:scale-105"
               >
                 <span className="relative flex items-center justify-center gap-2">
-                  Get Involved
+                  Become a Volunteer
                   <svg
                     className="w-5 h-5 group-hover:rotate-12 transition-transform"
                     fill="none"
@@ -677,7 +677,7 @@ function CoralRestoration() {
                     />
                   </svg>
                 </span>
-              </a>
+              </button>
             </div>
           </div>
         </div>

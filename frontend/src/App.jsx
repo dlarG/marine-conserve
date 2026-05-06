@@ -484,8 +484,9 @@ const CoralRestorationPage = () => {
 const DataCollectionPage = () => {
   return (
     <>
-      <DataCollectionNavbar />
+      <Navbar />
       <DataCollection />;
+      <Footer />
     </>
   );
 };
@@ -511,8 +512,9 @@ const AllBlogPage = () => {
 const CotsResponsePage = () => {
   return (
     <>
-      <CotsMonitoringNavbar />
+      <Navbar />
       <CotsResponse />
+      <Footer />
     </>
   );
 };

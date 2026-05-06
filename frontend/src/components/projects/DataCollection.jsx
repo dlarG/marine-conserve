@@ -391,7 +391,7 @@ function DataCollection() {
                   alt: "Water quality sampling for chemical analysis",
                 },
                 {
-                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384333/P1070085_nztvfg.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1778040178/Limasaw_MPA01_pd5qm4.jpg",
                   alt: "Research team collaboration and methodology discussion",
                 },
                 {
