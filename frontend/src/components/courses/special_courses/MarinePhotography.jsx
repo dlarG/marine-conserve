@@ -108,7 +108,7 @@ const MarinePhotography = () => {
   const samplePhotos = useMemo(
     () => [
       {
-        src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384120/P9080045_yqa8sj.jpg",
+        src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384074/close1_nwadrw.jpg",
         alt: "Macro coral detail shot showcasing texture and color",
         title: "Macro Marine Life",
         description:

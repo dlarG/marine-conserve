@@ -62,6 +62,9 @@ import COTSMonitoring from "./components/volunteer/COTSMonitoring";
 import ScientificDataColl from "./components/volunteer/ScientificDataColl";
 import DeepDiver from "./components/courses/special_courses/DeepDiver";
 import MarinePhotography from "./components/courses/special_courses/MarinePhotography";
+import DiveNavigation from "./components/courses/special_courses/DiveNavigation";
+import NighDiver from "./components/courses/special_courses/NighDiver";
+import PerformanceBuoyancy from "./components/courses/special_courses/PerformanceBouyancy";
 const HomePage = () => {
   return (
     <div>
@@ -595,6 +598,36 @@ const MarinePhotographyPage = () => {
   );
 };
 
+const DiveNavigationPage = () => {
+  return (
+    <>
+      <Navbar />
+      <DiveNavigation />
+      <Footer />
+    </>
+  );
+};
+
+const NightDiverPage = () => {
+  return (
+    <>
+      <Navbar />
+      <NighDiver />
+      <Footer />
+    </>
+  );
+};
+
+const PeakBuoyancyPage = () => {
+  return (
+    <>
+      <Navbar />
+      <PerformanceBuoyancy />
+      <Footer />
+    </>
+  );
+};
+
 function App() {
   return (
     <Router>
@@ -671,6 +704,18 @@ function App() {
           <Route
             path="/courses/special/marine-photography"
             element={<MarinePhotographyPage />}
+          />
+          <Route
+            path="/courses/special/dive-navigation"
+            element={<DiveNavigationPage />}
+          />
+          <Route
+            path="/courses/special/night-diver"
+            element={<NightDiverPage />}
+          />
+          <Route
+            path="/courses/special/peak-performance-buoyancy"
+            element={<PeakBuoyancyPage />}
           />
         </Routes>
       </div>

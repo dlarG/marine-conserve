@@ -46,7 +46,7 @@ const Navbar = () => {
         items: [
           { label: "Marine Photography", slug: "special/marine-photography" },
           { label: "Deep Diver", slug: "special/deep-diver" },
-          { label: "Navigation", slug: "special/navigation" },
+          { label: "Navigation", slug: "special/dive-navigation" },
           { label: "Night Diver", slug: "special/night-diver" },
           {
             label: "Peak Performance Buoyancy",

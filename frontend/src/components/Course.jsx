@@ -108,7 +108,7 @@ const Course = () => {
   const specialtyCourses = [
     {
       id: "marine-photography",
-      link: "marine-photography",
+      link: "special/marine-photography",
       title: "Marine Photography",
       subtitle: "Specialty Course",
       image:
@@ -121,7 +121,7 @@ const Course = () => {
     },
     {
       id: "deep-diver",
-      link: "deep-diver",
+      link: "special/deep-diver",
       title: "Deep Diver",
       subtitle: "Specialty Course",
       image:
@@ -134,7 +134,7 @@ const Course = () => {
     },
     {
       id: "navigation",
-      link: "navigation",
+      link: "special/dive-navigation",
       title: "Underwater Navigation",
       subtitle: "Specialty Course",
       image:
@@ -147,7 +147,7 @@ const Course = () => {
     },
     {
       id: "night-diver",
-      link: "night-diver",
+      link: "special/night-diver",
       title: "Night Diver",
       subtitle: "Specialty Course",
       image:
@@ -160,7 +160,7 @@ const Course = () => {
     },
     {
       id: "peak-performance-buoyancy",
-      link: "peak-performance-buoyancy",
+      link: "special/peak-performance-buoyancy",
       title: "Peak Performance Buoyancy",
       subtitle: "Specialty Course",
       image:
