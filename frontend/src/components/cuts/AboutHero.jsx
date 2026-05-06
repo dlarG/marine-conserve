@@ -58,6 +58,7 @@ const AboutHero = ({
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "GREEN Inc. | About";
   }, []);
 
   useEffect(() => {

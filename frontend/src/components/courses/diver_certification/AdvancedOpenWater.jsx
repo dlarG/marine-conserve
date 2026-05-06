@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Navbar from "../../navbars/Navbar";
 import Footer from "../../Footer";
 import ApplyNowModal from "./ApplyNowModal";
+import ApplyNowModalWithCert from "./ApplyNowModalWithCert";
 
 const TabLink = ({ active, onClick, children }) => {
   return (
@@ -296,7 +297,7 @@ const AdvancedOpenWater = () => {
             <button
               type="button"
               onClick={() => setIsApplyOpen(true)}
-              className="cursor-pointer w-full md:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-teal-600 to-green-600 text-white hover:shadow-lg transition-all whitespace-nowrap"
+              className="cursor-pointer w-full md:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 text-white hover:shadow-lg transition-all whitespace-nowrap"
             >
               APPLY NOW
             </button>
@@ -532,13 +533,14 @@ const AdvancedOpenWater = () => {
 
       <Footer />
 
-      <ApplyNowModal
+      <ApplyNowModalWithCert
         isOpen={isApplyOpen}
         onClose={() => setIsApplyOpen(false)}
         courseKey="advanced-open-water"
         courseTitle="PADI Advanced Open Water Diver"
         dateOptions={dateOptions}
         apiBaseUrl="http://localhost:5000"
+        certLabel="Open Water Certificate Photo *"
       />
     </div>
   );

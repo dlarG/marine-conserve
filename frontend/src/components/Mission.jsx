@@ -203,9 +203,9 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                   {missionData.mission.stats.slice(0, 2).map((stat, index) => (
                     <div
                       key={index}
-                      className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-50 to-white p-6 border border-teal-100 hover:border-teal-300 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
+                      className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-50 to-white p-6 border border-teal-100 transition-all duration-300"
                     >
-                      <div className="text-2xl md:text-3xl font-bold text-teal-600 mb-2 group-hover:scale-110 transition-transform duration-300">
+                      <div className="text-2xl md:text-3xl font-bold text-teal-600 mb-2 transition-transform duration-300">
                         {stat.value}
                       </div>
                       <div className="text-gray-700 font-medium">
@@ -225,11 +225,11 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                 >
                   <button
                     onClick={() => scrollToSection("location")}
-                    className="group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300"
+                    className="cursor-pointer group inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300"
                   >
                     <span>Explore Our Location</span>
                     <svg
-                      className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
+                      className="cursor-pointer w-5 h-5 transform group-hover:translate-x-1 transition-transform"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -291,11 +291,11 @@ This method prevents the sandy seafloor from smothering the fragments and possib
                 : "translate-y-8 opacity-0"
             }`}
           >
-            <span className="inline-block text-sm font-medium text-blue-600 uppercase tracking-wider mb-4 bg-blue-50 px-4 py-2 rounded-full">
+            <span className="inline-block text-sm font-medium text-teal-600 uppercase tracking-wider mb-4 bg-teal-50 px-4 py-2 rounded-full">
               Project Location
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-              <span className="text-transparent bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text">
+              <span className="text-transparent bg-gradient-to-r from-teal-600 to-teal-600 bg-clip-text">
                 Sogod Bay
               </span>
               , Southern Leyte

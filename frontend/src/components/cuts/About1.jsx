@@ -10,6 +10,12 @@ function About1() {
     yearsActive: 0,
     studies: 0,
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = "GREEN Inc. | About";
+  }, []);
+
   const [hasAnimated, setHasAnimated] = useState(false);
   const animateCounter = (key, start, end, duration) => {
     const startTime = Date.now();

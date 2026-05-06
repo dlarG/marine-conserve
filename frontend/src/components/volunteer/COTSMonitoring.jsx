@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Check, Clock, Users, Star, ArrowLeft } from "lucide-react";
+import VolunteerApplyModal from "./VolunteerApplyModal";
 
 const COTSMonitoring = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const COTSMonitoring = () => {
     window.scrollTo(0, 0);
     document.title = "COTS Monitoring | GREEN Inc. Volunteer";
   }, []);
+  const [isApplyModalOpen, setIsApplyModalOpen] = React.useState(false);
 
   const programData = {
     title: "COTS Monitoring",
@@ -171,7 +173,10 @@ const COTSMonitoring = () => {
                 <p className="text-teal-100 text-sm mb-6">
                   {programData.pricing.note}
                 </p>
-                <button className="w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all">
+                <button
+                  onClick={() => setIsApplyModalOpen(true)}
+                  className="cursor-pointer w-full py-3 rounded-xl bg-white text-teal-700 font-bold hover:shadow-xl transition-all"
+                >
                   Apply Now
                 </button>
               </div>
@@ -385,6 +390,11 @@ const COTSMonitoring = () => {
           </div>
         </div>
       </section>
+      <VolunteerApplyModal
+        isOpen={isApplyModalOpen}
+        onClose={() => setIsApplyModalOpen(false)}
+        programTitle="COTS Monitoring"
+      />
     </div>
   );
 };
