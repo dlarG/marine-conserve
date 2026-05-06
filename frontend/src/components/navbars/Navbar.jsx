@@ -44,13 +44,13 @@ const Navbar = () => {
         key: "",
         label: "Specialty Courses",
         items: [
-          { label: "Marine Photography", slug: "marine-photography" },
-          { label: "Deep Diver", slug: "deep-diver" },
-          { label: "Navigation", slug: "navigation" },
-          { label: "Night Diver", slug: "night-diver" },
+          { label: "Marine Photography", slug: "special/marine-photography" },
+          { label: "Deep Diver", slug: "special/deep-diver" },
+          { label: "Navigation", slug: "special/navigation" },
+          { label: "Night Diver", slug: "special/night-diver" },
           {
             label: "Peak Performance Buoyancy",
-            slug: "peak-performance-buoyancy",
+            slug: "special/peak-performance-buoyancy",
           },
         ],
       },

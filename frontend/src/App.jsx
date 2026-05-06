@@ -60,6 +60,8 @@ import CoralRestoration1 from "./components/volunteer/CoralRestoration1";
 import DiveAgainstDebri from "./components/volunteer/DiveAgainstDebri";
 import COTSMonitoring from "./components/volunteer/COTSMonitoring";
 import ScientificDataColl from "./components/volunteer/ScientificDataColl";
+import DeepDiver from "./components/courses/special_courses/DeepDiver";
+import MarinePhotography from "./components/courses/special_courses/MarinePhotography";
 const HomePage = () => {
   return (
     <div>
@@ -573,6 +575,26 @@ const SciDataCollectionVolunteerPage = () => {
   );
 };
 
+const DeepDiverCoursePage = () => {
+  return (
+    <>
+      <Navbar />
+      <DeepDiver />
+      <Footer />
+    </>
+  );
+};
+
+const MarinePhotographyPage = () => {
+  return (
+    <>
+      <Navbar />
+      <MarinePhotography />
+      <Footer />
+    </>
+  );
+};
+
 function App() {
   return (
     <Router>
@@ -640,6 +662,15 @@ function App() {
           <Route
             path="/volunteer/scientific-data-collection"
             element={<SciDataCollectionVolunteerPage />}
+          />
+
+          <Route
+            path="/courses/special/deep-diver"
+            element={<DeepDiverCoursePage />}
+          />
+          <Route
+            path="/courses/special/marine-photography"
+            element={<MarinePhotographyPage />}
           />
         </Routes>
       </div>
