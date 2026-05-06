@@ -13,7 +13,6 @@ function About1() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "GREEN Inc. | About";
   }, []);
 
   const [hasAnimated, setHasAnimated] = useState(false);
