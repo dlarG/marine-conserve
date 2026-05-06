@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function DebriRemoval() {
   const sectionRefs = useRef({});
@@ -12,6 +12,7 @@ function DebriRemoval() {
     gallery: false,
   });
   const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -527,34 +528,28 @@ function DebriRemoval() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384295/IMG_1215_jqxoba.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1778038996/P7230054_kyt0km.jpg",
                   alt: "Before and after debris removal comparison",
-                  category: "Transformation",
                 },
                 {
-                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384294/IMG_1214_wntgqw.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1778039085/P7300008_sra737.jpg",
                   alt: "Ghost fishing net removal operation",
-                  category: "Recovery",
                 },
                 {
                   src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384300/P9160010_qt0fkc.jpg",
                   alt: "Plastic debris collection underwater",
-                  category: "Collection",
                 },
                 {
-                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384074/cnu_izhwlg.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1778039100/P8190137_yqbn0f.jpg",
                   alt: "Community volunteer cleanup team",
-                  category: "Community",
                 },
                 {
-                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384304/PA290044_ex81t5.jpg",
+                  src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1778039169/P7230069_yvjm7w.jpg",
                   alt: "Debris sorting and processing on surface",
-                  category: "Processing",
                 },
                 {
                   src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384299/P6140239_feuccb.jpg",
                   alt: "Restored reef ecosystem after cleanup",
-                  category: "Results",
                 },
               ].map((image, index) => (
                 <div
@@ -574,11 +569,6 @@ function DebriRemoval() {
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute top-4 left-4">
-                    <span className="inline-flex items-center px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-blue-700">
-                      {image.category}
-                    </span>
-                  </div>
                   <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
                     <p className="text-white text-sm font-medium">
                       {image.alt}
@@ -608,7 +598,10 @@ function DebriRemoval() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25">
+              <button
+                onClick={() => navigate("/volunteer/dive-against-debris")}
+                className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-500 transition-transform duration-500 group-hover:translate-x-full" />
                 <span className="relative flex items-center justify-center gap-2">
                   <span>Support This Project</span>
@@ -628,9 +621,8 @@ function DebriRemoval() {
                 </span>
               </button>
 
-              <a
-                href="https://www.facebook.com/GREENIncorporatedSogodBay"
-                target="_blank"
+              <button
+                onClick={() => navigate("/volunteer/dive-against-debris")}
                 className="cursor-pointer group border-2 border-teal-500 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-all duration-500 transform hover:scale-105"
               >
                 <span className="relative flex items-center justify-center gap-2">
@@ -649,7 +641,7 @@ function DebriRemoval() {
                     />
                   </svg>
                 </span>
-              </a>
+              </button>
             </div>
           </div>
         </div>

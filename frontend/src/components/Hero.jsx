@@ -7,6 +7,10 @@ const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.title = "GREEN Inc. NGO Philippines";
+  }, []);
+
   const pillars = [
     { title: "Coral Restoration", color: "text-green-300" },
     { title: "Marine Debris Removal", color: "text-green-300" },

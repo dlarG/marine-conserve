@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CotsResponse() {
   const sectionRefs = useRef({});
@@ -12,6 +12,7 @@ function CotsResponse() {
     gallery: false,
   });
   const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -585,8 +586,10 @@ function CotsResponse() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-500 transition-transform duration-500 group-hover:translate-x-full" />
+              <button
+                onClick={() => navigate("/volunteer/cots-monitoring")}
+                className="cursor-pointer group relative bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
+              >
                 <span className="relative flex items-center justify-center gap-2">
                   <span>Support This Project</span>
                   <svg
@@ -605,13 +608,12 @@ function CotsResponse() {
                 </span>
               </button>
 
-              <a
-                href="https://www.facebook.com/GREENIncorporatedSogodBay"
-                target="_blank"
+              <button
+                onClick={() => navigate("/volunteer/cots-monitoring")}
                 className="cursor-pointer group border-2 border-teal-500 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-all duration-500 transform hover:scale-105"
               >
                 <span className="relative flex items-center justify-center gap-2">
-                  Get Involved
+                  Become a Volunteer
                   <svg
                     className="w-5 h-5 group-hover:rotate-12 transition-transform"
                     fill="none"
@@ -626,7 +628,7 @@ function CotsResponse() {
                     />
                   </svg>
                 </span>
-              </a>
+              </button>
             </div>
             <p className="mt-8 text-gray-400 text-sm">
               Every contribution helps prevent COTS outbreaks and protect coral

@@ -60,6 +60,11 @@ import CoralRestoration1 from "./components/volunteer/CoralRestoration1";
 import DiveAgainstDebri from "./components/volunteer/DiveAgainstDebri";
 import COTSMonitoring from "./components/volunteer/COTSMonitoring";
 import ScientificDataColl from "./components/volunteer/ScientificDataColl";
+import DeepDiver from "./components/courses/special_courses/DeepDiver";
+import MarinePhotography from "./components/courses/special_courses/MarinePhotography";
+import DiveNavigation from "./components/courses/special_courses/DiveNavigation";
+import NighDiver from "./components/courses/special_courses/NighDiver";
+import PerformanceBuoyancy from "./components/courses/special_courses/PerformanceBouyancy";
 const HomePage = () => {
   return (
     <div>
@@ -443,7 +448,7 @@ const MethodsPage = () => {
 const DonatePage = () => {
   return (
     <>
-      <DonateNavbar />
+      <Navbar />
       <Donate />
       <Footer />
     </>
@@ -484,8 +489,9 @@ const CoralRestorationPage = () => {
 const DataCollectionPage = () => {
   return (
     <>
-      <DataCollectionNavbar />
+      <Navbar />
       <DataCollection />;
+      <Footer />
     </>
   );
 };
@@ -511,8 +517,9 @@ const AllBlogPage = () => {
 const CotsResponsePage = () => {
   return (
     <>
-      <CotsMonitoringNavbar />
+      <Navbar />
       <CotsResponse />
+      <Footer />
     </>
   );
 };
@@ -566,6 +573,56 @@ const SciDataCollectionVolunteerPage = () => {
     <>
       <Navbar />
       <ScientificDataColl />
+      <Footer />
+    </>
+  );
+};
+
+const DeepDiverCoursePage = () => {
+  return (
+    <>
+      <Navbar />
+      <DeepDiver />
+      <Footer />
+    </>
+  );
+};
+
+const MarinePhotographyPage = () => {
+  return (
+    <>
+      <Navbar />
+      <MarinePhotography />
+      <Footer />
+    </>
+  );
+};
+
+const DiveNavigationPage = () => {
+  return (
+    <>
+      <Navbar />
+      <DiveNavigation />
+      <Footer />
+    </>
+  );
+};
+
+const NightDiverPage = () => {
+  return (
+    <>
+      <Navbar />
+      <NighDiver />
+      <Footer />
+    </>
+  );
+};
+
+const PeakBuoyancyPage = () => {
+  return (
+    <>
+      <Navbar />
+      <PerformanceBuoyancy />
       <Footer />
     </>
   );
@@ -638,6 +695,27 @@ function App() {
           <Route
             path="/volunteer/scientific-data-collection"
             element={<SciDataCollectionVolunteerPage />}
+          />
+
+          <Route
+            path="/courses/special/deep-diver"
+            element={<DeepDiverCoursePage />}
+          />
+          <Route
+            path="/courses/special/marine-photography"
+            element={<MarinePhotographyPage />}
+          />
+          <Route
+            path="/courses/special/dive-navigation"
+            element={<DiveNavigationPage />}
+          />
+          <Route
+            path="/courses/special/night-diver"
+            element={<NightDiverPage />}
+          />
+          <Route
+            path="/courses/special/peak-performance-buoyancy"
+            element={<PeakBuoyancyPage />}
           />
         </Routes>
       </div>

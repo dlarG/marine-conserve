@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 
 function CoralRestoration() {
   const sectionRefs = useRef({});
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState({
     hero: false,
     overview: false,
@@ -12,11 +11,12 @@ function CoralRestoration() {
     impact: false,
     gallery: false,
   });
-  const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [currentMethod, setCurrentMethod] = useState(0);
-  const [direction, setDirection] = useState("next");
-  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Swipe detection states
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const methods = [
     {
@@ -26,7 +26,7 @@ function CoralRestoration() {
       description:
         "Utilizing existing cracks and holes in stable substrates for coral fragment placement, ensuring minimal movement and rapid calcification within one week.",
       image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384166/wedging_t9m2fd.jpg",
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777343136/555705217_10238078344967574_7898261656592206056_n_mjjsbg.jpg",
       stats: [
         { label: "Success Rate", value: "92%" },
         { label: "Calcification", value: "1 Week" },
@@ -66,11 +66,11 @@ function CoralRestoration() {
       description:
         "Sustainable ceramic tiles that mimic natural coral substrates and naturally erode over decades, leaving behind established coral communities.",
       image:
-        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384157/tiles_lg8by3.jpg",
+        "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1778038304/Untitled_design_c7vj7c.png",
       stats: [
-        { label: "Terracota Tiles" },
-        { label: "Placeholder2" },
-        { label: "Placeholder3" },
+        { label: "Material", value: "Terracotta" },
+        { label: "Erosion", value: "Natural" },
+        { label: "Impact", value: "Positive" },
       ],
       features: [
         "Calcium carbonate similarity",
@@ -136,20 +136,39 @@ function CoralRestoration() {
     };
   }, []);
 
+  // Simplified Navigation Logic
   const handleNext = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setDirection("next");
     setCurrentMethod((prev) => (prev + 1) % methods.length);
-    setTimeout(() => setIsAnimating(false), 500);
   };
 
   const handlePrev = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setDirection("prev");
     setCurrentMethod((prev) => (prev - 1 + methods.length) % methods.length);
-    setTimeout(() => setIsAnimating(false), 500);
+  };
+
+  // Touch Swipe Handlers
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null); // Reset touch end
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      handleNext();
+    }
+    if (isRightSwipe) {
+      handlePrev();
+    }
   };
 
   return (
@@ -257,32 +276,6 @@ function CoralRestoration() {
                       marine biodiversity.
                     </p>
                   </div>
-
-                  {/* <div className="mt-12 grid grid-cols-2 gap-6">
-                    <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-50 to-white p-6 border border-teal-100 hover:border-teal-300 transition-all duration-300">
-                      <div className="text-3xl font-bold text-teal-600 mb-2 group-hover:scale-105 transition-transform duration-300">
-                        5+
-                      </div>
-                      <div className="text-gray-700 font-medium">
-                        Restoration Sites
-                      </div>
-                      <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-teal-100 rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-                    </div>
-                    <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-50 to-white p-6 border border-emerald-100 hover:border-emerald-300 transition-all duration-300">
-                      <div className="text-3xl font-bold text-emerald-600 mb-2 group-hover:scale-105 transition-transform duration-300">
-                        <CounterAnimation
-                          start={1000}
-                          end={5000}
-                          isVisible={isVisible.overview}
-                        />
-                        +
-                      </div>
-                      <div className="text-gray-700 font-medium">
-                        Corals Transplanted
-                      </div>
-                      <div className="absolute -bottom-2 -right-2 w-16 h-16 bg-emerald-100 rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-                    </div>
-                  </div> */}
                 </div>
               </div>
 
@@ -305,7 +298,7 @@ function CoralRestoration() {
         </div>
       </section>
 
-      {/* Process Section - Carousel Version */}
+      {/* Enhanced Process Section */}
       <section id="process" className="relative overflow-hidden py-10">
         <div className="absolute inset-0 bg-gradient-to-b from-white via-teal-50/20 to-emerald-50/20"></div>
         <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent"></div>
@@ -336,50 +329,45 @@ function CoralRestoration() {
             </div>
 
             <div className="relative max-w-6xl mx-auto">
+              {/* Desktop Navigation Buttons */}
               <button
                 onClick={handlePrev}
-                disabled={isAnimating}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 z-20 w-12 h-12 md:w-16 md:h-16 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="cursor-pointer hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 z-20 w-16 h-16 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 group items-center justify-center"
                 aria-label="Previous method"
               >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    className="w-6 h-6 md:w-8 md:h-8 text-gray-700 group-hover:text-teal-600 transition-colors duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                </div>
+                <svg
+                  className="w-8 h-8 text-gray-700 group-hover:text-teal-600 transition-colors duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
               </button>
 
               <button
                 onClick={handleNext}
-                disabled={isAnimating}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 z-20 w-12 h-12 md:w-16 md:h-16 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="cursor-pointer hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 z-20 w-16 h-16 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full shadow-lg hover:shadow-xl hover:bg-white transition-all duration-300 group items-center justify-center"
                 aria-label="Next method"
               >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <svg
-                    className="w-6 h-6 md:w-8 md:h-8 text-gray-700 group-hover:text-teal-600 transition-colors duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div>
+                <svg
+                  className="w-8 h-8 text-gray-700 group-hover:text-teal-600 transition-colors duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </button>
 
               {/* Method Counter */}
@@ -391,64 +379,66 @@ function CoralRestoration() {
                 <span>{methods.length}</span>
               </div>
 
-              {/* Carousel Content */}
-              <div className="relative overflow-hidden">
+              {/* Carousel Track Container */}
+              <div
+                className="relative overflow-hidden rounded-2xl bg-white touch-pan-y"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                {/* The Sliding Track */}
                 <div
-                  className={`transition-all duration-500 ease-out ${
-                    direction === "next"
-                      ? isAnimating
-                        ? "opacity-0 translate-x-full"
-                        : "opacity-100 translate-x-0"
-                      : isAnimating
-                      ? "opacity-0 -translate-x-full"
-                      : "opacity-100 translate-x-0"
-                  }`}
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(-${currentMethod * 100}%)` }}
                 >
-                  <div className="bg-white rounded-3xl overflow-hidden shadow-2xl">
-                    <div className="grid lg:grid-cols-2 gap-0">
+                  {methods.map((method, index) => (
+                    <div
+                      key={method.id}
+                      className="w-full flex-shrink-0 grid lg:grid-cols-2 gap-0"
+                    >
                       {/* Image Section */}
-                      <div className="relative h-64 lg:h-full">
+                      <div className="relative h-64 lg:h-full min-h-[300px]">
                         <img
-                          src={methods[currentMethod].image}
-                          alt={methods[currentMethod].title}
-                          className="w-full h-full object-cover transition-transform duration-700"
+                          src={method.image}
+                          alt={method.title}
+                          className="absolute inset-0 w-full h-full object-cover"
                           onError={(e) => {
                             e.target.src = "/images/default-coral-method.jpg";
                           }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-teal-600/20 via-emerald-600/10 to-transparent"></div>
                         <div className="absolute top-6 left-6">
-                          <span className="inline-flex items-center px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-medium text-teal-700">
-                            Method {currentMethod + 1}
+                          <span className="inline-flex items-center px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-medium text-teal-700 shadow-sm">
+                            Method {index + 1}
                           </span>
                         </div>
                       </div>
 
                       {/* Content Section */}
-                      <div className="p-8 lg:p-12">
+                      <div className="p-8 lg:p-12 flex flex-col justify-center">
                         <div className="mb-8">
                           <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
-                            {methods[currentMethod].title}
+                            {method.title}
                           </h3>
                           <p className="text-lg text-teal-600 font-medium mb-6">
-                            {methods[currentMethod].subtitle}
+                            {method.subtitle}
                           </p>
                           <p className="text-gray-700 leading-relaxed mb-8">
-                            {methods[currentMethod].description}
+                            {method.description}
                           </p>
                         </div>
 
                         {/* Stats Grid */}
                         <div className="grid grid-cols-3 gap-4 mb-8">
-                          {methods[currentMethod].stats.map((stat, index) => (
+                          {method.stats.map((stat, i) => (
                             <div
-                              key={index}
-                              className="text-center p-4 bg-gray-50 rounded-xl"
+                              key={i}
+                              className="text-center p-4 bg-gray-50 rounded-xl border border-gray-100"
                             >
-                              <div className="text-2xl font-bold text-teal-600 mb-1">
+                              <div className="text-xl lg:text-2xl font-bold text-teal-600 mb-1">
                                 {stat.value}
                               </div>
-                              <div className="text-sm text-gray-600">
+                              <div className="text-xs lg:text-sm text-gray-600">
                                 {stat.label}
                               </div>
                             </div>
@@ -461,24 +451,17 @@ function CoralRestoration() {
                             Key Features
                           </h4>
                           <ul className="space-y-3">
-                            {methods[currentMethod].features.map(
-                              (feature, index) => (
-                                <li
-                                  key={index}
-                                  className="flex items-center gap-3"
-                                >
-                                  <div className="flex-shrink-0 w-2 h-2 bg-teal-400 rounded-full"></div>
-                                  <span className="text-gray-700">
-                                    {feature}
-                                  </span>
-                                </li>
-                              )
-                            )}
+                            {method.features.map((feature, i) => (
+                              <li key={i} className="flex items-center gap-3">
+                                <div className="flex-shrink-0 w-2 h-2 bg-teal-400 rounded-full"></div>
+                                <span className="text-gray-700">{feature}</span>
+                              </li>
+                            ))}
                           </ul>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </div>
 
@@ -487,14 +470,11 @@ function CoralRestoration() {
                 {methods.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => {
-                      setDirection(index > currentMethod ? "next" : "prev");
-                      setCurrentMethod(index);
-                    }}
-                    className={`w-8 h-2 rounded-full transition-all duration-300 ${
+                    onClick={() => setCurrentMethod(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
                       index === currentMethod
-                        ? "bg-teal-600"
-                        : "bg-gray-300 hover:bg-gray-400"
+                        ? "w-8 bg-teal-600"
+                        : "w-2 bg-gray-300 hover:bg-gray-400"
                     }`}
                     aria-label={`Go to method ${index + 1}`}
                   />
@@ -502,27 +482,24 @@ function CoralRestoration() {
               </div>
             </div>
 
-            {/* Method Preview (Desktop only) */}
+            {/* Desktop Bottom Preview Cards */}
             <div className="hidden lg:grid grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
               {methods.map((method, index) => (
                 <button
                   key={method.id}
-                  onClick={() => {
-                    setDirection(index > currentMethod ? "next" : "prev");
-                    setCurrentMethod(index);
-                  }}
-                  className={`p-4 rounded-2xl transition-all duration-300 ${
+                  onClick={() => setCurrentMethod(index)}
+                  className={`cursor-pointer p-4 rounded-2xl transition-all duration-300 ${
                     index === currentMethod
-                      ? "bg-gradient-to-r from-teal-50 to-emerald-50 border-2 border-teal-300 shadow-lg"
+                      ? "bg-gradient-to-r from-teal-50 to-emerald-50 border-2 border-teal-300 shadow-lg scale-105"
                       : "bg-gray-50 hover:bg-gray-100 border border-gray-200 hover:border-teal-200"
                   }`}
                 >
                   <div className="flex items-center gap-4">
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300 ${
+                      className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300 shadow-sm ${
                         index === currentMethod
                           ? "bg-teal-600 text-white"
-                          : "bg-gray-200 text-gray-600"
+                          : "bg-white text-gray-600 border border-gray-200"
                       }`}
                     >
                       {index + 1}
@@ -640,7 +617,9 @@ function CoralRestoration() {
 
       <div
         className={`mb-10 max-w-7xl mx-auto text-center transform transition-all duration-1000 delay-500 ${
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          isVisible.gallery
+            ? "translate-y-0 opacity-100"
+            : "translate-y-8 opacity-0"
         }`}
       >
         <div className="max-w-7xl mx-auto bg-gradient-to-r from-teal-50 to-emerald-50 rounded-2xl p-8 md:p-12 border border-teal-100">
@@ -657,9 +636,8 @@ function CoralRestoration() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => navigate("/volunteer/coral-restoration")}
-                className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
+                className="cursor-pointer group relative bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-500 transition-transform duration-500 group-hover:translate-x-full" />
                 <span className="relative flex items-center justify-center gap-2">
                   <span>Support This Project</span>
                   <svg
@@ -678,13 +656,13 @@ function CoralRestoration() {
                 </span>
               </button>
 
-              <a
-                href="https://www.facebook.com/GREENIncorporatedSogodBay"
+              <button
+                onClick={() => navigate("/volunteer/coral-restoration")}
                 target="_blank"
                 className="cursor-pointer group border-2 border-teal-500 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-all duration-500 transform hover:scale-105"
               >
                 <span className="relative flex items-center justify-center gap-2">
-                  Get Involved
+                  Become a Volunteer
                   <svg
                     className="w-5 h-5 group-hover:rotate-12 transition-transform"
                     fill="none"
@@ -699,7 +677,7 @@ function CoralRestoration() {
                     />
                   </svg>
                 </span>
-              </a>
+              </button>
             </div>
           </div>
         </div>
