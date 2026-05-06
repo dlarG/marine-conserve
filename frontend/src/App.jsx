@@ -443,7 +443,7 @@ const MethodsPage = () => {
 const DonatePage = () => {
   return (
     <>
-      <DonateNavbar />
+      <Navbar />
       <Donate />
       <Footer />
     </>

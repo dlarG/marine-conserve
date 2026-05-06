@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function DataCollection() {
   const sectionRefs = useRef({});
@@ -13,6 +13,7 @@ function DataCollection() {
     gallery: false,
   });
   const [isLoaded, setIsLoaded] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -444,7 +445,12 @@ function DataCollection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25">
+              <button
+                onClick={() =>
+                  navigate("/volunteer/scientific-data-collection")
+                }
+                className="cursor-pointer group relative bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold overflow-hidden transition-all duration-500 transform hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-700 to-teal-600 transition-transform duration-500 group-hover:translate-x-full" />
                 <span className="relative flex items-center justify-center gap-2">
                   <span>Fund Research</span>
@@ -464,9 +470,10 @@ function DataCollection() {
                 </span>
               </button>
 
-              <a
-                href="https://www.facebook.com/GREENIncorporatedSogodBay"
-                target="_blank"
+              <button
+                onClick={() =>
+                  navigate("/volunteer/scientific-data-collection")
+                }
                 className="cursor-pointer group border-2 border-teal-500 text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-teal-50 transition-all duration-500 transform hover:scale-105"
               >
                 <span className="relative flex items-center justify-center gap-2">
@@ -485,7 +492,7 @@ function DataCollection() {
                     />
                   </svg>
                 </span>
-              </a>
+              </button>
             </div>
             <p className="mt-8 text-gray-400 text-sm">
               Every contribution supports rigorous scientific research for
