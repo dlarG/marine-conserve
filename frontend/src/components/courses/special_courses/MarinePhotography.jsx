@@ -108,21 +108,21 @@ const MarinePhotography = () => {
   const samplePhotos = useMemo(
     () => [
       {
-        src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384166/wedging_t9m2fd.jpg",
+        src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384120/P9080045_yqa8sj.jpg",
         alt: "Macro coral detail shot showcasing texture and color",
         title: "Macro Marine Life",
         description:
           "Close-up photography of coral polyps and small reef creatures",
       },
       {
-        src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384222/071018_4351_juhsud.jpg",
+        src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775627247/Punta_MPA_San_Francisco_Southern_Leyte_csk4rx.jpg",
         alt: "Wide-angle reef scene with diver and coral formations",
         title: "Reef Scenics",
         description:
           "Wide-angle composition capturing the majesty of coral ecosystems",
       },
       {
-        src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384409/071018_4343_xgnx0z.jpg",
+        src: "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384143/small3_j2rhed.jpg",
         alt: "Underwater marine life behavior photography",
         title: "Wildlife Behavior",
         description: "Capturing natural behaviors of fish and marine creatures",
@@ -267,7 +267,7 @@ const MarinePhotography = () => {
           className="absolute inset-0 opacity-90"
           style={{
             backgroundImage:
-              "url(https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549361/pexels-cannontaler-20481590_yck89a.jpg)",
+              "url(https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384141/small2_wmdmjz.jpg)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -527,26 +527,6 @@ const MarinePhotography = () => {
               </div>
             ))}
           </div>
-
-          {/* Quick stats banner */}
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { value: "2", label: "Photography Dives" },
-              { value: "3", label: "Lighting Techniques" },
-              { value: "∞", label: "Photo Opportunities" },
-              { value: "1", label: "Edited Portfolio" },
-            ].map((stat, idx) => (
-              <div
-                key={idx}
-                className="text-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm"
-              >
-                <div className="text-3xl font-extrabold text-teal-600 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -604,17 +584,18 @@ const MarinePhotography = () => {
         </div>
       </section>
 
-      {/* CONTINUE YOUR JOURNEY */}
       <section className="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div className="max-w-2xl">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Continue Your Journey
+                Other Courses Offered
               </h2>
               <p className="text-lg text-gray-600">
-                Enhance your underwater photography with complementary courses
-                and certifications.
+                Explore our full range of scuba diving courses and specialties
+                to enhance your underwater skills and experiences. From beginner
+                certifications to advanced specialties, we have something for
+                every diver.
               </p>
             </div>
             <a
@@ -631,31 +612,28 @@ const MarinePhotography = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Peak Performance Buoyancy",
+                title: "PADI Deep Diver",
                 description:
-                  "Master precise buoyancy control to position yourself perfectly for shots without disturbing marine life or kicking up sediment.",
-                href: "/courses/peak-performance-buoyancy",
+                  "Take your diving to new depths with our Deep Diver specialty. Learn techniques for diving beyond 18 meters, managing nitrogen narcosis, and safely exploring deeper wrecks and reefs.",
+                href: "/courses/special/deep-diver",
                 image:
                   "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549211/pexels-domingo-dias-260502921-12678039_uygdph.jpg",
-                level: "Essential Prerequisite",
               },
               {
-                title: "Advanced Open Water",
+                title: "Dive Navigation",
                 description:
-                  "Build confidence with the Underwater Photography Adventure Dive and other specialty dives to enhance your skills.",
-                href: "/courses/advanced-open-water",
+                  "Master underwater navigation skills to confidently explore dive sites. Learn to use a compass, natural navigation techniques, and plan routes for safe and efficient dives.",
+                href: "/courses/special/dive-navigation",
                 image:
-                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549361/pexels-cannontaler-20481590_yck89a.jpg",
-                level: "Recommended",
+                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775547474/pexels-aydenzaki-8029908_gdieio.jpg",
               },
               {
-                title: "Videography Techniques",
+                title: "Night Diver",
                 description:
-                  "Take your storytelling underwater with our video capture and editing module. Learn cinematic techniques for documentary-style footage.",
-                href: "/courses/videography",
+                  "Experience the underwater world in a whole new light. Our Night Diver specialty course teaches you how to navigate and explore the ocean after dark, using specialized techniques and equipment.",
+                href: "/courses/special/night-diver",
                 image:
-                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396227/pexels-leonardo-lamas-32247393-7001658_jez7o0.jpg",
-                level: "Advanced Option",
+                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777348997/5152_uruygm.jpg",
               },
             ].map((c) => (
               <a
@@ -670,12 +648,6 @@ const MarinePhotography = () => {
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-                <div className="absolute top-6 left-6">
-                  <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/30">
-                    {c.level}
-                  </span>
-                </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="text-2xl font-bold text-white mb-2">

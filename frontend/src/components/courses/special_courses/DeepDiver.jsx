@@ -236,7 +236,7 @@ const DeepDiver = () => {
           className="absolute inset-0 opacity-90"
           style={{
             backgroundImage:
-              "url(https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549270/pexels-diego-sandoval-3158170-4767068_ccrfv9.jpg)",
+              "url(https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549211/pexels-domingo-dias-260502921-12678039_uygdph.jpg)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -469,31 +469,28 @@ const DeepDiver = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Advanced Open Water",
+                title: "Marine Photography",
                 description:
-                  "Build confidence and expand your dive skills through Adventure Dives, including the Deep dive that's a prerequisite for this course.",
-                href: "/courses/advanced-open-water",
+                  "Capture the beauty of the underwater world with our Marine Photography specialty. Learn techniques for composition, lighting, and equipment use to take stunning photos on your dives.",
+                href: "/courses/special/marine-photography",
                 image:
-                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549211/pexels-domingo-dias-260502921-12678039_uygdph.jpg",
-                level: "Prerequisite Course",
+                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384141/small2_wmdmjz.jpg",
               },
               {
-                title: "Wreck Diver",
+                title: "Dive Navigation",
                 description:
-                  "Take your deep diving skills to explore sunken ships, aircraft, and artificial reefs with proper penetration techniques.",
-                href: "/courses/wreck-diver",
+                  "Master underwater navigation skills to confidently explore dive sites. Learn to use a compass, natural navigation techniques, and plan routes for safe and efficient dives.",
+                href: "/courses/special/dive-navigation",
                 image:
-                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549361/pexels-cannontaler-20481590_yck89a.jpg",
-                level: "Related Specialty",
+                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775547474/pexels-aydenzaki-8029908_gdieio.jpg",
               },
               {
-                title: "Enriched Air Nitrox",
+                title: "Night Diver",
                 description:
-                  "Extend your bottom time and reduce nitrogen absorption. Perfect companion for deep diving with longer no-decompression limits.",
+                  "Experience the underwater world in a whole new light. Our Night Diver specialty course teaches you how to navigate and explore the ocean after dark, using specialized techniques and equipment.",
                 href: "/courses/enriched-air-nitrox",
                 image:
-                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396227/pexels-leonardo-lamas-32247393-7001658_jez7o0.jpg",
-                level: "Recommended Combo",
+                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777348997/5152_uruygm.jpg",
               },
             ].map((c) => (
               <a
@@ -508,12 +505,6 @@ const DeepDiver = () => {
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-                <div className="absolute top-6 left-6">
-                  <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full border border-white/30">
-                    {c.level}
-                  </span>
-                </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h3 className="text-2xl font-bold text-white mb-2">
