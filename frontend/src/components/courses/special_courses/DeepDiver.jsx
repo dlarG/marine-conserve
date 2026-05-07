@@ -488,7 +488,7 @@ const DeepDiver = () => {
                 title: "Night Diver",
                 description:
                   "Experience the underwater world in a whole new light. Our Night Diver specialty course teaches you how to navigate and explore the ocean after dark, using specialized techniques and equipment.",
-                href: "/courses/enriched-air-nitrox",
+                href: "/courses/special/night-diver",
                 image:
                   "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1777348997/5152_uruygm.jpg",
               },

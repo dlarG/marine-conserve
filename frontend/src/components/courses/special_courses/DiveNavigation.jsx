@@ -518,7 +518,7 @@ const DiveNavigation = () => {
                   "Refine your buoyancy control skills for improved comfort and efficiency underwater.",
                 href: "/courses/special/peak-performance-buoyancy",
                 image:
-                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549361/pexels-cannontaler-20481590_yck89a.jpg",
+                  "https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396227/pexels-leonardo-lamas-32247393-7001658_jez7o0.jpg",
                 level: "Recommended Combo",
               },
             ].map((c) => (

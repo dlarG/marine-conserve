@@ -129,7 +129,7 @@ const Navbar = () => {
     clearCloseTimer();
     closeTimerRef.current = setTimeout(() => {
       setIsCoursesOpen(false);
-    }, 1500);
+    }, 200);
   };
 
   useEffect(() => {
