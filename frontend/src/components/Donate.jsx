@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import DonateModal from "./DonateModal";
+import { useNavigate } from "react-router-dom";
 
 const Donate = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -13,6 +14,7 @@ const Donate = () => {
   const solutionsRef = useRef(null);
   const impactRef = useRef(null);
   const ctaRef = useRef(null);
+  const navigate = useNavigate();
 
   // Define donation amounts
 
@@ -103,6 +105,7 @@ const Donate = () => {
   const solutions = [
     {
       title: "COTS Monitoring & Removal",
+      link: "/volunteer/cots-monitoring",
       impact: "Protects 10,000+ coral colonies annually",
       description:
         "Our dive teams conduct systematic COTS removal dives, manually extracting these predators to give our reefs a fighting chance.",
@@ -116,6 +119,7 @@ const Donate = () => {
     },
     {
       title: "Debris Removal Operations",
+      link: "/volunteer/dive-against-debris",
       impact: "Cleaner, safer habitats for marine life",
       description:
         "Regular underwater cleanup operations remove ghost nets, plastics, and other debris that threaten marine life.",
@@ -129,6 +133,7 @@ const Donate = () => {
     },
     {
       title: "Coral Restoration",
+      link: "/volunteer/coral-restoration",
       impact: "Actively rebuilding damaged reefs",
       description:
         "Using innovative techniques like coral nurseries and transplantation, we're bringing life back to degraded areas.",
@@ -142,6 +147,7 @@ const Donate = () => {
     },
     {
       title: "Scientific Data Collection",
+      link: "/volunteer/scientific-data-collection",
       impact: "Informed decisions through research",
       description:
         "Our data drives conservation strategies and helps us measure the true impact of our efforts.",
@@ -443,12 +449,21 @@ const Donate = () => {
                     ))}
                   </div>
 
-                  <button
-                    onClick={() => handleDonateClick()}
-                    className="w-full py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors text-sm font-semibold"
-                  >
-                    Support This Program →
-                  </button>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button
+                      onClick={() => handleDonateClick()}
+                      className="cursor-pointer w-full py-4 bg-white/20 hover:bg-white/30 rounded-lg transition-colors text-sm font-semibold"
+                    >
+                      Support This Program →
+                    </button>
+
+                    <button
+                      onClick={() => navigate(solution.link)}
+                      className="cursor-pointer w-full py-4 bg-transparent border border-white/30 hover:bg-white/10 rounded-lg transition-colors text-sm font-semibold"
+                    >
+                      Volunteer →
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
