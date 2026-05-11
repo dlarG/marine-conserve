@@ -83,7 +83,7 @@ const DonateModal = ({ isOpen, onClose }) => {
       />
 
       <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full">
-        <div className="sticky top-0 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-6 rounded-t-2xl">
+        <div className="sticky top-0 bg-gradient-to-r from-teal-600 to-emerald-600 text-white p-6 rounded-t-2xl">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold">Support Our Mission</h2>
@@ -300,7 +300,7 @@ const DonateModal = ({ isOpen, onClose }) => {
             <button
               type="submit"
               disabled={isSubmitting || submitStatus === "success"}
-              className="cursor-pointer flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="cursor-pointer flex-1 bg-gradient-to-r from-teal-600 to-emerald-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-emerald-700 transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {isSubmitting ? (
                 <>

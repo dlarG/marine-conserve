@@ -241,7 +241,7 @@ const PerformanceBuoyancy = () => {
           className="absolute inset-0 opacity-90"
           style={{
             backgroundImage:
-              "url(https://res.cloudinary.com/dfsxmtyxk/image/upload/v1775549211/pexels-domingo-dias-260502921-12678039_uygdph.jpg)",
+              "url(https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771396227/pexels-leonardo-lamas-32247393-7001658_jez7o0.jpg)",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

@@ -129,7 +129,7 @@ const Navbar = () => {
     clearCloseTimer();
     closeTimerRef.current = setTimeout(() => {
       setIsCoursesOpen(false);
-    }, 1500);
+    }, 200);
   };
 
   useEffect(() => {
@@ -346,9 +346,9 @@ const Navbar = () => {
                   >
                     <div className="p-8">
                       <div className="grid w-full mx-auto grid-cols-4 gap-6">
-                        {coursesMenu.map((course) => (
+                        {coursesMenu.map((course, index) => (
                           <div
-                            key={course.key}
+                            key={`course-col-${index}`}
                             className={`min-w-0 ${
                               course.isHighlighted
                                 ? "relative bg-gradient-to-br from-teal-50 to-green-50 rounded-xl p-4 -m-2 border border-teal-200"
@@ -411,7 +411,7 @@ const Navbar = () => {
                                   navigate("/volunteer");
                                   setIsCoursesOpen(false);
                                 }}
-                                className="mt-4 w-full px-4 py-2.5 bg-gradient-to-r from-teal-500 to-green-500 text-white text-sm font-semibold rounded-lg hover:from-teal-600 hover:to-green-600 transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                                className="cursor-pointer mt-4 w-full px-4 py-2.5 bg-gradient-to-r from-teal-500 to-green-500 text-white text-sm font-semibold rounded-lg hover:from-teal-600 hover:to-green-600 transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                               >
                                 <span>Make an Impact</span>
                                 <svg
