@@ -236,8 +236,8 @@ const Navbar = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-lg py-4"
-            : "bg-transparent py-6"
+            ? "bg-white/95 backdrop-blur-xl shadow-lg py-2"
+            : "bg-transparent py-4"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4">
@@ -546,9 +546,6 @@ const Navbar = () => {
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Volunteer Programs
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-gradient-to-r from-teal-500 to-green-500 text-white">
-                    Featured
-                  </span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-500 to-green-500 rounded-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </button>

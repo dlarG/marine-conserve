@@ -229,14 +229,16 @@ const Hero = () => {
           </div>
         </div>
         <div
-          className={`w-full lg:w-1/2 mt-12 lg:mt-0 transform transition-all duration-1000 ${
-            isLoaded ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
+          className={`absolute inset-0 flex items-center justify-center pointer-events-none -z-10 lg:static lg:z-auto lg:pointer-events-auto lg:w-1/2 transform transition-all duration-1000 ${
+            isLoaded
+              ? "translate-x-0 opacity-60 lg:opacity-100"
+              : "translate-x-8 opacity-0"
           }`}
           style={{ transitionDelay: "1.4s" }}
         >
-          <div className="relative max-w-full mx-auto lg:ml-auto">
+          <div className="relative w-full max-w-lg lg:max-w-full mx-auto lg:ml-auto">
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 via-teal-500/20 to-emerald-500/20 rounded-full blur-2xl opacity-70" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 via-teal-500/20 to-emerald-500/20 rounded-full blur-xl opacity-70" />
 
               <img
                 src="https://res.cloudinary.com/dfsxmtyxk/image/upload/v1771384101/hero-img21_lncb59.png"
