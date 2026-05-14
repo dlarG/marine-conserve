@@ -72,7 +72,7 @@ const Hero = () => {
         <div className="px-10 w-7xl mx-auto relative z-20">
           <Swiper
             modules={[Autoplay]}
-            spaceBetween={40}
+            spaceBetween={30}
             slidesPerView="auto"
             loop={true}
             speed={4000}
@@ -84,10 +84,7 @@ const Hero = () => {
           >
             {[...pillars, ...pillars, ...pillars].map((pillar, index) => (
               <SwiperSlide key={index} className="!w-auto py-2">
-                <div className="inline-flex items-center px-6 py-3 bg-white/5 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 cursor-pointer">
-                  {pillar.icon && (
-                    <span className="text-2xl mr-3">{pillar.icon}</span>
-                  )}
+                <div className="inline-flex items-center px-3 py-2 bg-white/5 backdrop-blur-md rounded-full border border-white/20 hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 cursor-pointer">
                   <span
                     className={`font-semibold ${pillar.color} text-sm md:text-base whitespace-nowrap`}
                   >
